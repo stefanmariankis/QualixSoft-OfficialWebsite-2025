@@ -6,13 +6,13 @@ export default function AboutHero() {
   return (
     <section className="bg-primary pt-32 pb-8 md:pt-36 md:pb-12 relative overflow-hidden">
       {/* Left Arrow (Original) */}
-      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 opacity-20 hidden md:block">
-        <img src={leftArrowImg} alt="Left arrow" className="w-56 h-auto" />
+      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 opacity-40 md:block z-0">
+        <img src={leftArrowImg} alt="Left arrow" className="w-72 h-auto" />
       </div>
       
       {/* Right Arrow (Flipped) */}
-      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 scale-x-[-1] opacity-20 hidden md:block">
-        <img src={leftArrowImg} alt="Right arrow" className="w-56 h-auto" />
+      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 scale-x-[-1] opacity-40 md:block z-0">
+        <img src={leftArrowImg} alt="Right arrow" className="w-72 h-auto" />
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -60,20 +60,9 @@ export default function AboutHero() {
         </motion.div>
       </div>
       
-      {/* Wave shape at bottom */}
+      {/* Straight line separator at bottom */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 1440 120" 
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path 
-            fill="#FFFFFF" 
-            fillOpacity="1" 
-            d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
-          ></path>
-        </svg>
+        <div className="bg-white h-6 w-full"></div>
       </div>
     </section>
   );
