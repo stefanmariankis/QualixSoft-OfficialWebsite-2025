@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import CTA from "@/components/CTA";
+import AnalysisSection from "@/components/AnalysisSection";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -11,10 +12,11 @@ export default function HomePage() {
     <div className="min-h-screen">
       <Header />
       <Hero />
-      <Services />
-      <Testimonials />
       <Partners />
+      <Services />
+      <AnalysisSection />
       <CTA />
+      <Testimonials />
       <Footer />
     </div>
   );
