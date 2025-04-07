@@ -40,13 +40,23 @@ export default function ServicesList() {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {services.map((service) => (
-            <div key={service.id} className="mb-14 border-b border-gray-100 pb-14 last:mb-0 last:border-b-0 last:pb-0">
+            <div key={service.id} className="mb-14 border border-gray-200 rounded-lg shadow-sm p-8 relative last:mb-0">
+              {/* Arrow in top right corner */}
+              <div className="absolute top-4 right-4">
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                  <X 
+                    size={16} 
+                    className="text-primary transform rotate-45" 
+                  />
+                </div>
+              </div>
+            
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Image column - 4 cols on desktop */}
                 <div className="md:col-span-4 flex items-center justify-center">
-                  <div className="relative w-full max-w-[300px]">
+                  <div className="relative w-full max-w-[250px]">
                     <img 
                       src={service.image} 
                       alt={service.title} 
