@@ -1,15 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-// Logo place-holders
+// Import client logos
+import unicoolLogo from "../assets/client_unicool.png";
+import pulseWeldingLogo from "../assets/client_pulse_welding.png";
+import thdPlastLogo from "../assets/client_thd_plast.png";
+import climaticLogo from "../assets/client_climatic.png";
+import zahariasLogo from "../assets/client_zaharias.png";
+import optimarLogo from "../assets/client_optimar.png";
+import universulCopiilorLogo from "../assets/client_universul_copiilor.png";
+
+// Clients with their logos
 const partners = [
-  { name: "unicool", logo: "UNICOOL" },
-  { name: "the_art", logo: "THE ART" },
-  { name: "open_mind", logo: "OPEN MIND" },
-  { name: "climatic", logo: "CLIMATIC" },
-  { name: "zakanas", logo: "ZAKANAS" },
-  { name: "optimar", logo: "OPTIMAR" },
-  { name: "universul_copiilor", logo: "UNIVERSUL COPIILOR" }
+  { name: "unicool", logo: unicoolLogo, href: "#" },
+  { name: "pulse_welding", logo: pulseWeldingLogo, href: "#" },
+  { name: "thd_plast", logo: thdPlastLogo, href: "#" },
+  { name: "climatic", logo: climaticLogo, href: "#" },
+  { name: "zaharias", logo: zahariasLogo, href: "#" },
+  { name: "optimar", logo: optimarLogo, href: "#" },
+  { name: "universul_copiilor", logo: universulCopiilorLogo, href: "#" }
 ];
 
 export default function Partners() {
@@ -49,7 +58,7 @@ export default function Partners() {
   };
   
   return (
-    <section className="py-6 bg-primary relative overflow-hidden">
+    <section className="py-12 bg-primary relative overflow-hidden">
       {/* Animated background particles */}
       <div className="absolute inset-0 z-0">
         {[...Array(10)].map((_, i) => (
@@ -77,14 +86,14 @@ export default function Partners() {
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <p className="text-center text-white text-sm mb-4">
-          30+ partners have put their trust in us
-        </p>
+        <h3 className="text-center text-white text-xl font-medium mb-8">
+          Clienții noștri
+        </h3>
         
         <div className="relative overflow-hidden">
           <motion.div 
             ref={sliderRef} 
-            className="flex space-x-8 md:space-x-12 lg:space-x-16 overflow-x-auto scrollbar-hide py-4 px-1"
+            className="flex space-x-10 md:space-x-14 lg:space-x-20 overflow-x-auto scrollbar-hide py-6 px-1"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -94,24 +103,25 @@ export default function Partners() {
             {partners.map((partner, index) => (
               <motion.div 
                 key={index} 
-                className="flex-shrink-0 partner-logo flex items-center justify-center h-14 min-w-[140px] lg:min-w-[160px] relative cursor-pointer"
+                className="flex-shrink-0 partner-logo flex items-center justify-center h-16 min-w-[140px] lg:min-w-[160px] relative cursor-pointer"
                 onHoverStart={() => setHoveredIndex(index)}
                 onHoverEnd={() => setHoveredIndex(null)}
                 whileHover={{ 
-                  scale: 1.1,
-                  textShadow: "0 0 12px rgba(255,255,255,0.8)",
-                  color: "#ffffff",
+                  scale: 1.05,
+                  filter: "drop-shadow(0 0 8px rgba(255,255,255,0.5))"
                 }}
                 animate={{
                   y: hoveredIndex === index ? -5 : 0,
                   transition: { type: "spring", stiffness: 300 }
                 }}
               >
-                <div className="text-white font-semibold text-lg">
-                  {partner.logo}
-                </div>
-                
-                {/* Nu mai afișăm tooltip la hover */}
+                <a href={partner.href} className="flex items-center justify-center h-full w-full">
+                  <img 
+                    src={partner.logo} 
+                    alt={partner.name} 
+                    className="h-12 max-h-16 w-auto object-contain filter brightness-0 invert"
+                  />
+                </a>
               </motion.div>
             ))}
           </motion.div>
