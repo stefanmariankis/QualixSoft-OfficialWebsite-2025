@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function CTA() {
   return (
     <section className="py-20 bg-white">
@@ -7,25 +9,46 @@ export default function CTA() {
             <div className="grid grid-cols-3 gap-4">
               <div className="col-span-2">
                 {/* First image - larger one */}
-                <div className="bg-gray-200 rounded-lg w-full h-40 md:h-48 overflow-hidden">
+                <motion.div 
+                  className="bg-gray-200 rounded-lg w-full h-40 md:h-48 overflow-hidden"
+                  whileHover={{ 
+                    scale: 1.03, 
+                    boxShadow: "0 10px 20px rgba(0,0,0,0.1)" 
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500">
                     Image 1
                   </div>
-                </div>
+                </motion.div>
               </div>
               <div className="col-span-1">
                 {/* Orange square */}
-                <div className="bg-primary w-full h-40 md:h-48 rounded-lg"></div>
+                <motion.div 
+                  className="bg-primary w-full h-40 md:h-48 rounded-lg"
+                  whileHover={{ 
+                    rotate: 5,
+                    scale: 1.05
+                  }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                ></motion.div>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4">
               <div className="col-span-3">
                 {/* Second image - full width */}
-                <div className="bg-gray-200 rounded-lg w-full h-40 overflow-hidden">
+                <motion.div 
+                  className="bg-gray-200 rounded-lg w-full h-40 overflow-hidden"
+                  whileHover={{ 
+                    scale: 1.02, 
+                    boxShadow: "0 10px 20px rgba(0,0,0,0.1)" 
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <div className="w-full h-full bg-gray-300 flex items-center justify-center text-gray-500">
                     Image 2
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -42,12 +65,19 @@ export default function CTA() {
                 We're not just about talk, we get things done. From the first sketch to the final product, we've got the tools, the know how, and the drive to bring your vision to life.
               </p>
             </div>
-            <a 
+            <motion.a 
               href="#" 
-              className="inline-block bg-gray-800 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors"
+              className="inline-block bg-primary text-white px-6 py-3 rounded-lg text-sm font-medium shadow-lg"
+              whileHover={{ 
+                scale: 1.05, 
+                backgroundColor: "#ff9800",
+                boxShadow: "0 10px 25px -5px rgba(255, 152, 0, 0.4)"
+              }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 8 }}
             >
               Get your Free Proposal
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>

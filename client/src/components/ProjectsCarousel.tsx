@@ -80,13 +80,24 @@ export default function ProjectsCarousel() {
                     exit={{ x: -100, opacity: 0 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+                    <motion.div 
+                      className="bg-white rounded-xl overflow-hidden shadow-lg"
+                      whileHover={{ 
+                        y: -10, 
+                        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
+                      }}
+                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    >
                       <div className="relative">
-                        <div className="w-full h-64 bg-black flex items-center justify-center">
+                        <motion.div 
+                          className="w-full h-64 bg-black flex items-center justify-center"
+                          whileHover={{ filter: "brightness(1.2)" }}
+                          transition={{ duration: 0.3 }}
+                        >
                           <div className="text-white font-bold text-xl">
                             {project.title}
                           </div>
-                        </div>
+                        </motion.div>
                         
                         <div className="p-4 bg-white">
                           <div className="flex justify-between items-center">
@@ -94,13 +105,22 @@ export default function ProjectsCarousel() {
                               <p className="font-semibold text-gray-800">{project.title}</p>
                               <p className="text-sm text-gray-600">{project.category}</p>
                             </div>
-                            <div className="bg-black p-1.5 rounded-md">
+                            <motion.div 
+                              className="bg-black p-1.5 rounded-md cursor-pointer"
+                              whileHover={{ 
+                                scale: 1.1, 
+                                backgroundColor: "#333",
+                                boxShadow: "0 5px 15px rgba(0,0,0,0.1)" 
+                              }}
+                              whileTap={{ scale: 0.95 }}
+                              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            >
                               <ArrowRight className="h-4 w-4 text-white" />
-                            </div>
+                            </motion.div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   </motion.div>
                 ))}
               </AnimatePresence>
@@ -110,9 +130,29 @@ export default function ProjectsCarousel() {
         
         {/* View all projects link */}
         <div className="text-center pb-10">
-          <a href="#" className="inline-flex items-center text-gray-700 hover:text-primary transition-colors">
-            All projects <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
+          <motion.a 
+            href="#" 
+            className="inline-flex items-center text-gray-700 group"
+            whileHover={{ 
+              scale: 1.05, 
+              color: "#f97316" 
+            }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 400, damping: 8 }}
+          >
+            All projects <motion.span
+              className="ml-2 group-hover:translate-x-1"
+              animate={{ x: [0, 4, 0] }}
+              transition={{ 
+                repeat: Infinity, 
+                repeatType: "mirror", 
+                duration: 1.5, 
+                ease: "easeInOut" 
+              }}
+            >
+              <ArrowRight className="h-4 w-4" />
+            </motion.span>
+          </motion.a>
         </div>
       </div>
     </section>

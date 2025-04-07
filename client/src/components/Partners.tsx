@@ -111,18 +111,7 @@ export default function Partners() {
                   {partner.logo}
                 </div>
                 
-                {/* Hover tooltip */}
-                <motion.div
-                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-white text-primary px-2 py-1 rounded text-xs font-medium pointer-events-none"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ 
-                    opacity: hoveredIndex === index ? 1 : 0,
-                    y: hoveredIndex === index ? 0 : 10
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  View Projects
-                </motion.div>
+                {/* Nu mai afișăm tooltip la hover */}
               </motion.div>
             ))}
           </motion.div>
