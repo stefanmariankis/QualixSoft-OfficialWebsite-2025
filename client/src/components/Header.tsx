@@ -57,7 +57,7 @@ export default function Header() {
               </button>
               <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                 <Link href="/about">
-                  <a className="block px-4 py-2 text-sm text-dark hover:bg-gray-100">About Us</a>
+                  <a className="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Despre Noi</a>
                 </Link>
                 <Link href="/blog">
                   <a className="block px-4 py-2 text-sm text-dark hover:bg-gray-100">Blog</a>
@@ -109,7 +109,7 @@ export default function Header() {
             {mobileMoreOpen && (
               <div className="pl-4">
                 <Link href="/about">
-                  <a className="block py-2 text-dark hover:text-primary">About Us</a>
+                  <a className="block py-2 text-dark hover:text-primary">Despre Noi</a>
                 </Link>
                 <Link href="/blog">
                   <a className="block py-2 text-dark hover:text-primary">Blog</a>
