@@ -1,4 +1,5 @@
 import ServicesHero from "../components/ServicesHero";
+import ServicesList from "../components/ServicesList";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import CTA from "../components/CTA";
@@ -9,7 +10,7 @@ export default function ServicesPage() {
       <Header />
       <main className="flex-grow">
         <ServicesHero />
-        {/* Other services sections will be added here */}
+        <ServicesList />
         <CTA />
       </main>
       <Footer />
