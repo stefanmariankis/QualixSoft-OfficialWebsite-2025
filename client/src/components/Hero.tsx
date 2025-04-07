@@ -13,20 +13,12 @@ export default function Hero() {
           >
             <motion.h1 
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 leading-tight mb-6"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 200 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
             >
               Building Your<br />
-              <motion.span
-                className="relative inline-block text-primary"
-                whileHover={{ 
-                  scale: 1.05,
-                  color: "#ff9800"
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                Digital Future
-              </motion.span>
+              <span className="text-primary">Digital Future</span>
             </motion.h1>
             
             <motion.p 

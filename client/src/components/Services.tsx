@@ -96,15 +96,18 @@ export default function Services() {
         >
           <motion.p 
             className="text-sm uppercase font-semibold tracking-wider text-primary mb-2"
-            whileHover={{ letterSpacing: "0.1em" }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
           >
             OUR SERVICES
           </motion.p>
           <motion.h2 
             className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.5 }}
           >
             We'll solve your problems
           </motion.h2>
@@ -180,24 +183,13 @@ export default function Services() {
               </motion.div>
               
               {/* Service title and description */}
-              <motion.h3 
-                className="text-xl font-medium text-gray-700 mb-2"
-                whileHover={{ 
-                  color: "#000000", 
-                  scale: 1.01, 
-                  x: 3,
-                  transition: { type: "spring", stiffness: 300 }
-                }}
-              >
+              <h3 className="text-xl font-medium text-gray-700 mb-2">
                 {service.title}
-              </motion.h3>
+              </h3>
               
-              <motion.p 
-                className="text-gray-600"
-                whileHover={{ opacity: 0.9 }}
-              >
+              <p className="text-gray-600">
                 {service.description}
-              </motion.p>
+              </p>
               
               {/* Hidden 'Learn more' text that appears on hover */}
               <motion.div

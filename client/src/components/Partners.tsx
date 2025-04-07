@@ -77,15 +77,9 @@ export default function Partners() {
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.p 
-          className="text-center text-white text-sm mb-4"
-          variants={textVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <p className="text-center text-white text-sm mb-4">
           30+ partners have put their trust in us
-        </motion.p>
+        </p>
         
         <div className="relative overflow-hidden">
           <motion.div 
@@ -113,13 +107,9 @@ export default function Partners() {
                   transition: { type: "spring", stiffness: 300 }
                 }}
               >
-                <motion.div 
-                  className="text-white font-semibold text-lg"
-                  whileHover={{ letterSpacing: "0.05em" }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
+                <div className="text-white font-semibold text-lg">
                   {partner.logo}
-                </motion.div>
+                </div>
                 
                 {/* Hover tooltip */}
                 <motion.div
