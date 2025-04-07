@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -38,6 +38,7 @@ const projects = [
 
 export default function ProjectsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   
   // Compute which projects to show
   const visibleProjects = [
@@ -45,14 +46,16 @@ export default function ProjectsCarousel() {
     projects[(currentIndex + 1) % projects.length]
   ];
   
-  // Auto slider effect
+  // Auto slider effect with pause on hover
   useEffect(() => {
+    if (isPaused) return; // Don't set a timer if paused
+    
     const timer = setTimeout(() => {
       setCurrentIndex(prev => prev + 1);
     }, 5000); // Change slide every 5 seconds
     
     return () => clearTimeout(timer);
-  }, [currentIndex]);
+  }, [currentIndex, isPaused]);
 
   return (
     <section className="py-16 relative overflow-hidden" style={{ background: "#f2f2f2" }}>
@@ -69,7 +72,7 @@ export default function ProjectsCarousel() {
         
         <div className="relative min-h-[400px] mb-12">
           <div className="flex justify-center overflow-hidden">
-            <div className="flex w-full max-w-5xl justify-between relative">
+            <div className="flex w-full max-w-5xl justify-between relative pb-8">
               <AnimatePresence mode="popLayout">
                 {visibleProjects.map((project, index) => (
                   <motion.div
@@ -83,10 +86,12 @@ export default function ProjectsCarousel() {
                     <motion.div 
                       className="bg-white rounded-xl overflow-hidden shadow-lg"
                       whileHover={{ 
-                        y: -10, 
+                        y: -5, 
                         boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
                       }}
                       transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                      onHoverStart={() => setIsPaused(true)}
+                      onHoverEnd={() => setIsPaused(false)}
                     >
                       <div className="relative">
                         <motion.div 
