@@ -102,7 +102,7 @@ export default function ProjectsCarousel() {
       // Reset animation state
       setAnimationPhase(0);
       animationInProgress.current = false;
-    }, 1200);
+    }, 1300);
   };
   
   // Auto slider effect
@@ -159,18 +159,20 @@ export default function ProjectsCarousel() {
             </motion.div>
             
             {/* New slide (enters from right with zoom in) */}
-            <motion.div
-              className="absolute w-[95%] md:w-[45%] h-full right-[-100%] md:right-[-50%]"
-              initial={{ x: 0, opacity: 0, scale: 0.8 }}
-              animate={{ 
-                x: animationPhase >= 3 ? "-106%" : 0,
-                opacity: animationPhase >= 3 ? 1 : 0,
-                scale: animationPhase >= 3 ? 1 : 0.8,
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
-            >
-              <ProjectCard project={projects[newIndex]} />
-            </motion.div>
+            {animationPhase >= 2 && (
+              <motion.div
+                className="absolute w-[95%] md:w-[45%] h-full right-0 md:right-[5%]"
+                initial={{ opacity: 0, scale: 0.8, x: "100%" }}
+                animate={{ 
+                  opacity: animationPhase >= 3 ? 1 : 0,
+                  scale: animationPhase >= 3 ? 1 : 0.8,
+                  x: animationPhase >= 3 ? "0%" : "100%",
+                }}
+                transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
+              >
+                <ProjectCard project={projects[newIndex]} />
+              </motion.div>
+            )}
           </div>
           
           {/* Navigation controls */}
