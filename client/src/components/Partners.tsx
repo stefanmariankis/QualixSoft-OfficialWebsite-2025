@@ -1,28 +1,63 @@
+import { useEffect, useRef, useState } from "react";
+
+// Logo place-holders
+const partners = [
+  { name: "unicool", logo: "UNICOOL" },
+  { name: "the_art", logo: "THE ART" },
+  { name: "open_mind", logo: "OPEN MIND" },
+  { name: "climatic", logo: "CLIMATIC" },
+  { name: "zakanas", logo: "ZAKANAS" },
+  { name: "optimar", logo: "OPTIMAR" },
+  { name: "universul_copiilor", logo: "UNIVERSUL COPIILOR" }
+];
+
 export default function Partners() {
-  return (
-    <section className="py-10 bg-primary">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-white text-sm mb-8">Our partners help us build trust in us</p>
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  // Auto-slide effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (sliderRef.current) {
+        const slidesPerView = window.innerWidth < 768 ? 2 : 
+                              window.innerWidth < 1024 ? 3 : 6;
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
-          {[1, 2, 3, 4, 5, 6].map((_, index) => (
-            <div key={index} className="partner-logo bg-white p-4 rounded-xl flex items-center justify-center h-16 w-full max-w-[140px]">
-              <div className="text-gray-400 font-semibold text-xs">PARTNER LOGO</div>
-            </div>
-          ))}
+        const nextIndex = (activeIndex + 1) % (partners.length - slidesPerView + 1);
+        setActiveIndex(nextIndex);
+        
+        const slideWidth = sliderRef.current.scrollWidth / partners.length;
+        sliderRef.current.scrollTo({
+          left: nextIndex * slideWidth,
+          behavior: 'smooth'
+        });
+      }
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [activeIndex]);
+  
+  return (
+    <section className="py-6 bg-primary">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <p className="text-center text-white text-sm mb-4">30+ partners have put their trust in us</p>
+        
+        <div className="relative overflow-hidden">
+          <div 
+            ref={sliderRef} 
+            className="flex space-x-8 md:space-x-12 lg:space-x-16 overflow-x-auto scrollbar-hide py-4 px-1"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {partners.map((partner, index) => (
+              <div 
+                key={index} 
+                className="flex-shrink-0 partner-logo flex items-center justify-center h-14 min-w-[140px] lg:min-w-[160px]"
+              >
+                <div className="text-white font-semibold text-lg">{partner.logo}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <style jsx>{`
-        .partner-logo {
-          filter: grayscale(100%);
-          transition: filter 0.3s ease, transform 0.3s ease;
-        }
-        
-        .partner-logo:hover {
-          filter: grayscale(0%);
-          transform: scale(1.05);
-        }
-      `}</style>
     </section>
   );
 }

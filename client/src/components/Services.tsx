@@ -1,54 +1,68 @@
-import { Monitor, ShoppingCart, BarChart3 } from "lucide-react";
-import { Link } from "wouter";
+import { Settings, Users, Handshake, BarChart3 } from "lucide-react";
 
-const services = [
+// Why Work With Us items
+const whyWorkWithUs = [
   {
-    icon: <Monitor className="h-8 w-8 text-primary" />,
-    title: "Web Development",
-    description: "Custom websites built with the latest technologies to deliver exceptional user experiences.",
-    link: "/services/web-development"
+    icon: <Settings className="h-7 w-7 text-white" />,
+    title: "Tailored Solutions",
+    description: "We customize strategies to meet your unique business goals."
   },
   {
-    icon: <ShoppingCart className="h-8 w-8 text-primary" />,
-    title: "E-commerce Solutions",
-    description: "Powerful online stores that drive sales and provide seamless shopping experiences.",
-    link: "/services/ecommerce"
+    icon: <Users className="h-7 w-7 text-white" />,
+    title: "Expert Team",
+    description: "Our experienced professionals deliver top-tier digital services."
   },
   {
-    icon: <BarChart3 className="h-8 w-8 text-primary" />,
-    title: "SEO & Marketing",
-    description: "Strategic optimization to improve your rankings and drive targeted traffic to your website.",
-    link: "/services/seo-marketing"
+    icon: <Handshake className="h-7 w-7 text-white" />,
+    title: "Full-Service Support",
+    description: "We offer continuous support from development to optimization."
+  },
+  {
+    icon: <BarChart3 className="h-7 w-7 text-white" />,
+    title: "Proven Results",
+    description: "Our data-driven approach ensures measurable success and growth."
   }
 ];
 
 export default function Services() {
   return (
-    <section className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-gray-100 relative">
+      {/* Background hexagons decoration */}
+      <div className="absolute top-0 right-0 opacity-10 w-80 h-80">
+        <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z" fill="#000"/>
+        </svg>
+      </div>
+      <div className="absolute bottom-0 right-20 opacity-10 w-40 h-40">
+        <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z" fill="#000"/>
+        </svg>
+      </div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Why Work With Us</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We provide comprehensive digital solutions to help your business thrive in the online world.
+            We're all about bringing your goals to the forefront and making them happen.
+            With us, you're picking a partner that's committed to your success.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-8">
-              <div className="bg-primary bg-opacity-10 rounded-lg w-16 h-16 flex items-center justify-center mb-6">
-                {service.icon}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {whyWorkWithUs.map((item, index) => (
+            <div 
+              key={index} 
+              className="text-center group transition-all duration-300 hover:-translate-y-2"
+            >
+              <div className="mb-5 mx-auto">
+                <div className="bg-primary w-16 h-16 mx-auto flex items-center justify-center rounded-md transform rotate-45 group-hover:rotate-0 transition-transform duration-300">
+                  <div className="transform -rotate-45 group-hover:rotate-0 transition-transform duration-300">
+                    {item.icon}
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-              <p className="text-gray-600 mb-4">{service.description}</p>
-              <Link href={service.link}>
-                <a className="text-primary font-medium flex items-center">
-                  Learn more
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </Link>
+              <h3 className="text-lg font-semibold mb-3 text-gray-800">{item.title}</h3>
+              <p className="text-gray-600 mx-auto max-w-xs">{item.description}</p>
             </div>
           ))}
         </div>
