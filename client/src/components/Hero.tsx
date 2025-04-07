@@ -1,5 +1,8 @@
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import openTagImg from "../assets/open_tag.png";
+import closeTagImg from "../assets/close_tag.png";
+import slashImg from "../assets/slash.png";
 
 export default function Hero() {
   return (
@@ -94,7 +97,7 @@ export default function Hero() {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 100 }}
             >
-              {/* Left bracket */}
+              {/* Open tag (left bracket) */}
               <motion.div 
                 className="absolute -left-10 md:-left-20 top-1/2 -translate-y-1/2 w-1/3 h-full z-10"
                 initial={{ opacity: 0, x: -20 }}
@@ -102,20 +105,14 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 whileHover={{ x: -5 }}
               >
-                <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                  <motion.path 
-                    d="M80 20 C40 20 20 50 20 100 C20 150 40 180 80 180" 
-                    stroke="#F97316" 
-                    strokeWidth="40" 
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                  />
-                </svg>
+                <img 
+                  src={openTagImg} 
+                  alt="Open tag" 
+                  className="w-full h-full object-contain"
+                />
               </motion.div>
               
-              {/* Right bracket */}
+              {/* Close tag (right bracket) */}
               <motion.div 
                 className="absolute -right-10 md:-right-20 top-1/2 -translate-y-1/2 w-1/3 h-full z-10"
                 initial={{ opacity: 0, x: 20 }}
@@ -123,33 +120,35 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 whileHover={{ x: 5 }}
               >
-                <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                  <motion.path 
-                    d="M20 20 C60 20 80 50 80 100 C80 150 60 180 20 180" 
-                    stroke="#F97316" 
-                    strokeWidth="40" 
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                  />
-                </svg>
+                <img 
+                  src={closeTagImg} 
+                  alt="Close tag" 
+                  className="w-full h-full object-contain"
+                />
               </motion.div>
               
-              {/* Orange overlay with semi-transparent images */}
+              {/* Slash image in the center */}
               <motion.div 
-                className="absolute inset-0 bg-primary z-20 overflow-hidden"
+                className="absolute inset-0 z-20 overflow-hidden flex items-center justify-center"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                whileHover={{ opacity: 0.7 }}
               >
-                {/* We'd typically use real images here, but using a placeholder for now */}
+                <motion.img 
+                  src={slashImg} 
+                  alt="Code slash" 
+                  className="w-2/3 h-auto object-contain"
+                  whileHover={{ 
+                    scale: 1.05,
+                    filter: "brightness(1.1)",
+                  }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                />
               </motion.div>
               
-              {/* This would be replaced with actual image content */}
+              {/* Base container for proper size */}
               <motion.div 
-                className="w-full aspect-[4/3] bg-gray-200"
+                className="w-full aspect-[4/3] bg-gray-800"
                 whileHover={{ 
                   boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
                 }}
