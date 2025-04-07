@@ -13,13 +13,14 @@ export default function AnalysisSection() {
         </div>
         
         <div className="relative min-h-[480px]">
-          {/* Center placeholder for laptop - will be added later by client */}
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[250px]">
-            {/* Empty space for laptop image that client will add later */}
-          </div>
+          {/* Black square in the center */}
+          <div 
+            id="blackSquare"
+            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-black rounded-md"
+          ></div>
           
-          {/* Feature boxes positioned around the empty laptop space */}
-          <div className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px]">
+          {/* Feature boxes positioned around the black square */}
+          <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px]">
             <FeatureBox 
               icon={<Monitor className="h-5 w-5 text-primary" />}
               title="User Experience (UX) Optimization"
@@ -27,7 +28,7 @@ export default function AnalysisSection() {
             />
           </div>
           
-          <div className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px]">
+          <div id="box2" className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px]">
             <FeatureBox 
               icon={<Settings className="h-5 w-5 text-primary" />}
               title="Ongoing Maintenance and Support"
@@ -35,7 +36,7 @@ export default function AnalysisSection() {
             />
           </div>
           
-          <div className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px]">
+          <div id="box3" className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px]">
             <FeatureBox 
               icon={<Smartphone className="h-5 w-5 text-primary" />}
               title="Mobile App Development"
@@ -43,7 +44,7 @@ export default function AnalysisSection() {
             />
           </div>
           
-          <div className="absolute top-[180px] right-0 md:right-[30px] lg:right-[120px] w-[220px]">
+          <div id="box4" className="absolute top-[180px] right-0 md:right-[30px] lg:right-[120px] w-[220px]">
             <FeatureBox 
               icon={<BarChart3 className="h-5 w-5 text-primary" />}
               title="Search Engine Optimization"
@@ -51,13 +52,75 @@ export default function AnalysisSection() {
             />
           </div>
           
-          <div className="absolute bottom-0 right-[30%] w-[220px]">
+          <div id="box5" className="absolute bottom-0 right-[30%] w-[220px]">
             <FeatureBox 
               icon={<Database className="h-5 w-5 text-primary" />}
               title="Scalable Backend Solutions"
               description=""
             />
           </div>
+          
+          {/* SVG overlay for dashed lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+            <defs>
+              <marker 
+                id="dot" 
+                viewBox="0 0 10 10" 
+                refX="5" 
+                refY="5"
+                markerWidth="5" 
+                markerHeight="5">
+                <circle cx="5" cy="5" r="2.5" fill="white" fillOpacity="0.5" />
+              </marker>
+            </defs>
+            
+            {/* CSS dashed lines from each feature to the center */}
+            <line 
+              x1="0%" y1="10%" 
+              x2="40%" y2="40%" 
+              stroke="white" 
+              strokeOpacity="0.3"
+              strokeWidth="1.5" 
+              strokeDasharray="5,5" 
+              markerEnd="url(#dot)"
+            />
+            <line 
+              x1="100%" y1="10%" 
+              x2="60%" y2="40%" 
+              stroke="white" 
+              strokeOpacity="0.3"
+              strokeWidth="1.5" 
+              strokeDasharray="5,5" 
+              markerEnd="url(#dot)"
+            />
+            <line 
+              x1="0%" y1="50%" 
+              x2="35%" y2="50%" 
+              stroke="white" 
+              strokeOpacity="0.3"
+              strokeWidth="1.5" 
+              strokeDasharray="5,5" 
+              markerEnd="url(#dot)"
+            />
+            <line 
+              x1="100%" y1="50%" 
+              x2="65%" y2="50%" 
+              stroke="white" 
+              strokeOpacity="0.3"
+              strokeWidth="1.5" 
+              strokeDasharray="5,5" 
+              markerEnd="url(#dot)"
+            />
+            <line 
+              x1="70%" y1="90%" 
+              x2="50%" y2="65%" 
+              stroke="white" 
+              strokeOpacity="0.3"
+              strokeWidth="1.5" 
+              strokeDasharray="5,5" 
+              markerEnd="url(#dot)"
+            />
+          </svg>
         </div>
       </div>
     </section>
