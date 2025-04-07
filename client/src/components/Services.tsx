@@ -43,21 +43,20 @@ export default function Services() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {ourServices.map((service, index) => (
-            <div key={index} className="bg-[#faf7f2] rounded-lg overflow-hidden">
-              <div className="relative">
-                {/* Black square placeholder that will be replaced with actual images later */}
-                <div className="w-full h-48 bg-black"></div>
-                
-                {/* Arrow icon in top-right corner */}
-                <div className="absolute top-3 right-3 bg-black p-1.5 rounded-md">
-                  <ArrowUpRight className="h-4 w-4 text-white" />
+            <div key={index} className="bg-[#faf7f2] rounded-3xl overflow-hidden relative p-6 border border-[#f0ece4]">
+              {/* Black square placeholder for the image */}
+              <div className="w-full aspect-video bg-black rounded-xl mb-6"></div>
+              
+              {/* Arrow icon in top-right corner */}
+              <div className="absolute top-6 right-6">
+                <div className="bg-black p-2 rounded-lg">
+                  <ArrowUpRight className="h-5 w-5 text-white" />
                 </div>
               </div>
               
-              <div className="p-5">
-                <h3 className="text-base font-semibold mb-1 text-gray-800">{service.title}</h3>
-                <p className="text-sm text-gray-600">{service.description}</p>
-              </div>
+              {/* Service title and description */}
+              <h3 className="text-xl font-medium text-gray-700 mb-2">{service.title}</h3>
+              <p className="text-gray-600">{service.description}</p>
             </div>
           ))}
         </div>
