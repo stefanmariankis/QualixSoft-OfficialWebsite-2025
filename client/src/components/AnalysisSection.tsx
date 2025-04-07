@@ -1,6 +1,92 @@
 import { Smartphone, Monitor, Database, Settings, BarChart3 } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export default function AnalysisSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  
+  // Function to draw lines connecting boxes to the center black square
+  useEffect(() => {
+    const updateLines = () => {
+      if (!containerRef.current || !svgRef.current) return;
+      
+      // Get center black square position
+      const blackSquare = document.getElementById('blackSquare');
+      if (!blackSquare) return;
+      
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const blackSquareRect = blackSquare.getBoundingClientRect();
+      
+      // Calculate center points relative to the container
+      const centerX = blackSquareRect.left + blackSquareRect.width / 2 - containerRect.left;
+      const centerY = blackSquareRect.top + blackSquareRect.height / 2 - containerRect.top;
+      
+      // Clear existing lines
+      while (svgRef.current.firstChild) {
+        svgRef.current.removeChild(svgRef.current.firstChild);
+      }
+      
+      // Create marker definition for dot at the end of lines
+      const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+      const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+      marker.setAttribute("id", "dot");
+      marker.setAttribute("viewBox", "0 0 10 10");
+      marker.setAttribute("refX", "5");
+      marker.setAttribute("refY", "5");
+      marker.setAttribute("markerWidth", "5");
+      marker.setAttribute("markerHeight", "5");
+      
+      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("cx", "5");
+      circle.setAttribute("cy", "5");
+      circle.setAttribute("r", "2.5");
+      circle.setAttribute("fill", "white");
+      circle.setAttribute("fill-opacity", "0.5");
+      
+      marker.appendChild(circle);
+      defs.appendChild(marker);
+      svgRef.current.appendChild(defs);
+      
+      // Connect each box to the center
+      ['box1', 'box2', 'box3', 'box4', 'box5'].forEach(boxId => {
+        const box = document.getElementById(boxId);
+        if (!box) return;
+        
+        const boxRect = box.getBoundingClientRect();
+        
+        // Calculate connection points relative to the container
+        const boxCenterX = boxRect.left + boxRect.width / 2 - containerRect.left;
+        const boxCenterY = boxRect.top + boxRect.height / 2 - containerRect.top;
+        
+        // Create the line
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", boxCenterX.toString());
+        line.setAttribute("y1", boxCenterY.toString());
+        line.setAttribute("x2", centerX.toString());
+        line.setAttribute("y2", centerY.toString());
+        line.setAttribute("stroke", "white");
+        line.setAttribute("stroke-opacity", "0.3");
+        line.setAttribute("stroke-width", "1.5");
+        line.setAttribute("stroke-dasharray", "5,5");
+        line.setAttribute("marker-end", "url(#dot)");
+        
+        svgRef.current.appendChild(line);
+      });
+    };
+    
+    // Update on mount and resize
+    updateLines();
+    window.addEventListener('resize', updateLines);
+    
+    // Small delay to ensure DOM is fully rendered
+    const timeout = setTimeout(updateLines, 500);
+    
+    return () => {
+      window.removeEventListener('resize', updateLines);
+      clearTimeout(timeout);
+    };
+  }, []);
+  
   return (
     <section className="py-20 bg-primary relative overflow-hidden">
       {/* Plain background - no arrows as requested */}
@@ -12,15 +98,15 @@ export default function AnalysisSection() {
           </p>
         </div>
         
-        <div className="relative min-h-[480px]">
+        <div ref={containerRef} className="relative min-h-[480px]">
           {/* Black square in the center */}
           <div 
             id="blackSquare"
-            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-black rounded-md"
+            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-black rounded-md z-10"
           ></div>
           
           {/* Feature boxes positioned around the black square */}
-          <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px]">
+          <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px] z-20">
             <FeatureBox 
               icon={<Monitor className="h-5 w-5 text-primary" />}
               title="User Experience (UX) Optimization"
@@ -28,7 +114,7 @@ export default function AnalysisSection() {
             />
           </div>
           
-          <div id="box2" className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px]">
+          <div id="box2" className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px] z-20">
             <FeatureBox 
               icon={<Settings className="h-5 w-5 text-primary" />}
               title="Ongoing Maintenance and Support"
@@ -36,7 +122,7 @@ export default function AnalysisSection() {
             />
           </div>
           
-          <div id="box3" className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px]">
+          <div id="box3" className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px] z-20">
             <FeatureBox 
               icon={<Smartphone className="h-5 w-5 text-primary" />}
               title="Mobile App Development"
@@ -44,7 +130,7 @@ export default function AnalysisSection() {
             />
           </div>
           
-          <div id="box4" className="absolute top-[180px] right-0 md:right-[30px] lg:right-[120px] w-[220px]">
+          <div id="box4" className="absolute top-[180px] right-0 md:right-[30px] lg:right-[120px] w-[220px] z-20">
             <FeatureBox 
               icon={<BarChart3 className="h-5 w-5 text-primary" />}
               title="Search Engine Optimization"
@@ -52,7 +138,7 @@ export default function AnalysisSection() {
             />
           </div>
           
-          <div id="box5" className="absolute bottom-0 right-[30%] w-[220px]">
+          <div id="box5" className="absolute bottom-0 right-[30%] w-[220px] z-20">
             <FeatureBox 
               icon={<Database className="h-5 w-5 text-primary" />}
               title="Scalable Backend Solutions"
@@ -60,67 +146,12 @@ export default function AnalysisSection() {
             />
           </div>
           
-          {/* SVG overlay for dashed lines */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
-            <defs>
-              <marker 
-                id="dot" 
-                viewBox="0 0 10 10" 
-                refX="5" 
-                refY="5"
-                markerWidth="5" 
-                markerHeight="5">
-                <circle cx="5" cy="5" r="2.5" fill="white" fillOpacity="0.5" />
-              </marker>
-            </defs>
-            
-            {/* CSS dashed lines from each feature to the center */}
-            <line 
-              x1="0%" y1="10%" 
-              x2="40%" y2="40%" 
-              stroke="white" 
-              strokeOpacity="0.3"
-              strokeWidth="1.5" 
-              strokeDasharray="5,5" 
-              markerEnd="url(#dot)"
-            />
-            <line 
-              x1="100%" y1="10%" 
-              x2="60%" y2="40%" 
-              stroke="white" 
-              strokeOpacity="0.3"
-              strokeWidth="1.5" 
-              strokeDasharray="5,5" 
-              markerEnd="url(#dot)"
-            />
-            <line 
-              x1="0%" y1="50%" 
-              x2="35%" y2="50%" 
-              stroke="white" 
-              strokeOpacity="0.3"
-              strokeWidth="1.5" 
-              strokeDasharray="5,5" 
-              markerEnd="url(#dot)"
-            />
-            <line 
-              x1="100%" y1="50%" 
-              x2="65%" y2="50%" 
-              stroke="white" 
-              strokeOpacity="0.3"
-              strokeWidth="1.5" 
-              strokeDasharray="5,5" 
-              markerEnd="url(#dot)"
-            />
-            <line 
-              x1="70%" y1="90%" 
-              x2="50%" y2="65%" 
-              stroke="white" 
-              strokeOpacity="0.3"
-              strokeWidth="1.5" 
-              strokeDasharray="5,5" 
-              markerEnd="url(#dot)"
-            />
-          </svg>
+          {/* Dynamic SVG overlay for dashed lines */}
+          <svg 
+            ref={svgRef} 
+            className="absolute inset-0 w-full h-full pointer-events-none z-0"
+            xmlns="http://www.w3.org/2000/svg"
+          ></svg>
         </div>
       </div>
     </section>
