@@ -4,6 +4,7 @@ import AboutAgency from "../components/AboutAgency";
 import ServicesSlider from "../components/ServicesSlider";
 import FounderSection from "../components/FounderSection";
 import SkillsSection from "../components/SkillsSection";
+import TestimonialsCarousel from "../components/TestimonialsCarousel";
 import CTA from "../components/CTA";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -18,6 +19,7 @@ export default function AboutPage() {
         <ServicesSlider />
         <FounderSection />
         <SkillsSection />
+        <TestimonialsCarousel />
         <AboutContent />
         <CTA />
       </main>
