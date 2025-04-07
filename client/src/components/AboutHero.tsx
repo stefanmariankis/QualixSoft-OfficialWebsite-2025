@@ -5,13 +5,13 @@ import leftArrowImg from "../assets/hero_section_left_arrow.png";
 export default function AboutHero() {
   return (
     <section className="bg-primary pt-32 pb-8 md:pt-36 md:pb-12 relative overflow-hidden">
-      {/* Left Arrow (Original) */}
-      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 opacity-40 md:block z-0">
+      {/* Left Arrow (Original) - moved closer to text */}
+      <div className="absolute left-1/12 xl:left-1/6 top-1/2 transform -translate-y-1/2 opacity-40 md:block z-0">
         <img src={leftArrowImg} alt="Left arrow" className="w-72 h-auto" />
       </div>
       
-      {/* Right Arrow (Flipped) */}
-      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 scale-x-[-1] opacity-40 md:block z-0">
+      {/* Right Arrow (Flipped) - moved closer to text */}
+      <div className="absolute right-1/12 xl:right-1/6 top-1/2 transform -translate-y-1/2 scale-x-[-1] opacity-40 md:block z-0">
         <img src={leftArrowImg} alt="Right arrow" className="w-72 h-auto" />
       </div>
       
