@@ -22,9 +22,15 @@ export default function AnalysisSection() {
       const centerY = blackSquareRect.top + blackSquareRect.height / 2 - containerRect.top;
       
       // Clear existing lines
-      while (svgRef.current.firstChild) {
-        svgRef.current.removeChild(svgRef.current.firstChild);
+      if (svgRef.current) {
+        while (svgRef.current.firstChild) {
+          svgRef.current.removeChild(svgRef.current.firstChild);
+        }
+      } else {
+        return;
       }
+      
+      if (!svgRef.current) return;
       
       // Create marker definition for dot at the end of lines
       const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
@@ -70,7 +76,9 @@ export default function AnalysisSection() {
         line.setAttribute("stroke-dasharray", "5,5");
         line.setAttribute("marker-end", "url(#dot)");
         
-        svgRef.current.appendChild(line);
+        if (svgRef.current) {
+          svgRef.current.appendChild(line);
+        }
       });
     };
     
