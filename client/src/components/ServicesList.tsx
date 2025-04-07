@@ -1,4 +1,3 @@
-import { X } from 'lucide-react';
 import webMobileDevelopmentImg from '@assets/web_mobile_development_services_page.png';
 import consultingStrategyImg from '@assets/consulting_strategy_services_page.png';
 
@@ -42,14 +41,27 @@ export default function ServicesList() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {services.map((service) => (
-            <div key={service.id} className="mb-14 border border-gray-200 rounded-lg shadow-sm p-8 relative last:mb-0">
+            <div 
+              key={service.id} 
+              className="mb-14 p-8 relative last:mb-0 rounded-lg transition-all duration-300 hover:border hover:border-gray-200 hover:shadow-sm"
+            >
               {/* Arrow in top right corner */}
               <div className="absolute top-4 right-4">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                  <X 
-                    size={16} 
-                    className="text-primary transform rotate-45" 
-                  />
+                <div className="w-8 h-8 bg-black rounded-sm flex items-center justify-center">
+                  <svg 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    className="text-white" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    <path d="M7 17L17 7" />
+                    <path d="M7 7h10v10" />
+                  </svg>
                 </div>
               </div>
             
