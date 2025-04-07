@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import { X } from 'lucide-react';
 import webMobileDevelopmentImg from '@assets/web_mobile_development_services_page.png';
 import consultingStrategyImg from '@assets/consulting_strategy_services_page.png';
 
-// Service types for the accordion
+// Service types
 type ServiceType = {
   id: number;
   title: string;
@@ -13,8 +12,6 @@ type ServiceType = {
 };
 
 export default function ServicesList() {
-  const [expandedService, setExpandedService] = useState<number | null>(null);
-  
   const services: ServiceType[] = [
     {
       id: 1,
@@ -40,55 +37,39 @@ export default function ServicesList() {
     }
   ];
 
-  const toggleService = (id: number) => {
-    if (expandedService === id) {
-      setExpandedService(null);
-    } else {
-      setExpandedService(id);
-    }
-  };
-
   return (
-    <section className="py-16 bg-white">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {services.map((service) => (
-            <div key={service.id} className="mb-8 border border-gray-200 rounded-lg overflow-hidden">
-              <div 
-                className={`flex justify-between items-start p-6 cursor-pointer transition-all duration-300 ${expandedService === service.id ? 'bg-gray-50' : 'hover:bg-gray-50'}`}
-                onClick={() => toggleService(service.id)}
-              >
-                <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-700">{service.title}</h3>
-                  <div className="mt-2 flex flex-wrap gap-3">
+            <div key={service.id} className="mb-14 border-b border-gray-100 pb-14 last:mb-0 last:border-b-0 last:pb-0">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+                {/* Image column - 4 cols on desktop */}
+                <div className="md:col-span-4 flex items-center justify-center">
+                  <div className="relative w-full max-w-[300px]">
+                    <img 
+                      src={service.image} 
+                      alt={service.title} 
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </div>
+                
+                {/* Content column - 8 cols on desktop */}
+                <div className="md:col-span-8">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">{service.title}</h3>
+                  
+                  <div className="mb-4 flex flex-wrap gap-2">
                     {service.features.map((feature, index) => (
                       <span key={index} className="inline-flex items-center px-3 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded">
                         {feature}
                       </span>
                     ))}
                   </div>
+                  
+                  <p className="text-gray-600">{service.description}</p>
                 </div>
-                <button className="text-gray-400 hover:text-primary transition-colors">
-                  <X size={20} className={`transform transition-transform ${expandedService === service.id ? 'rotate-45' : ''}`} />
-                </button>
               </div>
-              
-              {expandedService === service.id && (
-                <div className="p-6 pt-0 border-t border-gray-200 transition-all duration-500">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div>
-                      <p className="text-gray-600 mb-4">{service.description}</p>
-                    </div>
-                    <div className="flex justify-center">
-                      <img 
-                        src={service.image} 
-                        alt={service.title} 
-                        className="rounded-lg max-h-[250px] object-contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           ))}
         </div>
