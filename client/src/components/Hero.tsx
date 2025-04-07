@@ -1,20 +1,21 @@
-import { Star } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="pt-32 pb-20 md:pb-28 relative overflow-hidden">
+    <section className="pt-32 pb-20 md:pb-28 relative overflow-hidden bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           <div className="animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Building Your <br/>Digital Future
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 leading-tight mb-6">
+              Building Your<br />Digital Future
             </h1>
             <p className="text-lg text-gray-600 mb-8 max-w-lg">
-              Tailored Web Development, E-commerce, and SEO Services to Boost Your Online Presence
+              Tailored Web Development, E-commerce, and SEO
+              Services to Boost Your Online Presence
             </p>
             <a 
               href="#" 
-              className="bg-primary text-white px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors inline-block"
+              className="bg-gray-800 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors inline-block"
             >
               Get a free proposal
             </a>
@@ -22,46 +23,47 @@ export default function Hero() {
             <div className="mt-8 flex items-center">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4, 5].map((_, index) => (
-                  <div key={index} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
+                  <div key={index} className="w-8 h-8 rounded-full border-2 border-white overflow-hidden">
                     <div className="bg-gray-300 w-full h-full flex items-center justify-center text-xs text-gray-600">
-                      <span>User</span>
+                      <span>U</span>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="ml-4">
-                <span className="text-sm font-medium block">Over 20 clients satisfied</span>
-                <div className="flex text-yellow-400">
-                  {[1, 2, 3, 4, 5].map((_, index) => (
-                    <Star key={index} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
+              <div className="ml-2 flex items-center text-gray-600 text-sm">
+                <span>Over 30 clients satisfied</span>
+                <CheckCircle className="h-4 w-4 ml-1 text-primary" />
               </div>
             </div>
           </div>
           
-          <div className="code-brackets animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-            <div className="bg-primary bg-opacity-20 rounded-3xl p-8 relative overflow-hidden flex justify-center items-center min-h-[400px]">
-              <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary rounded-full opacity-20"></div>
-              <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-primary rounded-full opacity-20"></div>
-              
-              <div className="relative z-10 flex flex-col items-center">
-                <div className="bg-primary text-white text-7xl font-bold p-6 rounded-3xl inline-block" style={{ transform: 'rotate(-15deg)' }}>
-                  &lt;
-                </div>
-                <div className="bg-primary text-white text-7xl font-bold p-6 rounded-3xl inline-block mt-6">
-                  /&gt;
-                </div>
+          <div className="animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+            <div className="relative">
+              {/* Left bracket */}
+              <div className="absolute -left-10 md:-left-20 top-1/2 -translate-y-1/2 w-1/3 h-full z-10">
+                <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <path d="M80 20 C40 20 20 50 20 100 C20 150 40 180 80 180" stroke="#F97316" strokeWidth="40" strokeLinecap="round" />
+                </svg>
               </div>
+              
+              {/* Right bracket */}
+              <div className="absolute -right-10 md:-right-20 top-1/2 -translate-y-1/2 w-1/3 h-full z-10">
+                <svg viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <path d="M20 20 C60 20 80 50 80 100 C80 150 60 180 20 180" stroke="#F97316" strokeWidth="40" strokeLinecap="round" />
+                </svg>
+              </div>
+              
+              {/* Orange overlay with semi-transparent images */}
+              <div className="absolute inset-0 bg-primary opacity-60 z-20 overflow-hidden">
+                {/* We'd typically use real images here, but using a placeholder for now */}
+              </div>
+              
+              {/* This would be replaced with actual image content */}
+              <div className="w-full aspect-[4/3] bg-gray-200"></div>
             </div>
           </div>
         </div>
       </div>
-      
-      {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-primary bg-opacity-5 rounded-bl-[100px] -z-10"></div>
-      <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary bg-opacity-10 rounded-full -z-10"></div>
-      <div className="absolute top-40 left-10 w-12 h-12 bg-primary bg-opacity-10 rounded-full -z-10"></div>
     </section>
   );
 }
