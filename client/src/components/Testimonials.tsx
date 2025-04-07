@@ -1,112 +1,152 @@
-import { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 
 // Testimonial data
 const testimonials = [
   {
-    name: "John Doe",
-    role: "CEO, TechCompany",
-    image: "JD",
-    text: "Working with QualitxSoft was a game-changer for our business. They delivered a stunning website that perfectly represents our brand and has significantly improved our conversion rates."
+    id: 1,
+    content: "Lorem ipsum dolor sit amet consectetur. Orci porttitor semper placerat aliquam tellus ultricies eu lac. Nibh. Vel sit feugiat mattis facilisi.",
+    author: "Andrew Pavel",
+    company: "Ecomosfate.ro"
   },
   {
-    name: "Jane Smith",
-    role: "Marketing Director, RetailBrand",
-    image: "JS",
-    text: "The SEO services provided by QualitxSoft have transformed our online presence. Our organic traffic has increased by 200% in just three months."
+    id: 2,
+    content: "Excellent service and amazing results. The team was professional and delivered beyond our expectations.",
+    author: "Maria Ionescu",
+    company: "TechSolutions.ro"
   },
   {
-    name: "Robert Johnson",
-    role: "Founder, StartupCo",
-    image: "RJ",
-    text: "Their e-commerce solution helped us increase our online sales by 150%. The user experience is fantastic and our customers love it."
+    id: 3,
+    content: "They transformed our online presence completely. Very responsive and attentive to our specific needs.",
+    author: "Mihai Popescu",
+    company: "GreenGarden.ro"
+  },
+  {
+    id: 4,
+    content: "Working with them was a pleasure. They understood our vision right away and executed it perfectly.",
+    author: "Elena Dinu",
+    company: "UrbanStyle.ro"
+  },
+  {
+    id: 5,
+    content: "Highly professional team that delivers quality work on time. Definitely recommend their services.",
+    author: "Cristian Munteanu",
+    company: "FitLife.ro"
+  },
+  {
+    id: 6,
+    content: "Outstanding collaboration from start to finish. They've helped us increase our online sales by 200%.",
+    author: "Alina Florescu",
+    company: "BeautyShop.ro"
   }
 ];
 
-export default function Testimonials() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const sliderRef = useRef<HTMLDivElement>(null);
+// Avatar component
+const Avatar = ({ isActive }: { isActive: boolean }) => (
+  <div 
+    className={`w-10 h-10 rounded-full overflow-hidden transition-all duration-300 ${
+      isActive ? 'ring-2 ring-white scale-125' : 'opacity-70'
+    }`}
+  >
+    <div className="w-full h-full bg-gray-600 rounded-full flex items-center justify-center">
+      <span className="text-xs text-white">User</span>
+    </div>
+  </div>
+);
 
-  const showSlide = (index: number) => {
-    let newIndex = index;
-    if (index >= testimonials.length) {
-      newIndex = 0;
-    } else if (index < 0) {
-      newIndex = testimonials.length - 1;
-    }
-    
-    setCurrentSlide(newIndex);
-    if (sliderRef.current) {
-      const slide = sliderRef.current.children[newIndex] as HTMLElement;
-      sliderRef.current.scrollTo({
-        left: slide.offsetLeft,
-        behavior: 'smooth'
-      });
-    }
+export default function Testimonials() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  const handlePrev = () => {
+    setActiveIndex((prevIndex) => 
+      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+    );
+  };
+  
+  const handleNext = () => {
+    setActiveIndex((prevIndex) => 
+      (prevIndex + 1) % testimonials.length
+    );
+  };
+  
+  const handleAvatarClick = (index: number) => {
+    setActiveIndex(index);
   };
 
-  // Auto-scroll testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      showSlide(currentSlide + 1);
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, [currentSlide]);
-
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about working with us.
-          </p>
+    <section className="py-20 bg-primary relative overflow-hidden">
+      {/* Decorative dots/circles (simplified) */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-white"></div>
+        <div className="absolute top-1/3 right-1/4 w-6 h-6 rounded-full bg-white"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-8 h-8 rounded-full bg-white"></div>
+        <div className="absolute top-2/3 right-1/3 w-3 h-3 rounded-full bg-white"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-5 h-5 rounded-full bg-white"></div>
+      </div>
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-10">
+          <p className="uppercase text-sm font-medium text-white mb-2">OUR TESTIMONIALS</p>
+          <h2 className="text-3xl font-bold text-white">What our clients are saying</h2>
         </div>
         
-        <div className="relative">
-          <div 
-            className="flex overflow-x-hidden snap-x snap-mandatory" 
-            ref={sliderRef}
-            id="testimonialSlider"
+        {/* Avatar navigation */}
+        <div className="flex justify-center items-center mb-8 space-x-4">
+          <button 
+            onClick={handlePrev} 
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 text-white hover:bg-white/30"
           >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+          
+          <div className="flex space-x-3">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="min-w-full snap-center px-4">
-                <div className="bg-white rounded-xl shadow-md p-8 max-w-3xl mx-auto">
-                  <div className="flex items-center mb-6">
-                    <div className="w-16 h-16 rounded-full overflow-hidden mr-4 bg-gray-300 flex items-center justify-center text-lg text-gray-600">
-                      <span>{testimonial.image}</span>
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-semibold">{testimonial.name}</h4>
-                      <p className="text-gray-600">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  <div className="mb-6">
-                    <div className="flex text-yellow-400 mb-2">
-                      {[1, 2, 3, 4, 5].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 fill-current" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 italic text-lg">{testimonial.text}</p>
-                  </div>
-                </div>
-              </div>
+              <button 
+                key={testimonial.id}
+                onClick={() => handleAvatarClick(index)}
+                className="focus:outline-none transition-transform duration-300"
+              >
+                <Avatar isActive={index === activeIndex} />
+              </button>
             ))}
           </div>
           
           <button 
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-md p-3 hover:bg-gray-100 focus:outline-none z-10"
-            onClick={() => showSlide(currentSlide - 1)}
+            onClick={handleNext} 
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 text-white hover:bg-white/30"
           >
-            <ChevronLeft className="h-6 w-6 text-dark" />
+            <ArrowRight className="w-4 h-4" />
           </button>
-          <button 
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-md p-3 hover:bg-gray-100 focus:outline-none z-10"
-            onClick={() => showSlide(currentSlide + 1)}
+        </div>
+        
+        {/* Testimonial card */}
+        <div className="max-w-2xl mx-auto">
+          <motion.div 
+            key={activeIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-lg p-8 shadow-lg"
           >
-            <ChevronRight className="h-6 w-6 text-dark" />
-          </button>
+            <div className="flex items-start mb-4">
+              <div className="bg-primary/10 rounded-full p-2 mr-4">
+                <Quote className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold">Lorem ipsum dolor sit amet</h3>
+                <p className="text-gray-600 mt-2">
+                  {testimonials[activeIndex].content}
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 border-t border-gray-100 pt-4">
+              <p className="text-sm text-gray-800">
+                - {testimonials[activeIndex].author}, {testimonials[activeIndex].company}
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

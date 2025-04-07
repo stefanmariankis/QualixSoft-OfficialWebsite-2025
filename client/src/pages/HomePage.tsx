@@ -6,6 +6,7 @@ import Partners from "@/components/Partners";
 import CTA from "@/components/CTA";
 import AnalysisSection from "@/components/AnalysisSection";
 import ProjectsCarousel from "@/components/ProjectsCarousel";
+import TechSlider from "@/components/TechSlider";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -17,8 +18,9 @@ export default function HomePage() {
       <Services />
       <AnalysisSection />
       <ProjectsCarousel />
-      <CTA />
+      <TechSlider />
       <Testimonials />
+      <CTA />
       <Footer />
     </div>
   );
