@@ -1,31 +1,36 @@
 import { motion } from "framer-motion";
-import { Settings, Users, Wrench, PieChart } from "lucide-react";
+
+// Import custom icons
+import tailoredSolutionsIcon from "../assets/icon_tailored_solutions.png";
+import expertTeamIcon from "../assets/icon_expert_team.png";
+import fullServiceSupportIcon from "../assets/icon_full_service_support.png";
+import provenResultsIcon from "../assets/icon_proven_results.png";
 
 // Create feature cards data
 const features = [
   {
     id: 1,
-    icon: <Settings className="w-8 h-8 text-white" />,
-    title: "Tailored Solutions",
-    description: "We customize strategies to meet your unique business goals."
+    icon: tailoredSolutionsIcon,
+    title: "Soluții Personalizate",
+    description: "Personalizăm strategii pentru a îndeplini obiectivele unice ale afacerii tale."
   },
   {
     id: 2,
-    icon: <Users className="w-8 h-8 text-white" />,
-    title: "Expert Team",
-    description: "Our experienced professionals deliver top-tier results."
+    icon: expertTeamIcon,
+    title: "Echipă de Experți",
+    description: "Profesioniștii noștri cu experiență livrează rezultate de top."
   },
   {
     id: 3,
-    icon: <Wrench className="w-8 h-8 text-white" />,
-    title: "Full-Service Support",
-    description: "We offer continuous support from development to growth."
+    icon: fullServiceSupportIcon,
+    title: "Suport Complet",
+    description: "Oferim asistență continuă de la dezvoltare până la creștere."
   },
   {
     id: 4,
-    icon: <PieChart className="w-8 h-8 text-white" />,
-    title: "Proven Results",
-    description: "Our data-driven approach ensures measurable achievements."
+    icon: provenResultsIcon,
+    title: "Rezultate Dovedite",
+    description: "Abordarea noastră bazată pe date asigură realizări măsurabile."
   }
 ];
 
@@ -45,19 +50,20 @@ const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
       }}
     >
       <motion.div 
-        className="bg-primary p-4 mb-4 hex-shape"
+        className="mb-4"
         whileHover={{ 
           scale: 1.1, 
-          boxShadow: "0 10px 25px -5px rgba(249, 115, 22, 0.5)",
+          filter: "drop-shadow(0 10px 25px rgba(249, 115, 22, 0.5))",
           transition: { type: "spring", stiffness: 300, damping: 8 }
         }}
       >
-        <motion.div
-          whileHover={{ rotate: 360 }}
+        <motion.img
+          src={feature.icon}
+          alt={feature.title}
+          className="w-20 h-20"
+          whileHover={{ rotate: [0, 10, 0, -10, 0] }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-        >
-          {feature.icon}
-        </motion.div>
+        />
       </motion.div>
       <motion.h3 
         className="text-primary font-semibold text-lg mb-2"
@@ -141,7 +147,7 @@ export default function WhyWorkWithUs() {
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
           >
-            Why Work With Us
+            De ce să lucrezi cu noi
           </motion.h2>
           <motion.p 
             className="text-gray-600 max-w-2xl mx-auto"
@@ -150,8 +156,8 @@ export default function WhyWorkWithUs() {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            We're all about bringing your goals to the forefront and making them happen. 
-            With us, you're picking a partner that's committed to your success.
+            Ne concentrăm pe aducerea obiectivelor tale în prim plan și pe realizarea lor.
+            Cu noi, alegi un partener dedicat succesului tău.
           </motion.p>
         </motion.div>
         
