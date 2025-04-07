@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom utility classes added above to avoid duplication */
+
 @layer base {
   * {
     @apply border-border;
