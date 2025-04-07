@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import CTA from "@/components/CTA";
 import AnalysisSection from "@/components/AnalysisSection";
+import ProjectsCarousel from "@/components/ProjectsCarousel";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       <Partners />
       <Services />
       <AnalysisSection />
+      <ProjectsCarousel />
       <CTA />
       <Testimonials />
       <Footer />
