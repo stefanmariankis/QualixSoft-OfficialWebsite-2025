@@ -8,6 +8,7 @@ import AnalysisSection from "@/components/AnalysisSection";
 import ProjectsCarousel from "@/components/ProjectsCarousel";
 import TechSlider from "@/components/TechSlider";
 import EnvisionSection from "@/components/EnvisionSection";
+import WhyWorkWithUs from "@/components/WhyWorkWithUs";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Header />
       <Hero />
       <Partners />
+      <WhyWorkWithUs />
       <Services />
       <AnalysisSection />
       <ProjectsCarousel />
