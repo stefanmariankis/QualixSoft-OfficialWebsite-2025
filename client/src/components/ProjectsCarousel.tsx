@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 // Project data
@@ -36,36 +36,85 @@ const projects = [
   }
 ];
 
+// Create a card component for projects
+const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
+  return (
+    <div className="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+      <div className="relative">
+        <div className="w-full h-64 bg-black flex items-center justify-center">
+          <div className="text-white font-bold text-xl">
+            {project.title}
+          </div>
+        </div>
+        
+        <div className="p-4 bg-white">
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-gray-800">{project.title}</p>
+              <p className="text-sm text-gray-600">{project.category}</p>
+            </div>
+            <div className="bg-black p-1.5 rounded-md">
+              <ArrowRight className="h-4 w-4 text-white" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function ProjectsCarousel() {
-  const [currentProjects, setCurrentProjects] = useState([0, 1]);
-  const [transitioning, setTransitioning] = useState(false);
+  // Position states for each slide position
+  const [leftIndex, setLeftIndex] = useState(0);
+  const [rightIndex, setRightIndex] = useState(1);
+  const [newIndex, setNewIndex] = useState(2);
+  
+  // Animation states
+  const [animationPhase, setAnimationPhase] = useState(0); // 0: idle, 1: left exits, 2: right moves, 3: new enters
+  const animationInProgress = useRef(false);
   const [autoplay, setAutoplay] = useState(true);
+  
+  // Progress animation through phases
+  const advanceAnimation = () => {
+    if (animationInProgress.current) return;
+    animationInProgress.current = true;
+    
+    // Start animation sequence
+    setAnimationPhase(1); // Start left exit
+    
+    // After left exits, move right to left
+    setTimeout(() => {
+      setAnimationPhase(2);
+    }, 400);
+    
+    // After right moves, bring in new slide
+    setTimeout(() => {
+      setAnimationPhase(3);
+    }, 700);
+    
+    // Reset animation and update indices
+    setTimeout(() => {
+      // Update indices
+      setLeftIndex(rightIndex);
+      setRightIndex(newIndex);
+      setNewIndex((newIndex + 1) % projects.length);
+      
+      // Reset animation state
+      setAnimationPhase(0);
+      animationInProgress.current = false;
+    }, 1200);
+  };
   
   // Auto slider effect
   useEffect(() => {
-    if (!autoplay || transitioning) return;
+    if (!autoplay || animationPhase !== 0) return;
     
     const timer = setTimeout(() => {
-      moveToNext();
+      advanceAnimation();
     }, 5000); // Change slide every 5 seconds
     
     return () => clearTimeout(timer);
-  }, [currentProjects, autoplay, transitioning]);
-  
-  const moveToNext = () => {
-    if (transitioning) return;
-    
-    setTransitioning(true);
-    
-    // After 500ms, update the actual projects that are shown
-    setTimeout(() => {
-      setCurrentProjects(prev => [
-        (prev[1]) % projects.length, 
-        (prev[1] + 1) % projects.length
-      ]);
-      setTransitioning(false);
-    }, 800);
-  };
+  }, [autoplay, animationPhase]);
 
   return (
     <section className="py-16 relative overflow-hidden" style={{ background: "#f2f2f2" }}>
@@ -81,120 +130,47 @@ export default function ProjectsCarousel() {
         </div>
         
         <div className="relative min-h-[400px] mb-12">
-          <div className="flex justify-center items-center">
-            {/* Left slide */}
+          {/* Carousel container */}
+          <div className="relative h-[380px] overflow-hidden">
+            {/* Left slide (exits with zoom out) */}
             <motion.div
-              className="w-[95%] md:w-[45%] absolute left-0 md:left-[5%]"
-              animate={{
-                x: transitioning ? "-30%" : 0,
-                scale: transitioning ? 0.9 : 1,
-                opacity: transitioning ? 0 : 1,
+              className="absolute w-[95%] md:w-[45%] h-full left-0 md:left-[5%]"
+              initial={{ x: 0, opacity: 1, scale: 1 }}
+              animate={{ 
+                x: animationPhase >= 1 ? "-30%" : 0,
+                opacity: animationPhase >= 1 ? 0 : 1,
+                scale: animationPhase >= 1 ? 0.9 : 1,
               }}
-              transition={{
-                duration: 0.8,
-                ease: "easeInOut",
-              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
             >
-              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-                <div className="relative">
-                  <div className="w-full h-64 bg-black flex items-center justify-center">
-                    <div className="text-white font-bold text-xl">
-                      {projects[currentProjects[0]].title}
-                    </div>
-                  </div>
-                  
-                  <div className="p-4 bg-white">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <p className="font-semibold text-gray-800">{projects[currentProjects[0]].title}</p>
-                        <p className="text-sm text-gray-600">{projects[currentProjects[0]].category}</p>
-                      </div>
-                      <div className="bg-black p-1.5 rounded-md">
-                        <ArrowRight className="h-4 w-4 text-white" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ProjectCard project={projects[leftIndex]} />
             </motion.div>
             
-            {/* Right slide - moves to left */}
+            {/* Right slide (moves to left position) */}
             <motion.div
-              className="w-[95%] md:w-[45%] absolute right-0 md:right-[5%]"
-              animate={{
-                x: transitioning ? "-110%" : 0,
-                scale: 1,
-                opacity: 1,
+              className="absolute w-[95%] md:w-[45%] h-full right-0 md:right-[5%]"
+              initial={{ x: 0 }}
+              animate={{ 
+                x: animationPhase >= 2 ? "-110%" : 0,
               }}
-              transition={{
-                duration: 0.8,
-                ease: "easeInOut",
-              }}
+              transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
             >
-              <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-                <div className="relative">
-                  <div className="w-full h-64 bg-black flex items-center justify-center">
-                    <div className="text-white font-bold text-xl">
-                      {projects[currentProjects[1]].title}
-                    </div>
-                  </div>
-                  
-                  <div className="p-4 bg-white">
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <p className="font-semibold text-gray-800">{projects[currentProjects[1]].title}</p>
-                        <p className="text-sm text-gray-600">{projects[currentProjects[1]].category}</p>
-                      </div>
-                      <div className="bg-black p-1.5 rounded-md">
-                        <ArrowRight className="h-4 w-4 text-white" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ProjectCard project={projects[rightIndex]} />
             </motion.div>
             
-            {/* New slide coming from right - only visible during transition */}
-            {transitioning && (
-              <motion.div
-                className="w-[95%] md:w-[45%] absolute right-[-100%] md:right-[-50%]"
-                animate={{
-                  x: "-105%",
-                  scale: [0.8, 1],
-                  opacity: [0, 1],
-                }}
-                transition={{
-                  duration: 0.8,
-                  ease: "easeInOut",
-                }}
-              >
-                <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-                  <div className="relative">
-                    <div className="w-full h-64 bg-black flex items-center justify-center">
-                      <div className="text-white font-bold text-xl">
-                        {projects[(currentProjects[1] + 1) % projects.length].title}
-                      </div>
-                    </div>
-                    
-                    <div className="p-4 bg-white">
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <p className="font-semibold text-gray-800">
-                            {projects[(currentProjects[1] + 1) % projects.length].title}
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            {projects[(currentProjects[1] + 1) % projects.length].category}
-                          </p>
-                        </div>
-                        <div className="bg-black p-1.5 rounded-md">
-                          <ArrowRight className="h-4 w-4 text-white" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
+            {/* New slide (enters from right with zoom in) */}
+            <motion.div
+              className="absolute w-[95%] md:w-[45%] h-full right-[-100%] md:right-[-50%]"
+              initial={{ x: 0, opacity: 0, scale: 0.8 }}
+              animate={{ 
+                x: animationPhase >= 3 ? "-106%" : 0,
+                opacity: animationPhase >= 3 ? 1 : 0,
+                scale: animationPhase >= 3 ? 1 : 0.8,
+              }}
+              transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
+            >
+              <ProjectCard project={projects[newIndex]} />
+            </motion.div>
           </div>
           
           {/* Navigation controls */}
@@ -202,18 +178,24 @@ export default function ProjectsCarousel() {
             <button 
               className="bg-black bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-colors text-white"
               onClick={() => {
-                setAutoplay(false);
-                moveToNext();
+                if (animationPhase === 0) {
+                  setAutoplay(false);
+                  advanceAnimation();
+                }
               }}
+              disabled={animationPhase !== 0}
             >
               <ArrowRight className="h-6 w-6 rotate-180" />
             </button>
             <button 
               className="bg-black bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-colors text-white"
               onClick={() => {
-                setAutoplay(false);
-                moveToNext();
+                if (animationPhase === 0) {
+                  setAutoplay(false);
+                  advanceAnimation();
+                }
               }}
+              disabled={animationPhase !== 0}
             >
               <ArrowRight className="h-6 w-6" />
             </button>
