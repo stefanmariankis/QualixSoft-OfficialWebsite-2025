@@ -131,14 +131,21 @@ export default function TestimonialsCarousel() {
 
           {/* Right side with client image in hexagon */}
           <div className="relative flex justify-center">
-            <div className="relative">
+            <motion.div
+              key={testimonials[currentIndex].id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="relative"
+            >
               {/* Larger background hexagon */}
-              <div className="hex-container-bg absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[250px] h-[230px] bg-gray-100 z-0">
-                <div className="hex-shape-bg w-full h-full"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[250px] h-[230px] z-0">
+                <div className="hex-shape-bg w-full h-full bg-gray-100"></div>
               </div>
               
               {/* Client image hexagon */}
-              <div className="hex-container relative z-10 w-[220px] h-[200px] overflow-hidden">
+              <div className="relative z-10 w-[220px] h-[200px] overflow-hidden">
                 <div className="hex-shape w-full h-full overflow-hidden">
                   <img 
                     src={testimonialClientImg} 
@@ -147,7 +154,7 @@ export default function TestimonialsCarousel() {
                   />
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
