@@ -6,11 +6,12 @@ interface LogoProps {
 
 export default function Logo({ color = 'dark' }: LogoProps) {
   return (
-    <div className="h-8 mr-2">
+    <div className="h-10 mr-0">
       <img 
         src={logoImg} 
         alt="QualixSoft" 
         className="h-full" 
+        style={{ objectFit: 'contain' }}
       />
     </div>
   );

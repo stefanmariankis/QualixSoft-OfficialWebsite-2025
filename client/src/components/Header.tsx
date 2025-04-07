@@ -33,7 +33,6 @@ export default function Header() {
             <Link href="/">
               <a className="flex items-center">
                 <Logo />
-                <span className="font-bold text-xl text-dark">QualitxSoft</span>
               </a>
             </Link>
           </div>

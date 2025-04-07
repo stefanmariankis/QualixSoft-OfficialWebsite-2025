@@ -140,17 +140,17 @@ export default function Hero() {
                   className="w-2/3 h-auto object-contain"
                   whileHover={{ 
                     scale: 1.05,
-                    filter: "brightness(1.1)",
+                    filter: "brightness(1.2)",
                   }}
                   transition={{ type: "spring", stiffness: 200 }}
                 />
               </motion.div>
               
-              {/* Base container for proper size */}
+              {/* Base container for proper size - transparent background */}
               <motion.div 
-                className="w-full aspect-[4/3] bg-gray-800"
+                className="w-full aspect-[4/3] bg-transparent"
                 whileHover={{ 
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)"
                 }}
                 transition={{ type: "spring", stiffness: 200 }}
               />
