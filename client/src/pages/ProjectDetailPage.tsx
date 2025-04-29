@@ -457,7 +457,7 @@ export default function ProjectDetailPage() {
           </div>
         </section>
         
-        {/* Call to action for other projects - 2025 Style */}
+        {/* Related Projects - 2025 Style */}
         <section className="bg-gradient-to-b from-white to-gray-50 py-24 relative overflow-hidden">
           {/* Decorative elements */}
           <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 blur-3xl"></div>
@@ -474,15 +474,72 @@ export default function ProjectDetailPage() {
               transition={{ duration: 0.6 }}
               className="text-center max-w-3xl mx-auto mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Explore Our Other Projects</h2>
-              <p className="text-gray-600">Discover more of our successful projects and see how we've helped businesses transform their digital presence.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Similar Projects</h2>
+              <p className="text-gray-600">Explore more projects in the {project.categories.map(c => c.charAt(0).toUpperCase() + c.slice(1).replace('-', ' ')).join(' & ')} category</p>
             </motion.div>
+            
+            {/* Related Projects Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {Object.values(projectsData)
+                .filter(p => 
+                  // Filter current project out and find projects with similar categories
+                  p.id !== project.id && 
+                  p.categories.some(cat => project.categories.includes(cat))
+                )
+                .slice(0, 4) // Limit to 4 projects
+                .map((relatedProject, index) => (
+                  <div 
+                    key={relatedProject.id}
+                    className="group"
+                  >
+                    <div 
+                      onClick={() => window.location.href = `/portfolio/${relatedProject.id}`}
+                      className="block h-full cursor-pointer"
+                    >
+                      <div className="relative overflow-hidden rounded-xl h-full border border-gray-100 bg-white shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+                        {/* Thumbnail */}
+                        <div className="relative overflow-hidden aspect-[16/10]">
+                          <img 
+                            src={relatedProject.thumbnail} 
+                            alt={relatedProject.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          
+                          {/* Gradient overlay on hover */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-500"></div>
+                          
+                          {/* View button overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
+                              <ArrowUpRight className="h-4 w-4 mr-1.5" />
+                              <span className="text-sm font-medium">View Project</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="p-4">
+                          <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors line-clamp-1">
+                            {relatedProject.title}
+                          </h3>
+                          
+                          <div className="flex items-center text-gray-600 text-sm">
+                            <Building className="h-3.5 w-3.5 mr-1" />
+                            <span className="truncate">{relatedProject.client}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex justify-center"
             >
               <button
                 onClick={() => window.location.href = '/portfolio'}
