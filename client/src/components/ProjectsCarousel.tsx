@@ -4,49 +4,58 @@ import { useTranslation } from "react-i18next";
 import LocalizedLink from './LocalizedLink';
 import { useIsMobile } from "../hooks/use-mobile";
 
+// Import client images
+import clientClimatic from "../assets/client_climatic.png";
+import clientOptimar from "../assets/client_optimar.png";
+import clientPulse from "../assets/client_pulse_welding.png";
+import clientThd from "../assets/client_thd_plast.png";
+import clientUnicool from "../assets/client_unicool.png";
+import clientGradinita from "../assets/client_universul_copiilor.png";
+import clientZaharias from "../assets/client_zaharias.png";
+
 // Project data
 const projects = [
   {
     id: 1,
     title: "pulsewelding.com",
     category: "Equipment website",
-    image: "/src/assets/portfolio1.jpg",
+    image: clientPulse,
   },
   {
     id: 2,
     title: "climaticgps.ro",
     category: "Presentation Website",
-    image: "/src/assets/portfolio2.jpg",
+    image: clientClimatic,
   },
   {
     id: 3,
-    title: "gradinita.ro",
+    title: "universulcopiilor.ro",
     category: "Educational Platform",
-    image: "/src/assets/portfolio3.jpg",
+    image: clientGradinita,
   },
   {
     id: 4,
     title: "optimar.ro",
     category: "Corporate Website",
-    image: "/src/assets/portfolio4.jpg",
+    image: clientOptimar,
   },
   {
     id: 5,
     title: "thdplast.ro",
     category: "Portfolio Website",
-    image: "/src/assets/portfolio5.jpg",
+    image: clientThd,
   },
   {
     id: 6,
     title: "unicool.ro",
     category: "E-commerce",
-    image: "/src/assets/portfolio6.jpg",
+    image: clientUnicool,
   },
   {
     id: 7,
     title: "zaharias.ro",
     category: "Business Website",
-    image: "/src/assets/portfolio7.jpg",
+    image: clientZaharias,
   }
 ];
 
