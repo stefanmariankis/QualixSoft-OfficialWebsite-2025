@@ -407,7 +407,7 @@ export default function ProjectDetailPage() {
                     {project.categories.map((category, index) => (
                       <span 
                         key={index} 
-                        className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-primary/20 text-primary-foreground"
+                        className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-primary/80 text-white"
                       >
                         {category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                       </span>
