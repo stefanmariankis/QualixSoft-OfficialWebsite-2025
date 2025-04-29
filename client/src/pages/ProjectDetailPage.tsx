@@ -454,31 +454,165 @@ export default function ProjectDetailPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="relative group"
               >
-                {/* Placeholder colored rectangles instead of images */}
+                {/* Full-height site scroll preview */}
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl">
                   <div className="relative">
-                    {/* Main colored placeholder */}
-                    <div 
-                      className="w-full aspect-[16/9] bg-gradient-to-br from-primary/90 to-blue-500/80 rounded-xl flex items-center justify-center"
-                    >
-                      <div className="text-white text-opacity-80 text-center">
-                        <div className="mb-4 flex items-center justify-center">
-                          <Monitor className="h-12 w-12 opacity-50" />
-                        </div>
-                        <p className="text-xl font-medium">Project Preview</p>
-                        <p className="text-sm mt-2 max-w-xs mx-auto">Visualization will be added here</p>
+                    {/* Browser header */}
+                    <div className="bg-gray-800 p-2 rounded-t-xl flex items-center justify-between">
+                      <div className="flex items-center space-x-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
                       </div>
+                      <div className="w-2/3 bg-gray-700 rounded-full h-6 flex items-center justify-center">
+                        <p className="text-gray-400 text-xs truncate">companywebsite.com</p>
+                      </div>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <button className="text-white/70 hover:text-white bg-gray-700 hover:bg-gray-600 p-1.5 rounded-lg transition-colors">
+                            <Maximize2 className="h-4 w-4" />
+                          </button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[80vw] max-h-[80vh] overflow-y-auto">
+                          <DialogHeader>
+                            <DialogTitle>View Responsiveness</DialogTitle>
+                            <DialogDescription>
+                              See how this project looks on different devices
+                            </DialogDescription>
+                          </DialogHeader>
+                          
+                          <div className="flex justify-center mb-4 gap-4">
+                            <button
+                              onClick={() => setSelectedDevice('desktop')}
+                              className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
+                                selectedDevice === 'desktop' 
+                                  ? 'bg-primary text-white' 
+                                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                              }`}
+                            >
+                              <Monitor className="h-5 w-5 mr-2" />
+                              Desktop
+                            </button>
+                            <button
+                              onClick={() => setSelectedDevice('tablet')}
+                              className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
+                                selectedDevice === 'tablet' 
+                                  ? 'bg-primary text-white' 
+                                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                              }`}
+                            >
+                              <Tablet className="h-5 w-5 mr-2" />
+                              Tablet
+                            </button>
+                            <button
+                              onClick={() => setSelectedDevice('mobile')}
+                              className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
+                                selectedDevice === 'mobile' 
+                                  ? 'bg-primary text-white' 
+                                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                              }`}
+                            >
+                              <Smartphone className="h-5 w-5 mr-2" />
+                              Mobile
+                            </button>
+                          </div>
+                          
+                          <div className="p-6 bg-gray-100 rounded-xl flex items-center justify-center">
+                            {selectedDevice === 'desktop' && (
+                              <div className="relative w-full max-w-4xl">
+                                <div className="bg-gray-800 rounded-t-lg p-2 flex items-center justify-start space-x-1.5">
+                                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div className="relative w-full aspect-[16/10] border-2 border-gray-800 overflow-hidden">
+                                  <img 
+                                    src={project.deviceViews.desktop}
+                                    alt="Desktop view"
+                                    className="w-full h-full object-cover object-top"
+                                  />
+                                </div>
+                                <div className="h-4 bg-gray-800 rounded-b-lg"></div>
+                              </div>
+                            )}
+                            
+                            {selectedDevice === 'tablet' && (
+                              <div className="relative" style={{ maxWidth: '500px' }}>
+                                <div className="bg-gray-800 rounded-t-3xl h-6"></div>
+                                <div className="border-l-8 border-r-8 border-gray-800">
+                                  <div className="relative w-full aspect-[3/4] overflow-hidden">
+                                    <img 
+                                      src={project.deviceViews.tablet}
+                                      alt="Tablet view"
+                                      className="w-full h-full object-cover object-top"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="h-14 bg-gray-800 rounded-b-3xl flex items-center justify-center">
+                                  <div className="w-12 h-1.5 bg-gray-600 rounded-full"></div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            {selectedDevice === 'mobile' && (
+                              <div className="relative" style={{ maxWidth: '280px' }}>
+                                <div className="bg-gray-800 rounded-t-3xl p-2">
+                                  <div className="w-1/2 h-5 bg-black mx-auto rounded-full"></div>
+                                </div>
+                                <div className="border-l-8 border-r-8 border-gray-800">
+                                  <div className="relative w-full aspect-[9/16] overflow-hidden">
+                                    <img 
+                                      src={project.deviceViews.mobile}
+                                      alt="Mobile view"
+                                      className="w-full h-full object-cover object-top"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="h-12 bg-gray-800 rounded-b-3xl flex items-center justify-center">
+                                  <div className="w-10 h-1.5 bg-gray-600 rounded-full"></div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     </div>
                     
-                    {/* Decorative elements */}
-                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    {/* Website content with scroll */}
+                    <div className="w-full h-[500px] overflow-hidden bg-white relative">
+                      {/* Full project preview with scroll */}
+                      <div className="w-full h-full overflow-y-auto">
+                        <img 
+                          src={project.deviceViews.desktop} 
+                          alt={project.title}
+                          className="w-full object-contain"
+                        />
+                      </div>
+                      
+                      {/* Overlay gradient to indicate scrollable content */}
+                      <div className="absolute left-0 right-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+                      
+                      {/* Scroll indicator */}
+                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-gray-400 animate-bounce">
+                        <p className="text-xs font-medium mb-1">Scroll to explore</p>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 5L12 19M12 19L19 12M12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                   
-                  {/* Small placeholder rectangles */}
-                  <div className="grid grid-cols-3 gap-2 p-2 bg-gray-900">
-                    <div className="aspect-[4/3] bg-blue-400/30 rounded-md"></div>
-                    <div className="aspect-[4/3] bg-primary/30 rounded-md"></div>
-                    <div className="aspect-[4/3] bg-purple-400/30 rounded-md"></div>
+                  {/* Device view options */}
+                  <div className="flex items-center justify-between p-3 bg-gray-900">
+                    <div className="text-white text-sm font-medium">Project Preview</div>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <button className="inline-flex items-center text-sm bg-primary hover:bg-primary/90 text-white px-3 py-1.5 rounded-lg transition-colors">
+                          <p>View Responsiveness</p>
+                          <Maximize2 className="ml-2 h-4 w-4" />
+                        </button>
+                      </DialogTrigger>
+                    </Dialog>
                   </div>
                 </div>
                 
