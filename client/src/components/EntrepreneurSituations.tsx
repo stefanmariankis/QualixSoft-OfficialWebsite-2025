@@ -132,10 +132,23 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
     setFilteredSituations(situations);
   }, []);
 
+  // Generate default icon if no image is provided
+  const getDefaultIcon = (id: number) => {
+    const colors = ['bg-orange-400', 'bg-blue-400', 'bg-purple-400', 'bg-green-400', 'bg-red-400', 'bg-yellow-400'];
+    const colorIndex = (id - 1) % colors.length;
+    const selectedColor = colors[colorIndex];
+    
+    return (
+      <div className={`${selectedColor} w-28 h-28 rounded-lg flex items-center justify-center text-white text-3xl font-bold`}>
+        {id < 10 ? `0${id}` : id}
+      </div>
+    );
+  };
+
   return (
     <section className="py-6 pb-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {filteredSituations.length === 0 ? (
             <div className="text-center py-12">
               <h3 className="text-xl font-medium text-gray-700">No results found for "{searchTerm}"</h3>
@@ -149,22 +162,26 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
                   className="bg-orange-50 rounded-lg p-6 border border-orange-100 hover:shadow-md transition-shadow"
                 >
                   <div className="flex flex-col md:flex-row gap-6">
-                    {situation.image && (
-                      <div className="md:w-1/4 flex-shrink-0">
+                    {/* Left column with image/icon */}
+                    <div className="md:w-1/6 flex-shrink-0 flex justify-center md:justify-start">
+                      {situation.image ? (
                         <img 
                           src={situation.image} 
                           alt={situation.title} 
-                          className="w-full h-auto object-contain"
+                          className="w-28 h-28 object-contain"
                         />
-                      </div>
-                    )}
+                      ) : (
+                        getDefaultIcon(situation.id)
+                      )}
+                    </div>
                     
-                    <div className={situation.image ? "md:w-3/4" : "w-full"}>
+                    {/* Right column with content */}
+                    <div className="md:w-5/6">
                       <h3 className="text-xl font-bold text-gray-800 mb-4">
                         {situation.title}
                       </h3>
                       
-                      <div className="space-y-4">
+                      <div className="grid md:grid-cols-2 gap-6">
                         <div>
                           <div className="flex items-center gap-2 text-gray-600 mb-2">
                             <span className="bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center">

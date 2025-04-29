@@ -8,15 +8,16 @@ interface SolutionsSearchProps {
 export default function SolutionsSearch({ onSearch }: SolutionsSearchProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearch = () => {
-    onSearch(searchTerm);
-  };
+  // Use debounce to avoid too many updates while typing
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      onSearch(searchTerm);
+    }, 300); // 300ms delay after typing stops
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm, onSearch]);
 
   return (
     <section className="py-12 bg-white">
@@ -34,7 +35,6 @@ export default function SolutionsSearch({ onSearch }: SolutionsSearchProps) {
                 className="w-full border border-gray-300 rounded-md py-3 px-4 pl-10 text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={handleKeyDown}
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Search className="h-5 w-5 text-gray-400" />
@@ -42,7 +42,7 @@ export default function SolutionsSearch({ onSearch }: SolutionsSearchProps) {
             </div>
             <button 
               className="bg-black text-white py-3 px-6 rounded-md font-medium hover:bg-gray-800 transition-colors"
-              onClick={handleSearch}
+              onClick={() => onSearch(searchTerm)}
             >
               Search
             </button>
