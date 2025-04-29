@@ -544,7 +544,7 @@ export default function ProjectDetailPage() {
                                 <div className="border-l-8 border-r-8 border-gray-800">
                                   <div className="relative w-full aspect-[3/4] overflow-hidden">
                                     <iframe 
-                                      src="https://replit.com/@replit/HTML-CSS-JS" 
+                                      src="https://qualixsoft.com" 
                                       title="Tablet Preview"
                                       className="w-full h-full border-0 scale-[0.75] origin-top"
                                       sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
@@ -566,7 +566,7 @@ export default function ProjectDetailPage() {
                                 <div className="border-l-8 border-r-8 border-gray-800">
                                   <div className="relative w-full aspect-[9/16] overflow-hidden">
                                     <iframe 
-                                      src="https://replit.com/@replit/HTML-CSS-JS" 
+                                      src="https://qualixsoft.com" 
                                       title="Mobile Preview"
                                       className="w-full h-full border-0 scale-[0.5] origin-top"
                                       sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
@@ -586,9 +586,9 @@ export default function ProjectDetailPage() {
                     
                     {/* Website content with scroll - using iframe for live interaction */}
                     <div className="w-full h-[500px] overflow-hidden bg-white relative">
-                      {/* We use a sample website here that allows embedding for demonstration */}
+                      {/* Using qualixsoft.com for all project previews as requested */}
                       <iframe 
-                        src="https://replit.com/@replit/HTML-CSS-JS" 
+                        src="https://qualixsoft.com" 
                         title="Project Website Preview"
                         className="w-full h-full border-0"
                         sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
@@ -721,110 +721,7 @@ export default function ProjectDetailPage() {
                     </p>
                   </div>
                   
-                  {/* Device Views */}
-                  <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Device Views</h2>
-                    
-                    <div className="flex flex-wrap mb-4 gap-2">
-                      <button
-                        onClick={() => setSelectedDevice('desktop')}
-                        className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
-                          selectedDevice === 'desktop' 
-                            ? 'bg-gray-900 text-white' 
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        <Monitor className="h-5 w-5 mr-2" />
-                        Desktop
-                      </button>
-                      <button
-                        onClick={() => setSelectedDevice('tablet')}
-                        className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
-                          selectedDevice === 'tablet' 
-                            ? 'bg-gray-900 text-white' 
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        <Tablet className="h-5 w-5 mr-2" />
-                        Tablet
-                      </button>
-                      <button
-                        onClick={() => setSelectedDevice('mobile')}
-                        className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
-                          selectedDevice === 'mobile' 
-                            ? 'bg-gray-900 text-white' 
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        <Smartphone className="h-5 w-5 mr-2" />
-                        Mobile
-                      </button>
-                    </div>
-                    
-                    <div className="bg-gray-100 p-8 rounded-2xl relative">
-                      {selectedDevice === 'desktop' && (
-                        <div className="relative mx-auto" style={{ maxWidth: '700px' }}>
-                          <div className="bg-gray-800 rounded-t-lg p-2 flex items-center justify-start space-x-1.5">
-                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                          </div>
-                          <div 
-                            className="w-full aspect-[16/10] bg-gradient-to-r from-blue-500/70 to-purple-500/70 border-l-2 border-r-2 border-gray-800 flex items-center justify-center"
-                          >
-                            <div className="text-white text-opacity-70 text-center p-4">
-                              <Monitor className="h-10 w-10 mx-auto mb-3 opacity-70" />
-                              <p className="text-lg font-medium">Desktop View</p>
-                              <p className="text-sm mt-1 max-w-xs mx-auto">Screenshot will be displayed here</p>
-                            </div>
-                          </div>
-                          <div className="h-4 bg-gray-800 rounded-b-lg"></div>
-                        </div>
-                      )}
-                      
-                      {selectedDevice === 'tablet' && (
-                        <div className="relative mx-auto" style={{ maxWidth: '500px' }}>
-                          <div className="bg-gray-800 rounded-t-3xl h-6"></div>
-                          <div className="border-l-8 border-r-8 border-gray-800">
-                            <div 
-                              className="w-full aspect-[3/4] bg-gradient-to-b from-primary/60 to-blue-400/70 flex items-center justify-center"
-                            >
-                              <div className="text-white text-opacity-80 text-center p-4">
-                                <Tablet className="h-10 w-10 mx-auto mb-3 opacity-70" />
-                                <p className="text-lg font-medium">Tablet View</p>
-                                <p className="text-sm mt-1 max-w-xs mx-auto">Screenshot will be displayed here</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="h-14 bg-gray-800 rounded-b-3xl flex items-center justify-center">
-                            <div className="w-12 h-1.5 bg-gray-600 rounded-full"></div>
-                          </div>
-                        </div>
-                      )}
-                      
-                      {selectedDevice === 'mobile' && (
-                        <div className="relative mx-auto" style={{ maxWidth: '280px' }}>
-                          <div className="bg-gray-800 rounded-t-3xl p-2">
-                            <div className="w-1/2 h-5 bg-black mx-auto rounded-full"></div>
-                          </div>
-                          <div className="border-l-8 border-r-8 border-gray-800">
-                            <div 
-                              className="w-full aspect-[9/16] bg-gradient-to-b from-indigo-500/70 to-purple-500/70 flex items-center justify-center"
-                            >
-                              <div className="text-white text-opacity-80 text-center p-4">
-                                <Smartphone className="h-10 w-10 mx-auto mb-3 opacity-70" />
-                                <p className="text-lg font-medium">Mobile View</p>
-                                <p className="text-sm mt-1 max-w-xs mx-auto">Screenshot will be displayed here</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="h-12 bg-gray-800 rounded-b-3xl flex items-center justify-center">
-                            <div className="w-10 h-1.5 bg-gray-600 rounded-full"></div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                  {/* Added space after removing the Device Views section */}
                   
                   {/* Technologies */}
                   <div className="mb-8">
