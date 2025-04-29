@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocalization } from '../hooks/useLocalization';
-import { Globe } from 'lucide-react';
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -10,17 +9,25 @@ export default function LanguageSwitcher({ className = '' }: LanguageSwitcherPro
   const { currentLanguage, changeLanguage } = useLocalization();
 
   const toggleLanguage = () => {
-    changeLanguage(currentLanguage === 'ro' ? 'en' : 'ro');
+    const newLanguage = currentLanguage === 'ro' ? 'en' : 'ro';
+    changeLanguage(newLanguage);
   };
 
   return (
-    <button 
+    <button
       onClick={toggleLanguage}
-      className={`flex items-center gap-1 text-sm font-medium transition-colors duration-200 ${className}`}
-      aria-label={currentLanguage === 'ro' ? 'Switch to English' : 'Schimbă în Română'}
+      className={`flex items-center text-sm font-medium hover:text-primary transition-colors px-2 py-1 rounded ${
+        className || ''
+      }`}
+      aria-label="Schimbă limba"
     >
-      <Globe className="h-4 w-4" />
-      <span className="ml-1">{currentLanguage === 'ro' ? 'EN' : 'RO'}</span>
+      <span className={`mr-1 ${currentLanguage === 'ro' ? 'text-primary font-bold' : ''}`}>
+        RO
+      </span>
+      <span className="mx-1 text-gray-400">|</span>
+      <span className={`ml-1 ${currentLanguage === 'en' ? 'text-primary font-bold' : ''}`}>
+        EN
+      </span>
     </button>
   );
 }

@@ -1,14 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'wouter';
+import { useLocation } from 'wouter';
 import Logo from './Logo';
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useScrollHeader } from '@/hooks/useScrollHeader';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
+import LocalizedLink from './LocalizedLink';
+import { useLocalization } from '../hooks/useLocalization';
 
 export default function Header() {
   const isScrolled = useScrollHeader(50);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
   const [location] = useLocation();
+  const { t } = useTranslation();
+  const { getLocalizedPath } = useLocalization();
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -41,30 +47,30 @@ export default function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <button 
-              onClick={() => window.location.href = '/'}
-              className={`font-medium hover:text-primary transition-colors bg-transparent border-0 cursor-pointer p-0 ${location === '/' ? 'text-primary' : 'text-dark'}`}
+            <LocalizedLink 
+              to="/"
+              className={`font-medium hover:text-primary transition-colors ${location === getLocalizedPath('/') ? 'text-primary' : 'text-dark'}`}
             >
-              Home
-            </button>
-            <button 
-              onClick={() => window.location.href = '/services'}
-              className={`font-medium hover:text-primary transition-colors bg-transparent border-0 cursor-pointer p-0 ${location === '/services' ? 'text-primary' : 'text-dark'}`}
+              {t('nav.home')}
+            </LocalizedLink>
+            <LocalizedLink 
+              to="/services"
+              className={`font-medium hover:text-primary transition-colors ${location === getLocalizedPath('/services') ? 'text-primary' : 'text-dark'}`}
             >
-              Services
-            </button>
-            <button 
-              onClick={() => window.location.href = '/solutions'}
-              className={`font-medium hover:text-primary transition-colors bg-transparent border-0 cursor-pointer p-0 ${location === '/solutions' ? 'text-primary' : 'text-dark'}`}
+              {t('nav.services')}
+            </LocalizedLink>
+            <LocalizedLink 
+              to="/solutions"
+              className={`font-medium hover:text-primary transition-colors ${location === getLocalizedPath('/solutions') ? 'text-primary' : 'text-dark'}`}
             >
-              Solutions
-            </button>
-            <button 
-              onClick={() => window.location.href = '/portfolio'}
-              className={`font-medium hover:text-primary transition-colors bg-transparent border-0 cursor-pointer p-0 ${location === '/portfolio' ? 'text-primary' : 'text-dark'}`}
+              {t('nav.solutions')}
+            </LocalizedLink>
+            <LocalizedLink 
+              to="/portfolio"
+              className={`font-medium hover:text-primary transition-colors ${location === getLocalizedPath('/portfolio') ? 'text-primary' : 'text-dark'}`}
             >
-              Portfolio
-            </button>
+              {t('nav.portfolio')}
+            </LocalizedLink>
             
             {/* Dropdown Menu */}
             <div className="relative group">
@@ -73,12 +79,12 @@ export default function Header() {
                 <ChevronDown className="h-4 w-4 ml-1" />
               </button>
               <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <button
-                  onClick={() => window.location.href = '/about'} 
-                  className={`block px-4 py-2 text-sm hover:bg-gray-100 bg-transparent border-0 cursor-pointer w-full text-left ${location === '/about' ? 'text-primary' : 'text-dark'}`}
+                <LocalizedLink
+                  to="/about"
+                  className={`block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left ${location === getLocalizedPath('/about') ? 'text-primary' : 'text-dark'}`}
                 >
-                  Despre Noi
-                </button>
+                  {t('nav.about')}
+                </LocalizedLink>
                 <button
                   onClick={() => window.location.href = '/blog'} 
                   className={`block px-4 py-2 text-sm hover:bg-gray-100 bg-transparent border-0 cursor-pointer w-full text-left ${location === '/blog' ? 'text-primary' : 'text-dark'}`}
@@ -94,12 +100,15 @@ export default function Header() {
               </div>
             </div>
             
-            <button
-              onClick={() => window.location.href = '/contact'}
-              className="bg-primary text-white px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition-colors border-0 cursor-pointer"
+            <LocalizedLink
+              to="/contact"
+              className="bg-primary text-white px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition-colors"
             >
-              Contact Us
-            </button>
+              {t('nav.contact')}
+            </LocalizedLink>
+            
+            {/* Language Switcher */}
+            <LanguageSwitcher className="ml-4" />
           </nav>
           
           {/* Mobile Menu Button */}
@@ -119,32 +128,32 @@ export default function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 bg-white rounded-md shadow-lg py-2 px-4" id="mobileMenu">
-            <button 
-              onClick={() => window.location.href = '/'}
-              className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/' ? 'text-primary' : 'text-dark'}`}
+            <LocalizedLink 
+              to="/"
+              className={`block w-full text-left py-2 hover:text-primary ${location === getLocalizedPath('/') ? 'text-primary' : 'text-dark'}`}
             >
-              Home
-            </button>
-            <button 
-              onClick={() => window.location.href = '/services'}
-              className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/services' ? 'text-primary' : 'text-dark'}`}
+              {t('nav.home')}
+            </LocalizedLink>
+            <LocalizedLink 
+              to="/services"
+              className={`block w-full text-left py-2 hover:text-primary ${location === getLocalizedPath('/services') ? 'text-primary' : 'text-dark'}`}
             >
-              Services
-            </button>
-            <button 
-              onClick={() => window.location.href = '/solutions'}
-              className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/solutions' ? 'text-primary' : 'text-dark'}`}
+              {t('nav.services')}
+            </LocalizedLink>
+            <LocalizedLink 
+              to="/solutions"
+              className={`block w-full text-left py-2 hover:text-primary ${location === getLocalizedPath('/solutions') ? 'text-primary' : 'text-dark'}`}
             >
-              Solutions
-            </button>
-            <button 
-              onClick={() => window.location.href = '/portfolio'}
-              className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/portfolio' ? 'text-primary' : 'text-dark'}`}
+              {t('nav.solutions')}
+            </LocalizedLink>
+            <LocalizedLink 
+              to="/portfolio"
+              className={`block w-full text-left py-2 hover:text-primary ${location === getLocalizedPath('/portfolio') ? 'text-primary' : 'text-dark'}`}
             >
-              Portfolio
-            </button>
+              {t('nav.portfolio')}
+            </LocalizedLink>
             <button 
-              className="block w-full text-left py-2 text-dark hover:text-primary flex items-center"
+              className="block w-full text-left py-2 text-dark hover:text-primary flex items-center bg-transparent border-0 cursor-pointer"
               onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
             >
               More
@@ -152,12 +161,12 @@ export default function Header() {
             </button>
             {mobileMoreOpen && (
               <div className="pl-4">
-                <button
-                  onClick={() => window.location.href = '/about'} 
-                  className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/about' ? 'text-primary' : 'text-dark'}`}
+                <LocalizedLink
+                  to="/about"
+                  className={`block w-full text-left py-2 hover:text-primary ${location === getLocalizedPath('/about') ? 'text-primary' : 'text-dark'}`}
                 >
-                  Despre Noi
-                </button>
+                  {t('nav.about')}
+                </LocalizedLink>
                 <button
                   onClick={() => window.location.href = '/blog'} 
                   className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/blog' ? 'text-primary' : 'text-dark'}`}
@@ -172,12 +181,17 @@ export default function Header() {
                 </button>
               </div>
             )}
-            <button
-              onClick={() => window.location.href = '/contact'}
-              className="block w-full mt-2 bg-primary text-white px-4 py-2 rounded-md text-center font-medium hover:bg-opacity-90 border-0 cursor-pointer"
+            <LocalizedLink
+              to="/contact"
+              className="block w-full mt-2 bg-primary text-white px-4 py-2 rounded-md text-center font-medium hover:bg-opacity-90"
             >
-              Contact Us
-            </button>
+              {t('nav.contact')}
+            </LocalizedLink>
+            
+            {/* Mobile Language Switcher */}
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <LanguageSwitcher className="w-full" />
+            </div>
           </div>
         )}
       </div>
