@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard, { Project } from './ProjectCard';
 
-// Import images directly
-import client_climatic_gps_home_carousel from '../../public/img/client_climatic_gps_home_carousel.png';
-import client_pulse_welding_home_carousel from '../../public/img/client_pulse_welding_home_carousel.png';
-import client_unicool_home_carousel from '../../public/img/client_unicool_home_carousel.png';
+// Use placeholder images for now
+const client_climatic_gps_home_carousel = '/img/client_climatic_gps_home_carousel.png';
+const client_pulse_welding_home_carousel = '/img/client_pulse_welding_home_carousel.png';
+const client_unicool_home_carousel = '/img/client_unicool_home_carousel.png';
 
 interface ProjectsGridProps {
   activeCategory: string;

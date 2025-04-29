@@ -7,10 +7,10 @@ import Footer from '../components/Footer';
 import { Project } from '../components/ProjectCard';
 import CTA from '../components/CTA';
 
-// Import images directly
-import client_climatic_gps_home_carousel from '../../public/img/client_climatic_gps_home_carousel.png';
-import client_pulse_welding_home_carousel from '../../public/img/client_pulse_welding_home_carousel.png';
-import client_unicool_home_carousel from '../../public/img/client_unicool_home_carousel.png';
+// Use placeholder images for now
+const client_climatic_gps_home_carousel = '/img/client_climatic_gps_home_carousel.png';
+const client_pulse_welding_home_carousel = '/img/client_pulse_welding_home_carousel.png';
+const client_unicool_home_carousel = '/img/client_unicool_home_carousel.png';
 
 // Technology icon mapping
 const techIcons: Record<string, string> = {
