@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRoute } from 'wouter';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ChevronRight, ExternalLink, Clock, CalendarDays, Tag, Check, Award } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, ChevronRight, ExternalLink, Clock, CalendarDays, Tag, Check, Award, Building } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CTA from '../components/CTA';
