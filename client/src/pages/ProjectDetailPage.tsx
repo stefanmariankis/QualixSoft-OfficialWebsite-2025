@@ -7,10 +7,13 @@ import Footer from '../components/Footer';
 import { Project } from '../components/ProjectCard';
 import CTA from '../components/CTA';
 
-// Use placeholder images for now
+// Use project images
 const client_climatic_gps_home_carousel = '/img/client_climatic_gps_home_carousel.png';
 const client_pulse_welding_home_carousel = '/img/client_pulse_welding_home_carousel.png';
 const client_unicool_home_carousel = '/img/client_unicool_home_carousel.png';
+const project_screenshot1 = '/img/image_1744032914194.png';
+const project_screenshot2 = '/img/image_1744032957432.png';
+const project_screenshot3 = '/img/image_1744033336407.png';
 
 // Technology icon mapping
 const techIcons: Record<string, string> = {
@@ -125,6 +128,33 @@ const projectsData: Record<string, Project & {
     gallery: [client_unicool_home_carousel, client_climatic_gps_home_carousel, client_pulse_welding_home_carousel],
     duration: '3 months',
     services: ['E-commerce Development', 'UI/UX Design', 'PPC Advertising', 'Email Marketing'],
+  },
+  'techdash': {
+    id: 'techdash',
+    title: 'Tech Dashboard Platform',
+    client: 'TechDash Inc.',
+    categories: ['web-development', 'ui-ux-design', 'custom-platform'],
+    thumbnail: project_screenshot1,
+    featured: true,
+    year: 2024,
+    description: 'We developed an innovative dashboard platform for TechDash Inc., enabling real-time data visualization, analytics, and business intelligence for technical teams.',
+    challenge: 'TechDash needed a user-friendly yet powerful dashboard solution that could integrate with multiple data sources and provide customizable visualizations for different team roles.',
+    solution: 'We built a React-based frontend with a Node.js backend that connects to various APIs and data sources. The platform features real-time updates, customizable widgets, and role-based access control.',
+    results: [
+      { metric: 'Data Processing Time', value: '-67%' },
+      { metric: 'User Adoption Rate', value: '94%' },
+      { metric: 'Decision Time Reduced', value: '3.5 hrs' },
+      { metric: 'ROI After 6 Months', value: '247%' },
+    ],
+    technologies: ['React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Firebase'],
+    testimonial: {
+      quote: 'The dashboard platform has transformed how our teams work with data. The intuitive interface combined with powerful analytics capabilities has dramatically improved our decision-making process.',
+      author: 'Maria Ionescu',
+      position: 'CTO, TechDash Inc.',
+    },
+    gallery: [project_screenshot1, project_screenshot2, project_screenshot3],
+    duration: '4 months',
+    services: ['Custom Platform Development', 'UI/UX Design', 'Data Visualization', 'API Integration', 'Responsive Design'],
   },
 };
 
