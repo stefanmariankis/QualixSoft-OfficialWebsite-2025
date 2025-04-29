@@ -7,6 +7,8 @@ import HomePage from "@/pages/HomePage";
 import AboutPage from "@/pages/AboutPage";
 import ServicesPage from "@/pages/ServicesPage";
 import SolutionsPage from "@/pages/SolutionsPage";
+import PortfolioPage from "@/pages/PortfolioPage";
+import ProjectDetailPage from "@/pages/ProjectDetailPage";
 
 function Router() {
   return (
@@ -15,6 +17,8 @@ function Router() {
       <Route path="/about" component={AboutPage} />
       <Route path="/services" component={ServicesPage} />
       <Route path="/solutions" component={SolutionsPage} />
+      <Route path="/portfolio" component={PortfolioPage} />
+      <Route path="/portfolio/:id" component={ProjectDetailPage} />
       <Route component={NotFound} />
     </Switch>
   );
