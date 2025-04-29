@@ -198,17 +198,22 @@ export default function ProjectsGrid({ activeCategory }: ProjectsGridProps) {
                 </div>
               ) : (
                 <>
-                  <div className="text-center mb-12">
+                  <div className="flex items-center justify-between mb-8">
                     <p className="text-primary font-medium">
                       {activeCategory === 'all' 
                         ? 'Showing all projects' 
                         : `Showing ${filteredProjects.length} ${activeCategory.replace('-', ' ')} project${filteredProjects.length !== 1 ? 's' : ''}`}
                     </p>
+                    <div className="text-sm text-gray-500">
+                      {filteredProjects.length} projects
+                    </div>
                   </div>
                 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredProjects.map((project, index) => (
-                      <ProjectCard key={project.id} project={project} index={index} />
+                      <div key={project.id} className="col-span-1"> {/* Force uniform grid layout */}
+                        <ProjectCard project={project} index={index} />
+                      </div>
                     ))}
                   </div>
                 </>
