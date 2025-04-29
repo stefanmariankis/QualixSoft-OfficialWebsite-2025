@@ -630,7 +630,7 @@ export default function ProjectDetailPage() {
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                           </div>
                           <div 
-                            className="w-full aspect-[16/10] bg-gradient-to-r from-blue-500/40 to-purple-500/40 border-l-2 border-r-2 border-gray-800 flex items-center justify-center"
+                            className="w-full aspect-[16/10] bg-gradient-to-r from-blue-500/70 to-purple-500/70 border-l-2 border-r-2 border-gray-800 flex items-center justify-center"
                           >
                             <div className="text-white text-opacity-70 text-center p-4">
                               <Monitor className="h-10 w-10 mx-auto mb-3 opacity-70" />
@@ -647,7 +647,7 @@ export default function ProjectDetailPage() {
                           <div className="bg-gray-800 rounded-t-3xl h-6"></div>
                           <div className="border-l-8 border-r-8 border-gray-800">
                             <div 
-                              className="w-full aspect-[3/4] bg-gradient-to-b from-primary/30 to-blue-400/40 flex items-center justify-center"
+                              className="w-full aspect-[3/4] bg-gradient-to-b from-primary/60 to-blue-400/70 flex items-center justify-center"
                             >
                               <div className="text-white text-opacity-80 text-center p-4">
                                 <TabletIcon className="h-10 w-10 mx-auto mb-3 opacity-70" />
@@ -669,7 +669,7 @@ export default function ProjectDetailPage() {
                           </div>
                           <div className="border-l-8 border-r-8 border-gray-800">
                             <div 
-                              className="w-full aspect-[9/16] bg-gradient-to-b from-indigo-500/40 to-purple-500/40 flex items-center justify-center"
+                              className="w-full aspect-[9/16] bg-gradient-to-b from-indigo-500/70 to-purple-500/70 flex items-center justify-center"
                             >
                               <div className="text-white text-opacity-80 text-center p-4">
                                 <Smartphone className="h-10 w-10 mx-auto mb-3 opacity-70" />
@@ -832,10 +832,10 @@ export default function ProjectDetailPage() {
                       >
                         <div 
                           className={`w-full h-full transition-transform duration-500 group-hover:scale-105 flex items-center justify-center 
-                          ${index === 0 ? 'bg-gradient-to-br from-primary/40 to-blue-500/30' :
-                            index === 1 ? 'bg-gradient-to-r from-indigo-500/40 to-purple-500/30' :
-                            index === 2 ? 'bg-gradient-to-br from-blue-500/30 to-green-500/30' :
-                            'bg-gradient-to-br from-amber-500/30 to-red-500/30'
+                          ${index === 0 ? 'bg-gradient-to-br from-primary/70 to-blue-500/60' :
+                            index === 1 ? 'bg-gradient-to-r from-indigo-500/70 to-purple-500/60' :
+                            index === 2 ? 'bg-gradient-to-br from-blue-500/70 to-green-500/60' :
+                            'bg-gradient-to-br from-amber-500/70 to-red-500/60'
                           }`}
                         >
                           <div className="text-white text-center p-4">
