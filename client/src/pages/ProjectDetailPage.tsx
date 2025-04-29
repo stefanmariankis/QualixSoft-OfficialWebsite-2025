@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useRoute, Link } from 'wouter';
+import { useState } from 'react';
+import { useRoute } from 'wouter';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ChevronRight, ExternalLink, Clock, CalendarDays, Tag, Check, Award } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Project } from '../components/ProjectCard';
 import CTA from '../components/CTA';
 
 // Use project images
@@ -20,185 +19,167 @@ const techIcons: Record<string, string> = {
   'React': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
   'MongoDB': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
-  'WordPress': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg',
-  'Shopify': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/shopify/shopify-original.svg',
-  'Google Ads': 'https://www.gstatic.com/images/branding/product/2x/google_ads_24dp.png',
-  'Facebook Ads': 'https://static.xx.fbcdn.net/rsrc.php/v3/y1/r/7MwwngZVp_D.png',
-  'Mailchimp': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mailchimp/mailchimp-original.svg',
-  'Laravel': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg',
+  'Express': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+  'TypeScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+  'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+  'HTML5': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  'CSS3': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+  'Tailwind': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
   'PHP': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg',
+  'Laravel': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg',
   'MySQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+  'PostgreSQL': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+  'Docker': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+  'AWS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
+  'Azure': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
   'Firebase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
-  'Tailwind CSS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
-  'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
 };
 
-// Sample projects data
-// In a real application, this would come from an API or CMS
-const projectsData: Record<string, Project & {
-  description: string;
-  challenge: string;
-  solution: string;
-  results: Array<{metric: string; value: string}>;
-  technologies: string[];
-  testimonial?: {
-    quote: string;
-    author: string;
-    position: string;
-  };
-  gallery: string[];
-  duration: string;
-  services: string[];
-}> = {
+// Define mock projects data
+const projectsData = {
   'climatic-gps': {
     id: 'climatic-gps',
     title: 'GPS Fleet Management Platform',
     client: 'Climatic GPS',
     categories: ['custom-platform', 'web-development'],
     thumbnail: client_climatic_gps_home_carousel,
+    year: 2023,
     featured: true,
-    year: 2024,
-    description: 'We designed and developed a comprehensive GPS fleet management platform for Climatic GPS, enabling real-time tracking, analytics, and management of their vehicle fleet.',
-    challenge: 'Climatic GPS needed a custom solution to track and manage their growing fleet of vehicles. Their existing system was fragmented, using multiple tools that did not communicate well.',
-    solution: 'We developed a custom web platform that integrates real-time GPS tracking, maintenance scheduling, driver management, and comprehensive analytics.',
+    shortDescription: 'A comprehensive GPS tracking and fleet management system for transportation companies',
+    description: 'We developed a comprehensive fleet management platform that allows transportation companies to track their vehicles in real-time, optimize routes, and manage driver performance. The system includes customizable dashboards, automated reporting, and integration with fuel management systems.',
+    challenge: 'The client needed a scalable solution that could handle thousands of vehicles simultaneously while providing real-time data updates and historical reporting capabilities. Additionally, the system needed to work across different device types and offer offline functionality in areas with poor connectivity.',
+    solution: 'We built a responsive web application with a React frontend and Node.js backend. Real-time tracking was implemented using WebSockets, and we developed a sophisticated caching mechanism for offline functionality. The platform includes a custom map interface with route optimization algorithms.',
     results: [
-      { metric: 'Fleet Efficiency Increase', value: '34%' },
-      { metric: 'Maintenance Costs Reduced', value: '28%' },
-      { metric: 'Driver Safety Improved', value: '42%' },
-      { metric: 'Fuel Consumption Decreased', value: '18%' },
+      { metric: 'Fuel Savings', value: '23%' },
+      { metric: 'Response Time', value: '-45%' },
+      { metric: 'User Adoption', value: '95%' },
+      { metric: 'ROI', value: '217%' },
     ],
-    technologies: ['React', 'Node.js', 'MongoDB', 'Firebase'],
+    technologies: ['React', 'Node.js', 'TypeScript', 'MongoDB', 'Docker', 'AWS'],
+    gallery: [
+      client_climatic_gps_home_carousel,
+      project_screenshot1,
+      project_screenshot2,
+      project_screenshot3,
+    ],
+    duration: '7 months',
     testimonial: {
-      quote: 'The custom platform revolutionized how we manage our fleet. The real-time insights and streamlined processes have significantly improved our efficiency.',
-      author: 'Alexandru Popescu',
-      position: 'Operations Director, Climatic GPS',
+      quote: "The team delivered beyond our expectations. The platform has completely transformed how we manage our fleet, resulting in significant cost savings and operational efficiencies.",
+      author: "Alex Dobrescu",
+      position: "CTO, Climatic GPS"
     },
-    gallery: [client_climatic_gps_home_carousel, client_pulse_welding_home_carousel, client_unicool_home_carousel],
-    duration: '4 months',
-    services: ['Custom Platform Development', 'UX/UI Design', 'Integration Services', 'Technical Consultancy'],
+    services: ['Custom Platform Development', 'UI/UX Design', 'Data Visualization', 'API Integration', 'Responsive Design'],
   },
   'pulse-welding': {
     id: 'pulse-welding',
-    title: 'Manufacturing Services Website',
+    title: 'Industrial Equipment E-Commerce',
     client: 'Pulse Welding',
-    categories: ['web-development', 'consultancy'],
+    categories: ['e-commerce', 'web-development'],
     thumbnail: client_pulse_welding_home_carousel,
-    year: 2023,
-    description: 'We created a modern, user-focused website for Pulse Welding to showcase their manufacturing services and generate high-quality leads in the B2B sector.',
-    challenge: 'Pulse Welding needed a website that would showcase their capabilities, highlight their portfolio, and generate qualified leads from industrial clients.',
-    solution: 'We designed a modern, responsive website with a focus on showcasing their work through detailed case studies and high-quality imagery.',
+    year: 2022,
+    featured: true,
+    shortDescription: 'A specialized B2B e-commerce platform for industrial welding equipment',
+    description: 'We created a comprehensive B2B e-commerce platform for a leading industrial welding equipment supplier. The platform includes advanced product filtering, bulk ordering capabilities, customer-specific pricing, and integration with their inventory management system.',
+    challenge: 'The client needed to transition from a manual ordering process to a digital platform while maintaining the personal touch that their business relationships were built on. The system needed to handle complex product configurations, customer-specific pricing, and integrate with their legacy inventory system.',
+    solution: 'We implemented a custom e-commerce solution with personalized dashboards for each customer account. We developed a sophisticated product configuration engine and built custom integrations with their ERP system to ensure real-time inventory updates and seamless order processing.',
     results: [
-      { metric: 'Organic Traffic Increase', value: '156%' },
-      { metric: 'Quote Request Conversions', value: '27%' },
-      { metric: 'Average Session Duration', value: '+3:45 min' },
-      { metric: 'Qualified Lead Generation', value: '+43%' },
+      { metric: 'Order Volume', value: '+156%' },
+      { metric: 'Processing Time', value: '-68%' },
+      { metric: 'Customer Adoption', value: '87%' },
+      { metric: 'Sales Increase', value: '32%' },
     ],
-    technologies: ['WordPress', 'PHP', 'MySQL', 'Tailwind CSS'],
+    technologies: ['React', 'Node.js', 'Express', 'MySQL', 'Docker', 'Azure'],
+    gallery: [
+      client_pulse_welding_home_carousel,
+      project_screenshot1,
+      project_screenshot2,
+      project_screenshot3,
+    ],
+    duration: '5 months',
     testimonial: {
-      quote: 'Our new website has transformed our business development efforts. We are now getting high-quality leads from exactly the type of clients we want.',
-      author: 'Mihai Dumitrescu',
-      position: 'CEO, Pulse Welding',
+      quote: "This platform has revolutionized our sales process. What used to take hours now happens in minutes, and our customers love the convenience. The team understood our unique requirements and delivered a solution that perfectly fits our business model.",
+      author: "Elena Munteanu",
+      position: "Sales Director, Pulse Welding"
     },
-    gallery: [client_pulse_welding_home_carousel, client_climatic_gps_home_carousel, client_unicool_home_carousel],
-    duration: '2 months',
-    services: ['Web Design', 'Web Development', 'Content Strategy', 'SEO'],
+    services: ['E-Commerce Development', 'Custom Integrations', 'UI/UX Design', 'Payment Gateway Integration', 'ERP System Integration'],
   },
   'unicool': {
     id: 'unicool',
-    title: 'HVAC Solutions E-commerce',
-    client: 'Unicool',
-    categories: ['ecommerce', 'web-development', 'ppc'],
+    title: 'Smart Home Control Application',
+    client: 'UniCool',
+    categories: ['mobile-app', 'iot'],
     thumbnail: client_unicool_home_carousel,
-    year: 2024,
-    description: 'We built a comprehensive e-commerce platform for Unicool, specializing in HVAC solutions, with integrated marketing campaigns to drive qualified traffic and sales.',
-    challenge: 'Unicool wanted to expand their business by selling HVAC equipment and supplies online. They needed a robust e-commerce platform with specialized features.',
-    solution: 'We developed a custom Shopify-based e-commerce platform with features tailored to HVAC product sales, including technical specification comparisons and bulk ordering.',
+    year: 2023,
+    featured: false,
+    shortDescription: 'A mobile application for controlling smart home cooling systems remotely',
+    description: 'We developed a cross-platform mobile application that allows users to control their smart cooling systems remotely. The app provides real-time temperature monitoring, energy usage statistics, and intelligent scheduling for optimal energy efficiency.',
+    challenge: 'The client needed a user-friendly interface for their complex IoT system that would appeal to both tech-savvy users and those less familiar with smart home technology. The application needed to maintain a stable connection with the devices and handle intermittent connectivity gracefully.',
+    solution: 'We created a React Native application with an intuitive interface and robust error handling. The app uses a combination of websockets for real-time data and REST APIs for configuration changes. We implemented local caching to ensure the app remains functional even with spotty internet connections.',
     results: [
-      { metric: 'Revenue Growth', value: '78%' },
-      { metric: 'Conversion Rate', value: '4.2%' },
-      { metric: 'PPC ROI', value: '350%' },
-      { metric: 'Average Order Value', value: '+€420' },
+      { metric: 'Energy Savings', value: '27%' },
+      { metric: 'User Engagement', value: '+78%' },
+      { metric: 'Support Requests', value: '-35%' },
+      { metric: 'App Store Rating', value: '4.8' },
     ],
-    technologies: ['Shopify', 'Google Ads', 'Facebook Ads', 'Mailchimp'],
+    technologies: ['React Native', 'Node.js', 'Firebase', 'MongoDB', 'AWS'],
+    gallery: [
+      client_unicool_home_carousel,
+      project_screenshot1,
+      project_screenshot2,
+      project_screenshot3,
+    ],
+    duration: '6 months',
     testimonial: {
-      quote: 'The e-commerce platform exceeded our expectations. Not only is it visually impressive, but the technical features have significantly boosted our sales.',
-      author: 'Ana Marinescu',
-      position: 'Marketing Manager, Unicool',
+      quote: "The app has exceeded our expectations in every way. It's intuitive, reliable, and our customers love how easy it makes managing their cooling systems. The energy savings features have been particularly well-received.",
+      author: "Radu Ionescu",
+      position: "Product Manager, UniCool"
     },
-    gallery: [client_unicool_home_carousel, client_climatic_gps_home_carousel, client_pulse_welding_home_carousel],
-    duration: '3 months',
-    services: ['E-commerce Development', 'UI/UX Design', 'PPC Advertising', 'Email Marketing'],
+    services: ['Mobile App Development', 'IoT Integration', 'UI/UX Design', 'Backend Development', 'Cloud Infrastructure'],
   },
-  'techdash': {
-    id: 'techdash',
+  'tech-dashboard': {
+    id: 'tech-dashboard',
     title: 'Tech Dashboard Platform',
-    client: 'TechDash Inc.',
-    categories: ['web-development', 'ui-ux-design', 'custom-platform'],
-    thumbnail: project_screenshot1,
+    client: 'TechVision Inc',
+    categories: ['analytics', 'web-development'],
+    thumbnail: client_pulse_welding_home_carousel,
+    year: 2023,
     featured: true,
-    year: 2024,
-    description: 'We developed an innovative dashboard platform for TechDash Inc., enabling real-time data visualization, analytics, and business intelligence for technical teams.',
-    challenge: 'TechDash needed a user-friendly yet powerful dashboard solution that could integrate with multiple data sources and provide customizable visualizations for different team roles.',
-    solution: 'We built a React-based frontend with a Node.js backend that connects to various APIs and data sources. The platform features real-time updates, customizable widgets, and role-based access control.',
+    shortDescription: 'An advanced analytics dashboard for technology resource management',
+    description: 'We created a comprehensive analytics platform that helps technology companies track and optimize their resource allocation across projects. The dashboard provides real-time insights into team availability, project timelines, budget utilization, and performance metrics.',
+    challenge: 'The client needed a centralized solution to replace their fragmented systems for resource management. They required a platform that could handle complex data relationships while providing intuitive visualizations for quick decision-making at different organizational levels.',
+    solution: 'We developed a React-based frontend with an extensive dashboard system utilizing advanced charting libraries. The backend was built with Node.js and TypeScript, using PostgreSQL for data storage. We implemented a sophisticated permission system to ensure appropriate access levels throughout the organization.',
     results: [
-      { metric: 'Data Processing Time', value: '-67%' },
-      { metric: 'User Adoption Rate', value: '94%' },
-      { metric: 'Decision Time Reduced', value: '3.5 hrs' },
-      { metric: 'ROI After 6 Months', value: '247%' },
+      { metric: 'Resource Utilization', value: '+24%' },
+      { metric: 'Decision Time', value: '-62%' },
+      { metric: 'Project Overruns', value: '-38%' },
+      { metric: 'Cost Savings', value: '€275K' },
     ],
-    technologies: ['React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Firebase'],
+    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Docker', 'AWS'],
+    gallery: [
+      client_pulse_welding_home_carousel,
+      project_screenshot1,
+      project_screenshot2,
+      project_screenshot3,
+    ],
+    duration: '8 months',
     testimonial: {
-      quote: 'The dashboard platform has transformed how our teams work with data. The intuitive interface combined with powerful analytics capabilities has dramatically improved our decision-making process.',
-      author: 'Maria Ionescu',
-      position: 'CTO, TechDash Inc.',
+      quote: "This dashboard has transformed how we manage our technology resources. We now have visibility into areas that were previously black boxes, allowing us to make data-driven decisions that have significantly improved our operational efficiency.",
+      author: "Cristian Petrescu",
+      position: "CIO, TechVision Inc"
     },
-    gallery: [project_screenshot1, project_screenshot2, project_screenshot3],
-    duration: '4 months',
-    services: ['Custom Platform Development', 'UI/UX Design', 'Data Visualization', 'API Integration', 'Responsive Design'],
+    services: ['Custom Platform Development', 'Data Visualization', 'UI/UX Design', 'API Development', 'Database Architecture'],
   },
 };
 
 export default function ProjectDetailPage() {
   const [, params] = useRoute('/portfolio/:id');
-  const [project, setProject] = useState<(typeof projectsData)[keyof typeof projectsData] | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  useEffect(() => {
-    setIsLoading(true);
-    
-    // Process immediately to avoid unnecessary delays
-    if (params && params.id) {
-      const foundProject = projectsData[params.id];
-      setProject(foundProject || null);
-    } else {
-      setProject(null);
-    }
-    
-    // Set loading to false after a minimal timeout
-    // This helps ensure DOM is updated properly
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, [params]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-grow flex items-center justify-center">
-          <div className="relative w-16 h-16">
-            <div className="absolute top-0 left-0 w-full h-full border-4 border-primary/20 rounded-full"></div>
-            <div className="absolute top-0 left-0 w-full h-full border-4 border-transparent border-t-primary rounded-full animate-spin"></div>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
+  
+  // Get project ID from URL and find project data
+  const projectId = params?.id || '';
+  const project = projectsData[projectId as keyof typeof projectsData];
+  
+  // If project not found, show error page
   if (!project) {
     return (
       <div className="min-h-screen flex flex-col">
@@ -483,30 +464,21 @@ export default function ProjectDetailPage() {
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-400/5 rounded-full translate-y-1/2 blur-3xl"></div>
           
           {/* Decorative grid pattern */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNNjAgMzBjMCAxNi41NjktMTMuNDMxIDMwLTMwIDMwQzEzLjQzMSA2MCAwIDQ2LjU2OSAwIDMwIDAgMTMuNDMxIDEzLjQzMSAwIDMwIDBjMTYuNTY5IDAgMzAgMTMuNDMxIDMwIDMweiIgc3Ryb2tlPSIjRUJFQkVCIiBzdHJva2Utd2lkdGg9Ii41Ii8+PC9nPjwvc3ZnPg==')] opacity-10 z-0"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNNTkuOTEgMEwwIDU5LjkxVjYwaDYwVjBILjAxdjU5LjkxTDU5LjkxIDBILjAxVjYwaDU5LjkxVi4wMUwwIDYwVi4wMWw1OS45MSA1OS45TDAgMFYuMDFMNTkuOTEgNjBIMHYtLjA5TDU5LjkxIDBILjAxVi4wMkw1OS45IDU5LjkxVi4wMUwuMDIgNTkuOVYuMDFoNTkuOVYwSC4wMXYuMDFMNjAgNjBWLjAxTDAgNjBWLjAxTDU5LjkxIDBoLS4wMVY2MGgtLjA5TDAgMGg2MHYuMDFMNjAgLjAxIiBvcGFjaXR5PSIuMDUiLz48L2c+PC9zdmc+')]"></div>
           
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <motion.h2 
-              className="text-4xl font-bold text-gray-900 mb-6"
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="text-center max-w-3xl mx-auto mb-12"
             >
-              Looking for More Amazing Projects?
-            </motion.h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Explore Our Other Projects</h2>
+              <p className="text-gray-600">Discover more of our successful projects and see how we've helped businesses transform their digital presence.</p>
+            </motion.div>
             
-            <motion.p 
-              className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              Browse our portfolio to discover more successful projects and innovative solutions we've delivered across various industries.
-            </motion.p>
-            
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
