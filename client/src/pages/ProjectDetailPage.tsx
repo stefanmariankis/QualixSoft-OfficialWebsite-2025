@@ -526,11 +526,13 @@ export default function ProjectDetailPage() {
                                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                 </div>
                                 <div className="relative w-full aspect-[16/10] border-2 border-gray-800 overflow-hidden">
-                                  <img 
-                                    src={project.deviceViews.desktop}
-                                    alt="Desktop view"
-                                    className="w-full h-full object-cover object-top"
-                                  />
+                                  <iframe 
+                                    src="https://replit.com/@replit/HTML-CSS-JS" 
+                                    title="Desktop Preview"
+                                    className="w-full h-full border-0"
+                                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                                    loading="lazy"
+                                  ></iframe>
                                 </div>
                                 <div className="h-4 bg-gray-800 rounded-b-lg"></div>
                               </div>
@@ -541,11 +543,13 @@ export default function ProjectDetailPage() {
                                 <div className="bg-gray-800 rounded-t-3xl h-6"></div>
                                 <div className="border-l-8 border-r-8 border-gray-800">
                                   <div className="relative w-full aspect-[3/4] overflow-hidden">
-                                    <img 
-                                      src={project.deviceViews.tablet}
-                                      alt="Tablet view"
-                                      className="w-full h-full object-cover object-top"
-                                    />
+                                    <iframe 
+                                      src="https://replit.com/@replit/HTML-CSS-JS" 
+                                      title="Tablet Preview"
+                                      className="w-full h-full border-0 scale-[0.75] origin-top"
+                                      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                                      loading="lazy"
+                                    ></iframe>
                                   </div>
                                 </div>
                                 <div className="h-14 bg-gray-800 rounded-b-3xl flex items-center justify-center">
@@ -561,11 +565,13 @@ export default function ProjectDetailPage() {
                                 </div>
                                 <div className="border-l-8 border-r-8 border-gray-800">
                                   <div className="relative w-full aspect-[9/16] overflow-hidden">
-                                    <img 
-                                      src={project.deviceViews.mobile}
-                                      alt="Mobile view"
-                                      className="w-full h-full object-cover object-top"
-                                    />
+                                    <iframe 
+                                      src="https://replit.com/@replit/HTML-CSS-JS" 
+                                      title="Mobile Preview"
+                                      className="w-full h-full border-0 scale-[0.5] origin-top"
+                                      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                                      loading="lazy"
+                                    ></iframe>
                                   </div>
                                 </div>
                                 <div className="h-12 bg-gray-800 rounded-b-3xl flex items-center justify-center">
@@ -578,16 +584,16 @@ export default function ProjectDetailPage() {
                       </Dialog>
                     </div>
                     
-                    {/* Website content with scroll */}
+                    {/* Website content with scroll - using iframe for live interaction */}
                     <div className="w-full h-[500px] overflow-hidden bg-white relative">
-                      {/* Full project preview with scroll */}
-                      <div className="w-full h-full overflow-y-auto">
-                        <img 
-                          src={project.deviceViews.desktop} 
-                          alt={project.title}
-                          className="w-full object-contain"
-                        />
-                      </div>
+                      {/* We use a sample website here that allows embedding for demonstration */}
+                      <iframe 
+                        src="https://replit.com/@replit/HTML-CSS-JS" 
+                        title="Project Website Preview"
+                        className="w-full h-full border-0"
+                        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                        loading="lazy"
+                      ></iframe>
                       
                       {/* Overlay gradient to indicate scrollable content */}
                       <div className="absolute left-0 right-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
