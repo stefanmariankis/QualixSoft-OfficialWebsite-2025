@@ -459,7 +459,7 @@ export default function ProjectDetailPage() {
                   <div className="relative">
                     {/* Main colored placeholder */}
                     <div 
-                      className="w-full aspect-[16/9] bg-gradient-to-br from-primary/80 to-blue-500/50 rounded-xl flex items-center justify-center"
+                      className="w-full aspect-[16/9] bg-gradient-to-br from-primary/90 to-blue-500/80 rounded-xl flex items-center justify-center"
                     >
                       <div className="text-white text-opacity-80 text-center">
                         <div className="mb-4 flex items-center justify-center">
@@ -982,9 +982,9 @@ export default function ProjectDetailPage() {
                         <div className="relative overflow-hidden aspect-[16/10]">
                           <div 
                             className={`w-full h-full transition-transform duration-500 group-hover:scale-105 flex items-center justify-center 
-                            ${index % 3 === 0 ? 'bg-gradient-to-br from-primary/50 to-blue-500/30' :
-                              index % 3 === 1 ? 'bg-gradient-to-r from-indigo-500/50 to-purple-500/30' :
-                              'bg-gradient-to-br from-blue-500/50 to-cyan-500/30'
+                            ${index % 3 === 0 ? 'bg-gradient-to-br from-primary/80 to-blue-500/70' :
+                              index % 3 === 1 ? 'bg-gradient-to-r from-indigo-500/80 to-purple-500/70' :
+                              'bg-gradient-to-br from-blue-500/80 to-cyan-500/70'
                             }`}
                           >
                             <div className="text-white text-center p-4">
