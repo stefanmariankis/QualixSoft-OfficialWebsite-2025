@@ -85,9 +85,6 @@ export default function Hero() {
                   />
                 </div>
               </div>
-              
-              {/* Orange gradient overlay */}
-              <div className="absolute inset-0 bg-orange-gradient opacity-20 rounded-full filter blur-3xl -z-10"></div>
             </div>
           </div>
         </div>
