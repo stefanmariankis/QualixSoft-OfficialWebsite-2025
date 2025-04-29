@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import teamImage1 from "@assets/image_1745924567265.png";
 import teamImage2 from "@assets/image_1745924950559.png";
 import { useTranslation } from "react-i18next";
@@ -12,27 +11,17 @@ export default function CTA() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           <div className="w-full md:w-1/2 flex space-x-4">
             <div className="relative">
-              <motion.img 
+              <img 
                 src={teamImage1}
                 alt="Business planning" 
-                className="w-full h-auto rounded-lg object-cover md:max-w-[240px] shadow-lg"
-                whileHover={{ 
-                  scale: 1.03, 
-                  boxShadow: "0 10px 20px rgba(235, 113, 39, 0.2)" 
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="w-full h-auto rounded-lg object-cover md:max-w-[240px] shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl"
               />
             </div>
             <div className="relative mt-10">
-              <motion.img 
+              <img 
                 src={teamImage2}
                 alt="Team collaboration" 
-                className="w-full h-auto rounded-lg object-cover md:max-w-[240px] shadow-lg"
-                whileHover={{ 
-                  scale: 1.03, 
-                  boxShadow: "0 10px 20px rgba(235, 113, 39, 0.2)" 
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="w-full h-auto rounded-lg object-cover md:max-w-[240px] shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl"
               />
             </div>
           </div>
@@ -53,17 +42,12 @@ export default function CTA() {
               </li>
             </ul>
             
-            <motion.a 
+            <a 
               href="#" 
-              className="btn-primary inline-flex items-center justify-center"
-              whileHover={{ 
-                scale: 1.05,
-              }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 8 }}
+              className="btn-primary inline-flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Get your Free Proposal
-            </motion.a>
+            </a>
           </div>
         </div>
       </div>
