@@ -483,11 +483,11 @@ export default function ProjectDetailPage() {
                 </div>
                 
                 {/* Float tech tags */}
-                <div className="absolute -bottom-4 left-4 right-4 flex flex-wrap justify-center gap-2 p-3 bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
+                <div className="absolute -bottom-4 left-4 right-4 flex flex-wrap justify-center gap-2 p-3 bg-black/40 backdrop-blur-md rounded-lg border border-white/20">
                   {project.technologies.slice(0, 5).map((tech, index) => (
                     <div 
                       key={index}
-                      className="flex items-center bg-white/10 backdrop-blur rounded-full px-3 py-1"
+                      className="flex items-center bg-black/50 backdrop-blur rounded-full px-3 py-1"
                     >
                       {techIcons[tech] ? (
                         <img 
@@ -496,15 +496,15 @@ export default function ProjectDetailPage() {
                           className="h-4 w-4 mr-2"
                         />
                       ) : (
-                        <Code className="h-4 w-4 mr-2" />
+                        <Code className="h-4 w-4 mr-2 text-white" />
                       )}
-                      <span className="text-xs font-medium">{tech}</span>
+                      <span className="text-xs font-medium text-white">{tech}</span>
                     </div>
                   ))}
                   
                   {project.technologies.length > 5 && (
-                    <div className="flex items-center bg-white/10 backdrop-blur rounded-full px-3 py-1">
-                      <span className="text-xs font-medium">+{project.technologies.length - 5} more</span>
+                    <div className="flex items-center bg-black/50 backdrop-blur rounded-full px-3 py-1">
+                      <span className="text-xs font-medium text-white">+{project.technologies.length - 5} more</span>
                     </div>
                   )}
                 </div>
