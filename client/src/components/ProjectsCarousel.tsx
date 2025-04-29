@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import LocalizedLink from './LocalizedLink';
+import { useIsMobile } from "../hooks/use-mobile";
 
 // Project data
 const projects = [
@@ -9,31 +10,43 @@ const projects = [
     id: 1,
     title: "pulsewelding.com",
     category: "Equipment website",
-    image: "", // Will be replaced with a black square for now
+    image: "/src/assets/portfolio1.jpg",
   },
   {
     id: 2,
     title: "climaticgps.ro",
     category: "Presentation Website",
-    image: "", // Will be replaced with a black square for now
+    image: "/src/assets/portfolio2.jpg",
   },
   {
     id: 3,
-    title: "digitalmarketing.io",
-    category: "Marketing Platform",
-    image: "", // Will be replaced with a black square for now
+    title: "gradinita.ro",
+    category: "Educational Platform",
+    image: "/src/assets/portfolio3.jpg",
   },
   {
     id: 4,
-    title: "techsolutions.net",
+    title: "optimar.ro",
     category: "Corporate Website",
-    image: "", // Will be replaced with a black square for now
+    image: "/src/assets/portfolio4.jpg",
   },
   {
     id: 5,
-    title: "creativestudio.com",
+    title: "thdplast.ro",
     category: "Portfolio Website",
-    image: "", // Will be replaced with a black square for now
+    image: "/src/assets/portfolio5.jpg",
+  },
+  {
+    id: 6,
+    title: "unicool.ro",
+    category: "E-commerce",
+    image: "/src/assets/portfolio6.jpg",
+  },
+  {
+    id: 7,
+    title: "zaharias.ro",
+    category: "Business Website",
+    image: "/src/assets/portfolio7.jpg",
   }
 ];
 
@@ -41,30 +54,76 @@ export default function ProjectsCarousel() {
   const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isChanging, setIsChanging] = useState(false);
+  const isMobile = useIsMobile();
   
-  // Compute which projects to show
-  const visibleProjects = [
-    projects[currentIndex % projects.length],
-    projects[(currentIndex + 1) % projects.length]
-  ];
+  // Compute which projects to show based on screen size
+  const getVisibleProjects = () => {
+    if (isMobile) {
+      // Only show 1 project on mobile
+      return [projects[currentIndex % projects.length]];
+    } else {
+      // Show 2 projects on tablet/desktop
+      return [
+        projects[currentIndex % projects.length],
+        projects[(currentIndex + 1) % projects.length]
+      ];
+    }
+  };
+  
+  const visibleProjects = getVisibleProjects();
+  
+  // Refs for tracking slide direction
+  const slideDirection = useRef('right-to-left');
+  const slideContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Handle slide change with animation
+  const changeSlide = () => {
+    // Start the slide animation
+    setIsChanging(true);
+    
+    // Apply sliding animation using CSS classes
+    if (slideContainerRef.current) {
+      slideContainerRef.current.classList.add('slide-out-left');
+    }
+    
+    // After slide out animation, change the slide
+    setTimeout(() => {
+      setCurrentIndex(prev => (prev + 1) % projects.length);
+      
+      // Reset position for slide in animation
+      if (slideContainerRef.current) {
+        slideContainerRef.current.classList.remove('slide-out-left');
+        slideContainerRef.current.classList.add('slide-in-right');
+      }
+      
+      // Complete the animation
+      setTimeout(() => {
+        if (slideContainerRef.current) {
+          slideContainerRef.current.classList.remove('slide-in-right');
+        }
+        setIsChanging(false);
+      }, 300);
+    }, 300);
+  };
   
   // Auto slider effect with pause on hover
   useEffect(() => {
     if (isPaused) return; // Don't set a timer if paused
     
     const timer = setTimeout(() => {
-      setCurrentIndex(prev => prev + 1);
+      changeSlide();
     }, 5000); // Change slide every 5 seconds
     
     return () => clearTimeout(timer);
   }, [currentIndex, isPaused]);
 
   return (
-    <section className="py-16 relative overflow-hidden bg-orange-gradient">
+    <section className="py-16 relative overflow-hidden bg-light-orange-gradient">
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-white/70 rounded-[60px] max-w-6xl mx-auto my-8"></div>
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 pt-12">
+        <div className="text-center mb-12 pt-12 animate-fadeIn">
           <p className="text-sm uppercase font-semibold tracking-wider text-primary mb-2">PORTFOLIO</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">We'll create your idea</h2>
           <p className="text-foreground max-w-2xl mx-auto">
@@ -74,28 +133,27 @@ export default function ProjectsCarousel() {
         
         <div className="relative min-h-[400px] mb-12">
           <div className="flex justify-center overflow-hidden">
-            <div className="flex w-full max-w-5xl justify-between relative pb-8 gap-8">
+            <div 
+              ref={slideContainerRef}
+              className="flex w-full max-w-5xl justify-between relative pb-8 gap-8"
+            >
               {visibleProjects.map((project, index) => (
                 <div
                   key={`${currentIndex}-${index}`}
-                  className={`w-[95%] md:w-[45%] ${index === 0 ? "mr-auto" : "ml-auto"} transition-all duration-500 ease-out`}
-                  style={{
-                    opacity: 1,
-                    transform: 'translateX(0)'
-                  }}
+                  className={`${isMobile ? 'w-full' : 'w-[45%]'} transition-all duration-500 ease-out`}
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
                 >
                   <div 
-                    className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
+                    className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
                   >
                     <div className="relative">
-                      <div 
-                        className="w-full h-64 bg-primary flex items-center justify-center transition-all duration-300 hover:brightness-110"
-                      >
-                        <div className="text-white font-bold text-xl">
-                          {project.title}
-                        </div>
+                      <div className="w-full h-64 overflow-hidden">
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+                        />
                       </div>
                       
                       <div className="p-4 bg-white">
@@ -120,6 +178,26 @@ export default function ProjectsCarousel() {
           </div>
         </div>
         
+        {/* Carousel indicators */}
+        <div className="flex justify-center mt-2 mb-8 space-x-2">
+          {projects.slice(0, Math.ceil(projects.length / (isMobile ? 1 : 2))).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setIsPaused(true);
+                setTimeout(() => {
+                  setCurrentIndex(index * (isMobile ? 1 : 2));
+                  setIsPaused(false);
+                }, 500);
+              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                Math.floor(currentIndex / (isMobile ? 1 : 2)) === index ? 'w-6 bg-primary' : 'bg-primary/30'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+        
         {/* View all projects link */}
         <div className="text-center pb-10">
           <LocalizedLink 
@@ -127,7 +205,7 @@ export default function ProjectsCarousel() {
             className="inline-flex items-center text-foreground group transition-all duration-300 
             hover:text-primary hover:scale-105 active:scale-95"
           >
-            All projects 
+            {t('All projects')}
             <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 arrow-animation">
               <ArrowRight className="h-4 w-4" />
             </span>

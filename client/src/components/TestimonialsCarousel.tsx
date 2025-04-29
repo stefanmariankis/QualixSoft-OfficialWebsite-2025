@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import testimonialClientImg from '../assets/testimonial_client.png';
+import { useTranslation } from 'react-i18next';
 
 interface Testimonial {
   id: number;
@@ -12,6 +12,7 @@ interface Testimonial {
 }
 
 export default function TestimonialsCarousel() {
+  const { t } = useTranslation();
   const testimonials: Testimonial[] = [
     {
       id: 1,
@@ -38,14 +39,27 @@ export default function TestimonialsCarousel() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isChanging, setIsChanging] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Handle automatic slider
   const startAutoSlide = () => {
     intervalRef.current = setInterval(() => {
       if (!isPaused) {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+        changeSlide();
       }
     }, 5000);
+  };
+
+  // Slide change function with animation
+  const changeSlide = () => {
+    setIsChanging(true);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+      setTimeout(() => {
+        setIsChanging(false);
+      }, 300);
+    }, 300);
   };
 
   useEffect(() => {
@@ -68,7 +82,7 @@ export default function TestimonialsCarousel() {
 
   return (
     <section 
-      className="py-20 md:py-28 relative bg-gray-50"
+      className="py-20 md:py-28 relative bg-light-orange-gradient"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -84,28 +98,22 @@ export default function TestimonialsCarousel() {
           <h3 className="text-primary uppercase font-semibold mb-3 tracking-wider text-sm">
             TESTIMONIALE
           </h3>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-700">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Peste 50 de clienți vorbesc despre noi
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
           {/* Left side with testimonial */}
-          <div 
-            className="transition-all duration-300 ease-in-out"
-          >
-            <motion.div
-              key={testimonials[currentIndex].id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+          <div className="transition-all duration-300 ease-in-out">
+            <div
+              className={`transition-opacity duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}
             >
-              <p className="text-gray-600 text-lg mb-8">
+              <p className="text-foreground text-lg mb-8">
                 {testimonials[currentIndex].text}
               </p>
               
-              <div className="h-px w-full bg-gray-200 mb-8"></div>
+              <div className="h-px w-full bg-primary/20 mb-8"></div>
               
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -115,33 +123,28 @@ export default function TestimonialsCarousel() {
                     </div>
                   </div>
                   <div className="ml-4">
-                    <p className="text-gray-700 font-medium">{testimonials[currentIndex].name}</p>
-                    <p className="text-gray-500 text-sm">{testimonials[currentIndex].company}</p>
+                    <p className="text-foreground font-medium">{testimonials[currentIndex].name}</p>
+                    <p className="text-foreground/70 text-sm">{testimonials[currentIndex].company}</p>
                   </div>
                 </div>
                 
                 <div className="flex items-center space-x-1">
                   {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                    <Star key={i} className="w-5 h-5 text-primary fill-primary" />
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right side with client image in hexagon */}
           <div className="relative flex justify-center">
-            <motion.div
-              key={testimonials[currentIndex].id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="relative"
+            <div
+              className={`relative transition-opacity duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}
             >
               {/* Larger background hexagon */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[250px] h-[230px] z-0">
-                <div className="hex-shape-bg w-full h-full bg-gray-100"></div>
+                <div className="hex-shape-bg w-full h-full"></div>
               </div>
               
               {/* Client image hexagon */}
@@ -154,12 +157,30 @@ export default function TestimonialsCarousel() {
                   />
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
+        
+        {/* Carousel indicators */}
+        <div className="flex justify-center mt-10 space-x-2">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setIsPaused(true);
+                setTimeout(() => {
+                  setCurrentIndex(index);
+                  setIsPaused(false);
+                }, 500);
+              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                currentIndex === index ? 'w-6 bg-primary' : 'bg-primary/30'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
       </div>
-
-      {/* CSS for hexagons is defined in index.css */}
     </section>
   );
 }
