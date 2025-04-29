@@ -1,7 +1,25 @@
 import { useState } from 'react';
 import { useRoute } from 'wouter';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, ChevronRight, ExternalLink, Clock, CalendarDays, Tag, Check, Award, Building } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  ArrowUpRight, 
+  ChevronRight, 
+  ExternalLink, 
+  Clock, 
+  CalendarDays, 
+  Tag, 
+  Check, 
+  Award, 
+  Building,
+  Monitor,
+  Smartphone,
+  Code,
+  Zap,
+  Rocket,
+  Lightbulb,
+  PieChart
+} from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CTA from '../components/CTA';
@@ -33,6 +51,7 @@ const techIcons: Record<string, string> = {
   'AWS': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
   'Azure': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
   'Firebase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
+  'React Native': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
 };
 
 // Define mock projects data
@@ -69,6 +88,38 @@ const projectsData = {
       position: "CTO, Climatic GPS"
     },
     services: ['Custom Platform Development', 'UI/UX Design', 'Data Visualization', 'API Integration', 'Responsive Design'],
+    process: [
+      { 
+        phase: 'Discovery & Planning', 
+        description: 'Comprehensive analysis of the client requirements and existing workflows',
+        duration: '3 weeks'
+      },
+      { 
+        phase: 'UX/UI Design', 
+        description: 'Creating intuitive interfaces for both desktop and mobile applications',
+        duration: '4 weeks'
+      },
+      { 
+        phase: 'Development', 
+        description: 'Implementing front-end interfaces and back-end services with regular testing',
+        duration: '12 weeks'
+      },
+      { 
+        phase: 'Testing & QA', 
+        description: 'Rigorous testing across multiple devices and usage scenarios',
+        duration: '3 weeks'
+      },
+      { 
+        phase: 'Deployment & Training', 
+        description: 'Smooth transition to production and comprehensive staff training',
+        duration: '2 weeks'
+      }
+    ],
+    deviceViews: {
+      desktop: project_screenshot1,
+      tablet: project_screenshot2,
+      mobile: project_screenshot3
+    }
   },
   'pulse-welding': {
     id: 'pulse-welding',
@@ -102,6 +153,38 @@ const projectsData = {
       position: "Sales Director, Pulse Welding"
     },
     services: ['E-Commerce Development', 'Custom Integrations', 'UI/UX Design', 'Payment Gateway Integration', 'ERP System Integration'],
+    process: [
+      { 
+        phase: 'Discovery & Planning', 
+        description: 'Analyzing business requirements and customer ordering patterns',
+        duration: '2 weeks'
+      },
+      { 
+        phase: 'UX/UI Design', 
+        description: 'Creating intuitive product catalogs and ordering flows',
+        duration: '3 weeks'
+      },
+      { 
+        phase: 'Development', 
+        description: 'Building the platform with focus on performance and integration',
+        duration: '10 weeks'
+      },
+      { 
+        phase: 'Testing & QA', 
+        description: 'Ensuring seamless ordering and accurate pricing across scenarios',
+        duration: '3 weeks'
+      },
+      { 
+        phase: 'Deployment & Training', 
+        description: 'Staged rollout to customers with comprehensive training',
+        duration: '2 weeks'
+      }
+    ],
+    deviceViews: {
+      desktop: project_screenshot2,
+      tablet: project_screenshot3,
+      mobile: project_screenshot1
+    }
   },
   'unicool': {
     id: 'unicool',
@@ -135,6 +218,38 @@ const projectsData = {
       position: "Product Manager, UniCool"
     },
     services: ['Mobile App Development', 'IoT Integration', 'UI/UX Design', 'Backend Development', 'Cloud Infrastructure'],
+    process: [
+      { 
+        phase: 'Discovery & Planning', 
+        description: 'Understanding the IoT ecosystem and user requirements',
+        duration: '2 weeks'
+      },
+      { 
+        phase: 'UX/UI Design', 
+        description: 'Creating intuitive mobile interfaces with focus on usability',
+        duration: '4 weeks'
+      },
+      { 
+        phase: 'Development', 
+        description: 'Building cross-platform application and backend services',
+        duration: '12 weeks'
+      },
+      { 
+        phase: 'Testing & QA', 
+        description: 'Extensive testing across different devices and connectivity scenarios',
+        duration: '3 weeks'
+      },
+      { 
+        phase: 'Deployment & Support', 
+        description: 'App store release and ongoing maintenance',
+        duration: '3 weeks'
+      }
+    ],
+    deviceViews: {
+      desktop: project_screenshot3,
+      tablet: project_screenshot1,
+      mobile: project_screenshot2
+    }
   },
   'tech-dashboard': {
     id: 'tech-dashboard',
@@ -168,12 +283,46 @@ const projectsData = {
       position: "CIO, TechVision Inc"
     },
     services: ['Custom Platform Development', 'Data Visualization', 'UI/UX Design', 'API Development', 'Database Architecture'],
+    process: [
+      { 
+        phase: 'Discovery & Planning', 
+        description: 'Analyzing existing systems and defining key performance indicators',
+        duration: '3 weeks'
+      },
+      { 
+        phase: 'UX/UI Design', 
+        description: 'Designing intuitive data visualizations and dashboard layouts',
+        duration: '4 weeks'
+      },
+      { 
+        phase: 'Development', 
+        description: 'Building the platform with focus on performance and scalability',
+        duration: '14 weeks'
+      },
+      { 
+        phase: 'Testing & QA', 
+        description: 'Verifying data accuracy and system performance under load',
+        duration: '4 weeks'
+      },
+      { 
+        phase: 'Deployment & Training', 
+        description: 'Phased implementation and comprehensive administrator training',
+        duration: '3 weeks'
+      }
+    ],
+    deviceViews: {
+      desktop: project_screenshot1,
+      tablet: project_screenshot3,
+      mobile: project_screenshot2
+    }
   },
 };
 
 export default function ProjectDetailPage() {
   const [, params] = useRoute('/portfolio/:id');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState<'overview' | 'process' | 'results'>('overview');
+  const [selectedDevice, setSelectedDevice] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   
   // Get project ID from URL and find project data
   const projectId = params?.id || '';
@@ -203,259 +352,533 @@ export default function ProjectDetailPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       <main className="flex-grow">
-        {/* Breadcrumb */}
-        <div className="bg-gray-50 py-4 border-b border-gray-100">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center text-sm text-gray-500">
-              <button
-                onClick={() => window.location.href = '/'} 
-                className="hover:text-primary bg-transparent border-0 cursor-pointer p-0 flex"
-              >
-                Home
-              </button>
-              <ChevronRight className="h-4 w-4 mx-2" />
-              <button
-                onClick={() => window.location.href = '/portfolio'} 
-                className="hover:text-primary bg-transparent border-0 cursor-pointer p-0 flex"
-              >
-                Portfolio
-              </button>
-              <ChevronRight className="h-4 w-4 mx-2" />
-              <span className="text-gray-900 font-medium">{project.title}</span>
-            </div>
+        {/* Project Hero Section with Creative Floating Elements - 2025 Style */}
+        <section className="bg-gray-900 text-white relative overflow-hidden py-20 md:py-32">
+          {/* Graphic elements */}
+          <div className="absolute inset-0 z-0 opacity-30">
+            <div className="absolute top-0 left-0 w-64 h-64 bg-primary/30 rounded-full -translate-x-1/3 -translate-y-1/3 blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-400/30 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
           </div>
-        </div>
-        
-        {/* Hero Section */}
-        <section className="bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+          
+          {/* Grid overlay pattern */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNNTkuOTEgMEwwIDU5LjkxVjYwaDYwVjBILjAxdjU5LjkxTDU5LjkxIDBILjAxVjYwaDU5LjkxVi4wMUwwIDYwVi4wMWw1OS45MSA1OS45TDAgMFYuMDFMNTkuOTEgNjBIMHYtLjA5TDU5LjkxIDBILjAxVi4wMkw1OS45IDU5LjkxVi4wMUwuMDIgNTkuOVYuMDFoNTkuOVYwSC4wMXYuMDFMNjAgNjBWLjAxTDAgNjBWLjAxTDU5LjkxIDBoLS4wMVY2MGgtLjA5TDAgMGg2MHYuMDFMNjAgLjAxIiBvcGFjaXR5PSIuMDUiLz48L2c+PC9zdmc+')] bg-opacity-20 z-0"></div>
+          
+          {/* Back to portfolio link */}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 relative z-10">
+            <button
+              onClick={() => window.location.href = '/portfolio'}
+              className="inline-flex items-center text-white/80 hover:text-white transition-colors mb-8 group"
             >
-              <button 
-                onClick={() => window.location.href = '/portfolio'} 
-                className="inline-flex items-center text-gray-600 hover:text-primary mb-8 bg-transparent border-0 cursor-pointer"
-              >
-                <ArrowLeft className="mr-2 h-5 w-5" />
-                Back to Portfolio
-              </button>
-              
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                {project.title}
-              </h1>
-              
-              <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-8">
-                <div className="flex items-center">
-                  <Tag className="h-5 w-5 mr-2" />
-                  <span>{project.categories.map(c => c.charAt(0).toUpperCase() + c.slice(1).replace('-', ' ')).join(', ')}</span>
-                </div>
-                <div className="flex items-center">
-                  <CalendarDays className="h-5 w-5 mr-2" />
-                  <span>{project.year}</span>
-                </div>
-                <div className="flex items-center">
-                  <Clock className="h-5 w-5 mr-2" />
-                  <span>{project.duration}</span>
-                </div>
-              </div>
-            </motion.div>
-              
-            {/* Main Image */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative aspect-video overflow-hidden rounded-xl mb-12 shadow-xl"
-            >
-              <img 
-                src={project.gallery[selectedImageIndex]} 
-                alt={project.title} 
-                className="w-full h-full object-cover"
-              />
-              
-              {/* Modern image counter overlay */}
-              <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center">
-                <span className="mr-1.5">{selectedImageIndex + 1}</span>
-                <span className="text-white/60">/</span>
-                <span className="ml-1.5">{project.gallery.length}</span>
-              </div>
-            </motion.div>
-              
-            {/* Gallery Thumbnails - 2025 Style */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex space-x-3 overflow-x-auto pb-4 mb-12 snap-x"
-            >
-              {project.gallery.map((image, i) => (
-                <button 
-                  key={i}
-                  onClick={() => setSelectedImageIndex(i)}
-                  className={`relative flex-shrink-0 w-28 h-20 rounded-lg overflow-hidden transition-all duration-300 snap-start
-                    ${selectedImageIndex === i 
-                      ? 'ring-4 ring-primary shadow-lg scale-105 z-10' 
-                      : 'ring-1 ring-gray-200 hover:ring-gray-300 shadow-sm'
-                    }`}
-                >
-                  <img 
-                    src={image} 
-                    alt={`Gallery ${i+1}`} 
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Overlay for non-selected items */}
-                  <div 
-                    className={`absolute inset-0 bg-black transition-opacity duration-300 ${
-                      selectedImageIndex === i ? 'opacity-0' : 'opacity-40'
-                    }`}
-                  ></div>
-                </button>
-              ))}
-            </motion.div>
+              <ArrowLeft className="mr-2 h-5 w-5 transition-transform group-hover:-translate-x-1" />
+              <span>Back to Portfolio</span>
+            </button>
             
-            {/* Project Details */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="lg:col-span-2"
-              >
-                {/* Description */}
-                <div className="mb-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Overview</h2>
-                  <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
-                  
-                  <div className="grid md:grid-cols-2 gap-6 mb-6">
-                    <div className="bg-gray-50 p-6 rounded-lg">
-                      <h3 className="font-bold text-gray-900 mb-3">Challenge</h3>
-                      <p className="text-gray-700">{project.challenge}</p>
-                    </div>
-                    <div className="bg-primary/5 p-6 rounded-lg">
-                      <h3 className="font-bold text-gray-900 mb-3">Solution</h3>
-                      <p className="text-gray-700">{project.solution}</p>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Results - 2025 Style */}
-                <div className="mb-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Results & Impact</h2>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {project.results.map((result, i) => (
-                      <div 
-                        key={i} 
-                        className="bg-white p-5 rounded-xl border border-gray-100 text-center shadow-sm hover:shadow-md transition-all duration-300 hover:border-primary/20 relative overflow-hidden group"
+            {/* Project title and meta info */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="mb-4 flex items-center space-x-2">
+                    {project.categories.map((category, index) => (
+                      <span 
+                        key={index} 
+                        className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-primary/20 text-primary-foreground"
                       >
-                        {/* Background decoration */}
-                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        {/* Accent decoration */}
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/50 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300"></div>
-                        
-                        <div className="relative z-10">
-                          <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 mb-2">
-                            {result.value}
-                          </div>
-                          <div className="text-sm text-gray-600 font-medium">{result.metric}</div>
-                        </div>
-                      </div>
+                        {category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                      </span>
                     ))}
+                    
+                    {project.featured && (
+                      <span className="inline-flex items-center text-amber-400 text-sm">
+                        <Award className="h-4 w-4 mr-1" />
+                        <span>Featured</span>
+                      </span>
+                    )}
                   </div>
-                </div>
-                
-                {/* Technologies */}
-                <div className="mb-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Technologies Used</h2>
-                  <div className="flex flex-wrap gap-4">
-                    {project.technologies.map((tech, i) => (
-                      <div key={i} className="flex items-center bg-white px-4 py-3 rounded-lg border border-gray-100 shadow-sm">
-                        {techIcons[tech] && (
-                          <img 
-                            src={techIcons[tech]} 
-                            alt={tech} 
-                            className="w-5 h-5 mr-2"
-                          />
-                        )}
-                        <span className="text-gray-800">{tech}</span>
-                      </div>
-                    ))}
+                  
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    {project.title}
+                  </h1>
+                  
+                  <div className="flex flex-wrap gap-x-6 gap-y-3 text-white/80 mb-8">
+                    <div className="flex items-center">
+                      <Building className="h-5 w-5 mr-2" />
+                      <span>Client: <span className="text-white font-medium">{project.client}</span></span>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <CalendarDays className="h-5 w-5 mr-2" />
+                      <span>Year: <span className="text-white font-medium">{project.year}</span></span>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <Clock className="h-5 w-5 mr-2" />
+                      <span>Duration: <span className="text-white font-medium">{project.duration}</span></span>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                  
+                  <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-2xl">
+                    {project.description}
+                  </p>
+                </motion.div>
+              </div>
               
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="lg:col-span-1"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="relative group"
               >
-                {/* Client Info */}
-                <div className="bg-white p-6 rounded-lg border border-gray-100 shadow-sm mb-8">
-                  <h3 className="font-bold text-gray-900 mb-4">Client</h3>
-                  <p className="text-gray-700 mb-4">{project.client}</p>
+                {/* Main featured image with glass effect frame */}
+                <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                  <img 
+                    src={project.thumbnail} 
+                    alt={`${project.title} screenshot`}
+                    className="w-full rounded-xl object-cover" 
+                  />
                   
-                  <h3 className="font-bold text-gray-900 mb-4">Services Provided</h3>
-                  <ul className="space-y-2">
-                    {project.services.map((service, i) => (
-                      <li key={i} className="flex items-start">
-                        <Check className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{service}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Decorative elements */}
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                {/* Float tech tags */}
+                <div className="absolute -bottom-4 left-4 right-4 flex flex-wrap justify-center gap-2 p-3 bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
+                  {project.technologies.slice(0, 5).map((tech, index) => (
+                    <div 
+                      key={index}
+                      className="flex items-center bg-white/10 backdrop-blur rounded-full px-3 py-1"
+                    >
+                      {techIcons[tech] ? (
+                        <img 
+                          src={techIcons[tech]} 
+                          alt={tech} 
+                          className="h-4 w-4 mr-2"
+                        />
+                      ) : (
+                        <Code className="h-4 w-4 mr-2" />
+                      )}
+                      <span className="text-xs font-medium">{tech}</span>
+                    </div>
+                  ))}
                   
-                  {project.featured && (
-                    <div className="mt-6 flex items-center text-primary font-medium">
-                      <Award className="h-5 w-5 mr-2" />
-                      Featured Project
+                  {project.technologies.length > 5 && (
+                    <div className="flex items-center bg-white/10 backdrop-blur rounded-full px-3 py-1">
+                      <span className="text-xs font-medium">+{project.technologies.length - 5} more</span>
                     </div>
                   )}
                 </div>
-                
-                {/* Testimonial */}
-                {project.testimonial && (
-                  <div className="bg-gradient-to-br from-white to-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 relative overflow-hidden">
-                    {/* Decorative quotes */}
-                    <div className="absolute top-4 left-6 text-primary opacity-10">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
-                      </svg>
-                    </div>
-                    
-                    <div className="relative z-10">
-                      {/* Rating stars */}
-                      <div className="flex mb-4 text-amber-400">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.799-2.034c-.784-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                        ))}
-                      </div>
-                      
-                      <p className="text-gray-700 font-medium italic text-lg mb-6 leading-relaxed">{project.testimonial.quote}</p>
-                      
-                      <div className="flex items-center border-t border-gray-100 pt-4">
-                        <div className="rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center text-primary font-bold text-xl mr-4">
-                          {project.testimonial.author.charAt(0)}
-                        </div>
-                        <div>
-                          <div className="font-bold text-gray-900">{project.testimonial.author}</div>
-                          <div className="text-sm text-gray-600">{project.testimonial.position}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </motion.div>
             </div>
           </div>
         </section>
+        
+        {/* Project Content Tabs Section */}
+        <section className="py-12 bg-white border-b border-gray-200">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap justify-center mb-8 gap-2">
+              <button
+                onClick={() => setActiveTab('overview')}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                  activeTab === 'overview' 
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Project Overview
+              </button>
+              <button
+                onClick={() => setActiveTab('process')}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                  activeTab === 'process' 
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Development Process
+              </button>
+              <button
+                onClick={() => setActiveTab('results')}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                  activeTab === 'results' 
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Results & Impact
+              </button>
+            </div>
+          </div>
+        </section>
+        
+        {/* Tab Content */}
+        <div className="bg-white pb-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Overview Tab */}
+            {activeTab === 'overview' && (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-2">
+                  {/* Challenge and Solution */}
+                  <div className="bg-gray-50 p-8 rounded-2xl mb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                      <div className="bg-amber-500/10 text-amber-600 p-2 rounded-lg mr-3">
+                        <Lightbulb className="h-6 w-6" />
+                      </div>
+                      The Challenge
+                    </h2>
+                    <p className="text-gray-700 mb-8 leading-relaxed">
+                      {project.challenge}
+                    </p>
+                    
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                      <div className="bg-primary/10 text-primary p-2 rounded-lg mr-3">
+                        <Rocket className="h-6 w-6" />
+                      </div>
+                      Our Solution
+                    </h2>
+                    <p className="text-gray-700 leading-relaxed">
+                      {project.solution}
+                    </p>
+                  </div>
+                  
+                  {/* Device Views */}
+                  <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Device Views</h2>
+                    
+                    <div className="flex flex-wrap mb-4 gap-2">
+                      <button
+                        onClick={() => setSelectedDevice('desktop')}
+                        className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
+                          selectedDevice === 'desktop' 
+                            ? 'bg-gray-900 text-white' 
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        <Monitor className="h-5 w-5 mr-2" />
+                        Desktop
+                      </button>
+                      <button
+                        onClick={() => setSelectedDevice('tablet')}
+                        className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
+                          selectedDevice === 'tablet' 
+                            ? 'bg-gray-900 text-white' 
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        <TabletIcon className="h-5 w-5 mr-2" />
+                        Tablet
+                      </button>
+                      <button
+                        onClick={() => setSelectedDevice('mobile')}
+                        className={`inline-flex items-center px-4 py-2 rounded-lg transition-all ${
+                          selectedDevice === 'mobile' 
+                            ? 'bg-gray-900 text-white' 
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        <Smartphone className="h-5 w-5 mr-2" />
+                        Mobile
+                      </button>
+                    </div>
+                    
+                    <div className="bg-gray-100 p-8 rounded-2xl relative">
+                      {selectedDevice === 'desktop' && (
+                        <div className="relative mx-auto" style={{ maxWidth: '700px' }}>
+                          <div className="bg-gray-800 rounded-t-lg p-2 flex items-center justify-start space-x-1.5">
+                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                          </div>
+                          <img 
+                            src={project.deviceViews.desktop} 
+                            alt="Desktop view"
+                            className="w-full border-l-2 border-r-2 border-gray-800"
+                          />
+                          <div className="h-4 bg-gray-800 rounded-b-lg"></div>
+                        </div>
+                      )}
+                      
+                      {selectedDevice === 'tablet' && (
+                        <div className="relative mx-auto" style={{ maxWidth: '500px' }}>
+                          <div className="bg-gray-800 rounded-t-3xl h-6"></div>
+                          <div className="border-l-8 border-r-8 border-gray-800">
+                            <img 
+                              src={project.deviceViews.tablet} 
+                              alt="Tablet view"
+                              className="w-full"
+                            />
+                          </div>
+                          <div className="h-14 bg-gray-800 rounded-b-3xl flex items-center justify-center">
+                            <div className="w-12 h-1.5 bg-gray-600 rounded-full"></div>
+                          </div>
+                        </div>
+                      )}
+                      
+                      {selectedDevice === 'mobile' && (
+                        <div className="relative mx-auto" style={{ maxWidth: '280px' }}>
+                          <div className="bg-gray-800 rounded-t-3xl p-2">
+                            <div className="w-1/2 h-5 bg-black mx-auto rounded-full"></div>
+                          </div>
+                          <div className="border-l-8 border-r-8 border-gray-800">
+                            <img 
+                              src={project.deviceViews.mobile} 
+                              alt="Mobile view"
+                              className="w-full"
+                            />
+                          </div>
+                          <div className="h-12 bg-gray-800 rounded-b-3xl flex items-center justify-center">
+                            <div className="w-10 h-1.5 bg-gray-600 rounded-full"></div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Technologies */}
+                  <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                      <div className="bg-blue-500/10 text-blue-600 p-2 rounded-lg mr-3">
+                        <Code className="h-6 w-6" />
+                      </div>
+                      Technologies Used
+                    </h2>
+                    
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                      {project.technologies.map((tech, index) => (
+                        <div 
+                          key={index}
+                          className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                        >
+                          <div className="w-12 h-12 mb-3 flex items-center justify-center">
+                            {techIcons[tech] ? (
+                              <img 
+                                src={techIcons[tech]} 
+                                alt={tech} 
+                                className="h-10 w-10"
+                              />
+                            ) : (
+                              <Code className="h-10 w-10 text-gray-400" />
+                            )}
+                          </div>
+                          <span className="text-sm font-medium text-gray-700">{tech}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="lg:col-span-1">
+                  {/* Project Details */}
+                  <div className="sticky top-24">
+                    {/* Services Provided */}
+                    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-8">
+                      <h3 className="text-lg font-bold text-gray-900 mb-4">Services Provided</h3>
+                      <ul className="space-y-3">
+                        {project.services.map((service, index) => (
+                          <li key={index} className="flex items-start">
+                            <div className="mr-3 mt-0.5 bg-primary/10 p-1 rounded-full">
+                              <Check className="h-4 w-4 text-primary" />
+                            </div>
+                            <span className="text-gray-700">{service}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    {/* Client Testimonial */}
+                    <div className="bg-gray-900 text-white rounded-2xl p-6 mb-8 relative overflow-hidden">
+                      {/* Background decoration */}
+                      <div className="absolute top-0 right-0 opacity-10">
+                        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.80042 4.80035L8.57142 2.80059C5.60402 4.00935 1.59961 7.63261 2.59961 14.8003H6.2C6.2 12.4003 5.38742 8.4006 9.80042 4.80035ZM18.8004 4.80035L17.5714 2.80059C14.604 4.00935 10.5996 7.63261 11.5996 14.8003H15.2C15.2 12.4003 14.3874 8.4006 18.8004 4.80035Z" fill="white"/>
+                        </svg>
+                      </div>
+                      
+                      <h3 className="text-lg font-bold mb-4">Client Testimonial</h3>
+                      <p className="text-white/90 italic mb-4 relative z-10">"{project.testimonial.quote}"</p>
+                      
+                      <div className="flex items-center">
+                        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg mr-3">
+                          {project.testimonial.author.charAt(0)}
+                        </div>
+                        <div>
+                          <p className="font-medium">{project.testimonial.author}</p>
+                          <p className="text-white/70 text-sm">{project.testimonial.position}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* CTA */}
+                    <div className="bg-gradient-to-br from-primary to-primary/80 text-white rounded-2xl p-6">
+                      <h3 className="text-lg font-bold mb-3">Interested in a similar project?</h3>
+                      <p className="mb-4 text-white/90">Let's discuss how we can help you achieve your business goals with a custom digital solution.</p>
+                      <button
+                        onClick={() => window.location.href = '/contact'}
+                        className="w-full py-3 px-6 bg-white text-primary font-medium rounded-lg hover:shadow-lg transition-shadow flex items-center justify-center"
+                      >
+                        Start a Conversation
+                        <ArrowUpRight className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Process Tab */}
+            {activeTab === 'process' && (
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Development Process</h2>
+                  <p className="text-gray-600 max-w-3xl mx-auto">
+                    We follow a structured approach to ensure every project is delivered with the highest quality standards.
+                    Here's how we brought {project.title} to life.
+                  </p>
+                </div>
+                
+                {/* Process Timeline */}
+                <div className="relative">
+                  {/* Vertical line */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200"></div>
+                  
+                  <div className="space-y-12">
+                    {project.process.map((phase, index) => (
+                      <div 
+                        key={index}
+                        className={`relative ${index % 2 === 0 ? 'lg:ml-auto lg:mr-[50%]' : 'lg:mr-auto lg:ml-[50%]'} lg:w-[45%]`}
+                      >
+                        <motion.div 
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 relative z-10"
+                        >
+                          {/* Connector to timeline */}
+                          <div className="absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-primary rounded-full border-4 border-white z-20 shadow-md
+                            lg:left-[calc(100%+3.45rem)] lg:right-auto
+                            left-1/2 -translate-x-1/2
+                            "></div>
+                          
+                          <h3 className="text-xl font-bold text-gray-900 mb-1">{phase.phase}</h3>
+                          <p className="text-sm text-primary mb-3">{phase.duration}</p>
+                          <p className="text-gray-700">{phase.description}</p>
+                        </motion.div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Image Gallery */}
+                <div className="mt-20">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Project Gallery</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {project.gallery.map((image, index) => (
+                      <div 
+                        key={index}
+                        className="group relative overflow-hidden rounded-xl aspect-video border border-gray-100 shadow-sm"
+                      >
+                        <img 
+                          src={image} 
+                          alt={`${project.title} - Image ${index + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                          <div className="p-4">
+                            <p className="text-white font-medium">
+                              Development Phase {index + 1}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Results Tab */}
+            {activeTab === 'results' && (
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Results & Impact</h2>
+                  <p className="text-gray-600 max-w-3xl mx-auto">
+                    Our solution delivered measurable results for {project.client}, 
+                    transforming their business operations and creating lasting impact.
+                  </p>
+                </div>
+                
+                {/* Key Metrics */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                  {project.results.map((result, index) => (
+                    <motion.div 
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="bg-white rounded-xl border border-gray-100 p-6 shadow-md flex flex-col items-center justify-center text-center hover:shadow-xl transition-shadow"
+                    >
+                      <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                        <PieChart className="h-6 w-6" />
+                      </div>
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-1">{result.value}</h3>
+                      <p className="text-gray-600">{result.metric}</p>
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Impact Overview */}
+                <div className="bg-gray-50 rounded-3xl p-8 mb-16">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <div className="bg-primary/10 text-primary p-2 rounded-lg mr-3">
+                      <Zap className="h-6 w-6" />
+                    </div>
+                    Long-term Impact
+                  </h3>
+                  
+                  <div className="space-y-6 text-lg text-gray-700">
+                    <p>The implementation of the {project.title} for {project.client} has delivered significant value beyond the immediate metrics. The solution has positioned them as an industry leader in digital innovation and created a foundation for future growth.</p>
+                    
+                    <p>By streamlining their operations and providing powerful analytical capabilities, we've enabled data-driven decision making that continues to yield compounding returns on their initial investment.</p>
+                    
+                    <p>The solution was designed with scalability in mind, allowing {project.client} to easily expand functionality as their business grows and technology evolves.</p>
+                  </div>
+                </div>
+                
+                {/* Testimonial Highlight */}
+                <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-3xl p-12 relative overflow-hidden">
+                  {/* Decorative elements */}
+                  <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+                  <div className="absolute -top-16 -left-16 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
+                  
+                  <div className="max-w-3xl mx-auto relative z-10">
+                    <div className="text-6xl text-primary mb-6">"</div>
+                    
+                    <p className="text-2xl italic mb-10 leading-relaxed">
+                      {project.testimonial.quote}
+                    </p>
+                    
+                    <div className="flex items-center">
+                      <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white font-bold text-2xl mr-4">
+                        {project.testimonial.author.charAt(0)}
+                      </div>
+                      <div>
+                        <p className="font-bold text-xl">{project.testimonial.author}</p>
+                        <p className="text-white/80">{project.testimonial.position}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
         
         {/* Related Projects - 2025 Style */}
         <section className="bg-gradient-to-b from-white to-gray-50 py-24 relative overflow-hidden">
@@ -556,5 +979,25 @@ export default function ProjectDetailPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+function TabletIcon(props: any) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="24" 
+      height="24" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+      className={props.className}
+    >
+      <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
+      <line x1="12" x2="12.01" y1="18" y2="18" />
+    </svg>
   );
 }
