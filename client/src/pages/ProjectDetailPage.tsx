@@ -375,21 +375,24 @@ export default function ProjectDetailPage() {
       <Header />
       <main className="flex-grow">
         {/* Project Hero Section with Creative Floating Elements - 2025 Style */}
-        <section className="bg-gray-900 text-white relative overflow-hidden py-20 md:py-32">
+        <section className="bg-primary text-white relative overflow-hidden py-20 md:py-32">
+          {/* Solid background first */}
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 z-0"></div>
+          
           {/* Graphic elements */}
           <div className="absolute inset-0 z-0 opacity-30">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-primary/30 rounded-full -translate-x-1/3 -translate-y-1/3 blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-400/30 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
+            <div className="absolute top-0 left-0 w-64 h-64 bg-primary/40 rounded-full -translate-x-1/3 -translate-y-1/3 blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-400/40 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
           </div>
           
-          {/* Grid overlay pattern */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNNTkuOTEgMEwwIDU5LjkxVjYwaDYwVjBILjAxdjU5LjkxTDU5LjkxIDBILjAxVjYwaDU5LjkxVi4wMUwwIDYwVi4wMWw1OS45MSA1OS45TDAgMFYuMDFMNTkuOTEgNjBIMHYtLjA5TDU5LjkxIDBILjAxVi4wMkw1OS45IDU5LjkxVi4wMUwuMDIgNTkuOVYuMDFoNTkuOVYwSC4wMXYuMDFMNjAgNjBWLjAxTDAgNjBWLjAxTDU5LjkxIDBoLS4wMVY2MGgtLjA5TDAgMGg2MHYuMDFMNjAgLjAxIiBvcGFjaXR5PSIuMDUiLz48L2c+PC9zdmc+')] bg-opacity-20 z-0"></div>
+          {/* Grid overlay pattern with darker opacity */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNNTkuOTEgMEwwIDU5LjkxVjYwaDYwVjBILjAxdjU5LjkxTDU5LjkxIDBILjAxVjYwaDU5LjkxVi4wMUwwIDYwVi4wMWw1OS45MSA1OS45TDAgMFYuMDFMNTkuOTEgNjBIMHYtLjA5TDU5LjkxIDBILjAxVi4wMkw1OS45IDU5LjkxVi4wMUwuMDIgNTkuOVYuMDFoNTkuOVYwSC4wMXYuMDFMNjAgNjBWLjAxTDAgNjBWLjAxTDU5LjkxIDBoLS4wMVY2MGgtLjA5TDAgMGg2MHYuMDFMNjAgLjAxIiBvcGFjaXR5PSIuMDUiLz48L2c+PC9zdmc+')] opacity-20 z-0"></div>
           
           {/* Back to portfolio link */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 relative z-10">
             <button
               onClick={() => window.location.href = '/portfolio'}
-              className="inline-flex items-center text-white/80 hover:text-white transition-colors mb-8 group"
+              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-white font-medium transition-all mb-8 group"
             >
               <ArrowLeft className="mr-2 h-5 w-5 transition-transform group-hover:-translate-x-1" />
               <span>Back to Portfolio</span>
