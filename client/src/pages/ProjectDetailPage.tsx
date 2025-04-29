@@ -54,6 +54,25 @@ const techIcons: Record<string, string> = {
   'React Native': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
 };
 
+// Custom TabletIcon component
+const TabletIcon = (props: { className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="24" 
+    height="24" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className={props.className}
+  >
+    <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
+    <line x1="12" x2="12.01" y1="18" y2="18" />
+  </svg>
+);
+
 // Define mock projects data
 const projectsData = {
   'climatic-gps': {
@@ -435,16 +454,32 @@ export default function ProjectDetailPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="relative group"
               >
-                {/* Main featured image with glass effect frame */}
+                {/* Placeholder colored rectangles instead of images */}
                 <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-                  <img 
-                    src={project.thumbnail} 
-                    alt={`${project.title} screenshot`}
-                    className="w-full rounded-xl object-cover" 
-                  />
+                  <div className="relative">
+                    {/* Main colored placeholder */}
+                    <div 
+                      className="w-full aspect-[16/9] bg-gradient-to-br from-primary/80 to-blue-500/50 rounded-xl flex items-center justify-center"
+                    >
+                      <div className="text-white text-opacity-80 text-center">
+                        <div className="mb-4 flex items-center justify-center">
+                          <Monitor className="h-12 w-12 opacity-50" />
+                        </div>
+                        <p className="text-xl font-medium">Project Preview</p>
+                        <p className="text-sm mt-2 max-w-xs mx-auto">Visualization will be added here</p>
+                      </div>
+                    </div>
+                    
+                    {/* Decorative elements */}
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
                   
-                  {/* Decorative elements */}
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  {/* Small placeholder rectangles */}
+                  <div className="grid grid-cols-3 gap-2 p-2 bg-gray-900">
+                    <div className="aspect-[4/3] bg-blue-400/30 rounded-md"></div>
+                    <div className="aspect-[4/3] bg-primary/30 rounded-md"></div>
+                    <div className="aspect-[4/3] bg-purple-400/30 rounded-md"></div>
+                  </div>
                 </div>
                 
                 {/* Float tech tags */}
@@ -594,11 +629,15 @@ export default function ProjectDetailPage() {
                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                           </div>
-                          <img 
-                            src={project.deviceViews.desktop} 
-                            alt="Desktop view"
-                            className="w-full border-l-2 border-r-2 border-gray-800"
-                          />
+                          <div 
+                            className="w-full aspect-[16/10] bg-gradient-to-r from-blue-500/40 to-purple-500/40 border-l-2 border-r-2 border-gray-800 flex items-center justify-center"
+                          >
+                            <div className="text-white text-opacity-70 text-center p-4">
+                              <Monitor className="h-10 w-10 mx-auto mb-3 opacity-70" />
+                              <p className="text-lg font-medium">Desktop View</p>
+                              <p className="text-sm mt-1 max-w-xs mx-auto">Screenshot will be displayed here</p>
+                            </div>
+                          </div>
                           <div className="h-4 bg-gray-800 rounded-b-lg"></div>
                         </div>
                       )}
@@ -607,11 +646,15 @@ export default function ProjectDetailPage() {
                         <div className="relative mx-auto" style={{ maxWidth: '500px' }}>
                           <div className="bg-gray-800 rounded-t-3xl h-6"></div>
                           <div className="border-l-8 border-r-8 border-gray-800">
-                            <img 
-                              src={project.deviceViews.tablet} 
-                              alt="Tablet view"
-                              className="w-full"
-                            />
+                            <div 
+                              className="w-full aspect-[3/4] bg-gradient-to-b from-primary/30 to-blue-400/40 flex items-center justify-center"
+                            >
+                              <div className="text-white text-opacity-80 text-center p-4">
+                                <TabletIcon className="h-10 w-10 mx-auto mb-3 opacity-70" />
+                                <p className="text-lg font-medium">Tablet View</p>
+                                <p className="text-sm mt-1 max-w-xs mx-auto">Screenshot will be displayed here</p>
+                              </div>
+                            </div>
                           </div>
                           <div className="h-14 bg-gray-800 rounded-b-3xl flex items-center justify-center">
                             <div className="w-12 h-1.5 bg-gray-600 rounded-full"></div>
@@ -625,11 +668,15 @@ export default function ProjectDetailPage() {
                             <div className="w-1/2 h-5 bg-black mx-auto rounded-full"></div>
                           </div>
                           <div className="border-l-8 border-r-8 border-gray-800">
-                            <img 
-                              src={project.deviceViews.mobile} 
-                              alt="Mobile view"
-                              className="w-full"
-                            />
+                            <div 
+                              className="w-full aspect-[9/16] bg-gradient-to-b from-indigo-500/40 to-purple-500/40 flex items-center justify-center"
+                            >
+                              <div className="text-white text-opacity-80 text-center p-4">
+                                <Smartphone className="h-10 w-10 mx-auto mb-3 opacity-70" />
+                                <p className="text-lg font-medium">Mobile View</p>
+                                <p className="text-sm mt-1 max-w-xs mx-auto">Screenshot will be displayed here</p>
+                              </div>
+                            </div>
                           </div>
                           <div className="h-12 bg-gray-800 rounded-b-3xl flex items-center justify-center">
                             <div className="w-10 h-1.5 bg-gray-600 rounded-full"></div>
@@ -778,16 +825,27 @@ export default function ProjectDetailPage() {
                 <div className="mt-20">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Project Gallery</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {project.gallery.map((image, index) => (
+                    {[0, 1, 2, 3].map((index) => (
                       <div 
                         key={index}
                         className="group relative overflow-hidden rounded-xl aspect-video border border-gray-100 shadow-sm"
                       >
-                        <img 
-                          src={image} 
-                          alt={`${project.title} - Image ${index + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
+                        <div 
+                          className={`w-full h-full transition-transform duration-500 group-hover:scale-105 flex items-center justify-center 
+                          ${index === 0 ? 'bg-gradient-to-br from-primary/40 to-blue-500/30' :
+                            index === 1 ? 'bg-gradient-to-r from-indigo-500/40 to-purple-500/30' :
+                            index === 2 ? 'bg-gradient-to-br from-blue-500/30 to-green-500/30' :
+                            'bg-gradient-to-br from-amber-500/30 to-red-500/30'
+                          }`}
+                        >
+                          <div className="text-white text-center p-4">
+                            <div className="mb-3 w-12 h-12 mx-auto rounded-full bg-white/20 flex items-center justify-center">
+                              <span className="text-white font-bold text-2xl">{index + 1}</span>
+                            </div>
+                            <p className="text-lg font-medium">Development Phase</p>
+                            <p className="text-sm mt-1">Screenshot will be placed here</p>
+                          </div>
+                        </div>
                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                           <div className="p-4">
                             <p className="text-white font-medium">
@@ -920,13 +978,20 @@ export default function ProjectDetailPage() {
                       className="block h-full cursor-pointer"
                     >
                       <div className="relative overflow-hidden rounded-xl h-full border border-gray-100 bg-white shadow-md transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
-                        {/* Thumbnail */}
+                        {/* Colored placeholder instead of thumbnail */}
                         <div className="relative overflow-hidden aspect-[16/10]">
-                          <img 
-                            src={relatedProject.thumbnail} 
-                            alt={relatedProject.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
+                          <div 
+                            className={`w-full h-full transition-transform duration-500 group-hover:scale-105 flex items-center justify-center 
+                            ${index % 3 === 0 ? 'bg-gradient-to-br from-primary/50 to-blue-500/30' :
+                              index % 3 === 1 ? 'bg-gradient-to-r from-indigo-500/50 to-purple-500/30' :
+                              'bg-gradient-to-br from-blue-500/50 to-cyan-500/30'
+                            }`}
+                          >
+                            <div className="text-white text-center p-4">
+                              <p className="text-lg font-medium truncate max-w-[150px] mx-auto">{relatedProject.title}</p>
+                              <p className="text-sm opacity-80 mt-1">{relatedProject.client}</p>
+                            </div>
+                          </div>
                           
                           {/* Gradient overlay on hover */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-500"></div>
@@ -979,25 +1044,5 @@ export default function ProjectDetailPage() {
       </main>
       <Footer />
     </div>
-  );
-}
-
-function TabletIcon(props: any) {
-  return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      width="24" 
-      height="24" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round"
-      className={props.className}
-    >
-      <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
-      <line x1="12" x2="12.01" y1="18" y2="18" />
-    </svg>
   );
 }
