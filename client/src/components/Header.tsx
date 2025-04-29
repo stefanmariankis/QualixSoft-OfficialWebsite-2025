@@ -41,18 +41,30 @@ export default function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link href="/">
-              <a className={`font-medium hover:text-primary transition-colors ${location === '/' ? 'text-primary' : 'text-dark'}`}>Home</a>
-            </Link>
-            <Link href="/services">
-              <a className={`font-medium hover:text-primary transition-colors ${location === '/services' ? 'text-primary' : 'text-dark'}`}>Services</a>
-            </Link>
-            <Link href="/solutions">
-              <a className={`font-medium hover:text-primary transition-colors ${location === '/solutions' ? 'text-primary' : 'text-dark'}`}>Solutions</a>
-            </Link>
-            <Link href="/portfolio">
-              <a className={`font-medium hover:text-primary transition-colors ${location === '/portfolio' ? 'text-primary' : 'text-dark'}`}>Portfolio</a>
-            </Link>
+            <button 
+              onClick={() => window.location.href = '/'}
+              className={`font-medium hover:text-primary transition-colors bg-transparent border-0 cursor-pointer p-0 ${location === '/' ? 'text-primary' : 'text-dark'}`}
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => window.location.href = '/services'}
+              className={`font-medium hover:text-primary transition-colors bg-transparent border-0 cursor-pointer p-0 ${location === '/services' ? 'text-primary' : 'text-dark'}`}
+            >
+              Services
+            </button>
+            <button 
+              onClick={() => window.location.href = '/solutions'}
+              className={`font-medium hover:text-primary transition-colors bg-transparent border-0 cursor-pointer p-0 ${location === '/solutions' ? 'text-primary' : 'text-dark'}`}
+            >
+              Solutions
+            </button>
+            <button 
+              onClick={() => window.location.href = '/portfolio'}
+              className={`font-medium hover:text-primary transition-colors bg-transparent border-0 cursor-pointer p-0 ${location === '/portfolio' ? 'text-primary' : 'text-dark'}`}
+            >
+              Portfolio
+            </button>
             
             {/* Dropdown Menu */}
             <div className="relative group">
@@ -61,21 +73,33 @@ export default function Header() {
                 <ChevronDown className="h-4 w-4 ml-1" />
               </button>
               <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                <Link href="/about">
-                  <a className={`block px-4 py-2 text-sm hover:bg-gray-100 ${location === '/about' ? 'text-primary' : 'text-dark'}`}>Despre Noi</a>
-                </Link>
-                <Link href="/blog">
-                  <a className={`block px-4 py-2 text-sm hover:bg-gray-100 ${location === '/blog' ? 'text-primary' : 'text-dark'}`}>Blog</a>
-                </Link>
-                <Link href="/careers">
-                  <a className={`block px-4 py-2 text-sm hover:bg-gray-100 ${location === '/careers' ? 'text-primary' : 'text-dark'}`}>Careers</a>
-                </Link>
+                <button
+                  onClick={() => window.location.href = '/about'} 
+                  className={`block px-4 py-2 text-sm hover:bg-gray-100 bg-transparent border-0 cursor-pointer w-full text-left ${location === '/about' ? 'text-primary' : 'text-dark'}`}
+                >
+                  Despre Noi
+                </button>
+                <button
+                  onClick={() => window.location.href = '/blog'} 
+                  className={`block px-4 py-2 text-sm hover:bg-gray-100 bg-transparent border-0 cursor-pointer w-full text-left ${location === '/blog' ? 'text-primary' : 'text-dark'}`}
+                >
+                  Blog
+                </button>
+                <button
+                  onClick={() => window.location.href = '/careers'} 
+                  className={`block px-4 py-2 text-sm hover:bg-gray-100 bg-transparent border-0 cursor-pointer w-full text-left ${location === '/careers' ? 'text-primary' : 'text-dark'}`}
+                >
+                  Careers
+                </button>
               </div>
             </div>
             
-            <Link href="/contact">
-              <a className="bg-primary text-white px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition-colors">Contact Us</a>
-            </Link>
+            <button
+              onClick={() => window.location.href = '/contact'}
+              className="bg-primary text-white px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition-colors border-0 cursor-pointer"
+            >
+              Contact Us
+            </button>
           </nav>
           
           {/* Mobile Menu Button */}
@@ -95,18 +119,30 @@ export default function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 bg-white rounded-md shadow-lg py-2 px-4" id="mobileMenu">
-            <Link href="/">
-              <a className={`block py-2 hover:text-primary ${location === '/' ? 'text-primary' : 'text-dark'}`}>Home</a>
-            </Link>
-            <Link href="/services">
-              <a className={`block py-2 hover:text-primary ${location === '/services' ? 'text-primary' : 'text-dark'}`}>Services</a>
-            </Link>
-            <Link href="/solutions">
-              <a className={`block py-2 hover:text-primary ${location === '/solutions' ? 'text-primary' : 'text-dark'}`}>Solutions</a>
-            </Link>
-            <Link href="/portfolio">
-              <a className={`block py-2 hover:text-primary ${location === '/portfolio' ? 'text-primary' : 'text-dark'}`}>Portfolio</a>
-            </Link>
+            <button 
+              onClick={() => window.location.href = '/'}
+              className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/' ? 'text-primary' : 'text-dark'}`}
+            >
+              Home
+            </button>
+            <button 
+              onClick={() => window.location.href = '/services'}
+              className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/services' ? 'text-primary' : 'text-dark'}`}
+            >
+              Services
+            </button>
+            <button 
+              onClick={() => window.location.href = '/solutions'}
+              className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/solutions' ? 'text-primary' : 'text-dark'}`}
+            >
+              Solutions
+            </button>
+            <button 
+              onClick={() => window.location.href = '/portfolio'}
+              className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/portfolio' ? 'text-primary' : 'text-dark'}`}
+            >
+              Portfolio
+            </button>
             <button 
               className="block w-full text-left py-2 text-dark hover:text-primary flex items-center"
               onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
@@ -116,20 +152,32 @@ export default function Header() {
             </button>
             {mobileMoreOpen && (
               <div className="pl-4">
-                <Link href="/about">
-                  <a className={`block py-2 hover:text-primary ${location === '/about' ? 'text-primary' : 'text-dark'}`}>Despre Noi</a>
-                </Link>
-                <Link href="/blog">
-                  <a className={`block py-2 hover:text-primary ${location === '/blog' ? 'text-primary' : 'text-dark'}`}>Blog</a>
-                </Link>
-                <Link href="/careers">
-                  <a className={`block py-2 hover:text-primary ${location === '/careers' ? 'text-primary' : 'text-dark'}`}>Careers</a>
-                </Link>
+                <button
+                  onClick={() => window.location.href = '/about'} 
+                  className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/about' ? 'text-primary' : 'text-dark'}`}
+                >
+                  Despre Noi
+                </button>
+                <button
+                  onClick={() => window.location.href = '/blog'} 
+                  className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/blog' ? 'text-primary' : 'text-dark'}`}
+                >
+                  Blog
+                </button>
+                <button
+                  onClick={() => window.location.href = '/careers'} 
+                  className={`block w-full text-left py-2 hover:text-primary bg-transparent border-0 cursor-pointer ${location === '/careers' ? 'text-primary' : 'text-dark'}`}
+                >
+                  Careers
+                </button>
               </div>
             )}
-            <Link href="/contact">
-              <a className="block mt-2 bg-primary text-white px-4 py-2 rounded-md text-center font-medium hover:bg-opacity-90">Contact Us</a>
-            </Link>
+            <button
+              onClick={() => window.location.href = '/contact'}
+              className="block w-full mt-2 bg-primary text-white px-4 py-2 rounded-md text-center font-medium hover:bg-opacity-90 border-0 cursor-pointer"
+            >
+              Contact Us
+            </button>
           </div>
         )}
       </div>
