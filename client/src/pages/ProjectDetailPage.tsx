@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRoute } from 'wouter';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, 
   ArrowUpRight, 
@@ -14,15 +14,29 @@ import {
   Building,
   Monitor,
   Smartphone,
+  Tablet,
   Code,
   Zap,
   Rocket,
   Lightbulb,
-  PieChart
+  PieChart,
+  X,
+  Maximize2
 } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CTA from '../components/CTA';
+
+// Import Dialog components for the responsive modal
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "../components/ui/dialog";
 
 // Use project images
 const client_climatic_gps_home_carousel = '/img/client_climatic_gps_home_carousel.png';
@@ -54,24 +68,7 @@ const techIcons: Record<string, string> = {
   'React Native': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
 };
 
-// Custom TabletIcon component
-const TabletIcon = (props: { className?: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="24" 
-    height="24" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-    className={props.className}
-  >
-    <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
-    <line x1="12" x2="12.01" y1="18" y2="18" />
-  </svg>
-);
+// TabletIcon este importat din Lucide acum, nu mai avem nevoie de componenta personalizată
 
 // Define mock projects data
 const projectsData = {
@@ -608,7 +605,7 @@ export default function ProjectDetailPage() {
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
-                        <TabletIcon className="h-5 w-5 mr-2" />
+                        <Tablet className="h-5 w-5 mr-2" />
                         Tablet
                       </button>
                       <button
@@ -653,7 +650,7 @@ export default function ProjectDetailPage() {
                               className="w-full aspect-[3/4] bg-gradient-to-b from-primary/60 to-blue-400/70 flex items-center justify-center"
                             >
                               <div className="text-white text-opacity-80 text-center p-4">
-                                <TabletIcon className="h-10 w-10 mx-auto mb-3 opacity-70" />
+                                <Tablet className="h-10 w-10 mx-auto mb-3 opacity-70" />
                                 <p className="text-lg font-medium">Tablet View</p>
                                 <p className="text-sm mt-1 max-w-xs mx-auto">Screenshot will be displayed here</p>
                               </div>
