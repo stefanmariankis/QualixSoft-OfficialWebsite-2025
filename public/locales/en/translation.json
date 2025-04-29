@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "solutions": "Solutions",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Innovative Digital Solutions for Your Business",
+      "subtitle": "Turn your ideas into digital reality",
+      "cta": "Request a quote"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "We offer a complete range of digital services",
+      "web_mobile": "Web & Mobile",
+      "consulting": "IT Consulting",
+      "ecommerce": "E-Commerce",
+      "design": "UX/UI Design",
+      "view_all": "View all services"
+    },
+    "partners": {
+      "title": "Our Partners",
+      "subtitle": "We collaborate with top brands"
+    },
+    "testimonials": {
+      "title": "What Clients Say",
+      "subtitle": "Feedback from our clients"
+    },
+    "cta": {
+      "title": "Ready to transform your business?",
+      "subtitle": "Let's discuss your project",
+      "button": "Contact Us"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About Us",
+      "subtitle": "Meet our team of professionals"
+    },
+    "founder": {
+      "title": "Our Founder",
+      "subtitle": "The story behind the company"
+    },
+    "skills": {
+      "title": "Our Skills",
+      "subtitle": "Expertise that sets us apart"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Our Services",
+      "subtitle": "Complete solutions for your business"
+    },
+    "categories": {
+      "web_development": "Web Development",
+      "mobile_development": "Mobile Development",
+      "consulting": "IT Consulting",
+      "ecommerce": "E-Commerce",
+      "design": "UX/UI Design",
+      "seo": "SEO Optimization"
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "title": "Portfolio",
+      "subtitle": "Our recent projects"
+    },
+    "filters": {
+      "all": "All",
+      "web": "Web",
+      "mobile": "Mobile",
+      "ecommerce": "E-Commerce",
+      "design": "Design"
+    }
+  },
+  "solutions": {
+    "hero": {
+      "title": "Solutions",
+      "subtitle": "Solving business challenges"
+    },
+    "search": {
+      "placeholder": "Search solutions for your business",
+      "button": "Search"
+    }
+  },
+  "project_detail": {
+    "back": "Back to portfolio",
+    "view_responsiveness": "View responsiveness",
+    "overview": "Project Overview",
+    "process": "Development Process",
+    "results": "Results & Impact",
+    "challenge": "The Challenge",
+    "solution": "Our Solution",
+    "tech_stack": "Technologies Used",
+    "services_provided": "Services Provided",
+    "testimonial": "Client Testimonial",
+    "interested": "Interested in a similar project?",
+    "start_conversation": "Start a Conversation"
+  },
+  "common": {
+    "read_more": "Read more",
+    "learn_more": "Learn more",
+    "view_details": "View details",
+    "view_project": "View project",
+    "next": "Next",
+    "prev": "Previous",
+    "loading": "Loading..."
+  },
+  "routes": {
+    "home": "",
+    "about": "about-us",
+    "services": "services",
+    "portfolio": "portfolio",
+    "solutions": "solutions",
+    "contact": "contact"
+  }
+}

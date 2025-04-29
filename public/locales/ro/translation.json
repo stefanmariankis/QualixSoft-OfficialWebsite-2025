@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "about": "Despre noi",
+    "services": "Servicii",
+    "portfolio": "Portofoliu",
+    "solutions": "Soluții",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Soluții digitale inovatoare pentru afacerea ta",
+      "subtitle": "Transformă ideile tale în realitate digitală",
+      "cta": "Cere o ofertă"
+    },
+    "services": {
+      "title": "Serviciile noastre",
+      "subtitle": "Oferim o gamă completă de servicii digitale",
+      "web_mobile": "Web & Mobile",
+      "consulting": "Consultanță IT",
+      "ecommerce": "E-Commerce",
+      "design": "Design UX/UI",
+      "view_all": "Vezi toate serviciile"
+    },
+    "partners": {
+      "title": "Partenerii noștri",
+      "subtitle": "Colaborăm cu branduri de top"
+    },
+    "testimonials": {
+      "title": "Ce spun clienții",
+      "subtitle": "Păreri de la clienții noștri"
+    },
+    "cta": {
+      "title": "Pregătit să transformi afacerea ta?",
+      "subtitle": "Hai să discutăm despre proiectul tău",
+      "button": "Contactează-ne"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "Despre noi",
+      "subtitle": "Cunoaște echipa noastră de profesioniști"
+    },
+    "founder": {
+      "title": "Fondatorul nostru",
+      "subtitle": "Povestea din spatele companiei"
+    },
+    "skills": {
+      "title": "Abilitățile noastre",
+      "subtitle": "Expertiza care ne diferențiază"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Serviciile noastre",
+      "subtitle": "Soluții complete pentru afacerea ta"
+    },
+    "categories": {
+      "web_development": "Dezvoltare Web",
+      "mobile_development": "Dezvoltare Mobile",
+      "consulting": "Consultanță IT",
+      "ecommerce": "E-Commerce",
+      "design": "Design UX/UI",
+      "seo": "Optimizare SEO"
+    }
+  },
+  "portfolio": {
+    "hero": {
+      "title": "Portofoliu",
+      "subtitle": "Proiectele noastre recente"
+    },
+    "filters": {
+      "all": "Toate",
+      "web": "Web",
+      "mobile": "Mobile",
+      "ecommerce": "E-Commerce",
+      "design": "Design"
+    }
+  },
+  "solutions": {
+    "hero": {
+      "title": "Soluții",
+      "subtitle": "Rezolvarea provocărilor de business"
+    },
+    "search": {
+      "placeholder": "Caută soluții pentru afacerea ta",
+      "button": "Caută"
+    }
+  },
+  "project_detail": {
+    "back": "Înapoi la portofoliu",
+    "view_responsiveness": "Vezi responsivitatea",
+    "overview": "Prezentare generală",
+    "process": "Procesul de dezvoltare",
+    "results": "Rezultate & Impact",
+    "challenge": "Provocarea",
+    "solution": "Soluția noastră",
+    "tech_stack": "Tehnologii utilizate",
+    "services_provided": "Servicii furnizate",
+    "testimonial": "Testimonial client",
+    "interested": "Interesat de un proiect similar?",
+    "start_conversation": "Începe o conversație"
+  },
+  "common": {
+    "read_more": "Citește mai mult",
+    "learn_more": "Află mai mult",
+    "view_details": "Vezi detalii",
+    "view_project": "Vezi proiect",
+    "next": "Următorul",
+    "prev": "Anterior",
+    "loading": "Se încarcă..."
+  },
+  "routes": {
+    "home": "",
+    "about": "despre-noi",
+    "services": "servicii",
+    "portfolio": "portofoliu",
+    "solutions": "solutii",
+    "contact": "contact"
+  }
+}
