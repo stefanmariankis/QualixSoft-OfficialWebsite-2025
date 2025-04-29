@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Award, Building, Calendar } from 'lucide-react';
 
 export interface Project {
   id: string;
@@ -11,6 +11,7 @@ export interface Project {
   thumbnail: string;
   featured?: boolean;
   year: number;
+  shortDescription?: string;
 }
 
 interface ProjectCardProps {
@@ -20,6 +21,14 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  
+  // Ensure thumbnail exists or use placeholder
+  const thumbnailUrl = project.thumbnail || '/img/placeholder.svg';
+  
+  // Format categories for display
+  const formattedCategories = project.categories.map(c => 
+    c.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+  );
   
   // Staggered animation for cards
   const cardVariants = {
@@ -47,43 +56,66 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     >
       <Link href={`/portfolio/${project.id}`}>
         <a className="block h-full">
-          <div className="relative overflow-hidden rounded-xl h-full border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl">
-            {/* Thumbnail */}
+          <div className="relative overflow-hidden rounded-xl h-full border border-gray-100 bg-white shadow-md transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
+            {/* Thumbnail with 3D effect */}
             <div className="relative overflow-hidden aspect-[16/10]">
-              <div
-                className="w-full h-full bg-cover bg-center"
-                style={{ backgroundImage: `url(${project.thumbnail})` }}
-              >
-                {/* Gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-              </div>
-              
-              {/* Motion image wrapper for zoom effect */}
-              <motion.div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${project.thumbnail})` }}
-                animate={{ 
-                  scale: isHovered ? 1.1 : 1,
+              {/* Base image */}
+              <img 
+                src={thumbnailUrl} 
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-500"
+                style={{ 
+                  transform: isHovered ? 'scale(1.05)' : 'scale(1)',
                 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               />
+              
+              {/* Gradient overlay */}
+              <div 
+                className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-opacity duration-500 ${
+                  isHovered ? 'opacity-90' : 'opacity-0'
+                }`}
+              ></div>
+              
+              {/* Hover content overlay */}
+              <div 
+                className={`absolute inset-0 flex flex-col justify-end p-6 transition-all duration-500 ${
+                  isHovered ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                  {project.title}
+                </h3>
+                
+                <div className="flex items-center text-white/80 text-sm mb-3">
+                  <Building className="h-4 w-4 mr-1.5" />
+                  <span>{project.client}</span>
+                  <span className="mx-2">•</span>
+                  <Calendar className="h-4 w-4 mr-1.5" />
+                  <span>{project.year}</span>
+                </div>
+                
+                <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full pl-3 pr-4 py-1.5 text-white self-start">
+                  <ArrowUpRight className="h-4 w-4 mr-1.5" />
+                  <span className="text-sm font-medium">View Project</span>
+                </div>
+              </div>
             </div>
             
-            {/* Content */}
+            {/* Content for non-hovered state */}
             <div className="p-5">
               {/* Categories */}
               <div className="flex flex-wrap gap-2 mb-3">
-                {project.categories.slice(0, 2).map((category, i) => (
+                {formattedCategories.slice(0, 2).map((category, i) => (
                   <span 
                     key={i} 
-                    className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 text-gray-700"
+                    className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary"
                   >
                     {category}
                   </span>
                 ))}
-                {project.categories.length > 2 && (
+                {formattedCategories.length > 2 && (
                   <span className="inline-block text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 text-gray-700">
-                    +{project.categories.length - 2} more
+                    +{formattedCategories.length - 2} more
                   </span>
                 )}
               </div>
@@ -94,31 +126,36 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               </h3>
               
               {/* Client & Year */}
-              <p className="text-gray-600">
-                {project.client} • {project.year}
-              </p>
+              <div className="flex items-center text-gray-600 mb-2">
+                <Building className="h-4 w-4 mr-1.5" />
+                <span>{project.client}</span>
+                <span className="mx-2">•</span>
+                <Calendar className="h-4 w-4 mr-1.5" />
+                <span>{project.year}</span>
+              </div>
+              
+              {/* Short description if available */}
+              {project.shortDescription && (
+                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                  {project.shortDescription}
+                </p>
+              )}
               
               {/* View link animation */}
-              <motion.div 
-                className="flex justify-end mt-4"
-                animate={{
-                  opacity: isHovered ? 1 : 0,
-                  y: isHovered ? 0 : 10
-                }}
-                transition={{ duration: 0.3 }}
-              >
+              <div className="flex justify-between items-center mt-4">
                 <div className="flex items-center text-primary font-medium">
                   View Project <ArrowUpRight className="ml-1 h-4 w-4" />
                 </div>
-              </motion.div>
-            </div>
-            
-            {/* Featured label if applicable */}
-            {project.featured && (
-              <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 text-xs font-medium rounded-full shadow-lg">
-                Featured Project
+                
+                {/* Featured icon if applicable */}
+                {project.featured && (
+                  <div className="flex items-center text-sm text-amber-600">
+                    <Award className="h-4 w-4 mr-1" />
+                    <span>Featured</span>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </a>
       </Link>

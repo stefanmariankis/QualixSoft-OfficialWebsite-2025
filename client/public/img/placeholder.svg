@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="600px" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Project Placeholder</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF9500" offset="0%"></stop>
+            <stop stop-color="#FF5E3A" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Background" fill="url(#linearGradient-1)" x="0" y="0" width="800" height="600"></rect>
+        <g id="Content" transform="translate(200.000000, 150.000000)">
+            <rect id="Rectangle" stroke="#FFFFFF" stroke-width="8" x="4" y="4" width="392" height="292" rx="8"></rect>
+            <text id="Project-Image" font-family="Arial-BoldMT, Arial" font-size="36" font-weight="bold" fill="#FFFFFF">
+                <tspan x="85" y="168">Project Image</tspan>
+            </text>
+            <g id="Icon" transform="translate(175.000000, 65.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                <path d="M50,0 C22.4,0 0,22.4 0,50 C0,77.6 22.4,100 50,100 C77.6,100 100,77.6 100,50 C100,22.4 77.6,0 50,0 Z M20,75 L20,25 L80,25 L80,75 L20,75 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
