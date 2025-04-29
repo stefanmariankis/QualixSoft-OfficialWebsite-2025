@@ -167,13 +167,19 @@ export default function ProjectDetailPage() {
   useEffect(() => {
     setIsLoading(true);
     
-    // Simulate API call with timeout
+    // Simulate API call with minimal timeout
     const timer = setTimeout(() => {
-      if (params && params.id && projectsData[params.id]) {
-        setProject(projectsData[params.id]);
+      // Check if project ID exists and if it can be found in our data
+      if (params && params.id) {
+        const foundProject = projectsData[params.id];
+        setProject(foundProject || null);
+      } else {
+        setProject(null);
       }
+      
+      // Always set loading to false regardless of result
       setIsLoading(false);
-    }, 500);
+    }, 200);
     
     return () => clearTimeout(timer);
   }, [params]);
