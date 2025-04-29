@@ -207,12 +207,13 @@ export default function ProjectDetailPage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
             <h1 className="text-3xl font-bold text-gray-800 mb-4">Project Not Found</h1>
             <p className="text-gray-600 mb-8">The project you're looking for doesn't exist or has been removed.</p>
-            <Link href="/portfolio">
-              <a className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors">
-                <ArrowLeft className="mr-2 h-5 w-5" />
-                Back to Portfolio
-              </a>
-            </Link>
+            <button 
+              onClick={() => window.location.href = '/portfolio'} 
+              className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors cursor-pointer border-0"
+            >
+              <ArrowLeft className="mr-2 h-5 w-5" />
+              Back to Portfolio
+            </button>
           </div>
         </main>
         <Footer />
@@ -228,13 +229,19 @@ export default function ProjectDetailPage() {
         <div className="bg-gray-50 py-4 border-b border-gray-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center text-sm text-gray-500">
-              <Link href="/">
-                <a className="hover:text-primary">Home</a>
-              </Link>
+              <button
+                onClick={() => window.location.href = '/'} 
+                className="hover:text-primary bg-transparent border-0 cursor-pointer p-0 flex"
+              >
+                Home
+              </button>
               <ChevronRight className="h-4 w-4 mx-2" />
-              <Link href="/portfolio">
-                <a className="hover:text-primary">Portfolio</a>
-              </Link>
+              <button
+                onClick={() => window.location.href = '/portfolio'} 
+                className="hover:text-primary bg-transparent border-0 cursor-pointer p-0 flex"
+              >
+                Portfolio
+              </button>
               <ChevronRight className="h-4 w-4 mx-2" />
               <span className="text-gray-900 font-medium">{project.title}</span>
             </div>
@@ -249,12 +256,13 @@ export default function ProjectDetailPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Link href="/portfolio">
-                <a className="inline-flex items-center text-gray-600 hover:text-primary mb-8">
-                  <ArrowLeft className="mr-2 h-5 w-5" />
-                  Back to Portfolio
-                </a>
-              </Link>
+              <button 
+                onClick={() => window.location.href = '/portfolio'} 
+                className="inline-flex items-center text-gray-600 hover:text-primary mb-8 bg-transparent border-0 cursor-pointer"
+              >
+                <ArrowLeft className="mr-2 h-5 w-5" />
+                Back to Portfolio
+              </button>
               
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 {project.title}
@@ -504,12 +512,13 @@ export default function ProjectDetailPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Link href="/portfolio">
-                <a className="inline-flex items-center bg-primary text-white px-8 py-4 rounded-full font-medium hover:shadow-lg hover:shadow-primary/20 hover:scale-105 transition-all duration-300">
-                  View All Projects
-                  <ExternalLink className="ml-2 h-5 w-5" />
-                </a>
-              </Link>
+              <button
+                onClick={() => window.location.href = '/portfolio'}
+                className="inline-flex items-center bg-primary text-white px-8 py-4 rounded-full font-medium hover:shadow-lg hover:shadow-primary/20 hover:scale-105 transition-all duration-300 border-0 cursor-pointer"
+              >
+                View All Projects
+                <ExternalLink className="ml-2 h-5 w-5" />
+              </button>
             </motion.div>
           </div>
         </section>

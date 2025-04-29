@@ -31,11 +31,12 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/">
-              <a className="flex items-center">
-                <Logo />
-              </a>
-            </Link>
+            <button 
+              onClick={() => window.location.href = '/'} 
+              className="flex items-center bg-transparent p-0 border-0 cursor-pointer"
+            >
+              <Logo />
+            </button>
           </div>
           
           {/* Desktop Navigation */}
