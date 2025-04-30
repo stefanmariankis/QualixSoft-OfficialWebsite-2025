@@ -9,7 +9,7 @@ export default function Hero() {
   const { t } = useTranslation();
   
   return (
-    <section className="pt-24 pb-20 md:pb-28 relative overflow-hidden min-h-[100vh] flex items-center">
+    <section className="pt-20 pb-16 md:pt-24 md:pb-28 relative overflow-hidden min-h-[90vh] md:min-h-[100vh] flex items-center">
       {/* Background with hexagons */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0" 
@@ -19,52 +19,75 @@ export default function Hero() {
       {/* Content Container */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row gap-6 items-center">
-          {/* Left side - Content (45%) */}
+          {/* Left side - Content (mobile: full width, desktop: 45%) */}
           <div className="animate-fadeIn w-full lg:w-[40%]">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
-              {t('home.hero.title')}
-            </h1>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
-              {t('home.hero.subtitle')}
-            </h1>
+            {/* Mobile-optimized title and subtitle */}
+            <div className="block md:hidden mb-6">
+              <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15]">
+                Building Your
+              </h1>
+              <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15]">
+                Digital Future
+              </h1>
+            </div>
             
-            <p className="text-lg text-gray-600 font-bold mb-8 max-w-lg">
-              {t('home.hero.description')}
+            {/* Desktop headings */}
+            <div className="hidden md:block">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
+                {t('home.hero.title')}
+              </h1>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
+                {t('home.hero.subtitle')}
+              </h1>
+            </div>
+            
+            {/* Mobile-optimized description */}
+            <p className="text-sm md:text-lg text-gray-500 font-normal md:font-bold mb-6 md:mb-8 max-w-md">
+              {/* Customized text for mobile screen */}
+              <span className="block md:hidden">
+                Tailored Web Development, E-commerce, and SEO Services to Boost Your Online Presence
+              </span>
+              
+              {/* Original description for desktop */}
+              <span className="hidden md:block">
+                {t('home.hero.description')}
+              </span>
             </p>
             
             <div className="flex">
               <a 
                 href="#" 
-                className="bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-md font-semibold transition-all duration-300 hover:scale-105"
+                className="bg-[#222222] hover:bg-black text-white text-center w-full md:w-auto px-6 py-3 rounded-md font-medium transition-all duration-300 hover:scale-105"
               >
                 Get a free proposal
               </a>
             </div>
             
-            <div className="mt-8 flex items-center">
+            {/* Client avatars optimized for mobile */}
+            <div className="mt-4 md:mt-8 flex items-center">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4, 5].map((_, index) => (
                   <div 
                     key={index} 
-                    className="w-8 h-8 rounded-full border-2 border-white overflow-hidden transition-all duration-300 hover:scale-110 hover:z-10 hover:shadow-md"
+                    className="w-6 h-6 md:w-8 md:h-8 rounded-full border border-white overflow-hidden"
                   >
-                    <div className="bg-gray-300 w-full h-full flex items-center justify-center text-xs text-gray-600">
+                    <div className="bg-gray-400 w-full h-full flex items-center justify-center text-xs text-white">
                       <span>U</span>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="ml-3 flex items-center text-gray-600 text-sm transition-transform duration-300 hover:scale-[1.03]">
+              <div className="ml-3 flex items-center text-gray-600 text-xs md:text-sm">
                 <span>Over 30 clients satisfied</span>
-                <div className="transition-all duration-300 hover:rotate-[360deg]">
-                  <CheckCircle className="h-4 w-4 ml-1 text-primary" />
+                <div>
+                  <CheckCircle className="h-4 w-4 ml-1 text-gray-600" />
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Right side - Chevron/Brackets Design (55%) */}
-          <div className="animate-fadeIn w-full lg:w-[60%]" style={{ animationDelay: '0.2s' }}>
+          {/* Right side - Chevron/Brackets Design (55%) - Hidden on mobile */}
+          <div className="animate-fadeIn w-full lg:w-[60%] hidden md:block" style={{ animationDelay: '0.2s' }}>
             {/* Container for holding all three elements horizontally */}
             <div className="relative flex justify-center items-center h-[250px] md:h-[400px]">
               {/* All three elements in a row */}
@@ -95,6 +118,29 @@ export default function Hero() {
                     className="w-full h-auto object-contain"
                   />
                 </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Mobile-only code brackets at bottom */}
+          <div className="w-full animate-fadeIn relative md:hidden mt-8">
+            <div className="relative flex justify-center items-center">
+              <div className="flex items-center justify-between w-full">
+                <img 
+                  src={openTagImg} 
+                  alt="Open tag" 
+                  className="w-1/3 h-auto object-contain opacity-75"
+                />
+                <img 
+                  src={slashImg} 
+                  alt="Code slash" 
+                  className="w-1/3 h-auto object-contain opacity-75"
+                />
+                <img 
+                  src={closeTagImg} 
+                  alt="Close tag" 
+                  className="w-1/3 h-auto object-contain opacity-75"
+                />
               </div>
             </div>
           </div>
