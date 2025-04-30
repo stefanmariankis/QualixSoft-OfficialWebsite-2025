@@ -1,137 +1,168 @@
 import { motion } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
-import serviceIconImg from '../assets/services_icon.png';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { SiCodeigniter } from 'react-icons/si';
+import webMobileIcon from '../assets/web_mobile_dev.png';
+import consultingIcon from '../assets/consulting_strategy.png';
+import designIcon from '../assets/website_design.png';
+import seoIcon from '../assets/seo.png';
+import marketingIcon from '../assets/digital_marketing.png';
+import optimizationIcon from '../assets/optimization_conversion.png';
 
 interface Service {
   id: number;
   title: string;
+  icon: string;
 }
 
 export default function ServicesSlider() {
   const services: Service[] = [
-    { id: 1, title: 'Web & Mobile Development' },
-    { id: 2, title: 'Consulting and Strategy' },
-    { id: 3, title: 'Website Design' },
-    { id: 4, title: 'Search Engine Optimization' },
-    { id: 5, title: 'Digital Marketing' },
-    { id: 6, title: 'E-commerce Solutions' },
+    { id: 1, title: 'Web & Mobile Development', icon: webMobileIcon },
+    { id: 2, title: 'Consulting and Strategy', icon: consultingIcon },
+    { id: 3, title: 'Website Design', icon: designIcon },
+    { id: 4, title: 'Search Engine Optimization', icon: seoIcon },
+    { id: 5, title: 'Digital Marketing', icon: marketingIcon },
+    { id: 6, title: 'Conversion Optimization', icon: optimizationIcon },
   ];
 
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isChanging, setIsChanging] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto scroll logic
-  useEffect(() => {
-    if (!autoScrollEnabled) return;
-    
-    const interval = setInterval(() => {
-      if (sliderRef.current) {
-        const maxScroll = sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
-        
-        if (scrollPosition >= maxScroll) {
-          // Reset to beginning when we reach the end
-          sliderRef.current.scrollTo({
-            left: 0,
-            behavior: 'smooth'
-          });
-        } else {
-          // Scroll to next item
-          sliderRef.current.scrollTo({
-            left: scrollPosition + 200,
-            behavior: 'smooth'
-          });
-        }
+  // Auto slide function
+  const startAutoSlide = () => {
+    intervalRef.current = setInterval(() => {
+      if (!isPaused) {
+        changeSlide('next');
       }
     }, 3000);
-
-    return () => clearInterval(interval);
-  }, [scrollPosition, autoScrollEnabled]);
-
-  // Update scroll position state
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sliderRef.current) {
-        setScrollPosition(sliderRef.current.scrollLeft);
-      }
-    };
-
-    const sliderElement = sliderRef.current;
-    if (sliderElement) {
-      sliderElement.addEventListener('scroll', handleScroll);
-    }
-
-    return () => {
-      if (sliderElement) {
-        sliderElement.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, []);
-
-  // Mouse events for manual scrolling
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX - (sliderRef.current?.offsetLeft || 0));
-    setScrollLeft(sliderRef.current?.scrollLeft || 0);
-    setAutoScrollEnabled(false);
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    // Re-enable auto-scroll after some delay
-    setTimeout(() => setAutoScrollEnabled(true), 5000);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
+  // Slide change function with animation
+  const changeSlide = (direction: 'next' | 'prev') => {
+    if (isChanging) return;
     
-    if (sliderRef.current) {
-      const x = e.pageX - (sliderRef.current.offsetLeft || 0);
-      const walk = (x - startX) * 2;
-      sliderRef.current.scrollLeft = scrollLeft - walk;
+    setIsChanging(true);
+    setTimeout(() => {
+      if (direction === 'next') {
+        setCurrentIndex((prev) => (prev + 1) % services.length);
+      } else {
+        setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
+      }
+      setTimeout(() => {
+        setIsChanging(false);
+      }, 500);
+    }, 500);
+  };
+
+  useEffect(() => {
+    startAutoSlide();
+    
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isPaused]);
+
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
+  // Get services to show (current + 3 more)
+  const getVisibleServices = () => {
+    const visible = [];
+    for (let i = 0; i < 5; i++) {
+      const index = (currentIndex + i) % services.length;
+      visible.push(services[index]);
     }
+    return visible;
   };
 
   return (
-    <section className="py-8 bg-gray-100">
-      <div className="container mx-auto px-0">
+    <section className="py-8 bg-gray-100 overflow-hidden">
+      <div className="container mx-auto px-4 relative">
         <div 
-          ref={sliderRef} 
-          className="flex overflow-x-auto scrollbar-hide"
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          onMouseMove={handleMouseMove}
-          style={{ 
-            cursor: isDragging ? 'grabbing' : 'grab',
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none'
-          }}
+          className="relative"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          {services.map((service) => (
-            <motion.div
-              key={service.id}
-              className="flex-shrink-0 mx-6 md:mx-8 first:ml-10 last:mr-10 flex items-center whitespace-nowrap"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true, margin: "-100px" }}
+          {/* Services carousel */}
+          <div className="overflow-hidden relative">
+            <div 
+              className={`flex transition-all duration-500 ${isChanging ? 'opacity-0' : 'opacity-100'}`}
             >
-              <img 
-                src={serviceIconImg} 
-                alt="Service icon" 
-                className="w-6 h-6 mr-3 flex-shrink-0" 
-              />
-              <span className="text-gray-800 font-medium">{service.title}</span>
-            </motion.div>
-          ))}
+              {getVisibleServices().map((service, index) => (
+                <motion.div 
+                  key={`${service.id}-${index}`}
+                  className="flex-shrink-0 px-4 flex items-center whitespace-nowrap"
+                  initial={{ x: index === 0 ? 0 : 100, opacity: index === 0 ? 1 : 0.5 }}
+                  animate={{ 
+                    x: 0,
+                    opacity: 1,
+                    transition: { delay: index * 0.1 }
+                  }}
+                >
+                  <img 
+                    src={service.icon} 
+                    alt={service.title} 
+                    className="w-8 h-8 mr-3 flex-shrink-0" 
+                  />
+                  <span className="text-gray-800 font-medium">{service.title}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation buttons */}
+          <button 
+            onClick={() => {
+              setIsPaused(true);
+              changeSlide('prev');
+              setTimeout(() => setIsPaused(false), 2000);
+            }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 text-primary opacity-75 hover:opacity-100 z-10"
+            aria-label="Previous service"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          
+          <button 
+            onClick={() => {
+              setIsPaused(true);
+              changeSlide('next');
+              setTimeout(() => setIsPaused(false), 2000);
+            }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 text-primary opacity-75 hover:opacity-100 z-10"
+            aria-label="Next service"
+          >
+            <ArrowRight className="w-5 h-5" />
+          </button>
+
+          {/* Indicator dots */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {services.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setIsPaused(true);
+                  setCurrentIndex(index);
+                  setTimeout(() => setIsPaused(false), 2000);
+                }}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === index ? 'w-5 bg-primary' : 'bg-primary/30'
+                }`}
+                aria-label={`Go to service ${index + 1}`}
+              ></button>
+            ))}
+          </div>
         </div>
       </div>
-      {/* Custom styles are applied through Tailwind classes */}
     </section>
   );
 }
