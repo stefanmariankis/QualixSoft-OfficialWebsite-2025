@@ -132,11 +132,11 @@ export default function Services() {
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
               {/* Service image */}
-              <div className="w-full aspect-video flex items-center justify-center mb-4">
+              <div className="w-full flex items-center justify-start mb-4">
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  className="h-[120px] object-contain"
+                  className="h-[100px] w-[120px] object-contain object-left"
                 />
               </div>
               
