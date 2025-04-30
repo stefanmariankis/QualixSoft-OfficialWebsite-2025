@@ -108,7 +108,7 @@ export default function Testimonials() {
         </div>
         
         {/* Avatar navigation */}
-        <div className="flex justify-center items-center space-x-6 mb-8">
+        <div className="flex justify-center items-center space-x-4 md:space-x-6 mb-8">
           <button 
             onClick={handlePrev} 
             className="flex items-center justify-center w-8 h-8 rounded-md border border-white text-white hover:bg-white/20"
@@ -117,12 +117,12 @@ export default function Testimonials() {
             <ArrowLeft className="w-4 h-4" />
           </button>
           
-          <div className="flex space-x-4">
+          <div className="flex flex-wrap justify-center space-x-2 sm:space-x-3 md:space-x-4">
             {testimonials.map((testimonial, index) => (
               <button 
                 key={testimonial.id}
                 onClick={() => handleAvatarClick(index)}
-                className="focus:outline-none transition-transform duration-300"
+                className="focus:outline-none transition-transform duration-300 mb-2 md:mb-0"
               >
                 <Avatar isActive={index === activeIndex} />
               </button>
@@ -139,32 +139,32 @@ export default function Testimonials() {
         </div>
         
         {/* Testimonial card - matching the Figma design */}
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div 
             key={activeIndex}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="bg-white rounded-2xl p-8 shadow-lg"
+            className="bg-white rounded-2xl p-6 sm:p-7 md:p-8 shadow-lg"
           >
-            <div className="flex mb-6">
-              <div className="mr-5">
+            <div className="flex flex-col sm:flex-row mb-6">
+              <div className="mr-0 sm:mr-5 mb-4 sm:mb-0 flex justify-center sm:justify-start">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center border border-primary">
                   <Quote className="h-5 w-5 text-primary" />
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-800 mb-3">
+                <h3 className="text-lg font-bold text-gray-800 mb-3 text-center sm:text-left">
                   {testimonials[activeIndex].title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-sm md:text-base">
                   {testimonials[activeIndex].content}
                 </p>
               </div>
             </div>
             <div className="mt-4 pt-3 border-t border-gray-100">
-              <p className="text-sm font-medium text-gray-700">
+              <p className="text-sm font-medium text-gray-700 text-center sm:text-left">
                 - {testimonials[activeIndex].author}, {testimonials[activeIndex].company}
               </p>
             </div>
