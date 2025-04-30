@@ -59,82 +59,134 @@ const projects = [
   }
 ];
 
-export default function ProjectsCarousel() {
-  const { t } = useTranslation();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isChanging, setIsChanging] = useState(false);
-  const isMobile = useIsMobile();
-  
-  // Compute which projects to show based on screen size
-  const getVisibleProjects = () => {
-    if (isMobile) {
-      // Only show 1 project on mobile
-      return [projects[currentIndex % projects.length]];
-    } else {
-      // Show 2 projects on tablet/desktop
-      return [
-        projects[currentIndex % projects.length],
-        projects[(currentIndex + 1) % projects.length]
-      ];
+type ProjectCardProps = {
+  project: typeof projects[0];
+  position: 'left' | 'right';
+  animationState: 'enter' | 'exit' | 'static';
+};
+
+// Separated component for project card to improve animation control
+function ProjectCard({ project, position, animationState }: ProjectCardProps) {
+  const getAnimationClass = () => {
+    if (animationState === 'static') return '';
+    
+    if (position === 'left') {
+      return animationState === 'exit' ? 'animate-fadeOutLeft' : '';
+    } else { // position === 'right'
+      if (animationState === 'exit') {
+        return 'animate-slideLeftToCenter';
+      } else { // animationState === 'enter'
+        return 'animate-fadeInRight';
+      }
     }
   };
   
-  const visibleProjects = getVisibleProjects();
-  
-  // Refs for tracking slide direction
-  const slideDirection = useRef('right-to-left');
-  const slideContainerRef = useRef<HTMLDivElement>(null);
-  
-  // Track animation states for each position
-  const [leftProjectAnimating, setLeftProjectAnimating] = useState(false);
-  const [rightProjectAnimating, setRightProjectAnimating] = useState(false);
-  const [newProjectAnimating, setNewProjectAnimating] = useState(false);
-  
-  // Handle slide change with animation, ensuring proper sequence
-  const changeSlide = () => {
-    // Start the animation sequence - fade out the left project first
-    setIsChanging(true);
-    setLeftProjectAnimating(true);
-    
-    // After left project has faded out, start the right project's slide animation
-    setTimeout(() => {
-      // Now animate the right project
-      setRightProjectAnimating(true);
-      setLeftProjectAnimating(false); // First animation is complete
-      
-      // After the sliding animation completes
-      setTimeout(() => {
-        // Update the data with new projects
-        setCurrentIndex(prev => (prev + 1) % projects.length);
-        setRightProjectAnimating(false); // Second animation is complete
-        
-        // Wait for DOM to update with new projects
-        setTimeout(() => {
-          // Start the entrance animation for the new project
-          setNewProjectAnimating(true);
+  return (
+    <div className={`h-full w-full ${getAnimationClass()}`}>
+      <div className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group h-full">
+        <div className="relative h-full">
+          <div className="w-full h-64 overflow-hidden">
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+            />
+          </div>
           
-          // Complete the animation sequence
-          setTimeout(() => {
-            setNewProjectAnimating(false);
-            setIsChanging(false); // Animation sequence complete
-          }, 550);
-        }, 50);
-      }, 450);
-    }, 450);
+          <div className="p-4 bg-white">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="font-semibold text-foreground">{project.title}</p>
+                <p className="text-sm text-foreground/70">{project.category}</p>
+              </div>
+              <div 
+                className="bg-primary p-1.5 rounded-md cursor-pointer transition-all duration-300
+                hover:scale-110 hover:shadow-md active:scale-95"
+              >
+                <ArrowRight className="h-4 w-4 text-white" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ProjectsCarousel() {
+  const { t } = useTranslation();
+  const isMobile = useIsMobile();
+  
+  // Animation and state management
+  const [isPaused, setIsPaused] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const [animationPhase, setAnimationPhase] = useState<'idle' | 'exit' | 'change' | 'enter'>('idle');
+  
+  // Index tracking
+  const [leftProjectIndex, setLeftProjectIndex] = useState(0);
+  const [rightProjectIndex, setRightProjectIndex] = useState(1);
+  
+  // Carousel container ref for potential direct DOM manipulation
+  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Function to advance to next slide with animation sequence
+  const nextSlide = () => {
+    if (animating) return;
+    
+    setAnimating(true);
+    
+    // Phase 1: Exit animations
+    setAnimationPhase('exit');
+    
+    // Phase 2: Change data
+    setTimeout(() => {
+      setAnimationPhase('change');
+      // Calculate new indices
+      setLeftProjectIndex((prevIndex) => (prevIndex + 1) % projects.length);
+      setRightProjectIndex((prevIndex) => (prevIndex + 1) % projects.length);
+      
+      // Phase 3: Enter animations
+      setTimeout(() => {
+        setAnimationPhase('enter');
+        
+        // Phase 4: Reset to idle
+        setTimeout(() => {
+          setAnimationPhase('idle');
+          setAnimating(false);
+        }, 600);
+      }, 50);
+    }, 600);
   };
   
-  // Auto slider effect with pause on hover
+  // Handle auto-rotation
   useEffect(() => {
-    if (isPaused) return; // Don't set a timer if paused
+    if (isPaused || animating) return;
     
     const timer = setTimeout(() => {
-      changeSlide();
-    }, 5000); // Change slide every 5 seconds
+      nextSlide();
+    }, 5000);
     
     return () => clearTimeout(timer);
-  }, [currentIndex, isPaused]);
-
+  }, [leftProjectIndex, isPaused, animating]);
+  
+  // Get current projects based on indices and device
+  const leftProject = projects[leftProjectIndex % projects.length];
+  const rightProject = projects[rightProjectIndex % projects.length];
+  
+  // Handle manual navigation
+  const goToSlide = (index: number) => {
+    if (animating) return;
+    
+    setIsPaused(true);
+    setLeftProjectIndex(index);
+    setRightProjectIndex((index + 1) % projects.length);
+    
+    // Resume auto-rotation after a delay
+    setTimeout(() => {
+      setIsPaused(false);
+    }, 1000);
+  };
+  
   return (
     <section className="py-16 relative overflow-hidden bg-light-orange-gradient">
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-white/70 rounded-[60px] max-w-6xl mx-auto my-8"></div>
@@ -148,56 +200,41 @@ export default function ProjectsCarousel() {
           </p>
         </div>
         
-        <div className="relative min-h-[400px] mb-12">
+        <div 
+          className="relative min-h-[400px] mb-12" 
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <div className="flex justify-center overflow-hidden">
             <div 
-              ref={slideContainerRef}
+              ref={carouselRef}
               className="flex w-full max-w-5xl justify-between relative pb-8 gap-8"
             >
-              {visibleProjects.map((project, index) => (
-                <div
-                  key={`${currentIndex}-${index}`}
-                  className={`${isMobile ? 'w-full' : 'w-[45%]'} transition-all duration-500 ease-out
-                    ${isMobile ? 
-                      (leftProjectAnimating ? 'fade-out-left' : '') :
-                      (index === 0 && leftProjectAnimating ? 'fade-out-left' : 
-                       index === 1 && rightProjectAnimating ? 'slide-right-to-left' : 
-                       index === 1 && newProjectAnimating ? 'fade-in-from-right' : '')
+              {/* Left project slot */}
+              <div className={`${isMobile ? 'w-full' : 'w-[45%]'}`}>
+                <ProjectCard 
+                  project={leftProject}
+                  position="left"
+                  animationState={
+                    animationPhase === 'exit' ? 'exit' : 
+                    animationPhase === 'enter' ? 'enter' : 'static'
+                  }
+                />
+              </div>
+              
+              {/* Right project slot - only show on non-mobile */}
+              {!isMobile && (
+                <div className="w-[45%]">
+                  <ProjectCard 
+                    project={rightProject}
+                    position="right"
+                    animationState={
+                      animationPhase === 'exit' ? 'exit' : 
+                      animationPhase === 'enter' ? 'enter' : 'static'
                     }
-                  `}
-                  onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
-                >
-                  <div 
-                    className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
-                  >
-                    <div className="relative">
-                      <div className="w-full h-64 overflow-hidden">
-                        <img 
-                          src={project.image} 
-                          alt={project.title} 
-                          className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      
-                      <div className="p-4 bg-white">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <p className="font-semibold text-foreground">{project.title}</p>
-                            <p className="text-sm text-foreground/70">{project.category}</p>
-                          </div>
-                          <div 
-                            className="bg-primary p-1.5 rounded-md cursor-pointer transition-all duration-300
-                            hover:scale-110 hover:shadow-md active:scale-95"
-                          >
-                            <ArrowRight className="h-4 w-4 text-white" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  />
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -207,15 +244,9 @@ export default function ProjectsCarousel() {
           {projects.slice(0, Math.ceil(projects.length / (isMobile ? 1 : 2))).map((_, index) => (
             <button
               key={index}
-              onClick={() => {
-                setIsPaused(true);
-                setTimeout(() => {
-                  setCurrentIndex(index * (isMobile ? 1 : 2));
-                  setIsPaused(false);
-                }, 500);
-              }}
+              onClick={() => goToSlide(index * (isMobile ? 1 : 2))}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                Math.floor(currentIndex / (isMobile ? 1 : 2)) === index ? 'w-6 bg-primary' : 'bg-primary/30'
+                Math.floor(leftProjectIndex / (isMobile ? 1 : 2)) === index ? 'w-6 bg-primary' : 'bg-primary/30'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             ></button>
@@ -230,7 +261,7 @@ export default function ProjectsCarousel() {
             hover:text-primary hover:scale-105 active:scale-95"
           >
             {t('All projects')}
-            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 arrow-animation">
+            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
               <ArrowRight className="h-4 w-4" />
             </span>
           </LocalizedLink>
