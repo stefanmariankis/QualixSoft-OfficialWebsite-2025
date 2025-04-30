@@ -1,31 +1,45 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Import service images
+import webMobileDev from "../assets/web_mobile_dev.png";
+import consultingStrategy from "../assets/consulting_strategy.png";
+import websiteDesign from "../assets/website_design.png";
+import seo from "../assets/seo.png";
+import digitalMarketing from "../assets/digital_marketing.png";
+import optimizationConversion from "../assets/optimization_conversion.png";
+
 // Our Services items
 const ourServices = [
   {
-    title: "Web & Mobile development",
-    description: "Creative designs that captivate and convert your audience."
+    title: "Web & Mobile developement",
+    description: "Creative designs that captivate and convert your audience.",
+    image: webMobileDev
   },
   {
     title: "Consulting and strategy",
-    description: "Creative designs that captivate and convert your audience."
+    description: "Creative designs that captivate and convert your audience.",
+    image: consultingStrategy
   },
   {
     title: "Website Design",
-    description: "Creative designs that captivate and convert your audience."
+    description: "Creative designs that captivate and convert your audience.",
+    image: websiteDesign
   },
   {
     title: "Search Engine Optimization",
-    description: "Creative designs that captivate and convert your audience."
+    description: "Creative designs that captivate and convert your audience.",
+    image: seo
   },
   {
     title: "Digital Marketing",
-    description: "Creative designs that captivate and convert your audience."
+    description: "Creative designs that captivate and convert your audience.",
+    image: digitalMarketing
   },
   {
     title: "Optimization and Conversion",
-    description: "Creative designs that captivate and convert your audience."
+    description: "Creative designs that captivate and convert your audience.",
+    image: optimizationConversion
   }
 ];
 
@@ -53,38 +67,12 @@ export default function Services() {
 
   return (
     <motion.section 
-      className="py-20 bg-gray-50 relative overflow-hidden"
+      className="py-20 bg-[#f9f9f9] relative overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      {/* Background decorative elements */}
-      <motion.div 
-        className="absolute -top-20 -left-20 w-64 h-64 bg-primary/5 rounded-full z-0 blur-3xl"
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{ 
-          duration: 12, 
-          repeat: Infinity,
-          ease: "easeInOut" 
-        }}
-      />
-      <motion.div 
-        className="absolute -bottom-32 -right-32 w-96 h-96 bg-primary/5 rounded-full z-0 blur-3xl"
-        animate={{ 
-          scale: [1, 1.1, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{ 
-          duration: 15, 
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
-        }}
-      />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
@@ -133,76 +121,40 @@ export default function Services() {
           {ourServices.map((service, index) => (
             <motion.div 
               key={index} 
-              className="bg-[#faf7f2] rounded-3xl overflow-hidden relative p-6 border border-[#f0ece4] cursor-pointer"
+              className="bg-[#faf7f2] rounded-xl overflow-hidden relative p-6 border border-[#eee9e1] cursor-pointer"
               variants={item}
               whileHover={{ 
-                y: -10,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                y: -5,
+                boxShadow: "0 10px 15px -5px rgba(0, 0, 0, 0.08)",
                 backgroundColor: "#fcf9f5",
                 borderColor: "#e8e2d9"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
             >
-              {/* Black square placeholder for the image with hover effect */}
-              <motion.div 
-                className="w-full aspect-video bg-black rounded-xl mb-6 overflow-hidden"
-                whileHover={{ 
-                  scale: 1.03,
-                  boxShadow: "0 10px 20px rgba(0,0,0,0.15)"
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {/* This is where the image would go */}
-                <motion.div 
-                  className="w-full h-full bg-black"
-                  whileHover={{
-                    filter: "brightness(1.2)"
-                  }}
+              {/* Service image */}
+              <div className="w-full aspect-video flex items-center justify-center mb-4">
+                <img 
+                  src={service.image} 
+                  alt={service.title}
+                  className="h-[120px] object-contain"
                 />
-              </motion.div>
+              </div>
               
               {/* Arrow icon in top-right corner */}
-              <motion.div 
-                className="absolute top-6 right-6"
-                whileHover={{ rotate: 45, scale: 1.1 }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 500, 
-                  damping: 10 
-                }}
-              >
-                <motion.div 
-                  className="bg-black p-2 rounded-lg"
-                  whileHover={{ 
-                    backgroundColor: "#333333",
-                    boxShadow: "0 5px 15px rgba(0,0,0,0.2)"
-                  }}
-                >
-                  <ArrowUpRight className="h-5 w-5 text-white" />
-                </motion.div>
-              </motion.div>
+              <div className="absolute top-4 right-4">
+                <div className="bg-black p-1.5 rounded-md">
+                  <ArrowUpRight className="h-4 w-4 text-white" />
+                </div>
+              </div>
               
               {/* Service title and description */}
-              <h3 className="text-xl font-medium text-gray-700 mb-2">
+              <h3 className="text-lg font-medium text-gray-700 mb-2">
                 {service.title}
               </h3>
               
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm">
                 {service.description}
               </p>
-              
-              {/* Hidden 'Learn more' text that appears on hover */}
-              <motion.div
-                className="absolute bottom-6 left-6 text-primary font-medium"
-                initial={{ opacity: 0, y: 10 }}
-                whileHover={{ 
-                  opacity: 1, 
-                  y: 0, 
-                  transition: { duration: 0.2 }
-                }}
-              >
-                Learn more
-              </motion.div>
             </motion.div>
           ))}
         </motion.div>
