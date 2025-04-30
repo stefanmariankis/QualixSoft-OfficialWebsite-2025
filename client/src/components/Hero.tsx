@@ -18,9 +18,9 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           {/* Left side - Content */}
           <div className="animate-fadeIn">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 leading-tight mb-6">
-              Building Your<br />
-              <span className="text-primary">Digital Future</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+              {t('home.hero.title')}<br />
+              <span className="text-primary">{t('home.hero.subtitle')}</span>
             </h1>
             
             <p className="text-lg text-gray-600 mb-8 max-w-lg">
