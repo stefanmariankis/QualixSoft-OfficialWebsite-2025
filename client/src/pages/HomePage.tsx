@@ -17,8 +17,8 @@ export default function HomePage() {
       <Hero />
       <Partners />
       <WhyWorkAndEnvision />
-      <Services />
       <AnalysisSection />
+      <Services />
       <ProjectsCarousel />
       <TechSlider />
       <Testimonials />

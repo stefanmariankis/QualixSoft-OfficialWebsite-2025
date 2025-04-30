@@ -125,7 +125,7 @@ export default function WhyWorkAndEnvision() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="max-w-lg bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-sm"
+                className="max-w-lg"
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                   We are ready for a new <br/>business idea!
