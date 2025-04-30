@@ -1,16 +1,18 @@
 import { motion } from 'framer-motion';
 import founderImg from '../assets/founder_image.png';
 import faviconImg from '../assets/favicon_about_us.png';
-import founderBgImg from '../assets/about_us_founder_bg.png';
 
 export default function FounderSection() {
   return (
-    <section className="pt-20 pb-0 bg-black relative overflow-hidden">
-      {/* Background image */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat opacity-60 z-0" 
-        style={{ backgroundImage: `url(${founderBgImg})` }}
-      ></div>
+    <section className="py-20 bg-white relative overflow-hidden">
+      {/* Background decor circles */}
+      <div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[10%] left-[5%] w-24 h-24 rounded-full bg-gray-100 opacity-50"></div>
+        <div className="absolute bottom-[20%] left-[15%] w-16 h-16 rounded-full bg-gray-100 opacity-30"></div>
+        <div className="absolute top-[30%] right-[20%] w-20 h-20 rounded-full bg-gray-100 opacity-40"></div>
+        <div className="absolute bottom-[10%] right-[8%] w-12 h-12 rounded-full bg-gray-100 opacity-20"></div>
+        <div className="absolute top-[50%] left-[50%] w-32 h-32 rounded-full bg-gray-100 opacity-20"></div>
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -52,16 +54,16 @@ export default function FounderSection() {
               </p>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-6">
               Transformăm viziunea ta digitală în realitate
             </h2>
 
             <div className="mb-8">
-              <p className="text-gray-200 mb-4">
+              <p className="text-gray-600 mb-4">
                 "În fiecare zi ne străduim să oferim soluții digitale de calitate care depășesc așteptările clienților noștri. 
                 Credem în puterea transformării digitale și în impactul pe care îl poate avea asupra afacerii tale."
               </p>
-              <p className="text-gray-200">
+              <p className="text-gray-600">
                 "Misiunea noastră este să construim soluții digitale care nu doar arată bine, ci și 
                 generează rezultate concrete pentru clienții noștri. Fiecare proiect este o oportunitate 
                 de a demonstra că tehnologia poate fi accesibilă, eficientă și profitabilă pentru orice afacere."
