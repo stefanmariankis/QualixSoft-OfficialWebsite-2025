@@ -8,14 +8,14 @@ export default function Hero() {
   const { t } = useTranslation();
   
   return (
-    <section className="pt-32 pb-20 md:pb-28 relative overflow-hidden bg-white">
+    <section className="pt-32 pb-20 md:pb-28 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           {/* Left side - Content */}
           <div className="animate-fadeIn">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
-              Building Your<br />
-              <span className="text-primary">Digital Future</span>
+              {t('home.hero.title')}<br />
+              <span className="text-primary">{t('home.hero.subtitle')}</span>
             </h1>
             
             <p className="text-lg text-foreground mb-8 max-w-lg">
