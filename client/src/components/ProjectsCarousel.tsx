@@ -12,77 +12,136 @@ import clientThd from "../assets/client_thd_plast.png";
 import clientUnicool from "../assets/client_unicool.png";
 import clientGradinita from "../assets/client_universul_copiilor.png";
 import clientZaharias from "../assets/client_zaharias.png";
+import portfolioBackground from "../assets/portfolio_background.png";
+import projectCardNormal from "../assets/project_card_normal.png";
+import projectCardHover from "../assets/project_card_hover.png";
 
 // Project data
 const projects = [
   {
     id: 1,
     title: "pulsewelding.com",
-    category: "Equipment website",
+    domain: "pulsewelding.com",
+    category: "Multilingual website",
+    categoryColor: "#4CAF50", // Green for multilingual
     image: clientPulse,
+    logo: clientPulse,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 2,
     title: "climaticgps.ro",
+    domain: "climaticgps.ro",
     category: "Presentation Website",
+    categoryColor: "#3F51B5", // Blue for presentation
     image: clientClimatic,
+    logo: clientClimatic,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 3,
     title: "universulcopiilor.ro",
+    domain: "universulcopiilor.ro",
     category: "Educational Platform",
+    categoryColor: "#E91E63", // Pink for educational
     image: clientGradinita,
+    logo: clientGradinita,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 4,
     title: "optimar.ro",
+    domain: "optimar.ro",
     category: "Corporate Website",
+    categoryColor: "#2196F3", // Blue for corporate
     image: clientOptimar,
+    logo: clientOptimar,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 5,
     title: "thdplast.ro",
+    domain: "thdplast.ro",
     category: "Portfolio Website",
+    categoryColor: "#9C27B0", // Purple for portfolio
     image: clientThd,
+    logo: clientThd,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 6,
     title: "unicool.ro",
+    domain: "unicool.ro",
     category: "E-commerce",
+    categoryColor: "#F44336", // Red for e-commerce
     image: clientUnicool,
+    logo: clientUnicool,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 7,
     title: "zaharias.ro",
+    domain: "zaharias.ro",
     category: "Business Website",
+    categoryColor: "#FF9800", // Orange for business
     image: clientZaharias,
+    logo: clientZaharias,
+    bgColor: "#2B5F93", // Blue background when hover
   }
 ];
 
 // Project card component 
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group h-full">
-      <div className="relative h-full">
-        <div className="w-full h-64 overflow-hidden">
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-          />
+    <div className="bg-white rounded-xl overflow-hidden shadow-md group h-full relative transition-all duration-300">
+      {/* Full card overlay that appears on hover */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-all duration-300 z-10"
+        style={{ backgroundColor: project.bgColor }}
+      ></div>
+      
+      <div className="h-full flex flex-col relative z-20">
+        {/* Project Image Container */}
+        <div className="w-full h-52 overflow-hidden relative bg-white">
+          {/* Image container with screen/monitor style */}
+          <div className="w-full h-full flex items-center justify-center py-2">
+            {/* Logo centered in the image area */}
+            <img 
+              src={project.logo} 
+              alt={project.title} 
+              className="h-3/5 object-contain z-10 max-w-[70%] transition-all duration-300 group-hover:brightness-1"
+            />
+            
+            {/* Background image that shows the screenshot/monitor */}
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="absolute inset-0 w-full h-full object-cover opacity-50"
+            />
+          </div>
+
+          {/* Blue overlay that appears on hover */}
+          <div 
+            className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-all duration-300"
+            style={{ backgroundColor: project.bgColor }}
+          ></div>
         </div>
         
-        <div className="p-4 bg-white">
+        {/* Information below image - always visible */}
+        <div className="p-4 bg-transparent flex-grow relative shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] rounded-tl-xl rounded-tr-xl">
           <div className="flex justify-between items-center">
-            <div>
-              <p className="font-semibold text-foreground">{project.title}</p>
-              <p className="text-sm text-foreground/70">{project.category}</p>
+            <div className="flex-1">
+              <p className="text-base font-medium text-[#2B5F93] mb-1 group-hover:text-white transition-colors duration-300">{project.domain}</p>
+              <div className="inline-block rounded-full py-1 px-3 text-xs font-medium transition-colors duration-300" 
+                style={{ backgroundColor: project.categoryColor, color: 'white' }}>
+                {project.category}
+              </div>
             </div>
             <div 
-              className="bg-primary p-1.5 rounded-md cursor-pointer transition-all duration-300
-              hover:scale-110 hover:shadow-md active:scale-95"
+              className="bg-black group-hover:bg-white p-1.5 rounded-md cursor-pointer transition-all duration-300
+              group-hover:scale-110 group-hover:shadow-md active:scale-95"
             >
-              <ArrowRight className="h-4 w-4 text-white" />
+              <ArrowRight className="h-4 w-4 text-white group-hover:text-[#2B5F93]" />
             </div>
           </div>
         </div>
@@ -138,14 +197,18 @@ export default function ProjectsCarousel() {
   const visibleProjects = getVisibleProjects();
   
   return (
-    <section className="py-16 relative overflow-hidden bg-light-orange-gradient">
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-white/70 rounded-[60px] max-w-6xl mx-auto my-8"></div>
-      
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 pt-12 animate-fadeIn">
+    <section className="py-20 relative overflow-hidden bg-white" style={{ 
+      backgroundImage: `url(${portfolioBackground})`, 
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
+      {/* Rounded light gray container - matching the design */}
+      <div className="relative z-10 max-w-6xl mx-auto rounded-[40px] px-4 py-16 overflow-hidden">
+        <div className="text-center mb-12">
           <p className="text-sm uppercase font-semibold tracking-wider text-primary mb-2">PORTFOLIO</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">We'll create your idea</h2>
-          <p className="text-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">We'll create your idea</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
             A Collection of Our Finest Work and Successful Client Projects
           </p>
         </div>
@@ -169,31 +232,11 @@ export default function ProjectsCarousel() {
           </div>
         </div>
         
-        {/* Carousel indicators */}
-        <div className="flex justify-center mt-2 mb-8 space-x-2">
-          {projects.slice(0, Math.ceil(projects.length / (isMobile ? 1 : 2))).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setFadeOut(true);
-                setTimeout(() => {
-                  setCurrentIndex(index * (isMobile ? 1 : 2));
-                  setFadeOut(false);
-                }, 500);
-              }}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                Math.floor(currentIndex / (isMobile ? 1 : 2)) === index ? 'w-6 bg-primary' : 'bg-primary/30'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            ></button>
-          ))}
-        </div>
-        
         {/* View all projects link */}
         <div className="text-center pb-10">
           <LocalizedLink 
             to="/portfolio" 
-            className="inline-flex items-center text-foreground group transition-all duration-300 
+            className="inline-flex items-center font-bold text-foreground group transition-all duration-300 
             hover:text-primary hover:scale-105 active:scale-95"
           >
             {t('All projects')}

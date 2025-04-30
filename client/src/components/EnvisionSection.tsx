@@ -7,17 +7,14 @@ export default function EnvisionSection() {
   
   return (
     <section className="py-16 sm:py-20 relative overflow-hidden">
-      {/* Split background - White left, Hex pattern right */}
-      <div className="absolute inset-0 w-full h-full flex">
-        {/* Left side - white background */}
-        <div className="w-1/2 bg-white"></div>
-        
-        {/* Right side - hex pattern background */}
-        <div 
-          className="w-1/2 bg-cover bg-center bg-no-repeat" 
-          style={{ backgroundImage: `url(${hexBackgroundLight})` }}
-        ></div>
-      </div>
+      {/* Full hexagon background */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat" 
+        style={{ backgroundImage: `url(${hexBackgroundLight})` }}
+      ></div>
+      
+      {/* Overlay gradient for better text readability */}
+      <div className="absolute inset-0 bg-white/40"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
@@ -52,7 +49,7 @@ export default function EnvisionSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="max-w-lg"
+              className="max-w-lg bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-sm"
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                 We are ready for a new <br/>business idea!
@@ -70,7 +67,7 @@ export default function EnvisionSection() {
               
               <a 
                 href="#" 
-                className="inline-block bg-gray-900 hover:bg-black text-white font-medium px-6 py-3 rounded-md shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
+                className="inline-block bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-md shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
               >
                 Get your Free Proposal
               </a>

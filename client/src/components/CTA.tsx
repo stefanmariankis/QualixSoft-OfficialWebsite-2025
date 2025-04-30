@@ -1,56 +1,84 @@
-import teamImage1 from "@assets/image_1745924567265.png";
-import teamImage2 from "@assets/image_1745924950559.png";
+import CTAImage from "../assets/home_cta_image.png";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 export default function CTA() {
   const { t } = useTranslation();
   
   return (
-    <section className="py-16 md:py-20 bg-light-orange-gradient">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-          <div className="w-full md:w-1/2 flex space-x-4">
-            <div className="relative">
-              <img 
-                src={teamImage1}
-                alt="Business planning" 
-                className="w-full h-auto rounded-lg object-cover md:max-w-[240px] shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl"
-              />
-            </div>
-            <div className="relative mt-10">
-              <img 
-                src={teamImage2}
-                alt="Team collaboration" 
-                className="w-full h-auto rounded-lg object-cover md:max-w-[240px] shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl"
-              />
+    <motion.section 
+      className="py-20 bg-white relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+          {/* Left Side with Content */}
+          <div 
+            className="flex flex-col justify-center"
+          >
+            <motion.h4 
+              className="text-sm uppercase font-semibold tracking-wider text-primary mb-2"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+            >
+              CONTACT US
+            </motion.h4>
+            
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              We are ready for a new <br/>business idea!
+            </motion.h2>
+            
+            <motion.p 
+              className="text-gray-700 mb-2 font-medium"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              Got a fresh business idea? We're all ears and <span className="text-primary font-semibold">ready to roll!</span>
+            </motion.p>
+            
+            <p 
+              className="text-gray-600 mb-6"
+            >
+              Our team loves a good brainstorm and we're here to help make your idea shine. 
+              We're not just about talk; we get things done. From the first sketch to the final product, 
+              we've got the tools, the know how, and the drive to bring your vision to life.
+            </p>
+            
+            <div className="flex">
+              <a 
+                href="#" 
+                className="inline-flex bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-md shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 whitespace-nowrap"
+              >
+                Get your Free Proposal
+              </a>
             </div>
           </div>
-          
-          <div className="w-full md:w-1/2 max-w-lg">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Let's take your business to the next level!
-            </h2>
-            
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-start">
-                <span className="text-primary font-bold mr-3 text-xl">✦</span>
-                <span className="text-foreground">If you find yourself in one of the situations we've mentioned</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary font-bold mr-3 text-xl">✦</span>
-                <span className="text-foreground">If you know your business deserves more</span>
-              </li>
-            </ul>
-            
-            <a 
-              href="#" 
-              className="btn-primary inline-flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              Get your Free Proposal
-            </a>
+
+          {/* Right Side with Image */}
+          <div 
+            className="relative flex items-center justify-center"
+          >
+            <img
+              src={CTAImage}
+              alt="Team collaboration" 
+              className="w-full h-auto object-cover"
+            />
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

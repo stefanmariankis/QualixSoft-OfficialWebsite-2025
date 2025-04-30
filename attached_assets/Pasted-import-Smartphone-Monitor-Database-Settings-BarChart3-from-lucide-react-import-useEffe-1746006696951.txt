@@ -1,29 +1,25 @@
-import { Smartphone, Monitor, Database, Settings, BarChart3, BarChart2 } from "lucide-react";
+import { Smartphone, Monitor, Database, Settings, BarChart3 } from "lucide-react";
 import { useEffect, useRef } from "react";
-import laptopImage from "../assets/laptop_display.png";
-import needsBackground from "../assets/needs_background.png";
-import { useTranslation } from "react-i18next";
 
 export default function AnalysisSection() {
-  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   
-  // Function to draw lines connecting boxes to the center laptop
+  // Function to draw lines connecting boxes to the center black square
   useEffect(() => {
     const updateLines = () => {
       if (!containerRef.current || !svgRef.current) return;
       
-      // Get center laptop position
-      const laptop = document.getElementById('centerLaptop');
-      if (!laptop) return;
+      // Get center black square position
+      const blackSquare = document.getElementById('blackSquare');
+      if (!blackSquare) return;
       
       const containerRect = containerRef.current.getBoundingClientRect();
-      const laptopRect = laptop.getBoundingClientRect();
+      const blackSquareRect = blackSquare.getBoundingClientRect();
       
       // Calculate center points relative to the container
-      const centerX = laptopRect.left + laptopRect.width / 2 - containerRect.left;
-      const centerY = laptopRect.top + laptopRect.height / 2 - containerRect.top;
+      const centerX = blackSquareRect.left + blackSquareRect.width / 2 - containerRect.left;
+      const centerY = blackSquareRect.top + blackSquareRect.height / 2 - containerRect.top;
       
       // Clear existing lines
       if (svgRef.current) {
@@ -100,12 +96,8 @@ export default function AnalysisSection() {
   }, []);
   
   return (
-    <section style={{ backgroundColor: '#EB7127' }} className="py-20 relative overflow-hidden">
-      {/* Background with the provided image */}
-      <div className="absolute inset-0 w-full h-full bg-center bg-contain bg-no-repeat z-0"
-           style={{ backgroundImage: `url(${needsBackground})` }}>
-      </div>
-      
+    <section className="py-20 bg-primary relative overflow-hidden">
+      {/* Plain background - no arrows as requested */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">We analyze your needs</h2>
@@ -115,19 +107,13 @@ export default function AnalysisSection() {
         </div>
         
         <div ref={containerRef} className="relative min-h-[480px]">
-          {/* Laptop in the center */}
+          {/* Black square in the center */}
           <div 
-            id="centerLaptop"
-            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
-          >
-            <img 
-              src={laptopImage} 
-              alt="Laptop displaying website" 
-              className="w-full h-auto"
-            />
-          </div>
+            id="blackSquare"
+            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-black rounded-md z-10"
+          ></div>
           
-          {/* Feature boxes positioned around the laptop */}
+          {/* Feature boxes positioned around the black square */}
           <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px] z-20">
             <FeatureBox 
               icon={<Monitor className="h-5 w-5 text-primary" />}

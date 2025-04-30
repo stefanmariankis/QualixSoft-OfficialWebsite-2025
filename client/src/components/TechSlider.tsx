@@ -39,11 +39,11 @@ const techItems = [
 
 export default function TechSlider() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section title */}
         <div className="text-center mb-10">
-          <h2 className="text-lg font-medium text-primary">Some tools that fit your needs</h2>
+          <p className="text-lg font-medium text-primary">Some tools that fit your needs</p>
         </div>
         
         {/* Responsive tech logos grid */}
