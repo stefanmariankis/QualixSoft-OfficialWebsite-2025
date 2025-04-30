@@ -112,53 +112,60 @@ export default function AnalysisSection() {
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-8">
+        <div className={`${isMobile ? 'text-center' : 'text-center'} mb-8`}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">We analyze your needs</h2>
-          <p className="text-white text-opacity-90 max-w-2xl mx-auto">
+          <p className="text-white text-opacity-80 max-w-2xl mx-auto text-sm md:text-base">
             In-depth Assessments to Craft Customized Digital Solutions for Your Business.
           </p>
         </div>
         
         {isMobile ? (
-          // Mobile layout - vertical stack with center laptop
+          // Mobile layout - styled like in the image
           <div className="px-2">
-            <div className="flex justify-center mb-8">
+            {/* Feature boxes as cards */}
+            <div className="space-y-4 mb-8">
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <Smartphone className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">Mobile App Development?</span>
+              </div>
+              
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <Monitor className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">User Experience (UX) Optimization?</span>
+              </div>
+              
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <Settings className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">Ongoing Maintenance and Support?</span>
+              </div>
+              
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <Database className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">Scalable Backend Solutions?</span>
+              </div>
+              
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <BarChart3 className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">Search Engine Optimization?</span>
+              </div>
+            </div>
+            
+            {/* Laptop image at the bottom */}
+            <div className="mt-12 flex justify-center">
               <img 
                 src={laptopImage} 
                 alt="Laptop displaying website" 
-                className="w-56 h-auto"
-              />
-            </div>
-            
-            <div className="space-y-3 mb-3">
-              <FeatureBox 
-                icon={<Monitor className="h-5 w-5 text-primary" />}
-                title="User Experience (UX) Optimization"
-                description="Optimization"
-              />
-              
-              <FeatureBox 
-                icon={<Settings className="h-5 w-5 text-primary" />}
-                title="Ongoing Maintenance and Support"
-                description="Support"
-              />
-              
-              <FeatureBox 
-                icon={<Smartphone className="h-5 w-5 text-primary" />}
-                title="Mobile App Development"
-                description=""
-              />
-              
-              <FeatureBox 
-                icon={<BarChart3 className="h-5 w-5 text-primary" />}
-                title="Search Engine Optimization"
-                description=""
-              />
-              
-              <FeatureBox 
-                icon={<Database className="h-5 w-5 text-primary" />}
-                title="Scalable Backend Solutions"
-                description=""
+                className="w-72 h-auto"
               />
             </div>
           </div>
