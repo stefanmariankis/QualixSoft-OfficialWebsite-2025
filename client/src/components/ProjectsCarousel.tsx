@@ -12,6 +12,7 @@ import clientThd from "../assets/client_thd_plast.png";
 import clientUnicool from "../assets/client_unicool.png";
 import clientGradinita from "../assets/client_universul_copiilor.png";
 import clientZaharias from "../assets/client_zaharias.png";
+import portfolioBackground from "../assets/portfolio_background.png";
 
 // Project data
 const projects = [
@@ -62,24 +63,39 @@ const projects = [
 // Project card component 
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group h-full">
+    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 group h-full">
       <div className="relative h-full">
-        <div className="w-full h-64 overflow-hidden">
+        {/* Project Image */}
+        <div className="w-full h-60 overflow-hidden">
           <img 
             src={project.image} 
             alt={project.title} 
-            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+            className="w-full h-full object-cover transition-all duration-300"
           />
+          
+          {/* Blue overlay on hover */}
+          <div className="absolute inset-0 bg-[#2B5F93] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+              <p className="font-medium text-white/90">{project.category}</p>
+              <div className="flex justify-between items-center mt-1">
+                <p className="font-semibold text-lg">{project.title}</p>
+                <div className="bg-black p-1.5 rounded-md cursor-pointer">
+                  <ArrowRight className="h-4 w-4 text-white" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         
+        {/* Information below image */}
         <div className="p-4 bg-white">
           <div className="flex justify-between items-center">
             <div>
-              <p className="font-semibold text-foreground">{project.title}</p>
-              <p className="text-sm text-foreground/70">{project.category}</p>
+              <p className="text-sm text-gray-500 mb-1">{project.category}</p>
+              <p className="font-semibold text-gray-800">{project.title}</p>
             </div>
             <div 
-              className="bg-primary p-1.5 rounded-md cursor-pointer transition-all duration-300
+              className="bg-black p-1.5 rounded-md cursor-pointer transition-all duration-300
               hover:scale-110 hover:shadow-md active:scale-95"
             >
               <ArrowRight className="h-4 w-4 text-white" />
@@ -138,8 +154,15 @@ export default function ProjectsCarousel() {
   const visibleProjects = getVisibleProjects();
   
   return (
-    <section className="py-16 relative overflow-hidden bg-light-orange-gradient">
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-white/70 rounded-[60px] max-w-6xl mx-auto my-8"></div>
+    <section className="py-16 relative overflow-hidden bg-[#f9f9f9]">
+      {/* Background with pattern */}
+      <div 
+        className="absolute top-0 left-0 right-0 bottom-0 bg-center bg-no-repeat bg-contain mx-auto"
+        style={{ backgroundImage: `url(${portfolioBackground})` }}
+      ></div>
+      
+      {/* Light gray background for the content area */}
+      <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#f2f2f2] rounded-[40px] max-w-6xl mx-auto my-8"></div>
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12 pt-12 animate-fadeIn">
