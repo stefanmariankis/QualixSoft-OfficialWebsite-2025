@@ -63,20 +63,22 @@ const projects = [
 // Project card component 
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 group h-full">
-      <div className="relative h-full">
-        {/* Project Image */}
-        <div className="w-full h-60 overflow-hidden">
+    <div className="bg-white rounded-xl overflow-hidden shadow-md group h-full relative">
+      <div className="h-full flex flex-col">
+        {/* Project Image Container */}
+        <div className="w-full h-60 overflow-hidden relative">
+          {/* Actual image */}
           <img 
             src={project.image} 
             alt={project.title} 
-            className="w-full h-full object-cover transition-all duration-300"
+            className="w-full h-full object-cover"
           />
           
-          {/* Blue overlay on hover */}
-          <div className="absolute inset-0 bg-[#2B5F93] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-              <p className="font-medium text-white/90">{project.category}</p>
+          {/* Blue overlay that appears on hover - only over the image */}
+          <div className="absolute inset-0 bg-[#2B5F93] opacity-0 group-hover:opacity-100 transition-all duration-300">
+            {/* Content that shows on hover */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+              <p className="text-sm font-medium text-white/90">{project.category}</p>
               <div className="flex justify-between items-center mt-1">
                 <p className="font-semibold text-lg">{project.title}</p>
                 <div className="bg-black p-1.5 rounded-md cursor-pointer">
@@ -87,8 +89,8 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
           </div>
         </div>
         
-        {/* Information below image */}
-        <div className="p-4 bg-white">
+        {/* Information below image - always visible */}
+        <div className="p-4 bg-white flex-grow">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-gray-500 mb-1">{project.category}</p>
@@ -154,21 +156,20 @@ export default function ProjectsCarousel() {
   const visibleProjects = getVisibleProjects();
   
   return (
-    <section className="py-16 relative overflow-hidden bg-[#f9f9f9]">
-      {/* Background with pattern */}
-      <div 
-        className="absolute top-0 left-0 right-0 bottom-0 bg-center bg-no-repeat bg-contain mx-auto"
-        style={{ backgroundImage: `url(${portfolioBackground})` }}
-      ></div>
+    <section className="py-20 relative overflow-hidden">
+      {/* Background with pattern - using directly the image as background */}
+      <div className="absolute inset-0 w-full h-full" style={{ 
+        backgroundImage: `url(${portfolioBackground})`, 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}></div>
       
-      {/* Light gray background for the content area */}
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#f2f2f2] rounded-[40px] max-w-6xl mx-auto my-8"></div>
-      
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12 pt-12 animate-fadeIn">
+      {/* Rounded light gray container - matching the design */}
+      <div className="relative z-10 max-w-6xl mx-auto rounded-[40px] px-4 py-16 overflow-hidden bg-[#f0f0f0]">
+        <div className="text-center mb-12">
           <p className="text-sm uppercase font-semibold tracking-wider text-primary mb-2">PORTFOLIO</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">We'll create your idea</h2>
-          <p className="text-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">We'll create your idea</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
             A Collection of Our Finest Work and Successful Client Projects
           </p>
         </div>
