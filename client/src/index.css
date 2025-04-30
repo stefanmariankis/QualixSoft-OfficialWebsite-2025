@@ -225,21 +225,21 @@
 }
 
 .slide-in-right {
-  animation: slideInFromRight 0.5s forwards;
+  animation: slideInFromRight 0.45s forwards;
 }
 
 .slide-out-left {
-  animation: slideOutToLeft 0.5s forwards;
+  animation: slideOutToLeft 0.45s forwards;
 }
 
 .fade-out-left {
-  animation: fadeOutToLeft 0.5s forwards;
+  animation: fadeOutToLeft 0.45s forwards;
 }
 
 .slide-right-to-left {
-  animation: slideRightToLeft 0.5s forwards;
+  animation: slideRightToLeft 0.45s forwards;
 }
 
 .fade-in-from-right {
-  animation: fadeInFromRight 0.5s forwards;
+  animation: fadeInFromRight 0.55s forwards;
 }

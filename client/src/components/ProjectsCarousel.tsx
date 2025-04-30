@@ -91,34 +91,37 @@ export default function ProjectsCarousel() {
   const [rightProjectAnimating, setRightProjectAnimating] = useState(false);
   const [newProjectAnimating, setNewProjectAnimating] = useState(false);
   
-  // Handle slide change with animation
+  // Handle slide change with animation, ensuring proper sequence
   const changeSlide = () => {
-    // Start the slide animation sequence
+    // Start the animation sequence - fade out the left project first
     setIsChanging(true);
-    
-    // Step 1: Fade out left project
     setLeftProjectAnimating(true);
     
+    // After left project has faded out, start the right project's slide animation
     setTimeout(() => {
-      // Step 2: Move right project to left
+      // Now animate the right project
       setRightProjectAnimating(true);
+      setLeftProjectAnimating(false); // First animation is complete
       
-      // Step 3: After initial animations, change data
+      // After the sliding animation completes
       setTimeout(() => {
+        // Update the data with new projects
         setCurrentIndex(prev => (prev + 1) % projects.length);
+        setRightProjectAnimating(false); // Second animation is complete
         
-        // Step 4: Fade in new project from right
-        setNewProjectAnimating(true);
-        
-        // Step 5: Reset all animations when complete
+        // Wait for DOM to update with new projects
         setTimeout(() => {
-          setLeftProjectAnimating(false);
-          setRightProjectAnimating(false);
-          setNewProjectAnimating(false);
-          setIsChanging(false);
-        }, 300);
-      }, 300);
-    }, 300);
+          // Start the entrance animation for the new project
+          setNewProjectAnimating(true);
+          
+          // Complete the animation sequence
+          setTimeout(() => {
+            setNewProjectAnimating(false);
+            setIsChanging(false); // Animation sequence complete
+          }, 550);
+        }, 50);
+      }, 450);
+    }, 450);
   };
   
   // Auto slider effect with pause on hover
