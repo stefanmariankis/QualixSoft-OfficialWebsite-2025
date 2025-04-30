@@ -120,10 +120,6 @@
   transition: transform 0.3s ease;
 }
 
-.partner-logo:hover {
-  transform: scale(1.05);
-}
-
 /* Arrow animation */
 @keyframes arrowPulse {
   0% { transform: translateX(0); }

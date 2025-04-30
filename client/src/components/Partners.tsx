@@ -24,12 +24,11 @@ const partners = [
 export default function Partners() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   
   // Auto-slide effect
   useEffect(() => {
     const interval = setInterval(() => {
-      if (sliderRef.current && hoveredIndex === null) {
+      if (sliderRef.current) {
         const slidesPerView = window.innerWidth < 768 ? 2 : 
                               window.innerWidth < 1024 ? 3 : 6;
         
@@ -45,7 +44,7 @@ export default function Partners() {
     }, 3000);
     
     return () => clearInterval(interval);
-  }, [activeIndex, hoveredIndex]);
+  }, [activeIndex]);
   
   // Animation variants for text and logos
   const textVariants = {
@@ -103,17 +102,7 @@ export default function Partners() {
             {partners.map((partner, index) => (
               <motion.div 
                 key={index} 
-                className="flex-shrink-0 partner-logo flex items-center justify-center h-16 min-w-[140px] lg:min-w-[160px] relative cursor-pointer"
-                onHoverStart={() => setHoveredIndex(index)}
-                onHoverEnd={() => setHoveredIndex(null)}
-                whileHover={{ 
-                  scale: 1.05,
-                  filter: "drop-shadow(0 0 8px rgba(255,255,255,0.5))"
-                }}
-                animate={{
-                  y: hoveredIndex === index ? -5 : 0,
-                  transition: { type: "spring", stiffness: 300 }
-                }}
+                className="flex-shrink-0 partner-logo flex items-center justify-center h-16 min-w-[140px] lg:min-w-[160px] relative"
               >
                 <a href={partner.href} className="flex items-center justify-center h-full w-full">
                   <img 
