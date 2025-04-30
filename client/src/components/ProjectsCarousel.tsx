@@ -219,11 +219,11 @@ export default function ProjectsCarousel() {
           onMouseLeave={() => setIsPaused(false)}
         >
           <div className="flex justify-center overflow-hidden">
-            <div className={`flex w-full max-w-5xl justify-between relative pb-8 gap-8 transition-opacity duration-500 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`flex w-full max-w-5xl justify-between relative pb-8 gap-4 md:gap-8 transition-opacity duration-500 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
               {visibleProjects.map((project, index) => (
                 <div
                   key={`${currentIndex}-${index}`}
-                  className={`${isMobile ? 'w-full' : 'w-[45%]'}`}
+                  className={`${isMobile ? 'w-full' : 'sm:w-[48%] md:w-[47%] lg:w-[45%]'}`}
                 >
                   <ProjectCard project={project} />
                 </div>

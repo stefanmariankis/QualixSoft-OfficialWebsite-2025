@@ -3,14 +3,28 @@ import { useEffect, useRef } from "react";
 import laptopImage from "../assets/laptop_display.png";
 import needsBackground from "../assets/needs_background.png";
 import { useTranslation } from "react-i18next";
+<<<<<<< HEAD
 
 export default function AnalysisSection() {
   const { t } = useTranslation();
+=======
+import { useIsMobile } from "../hooks/use-mobile";
+
+export default function AnalysisSection() {
+  const { t } = useTranslation();
+  const isMobile = useIsMobile();
+>>>>>>> b570588e90662595c0d0f9144705403c75aa0915
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   
   // Function to draw lines connecting boxes to the center laptop
   useEffect(() => {
+<<<<<<< HEAD
+=======
+    // Skip this effect for mobile layout
+    if (isMobile || !containerRef.current || !svgRef.current) return;
+    
+>>>>>>> b570588e90662595c0d0f9144705403c75aa0915
     const updateLines = () => {
       if (!containerRef.current || !svgRef.current) return;
       
@@ -97,7 +111,11 @@ export default function AnalysisSection() {
       window.removeEventListener('resize', updateLines);
       clearTimeout(timeout);
     };
+<<<<<<< HEAD
   }, []);
+=======
+  }, [isMobile]);
+>>>>>>> b570588e90662595c0d0f9144705403c75aa0915
   
   return (
     <section style={{ backgroundColor: '#EB7127' }} className="py-20 relative overflow-hidden">
@@ -107,13 +125,20 @@ export default function AnalysisSection() {
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<<<<<<< HEAD
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">We analyze your needs</h2>
           <p className="text-white text-opacity-90 max-w-2xl mx-auto">
+=======
+        <div className={`${isMobile ? 'text-center' : 'text-center'} mb-8`}>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">We analyze your needs</h2>
+          <p className="text-white text-opacity-80 max-w-2xl mx-auto text-sm md:text-base">
+>>>>>>> b570588e90662595c0d0f9144705403c75aa0915
             In-depth Assessments to Craft Customized Digital Solutions for Your Business.
           </p>
         </div>
         
+<<<<<<< HEAD
         <div ref={containerRef} className="relative min-h-[480px]">
           {/* Laptop in the center */}
           <div 
@@ -175,6 +200,122 @@ export default function AnalysisSection() {
             xmlns="http://www.w3.org/2000/svg"
           ></svg>
         </div>
+=======
+        {isMobile ? (
+          // Mobile layout - styled like in the image
+          <div className="px-2">
+            {/* Feature boxes as cards */}
+            <div className="space-y-4 mb-8">
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <Smartphone className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">Mobile App Development?</span>
+              </div>
+              
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <Monitor className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">User Experience (UX) Optimization?</span>
+              </div>
+              
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <Settings className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">Ongoing Maintenance and Support?</span>
+              </div>
+              
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <Database className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">Scalable Backend Solutions?</span>
+              </div>
+              
+              <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
+                <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
+                  <BarChart3 className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-white text-base font-medium">Search Engine Optimization?</span>
+              </div>
+            </div>
+            
+            {/* Laptop image at the bottom */}
+            <div className="mt-12 flex justify-center">
+              <img 
+                src={laptopImage} 
+                alt="Laptop displaying website" 
+                className="w-72 h-auto"
+              />
+            </div>
+          </div>
+        ) : (
+          // Desktop layout with positioned elements and connecting lines
+          <div ref={containerRef} className="relative min-h-[480px]">
+            {/* Laptop in the center */}
+            <div 
+              id="centerLaptop"
+              className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+            >
+              <img 
+                src={laptopImage} 
+                alt="Laptop displaying website" 
+                className="w-full h-auto"
+              />
+            </div>
+            
+            {/* Feature boxes positioned around the laptop */}
+            <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px] z-20">
+              <FeatureBox 
+                icon={<Monitor className="h-5 w-5 text-primary" />}
+                title="User Experience (UX) Optimization"
+                description="Optimization"
+              />
+            </div>
+            
+            <div id="box2" className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px] z-20">
+              <FeatureBox 
+                icon={<Settings className="h-5 w-5 text-primary" />}
+                title="Ongoing Maintenance and Support"
+                description="Support"
+              />
+            </div>
+            
+            <div id="box3" className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px] z-20">
+              <FeatureBox 
+                icon={<Smartphone className="h-5 w-5 text-primary" />}
+                title="Mobile App Development"
+                description=""
+              />
+            </div>
+            
+            <div id="box4" className="absolute top-[180px] right-0 md:right-[30px] lg:right-[120px] w-[220px] z-20">
+              <FeatureBox 
+                icon={<BarChart3 className="h-5 w-5 text-primary" />}
+                title="Search Engine Optimization"
+                description=""
+              />
+            </div>
+            
+            <div id="box5" className="absolute bottom-0 right-[30%] w-[220px] z-20">
+              <FeatureBox 
+                icon={<Database className="h-5 w-5 text-primary" />}
+                title="Scalable Backend Solutions"
+                description=""
+              />
+            </div>
+            
+            {/* Dynamic SVG overlay for dashed lines */}
+            <svg 
+              ref={svgRef} 
+              className="absolute inset-0 w-full h-full pointer-events-none z-0"
+              xmlns="http://www.w3.org/2000/svg"
+            ></svg>
+          </div>
+        )}
+>>>>>>> b570588e90662595c0d0f9144705403c75aa0915
       </div>
     </section>
   );

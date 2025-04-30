@@ -1,19 +1,20 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import leftArrowImg from "../assets/hero_section_left_arrow.png";
+import { useIsMobile } from "../hooks/use-mobile";
+import aboutHeroDesktopBg from "../assets/about_hero_desktop_bg.png";
+import aboutHeroMobileBg from "../assets/about_hero_mobile_bg.png";
 
 export default function AboutHero() {
+  const isMobile = useIsMobile();
+  const backgroundImage = isMobile ? aboutHeroMobileBg : aboutHeroDesktopBg;
+  
   return (
     <section className="bg-primary pt-32 pb-8 md:pt-36 md:pb-12 relative overflow-hidden">
-      {/* Left Arrow (Original) - positioned to the left of text */}
-      <div className="absolute left-[25%] md:left-[30%] top-1/2 transform -translate-y-1/2 opacity-40 hidden md:block z-0">
-        <img src={leftArrowImg} alt="Left arrow" className="w-56 h-auto" />
-      </div>
-      
-      {/* Right Arrow (Flipped) - positioned to the right of text */}
-      <div className="absolute right-[25%] md:right-[30%] top-1/2 transform -translate-y-1/2 scale-x-[-1] opacity-40 hidden md:block z-0">
-        <img src={leftArrowImg} alt="Right arrow" className="w-56 h-auto" />
-      </div>
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 w-full h-full z-0 bg-center bg-cover bg-no-repeat" 
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
@@ -47,10 +48,8 @@ export default function AboutHero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5 }}
           >
-            <Link href="/about">
-              <a className="text-white hover:text-white/80 transition-colors">
-                Despre Noi
-              </a>
+            <Link href="/about" className="text-white hover:text-white/80 transition-colors">
+              Despre Noi
             </Link>
             <span className="text-white/70 pointer-events-none">›</span>
             <span className="text-white/90 pointer-events-none">
