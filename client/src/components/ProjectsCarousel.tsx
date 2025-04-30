@@ -13,50 +13,80 @@ import clientUnicool from "../assets/client_unicool.png";
 import clientGradinita from "../assets/client_universul_copiilor.png";
 import clientZaharias from "../assets/client_zaharias.png";
 import portfolioBackground from "../assets/portfolio_background.png";
+import projectCardNormal from "../assets/project_card_normal.png";
+import projectCardHover from "../assets/project_card_hover.png";
 
 // Project data
 const projects = [
   {
     id: 1,
     title: "pulsewelding.com",
-    category: "Equipment website",
+    domain: "pulsewelding.com",
+    category: "Multilingual website",
+    categoryColor: "#4CAF50", // Green for multilingual
     image: clientPulse,
+    logo: clientPulse,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 2,
     title: "climaticgps.ro",
+    domain: "climaticgps.ro",
     category: "Presentation Website",
+    categoryColor: "#3F51B5", // Blue for presentation
     image: clientClimatic,
+    logo: clientClimatic,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 3,
     title: "universulcopiilor.ro",
+    domain: "universulcopiilor.ro",
     category: "Educational Platform",
+    categoryColor: "#E91E63", // Pink for educational
     image: clientGradinita,
+    logo: clientGradinita,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 4,
     title: "optimar.ro",
+    domain: "optimar.ro",
     category: "Corporate Website",
+    categoryColor: "#2196F3", // Blue for corporate
     image: clientOptimar,
+    logo: clientOptimar,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 5,
     title: "thdplast.ro",
+    domain: "thdplast.ro",
     category: "Portfolio Website",
+    categoryColor: "#9C27B0", // Purple for portfolio
     image: clientThd,
+    logo: clientThd,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 6,
     title: "unicool.ro",
+    domain: "unicool.ro",
     category: "E-commerce",
+    categoryColor: "#F44336", // Red for e-commerce
     image: clientUnicool,
+    logo: clientUnicool,
+    bgColor: "#2B5F93", // Blue background when hover
   },
   {
     id: 7,
     title: "zaharias.ro",
+    domain: "zaharias.ro",
     category: "Business Website",
+    categoryColor: "#FF9800", // Orange for business
     image: clientZaharias,
+    logo: clientZaharias,
+    bgColor: "#2B5F93", // Blue background when hover
   }
 ];
 
@@ -66,41 +96,46 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
     <div className="bg-white rounded-xl overflow-hidden shadow-md group h-full relative">
       <div className="h-full flex flex-col">
         {/* Project Image Container */}
-        <div className="w-full h-60 overflow-hidden relative">
-          {/* Actual image */}
-          <img 
-            src={project.image} 
-            alt={project.title} 
-            className="w-full h-full object-cover"
-          />
-          
-          {/* Blue overlay that appears on hover - only over the image */}
-          <div className="absolute inset-0 bg-[#2B5F93] opacity-0 group-hover:opacity-100 transition-all duration-300">
-            {/* Content that shows on hover */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-              <p className="text-sm font-medium text-white/90">{project.category}</p>
-              <div className="flex justify-between items-center mt-1">
-                <p className="font-semibold text-lg">{project.title}</p>
-                <div className="bg-black p-1.5 rounded-md cursor-pointer">
-                  <ArrowRight className="h-4 w-4 text-white" />
-                </div>
-              </div>
-            </div>
+        <div className="w-full h-52 overflow-hidden relative bg-white">
+          {/* Image container with screen/monitor style */}
+          <div className="w-full h-full flex items-center justify-center py-2">
+            {/* Logo centered in the image area */}
+            <img 
+              src={project.logo} 
+              alt={project.title} 
+              className="h-3/5 object-contain z-10 max-w-[70%] transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+            />
+            
+            {/* Background image that shows the screenshot/monitor */}
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              className="absolute inset-0 w-full h-full object-cover opacity-50"
+            />
           </div>
+          
+          {/* Blue overlay that appears on hover */}
+          <div 
+            className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-all duration-300"
+            style={{ backgroundColor: project.bgColor }}
+          ></div>
         </div>
         
         {/* Information below image - always visible */}
         <div className="p-4 bg-white flex-grow">
           <div className="flex justify-between items-center">
-            <div>
-              <p className="text-sm text-gray-500 mb-1">{project.category}</p>
-              <p className="font-semibold text-gray-800">{project.title}</p>
+            <div className="flex-1">
+              <p className="text-base font-medium text-[#2B5F93] mb-1">{project.domain}</p>
+              <div className="inline-block rounded-full py-1 px-3 text-xs font-medium" 
+                style={{ backgroundColor: project.categoryColor, color: 'white' }}>
+                {project.category}
+              </div>
             </div>
             <div 
-              className="bg-black p-1.5 rounded-md cursor-pointer transition-all duration-300
-              hover:scale-110 hover:shadow-md active:scale-95"
+              className="bg-black group-hover:bg-white p-1.5 rounded-md cursor-pointer transition-all duration-300
+              group-hover:scale-110 group-hover:shadow-md active:scale-95"
             >
-              <ArrowRight className="h-4 w-4 text-white" />
+              <ArrowRight className="h-4 w-4 text-white group-hover:text-[#2B5F93]" />
             </div>
           </div>
         </div>
@@ -156,12 +191,16 @@ export default function ProjectsCarousel() {
   const visibleProjects = getVisibleProjects();
   
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden bg-white">
+      {/* White background for entire section */}
+      <div className="absolute inset-0 w-full h-full bg-white"></div>
+      
       {/* Background with pattern - using directly the image as background */}
       <div className="absolute inset-0 w-full h-full" style={{ 
         backgroundImage: `url(${portfolioBackground})`, 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundSize: 'contain',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}></div>
       
       {/* Rounded light gray container - matching the design */}
