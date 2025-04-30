@@ -3,7 +3,8 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Monitor, Settings, BarChart2, Smartphone, Database } from "lucide-react";
 import laptopImage from "../assets/laptop_display.png";
-import hexBackgroundLight from "../assets/hex_background_light.jpg";
+import arrowLeft from "../assets/arrow_left.png";
+import arrowRight from "../assets/arrow_right.png";
 
 // Feature items with their icons and descriptions
 const analysisFeatures = [
@@ -51,11 +52,11 @@ function FeatureBox({
 }) {
   // Position classes based on where the box should appear
   const positionClasses = {
-    'top-left': 'left-0 top-0 lg:top-16',
-    'top-right': 'right-0 top-0 lg:top-16',
-    'middle-right': 'right-0 top-1/2 -translate-y-1/2',
-    'bottom-left': 'left-0 bottom-0 lg:bottom-16',
-    'bottom-right': 'right-0 bottom-0 lg:bottom-16'
+    'top-left': 'left-0 top-0 md:top-10 connector-right',
+    'top-right': 'right-0 top-0 md:top-10 connector-left',
+    'middle-right': 'right-0 top-1/2 -translate-y-1/2 connector-left',
+    'bottom-left': 'left-0 bottom-0 md:bottom-10 connector-right',
+    'bottom-right': 'right-0 bottom-0 md:bottom-10 connector-left'
   };
   
   const getPositionClass = () => {
@@ -64,15 +65,14 @@ function FeatureBox({
   
   return (
     <div 
-      className={`absolute ${getPositionClass()} flex items-center max-w-[280px] bg-white/90 backdrop-blur-sm border border-dashed border-primary/50 rounded-lg p-3 shadow-sm`}
+      className={`absolute ${getPositionClass()} flex items-center max-w-[280px] bg-white/90 backdrop-blur-sm border border-dashed border-white/50 rounded-lg p-3 shadow-sm relative`}
     >
-      <div className="bg-primary/10 rounded-full p-2.5 mr-3 text-primary">
+      <div className="bg-white/20 rounded-full p-2.5 mr-3 text-white">
         {icon}
       </div>
-      <div className="text-sm text-gray-700 font-medium">
+      <div className="text-sm text-white font-medium">
         {title}
       </div>
-      {/* Connector line to laptop (could be added with pseudo-elements in CSS) */}
     </div>
   );
 }
@@ -83,44 +83,30 @@ export default function AnalysisSection() {
   const isInView = useInView(ref, { once: true });
   
   return (
-    <section className="py-16 sm:py-20 relative overflow-hidden">
-      {/* Split background - Hex pattern left, White right */}
-      <div className="absolute inset-0 w-full h-full flex">
-        {/* Left side - hex pattern background */}
-        <div 
-          className="w-1/2 bg-cover bg-center bg-no-repeat" 
-          style={{ backgroundImage: `url(${hexBackgroundLight})` }}
-        ></div>
+    <section className="py-16 sm:py-20 relative overflow-hidden bg-primary">
+      {/* Background arrow shapes */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-20">
+        {/* Left arrow */}
+        <img 
+          src={arrowLeft} 
+          alt="Left arrow shape" 
+          className="absolute left-0 top-1/2 -translate-y-1/2 h-[300px] md:h-[400px] lg:h-[500px]"
+        />
         
-        {/* Right side - white background */}
-        <div className="w-1/2 bg-white"></div>
-      </div>
-      
-      {/* Orange arrow shapes in background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div 
-          className="absolute left-1/4 top-0 w-[800px] h-[800px] bg-primary/10"
-          style={{
-            clipPath: 'polygon(0 50%, 100% 0, 100% 100%)',
-            transform: 'translateX(-40%) rotate(45deg)'
-          }}
-        ></div>
-        
-        <div 
-          className="absolute right-1/4 top-0 w-[800px] h-[800px] bg-primary/10"
-          style={{
-            clipPath: 'polygon(0 0, 100% 50%, 0 100%)',
-            transform: 'translateX(40%) rotate(45deg)'
-          }}
-        ></div>
+        {/* Right arrow */}
+        <img 
+          src={arrowRight} 
+          alt="Right arrow shape" 
+          className="absolute right-0 top-1/2 -translate-y-1/2 h-[300px] md:h-[400px] lg:h-[500px]"
+        />
       </div>
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             We analyze your needs
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-white/80 max-w-2xl mx-auto">
             In-depth Assessments to Craft Customized Digital Solutions for
             Your Business.
           </p>

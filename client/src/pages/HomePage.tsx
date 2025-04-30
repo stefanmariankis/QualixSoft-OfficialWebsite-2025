@@ -18,10 +18,10 @@ export default function HomePage() {
       <Hero />
       <Partners />
       <WhyWorkWithUs />
+      <EnvisionSection />
       <Services />
       <AnalysisSection />
       <ProjectsCarousel />
-      <EnvisionSection />
       <TechSlider />
       <Testimonials />
       <CTA />
