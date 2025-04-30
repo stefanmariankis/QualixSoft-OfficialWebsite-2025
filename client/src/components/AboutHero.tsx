@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { useIsMobile } from "../hooks/use-mobile";
 import leftArrowImg from "../assets/hero_section_left_arrow.png";
 import aboutHeroDesktopBg from "../assets/about_hero_desktop_bg.png";
 import aboutHeroMobileBg from "../assets/about_hero_mobile_bg.png";
-import { useIsMobile } from "../hooks/use-mobile";
 
 export default function AboutHero() {
   const isMobile = useIsMobile();
@@ -13,7 +13,7 @@ export default function AboutHero() {
     <section className="bg-primary pt-32 pb-8 md:pt-36 md:pb-12 relative overflow-hidden">
       {/* Background image */}
       <div 
-        className="absolute inset-0 w-full h-full z-0 bg-center bg-cover" 
+        className="absolute inset-0 w-full h-full z-0 bg-center bg-cover bg-no-repeat" 
         style={{ backgroundImage: `url(${backgroundImage})` }}
       ></div>
       
