@@ -86,32 +86,37 @@ export default function ProjectsCarousel() {
   const slideDirection = useRef('right-to-left');
   const slideContainerRef = useRef<HTMLDivElement>(null);
   
+  // Track animation states for each position
+  const [leftProjectAnimating, setLeftProjectAnimating] = useState(false);
+  const [rightProjectAnimating, setRightProjectAnimating] = useState(false);
+  const [newProjectAnimating, setNewProjectAnimating] = useState(false);
+  
   // Handle slide change with animation
   const changeSlide = () => {
-    // Start the slide animation
+    // Start the slide animation sequence
     setIsChanging(true);
     
-    // Apply sliding animation using CSS classes
-    if (slideContainerRef.current) {
-      slideContainerRef.current.classList.add('slide-out-left');
-    }
+    // Step 1: Fade out left project
+    setLeftProjectAnimating(true);
     
-    // After slide out animation, change the slide
     setTimeout(() => {
-      setCurrentIndex(prev => (prev + 1) % projects.length);
+      // Step 2: Move right project to left
+      setRightProjectAnimating(true);
       
-      // Reset position for slide in animation
-      if (slideContainerRef.current) {
-        slideContainerRef.current.classList.remove('slide-out-left');
-        slideContainerRef.current.classList.add('slide-in-right');
-      }
-      
-      // Complete the animation
+      // Step 3: After initial animations, change data
       setTimeout(() => {
-        if (slideContainerRef.current) {
-          slideContainerRef.current.classList.remove('slide-in-right');
-        }
-        setIsChanging(false);
+        setCurrentIndex(prev => (prev + 1) % projects.length);
+        
+        // Step 4: Fade in new project from right
+        setNewProjectAnimating(true);
+        
+        // Step 5: Reset all animations when complete
+        setTimeout(() => {
+          setLeftProjectAnimating(false);
+          setRightProjectAnimating(false);
+          setNewProjectAnimating(false);
+          setIsChanging(false);
+        }, 300);
       }, 300);
     }, 300);
   };
@@ -149,7 +154,14 @@ export default function ProjectsCarousel() {
               {visibleProjects.map((project, index) => (
                 <div
                   key={`${currentIndex}-${index}`}
-                  className={`${isMobile ? 'w-full' : 'w-[45%]'} transition-all duration-500 ease-out`}
+                  className={`${isMobile ? 'w-full' : 'w-[45%]'} transition-all duration-500 ease-out
+                    ${isMobile ? 
+                      (leftProjectAnimating ? 'fade-out-left' : '') :
+                      (index === 0 && leftProjectAnimating ? 'fade-out-left' : 
+                       index === 1 && rightProjectAnimating ? 'slide-right-to-left' : 
+                       index === 1 && newProjectAnimating ? 'fade-in-from-right' : '')
+                    }
+                  `}
                   onMouseEnter={() => setIsPaused(true)}
                   onMouseLeave={() => setIsPaused(false)}
                 >
