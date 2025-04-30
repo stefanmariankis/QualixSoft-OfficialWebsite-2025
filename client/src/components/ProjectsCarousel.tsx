@@ -93,8 +93,14 @@ const projects = [
 // Project card component 
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-md group h-full relative">
-      <div className="h-full flex flex-col">
+    <div className="bg-white rounded-xl overflow-hidden shadow-md group h-full relative transition-all duration-300">
+      {/* Full card overlay that appears on hover */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-all duration-300 z-10"
+        style={{ backgroundColor: project.bgColor }}
+      ></div>
+      
+      <div className="h-full flex flex-col relative z-20">
         {/* Project Image Container */}
         <div className="w-full h-52 overflow-hidden relative bg-white">
           {/* Image container with screen/monitor style */}
@@ -103,7 +109,7 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
             <img 
               src={project.logo} 
               alt={project.title} 
-              className="h-3/5 object-contain z-10 max-w-[70%] transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+              className="h-3/5 object-contain z-10 max-w-[70%] transition-all duration-300 group-hover:brightness-1"
             />
             
             {/* Background image that shows the screenshot/monitor */}
@@ -113,7 +119,7 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
               className="absolute inset-0 w-full h-full object-cover opacity-50"
             />
           </div>
-          
+
           {/* Blue overlay that appears on hover */}
           <div 
             className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-all duration-300"
@@ -122,11 +128,11 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
         </div>
         
         {/* Information below image - always visible */}
-        <div className="p-4 bg-white flex-grow">
+        <div className="p-4 bg-transparent flex-grow relative shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] rounded-tl-xl rounded-tr-xl">
           <div className="flex justify-between items-center">
             <div className="flex-1">
-              <p className="text-base font-medium text-[#2B5F93] mb-1">{project.domain}</p>
-              <div className="inline-block rounded-full py-1 px-3 text-xs font-medium" 
+              <p className="text-base font-medium text-[#2B5F93] mb-1 group-hover:text-white transition-colors duration-300">{project.domain}</p>
+              <div className="inline-block rounded-full py-1 px-3 text-xs font-medium transition-colors duration-300" 
                 style={{ backgroundColor: project.categoryColor, color: 'white' }}>
                 {project.category}
               </div>
@@ -191,20 +197,14 @@ export default function ProjectsCarousel() {
   const visibleProjects = getVisibleProjects();
   
   return (
-    <section className="py-20 relative overflow-hidden bg-white">
-      {/* White background for entire section */}
-      <div className="absolute inset-0 w-full h-full bg-white"></div>
-      
-      {/* Background with pattern - using directly the image as background */}
-      <div className="absolute inset-0 w-full h-full" style={{ 
-        backgroundImage: `url(${portfolioBackground})`, 
-        backgroundSize: 'contain',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}></div>
-      
+    <section className="py-20 relative overflow-hidden bg-white" style={{ 
+      backgroundImage: `url(${portfolioBackground})`, 
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }}>
       {/* Rounded light gray container - matching the design */}
-      <div className="relative z-10 max-w-6xl mx-auto rounded-[40px] px-4 py-16 overflow-hidden bg-[#f0f0f0]">
+      <div className="relative z-10 max-w-6xl mx-auto rounded-[40px] px-4 py-16 overflow-hidden">
         <div className="text-center mb-12">
           <p className="text-sm uppercase font-semibold tracking-wider text-primary mb-2">PORTFOLIO</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">We'll create your idea</h2>
@@ -232,31 +232,11 @@ export default function ProjectsCarousel() {
           </div>
         </div>
         
-        {/* Carousel indicators */}
-        <div className="flex justify-center mt-2 mb-8 space-x-2">
-          {projects.slice(0, Math.ceil(projects.length / (isMobile ? 1 : 2))).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setFadeOut(true);
-                setTimeout(() => {
-                  setCurrentIndex(index * (isMobile ? 1 : 2));
-                  setFadeOut(false);
-                }, 500);
-              }}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                Math.floor(currentIndex / (isMobile ? 1 : 2)) === index ? 'w-6 bg-primary' : 'bg-primary/30'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            ></button>
-          ))}
-        </div>
-        
         {/* View all projects link */}
         <div className="text-center pb-10">
           <LocalizedLink 
             to="/portfolio" 
-            className="inline-flex items-center text-foreground group transition-all duration-300 
+            className="inline-flex items-center font-bold text-foreground group transition-all duration-300 
             hover:text-primary hover:scale-105 active:scale-95"
           >
             {t('All projects')}

@@ -12,6 +12,7 @@ export default {
       },
       colors: {
         background: "hsl(var(--background))",
+        titles: "#5D5D5D",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",

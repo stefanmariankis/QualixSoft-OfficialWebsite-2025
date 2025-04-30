@@ -100,9 +100,9 @@ export default function AnalysisSection() {
   }, []);
   
   return (
-    <section className="py-20 bg-primary relative overflow-hidden">
+    <section style={{ backgroundColor: '#EB7127' }} className="py-20 relative overflow-hidden">
       {/* Background with the provided image */}
-      <div className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat z-0"
+      <div className="absolute inset-0 w-full h-full bg-center bg-contain bg-no-repeat z-0"
            style={{ backgroundImage: `url(${needsBackground})` }}>
       </div>
       
@@ -118,7 +118,7 @@ export default function AnalysisSection() {
           {/* Laptop in the center */}
           <div 
             id="centerLaptop"
-            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] z-10"
+            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
           >
             <img 
               src={laptopImage} 

@@ -67,7 +67,7 @@ export default function Services() {
 
   return (
     <motion.section 
-      className="py-20 bg-[#f9f9f9] relative overflow-hidden"
+      className="py-20 bg-white relative overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -82,14 +82,11 @@ export default function Services() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <motion.p 
+          <h4 
             className="text-sm uppercase font-semibold tracking-wider text-primary mb-2"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
           >
             OUR SERVICES
-          </motion.p>
+          </h4>
           <motion.h2 
             className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
             initial={{ opacity: 0, y: 10 }}
@@ -148,9 +145,9 @@ export default function Services() {
               </div>
               
               {/* Service title and description */}
-              <h3 className="text-lg font-medium text-gray-700 mb-2">
+              <p className="text-lg font-medium text-gray-700 mb-2">
                 {service.title}
-              </h3>
+              </p>
               
               <p className="text-gray-600 text-sm">
                 {service.description}

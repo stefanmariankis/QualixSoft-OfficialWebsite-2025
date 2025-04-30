@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 
 // Import client logos
 import unicoolLogo from "../assets/client_unicool.png";
@@ -58,7 +57,7 @@ export default function Partners() {
   };
   
   return (
-    <section className="py-4 bg-primary relative overflow-hidden">
+    <section className="py-8 bg-primary relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top text */}
         <div className="text-center text-white text-sm mb-3">
@@ -68,29 +67,18 @@ export default function Partners() {
           </div>
         </div>
         
-        {/* Carousel container with navigation arrows */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Previous button */}
-          <button 
-            onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 rounded-full p-1 text-white transition-all"
-            disabled={activeIndex === 0}
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </button>
-          
+        {/* Carousel container */}
+        <div className="flex mx-auto justify-center">
           {/* Client logos carousel */}
-          <div className="overflow-hidden mx-10">
-            <motion.div 
+          <div className="mx-10">
+            <div 
               ref={sliderRef}
-              className="flex gap-8 md:gap-12 lg:gap-16 items-center py-2"
-              animate={{ x: `-${activeIndex * (window.innerWidth < 768 ? 120 : window.innerWidth < 1024 ? 160 : 200)}px` }}
-              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              className="flex gap-8 md:gap-12 lg:gap-16 items-center py-2 justify-center"
             >
               {partners.map((partner, index) => (
                 <div 
                   key={index} 
-                  className="partner-logo flex-shrink-0 w-20 md:w-28 lg:w-32 flex items-center justify-center"
+                  className="partner-logo flex-shrink-0 w-30 md:w-30 lg:w-40 flex items-center justify-center hover:scale-110"
                 >
                   <a href={partner.href} className="flex items-center justify-center h-full w-full">
                     <img 
@@ -101,17 +89,8 @@ export default function Partners() {
                   </a>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
-          
-          {/* Next button */}
-          <button 
-            onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 rounded-full p-1 text-white transition-all"
-            disabled={activeIndex >= partners.length - (window.innerWidth < 768 ? 2 : window.innerWidth < 1024 ? 3 : 5)}
-          >
-            <ArrowRight className="h-5 w-5" />
-          </button>
         </div>
       </div>
     </section>

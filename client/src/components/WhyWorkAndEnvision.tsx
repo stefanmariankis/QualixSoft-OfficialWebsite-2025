@@ -8,6 +8,7 @@ import expertTeamIcon from "../assets/icon_expert_team.png";
 import fullServiceSupportIcon from "../assets/icon_full_service_support.png";
 import provenResultsIcon from "../assets/icon_proven_results.png";
 
+import readyForNewBusiness from "../assets/home_ready_new_business_image.png"
 // Create feature cards data
 const features = [
   {
@@ -39,12 +40,12 @@ const features = [
 // Feature Card Component
 const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
   return (
-    <div className="flex flex-col items-center text-center animate-fadeIn bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow" style={{ animationDelay: `${feature.id * 0.1}s` }}>
+    <div className="flex flex-col items-center text-center animate-fadeIn hover:backdrop-blur-sm rounded-lg p-6 hover:shadow-sm hover:bg-white/90 hover:shadow-md transition-shadow" style={{ animationDelay: `${feature.id * 0.1}s` }}>
       <div className="mb-4">
         <img
           src={feature.icon}
           alt={feature.title}
-          className="w-16 h-16"
+          className="w-16 h-auto"
         />
       </div>
       <h3 className="text-primary font-semibold text-lg mb-2">
@@ -92,30 +93,15 @@ export default function WhyWorkAndEnvision() {
         </div>
         
         {/* Second part: We are ready for a new business idea */}
-        <div className="mt-24 pt-16 border-t border-gray-200/50">
+        <div className="mt-24 pt-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
             {/* Left Side with Images */}
             <div className="relative flex flex-col sm:flex-row gap-4">
-              {/* Top-left image */}
-              <div className="sm:w-1/2 h-[250px] rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop"
-                  alt="Team planning session" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Middle orange square */}
-              <div className="absolute sm:static left-1/2 top-1/2 -translate-x-1/2 w-20 h-20 bg-primary rounded-md mt-4"></div>
-              
-              {/* Bottom-right image */}
-              <div className="sm:w-1/2 h-[250px] sm:mt-10 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
-                  alt="Team collaboration" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <img 
+                src={readyForNewBusiness}
+                alt="Team collaboration" 
+                className="w-full h-full object-cover"
+              />
             </div>
             
             {/* Right Side with Content */}
