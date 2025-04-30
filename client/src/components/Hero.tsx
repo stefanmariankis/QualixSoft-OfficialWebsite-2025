@@ -1,31 +1,36 @@
 import { CheckCircle } from "lucide-react";
-import openTagImg from "../assets/open_tag.png";
-import closeTagImg from "../assets/close_tag.png";
-import slashImg from "../assets/slash.png";
 import { useTranslation } from "react-i18next";
+import hexBackground from "../assets/hex_background.jpg";
 
 export default function Hero() {
   const { t } = useTranslation();
   
   return (
-    <section className="pt-32 pb-20 md:pb-28 relative overflow-hidden bg-white">
+    <section className="pt-24 pb-20 md:pb-28 relative overflow-hidden min-h-[650px] flex items-center">
+      {/* Background with hexagons */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0" 
+        style={{ backgroundImage: `url(${hexBackground})` }}
+      ></div>
+      
+      {/* Content Container */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
           {/* Left side - Content */}
           <div className="animate-fadeIn">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-700 leading-tight mb-6">
               Building Your<br />
               <span className="text-primary">Digital Future</span>
             </h1>
             
-            <p className="text-lg text-foreground mb-8 max-w-lg">
+            <p className="text-lg text-gray-600 mb-8 max-w-lg">
               Tailored Web Development, E-commerce, and SEO
               Services to Boost Your Online Presence
             </p>
             
             <a 
               href="#" 
-              className="btn-primary transition-all duration-300 hover:scale-105 active:scale-95"
+              className="bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-md font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Get a free proposal
             </a>
@@ -43,7 +48,7 @@ export default function Hero() {
                   </div>
                 ))}
               </div>
-              <div className="ml-3 flex items-center text-foreground text-sm transition-transform duration-300 hover:scale-[1.03]">
+              <div className="ml-3 flex items-center text-gray-600 text-sm transition-transform duration-300 hover:scale-[1.03]">
                 <span>Over 30 clients satisfied</span>
                 <div className="transition-all duration-300 hover:rotate-[360deg]">
                   <CheckCircle className="h-4 w-4 ml-1 text-primary" />
@@ -52,37 +57,63 @@ export default function Hero() {
             </div>
           </div>
           
-          {/* Right side - Design Elements */}
-          <div className="animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-            {/* New container for holding all three elements horizontally */}
-            <div className="relative flex justify-center items-center h-[250px] md:h-[300px]">
-              {/* All three elements in a row */}
-              <div className="flex items-center justify-between w-full max-w-md mx-auto">
-                {/* Open tag (left bracket) */}
-                <div className="w-[28%] transition-transform duration-300 hover:-translate-x-2">
-                  <img 
-                    src={openTagImg} 
-                    alt="Open tag" 
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-                
-                {/* Slash in the middle */}
-                <div className="w-[28%] z-10 transition-transform duration-300 hover:scale-110">
-                  <img 
-                    src={slashImg} 
-                    alt="Code slash" 
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-                
-                {/* Close tag (right bracket) */}
-                <div className="w-[28%] transition-transform duration-300 hover:translate-x-2">
-                  <img 
-                    src={closeTagImg} 
-                    alt="Close tag" 
-                    className="w-full h-auto object-contain"
-                  />
+          {/* Right side - Chevron/Brackets Design */}
+          <div className="animate-fadeIn relative" style={{ animationDelay: '0.2s' }}>
+            <div className="relative flex justify-center items-center h-[300px] lg:h-[350px]">
+              {/* Overlay symbols with orange color scheme */}
+              <div className="relative w-full max-w-xl h-full flex items-center">
+                {/* Container for all three brackets */}
+                <div className="w-full h-full relative overflow-hidden">
+                  {/* Left angle bracket */}
+                  <div 
+                    className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 max-w-[140px] h-[150px] lg:h-[220px]"
+                    style={{
+                      clipPath: 'polygon(0 50%, 100% 0, 100% 100%)',
+                      background: 'linear-gradient(90deg, #EB7127 0%, #F08A4B 100%)'
+                    }}
+                  >
+                    {/* Image inside left bracket - people collaborating */}
+                    <div 
+                      className="absolute inset-0 opacity-30 bg-center bg-cover mix-blend-overlay"
+                      style={{
+                        backgroundImage: 'url(https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop)'
+                      }}
+                    ></div>
+                  </div>
+                  
+                  {/* Middle bar */}
+                  <div 
+                    className="absolute left-1/3 top-1/2 -translate-y-1/2 w-1/3 max-w-[140px] h-[150px] lg:h-[220px]"
+                    style={{
+                      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                      background: 'linear-gradient(90deg, #C35214 0%, #A83E00 100%)'
+                    }}
+                  >
+                    {/* Image inside middle bracket - code/development */}
+                    <div 
+                      className="absolute inset-0 opacity-30 bg-center bg-cover mix-blend-overlay"
+                      style={{
+                        backgroundImage: 'url(https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=2070&auto=format&fit=crop)'
+                      }}
+                    ></div>
+                  </div>
+                  
+                  {/* Right angle bracket */}
+                  <div 
+                    className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 max-w-[140px] h-[150px] lg:h-[220px]"
+                    style={{
+                      clipPath: 'polygon(0 0, 100% 50%, 0 100%)',
+                      background: 'linear-gradient(90deg, #FFCBAD 0%, #FFA98A 100%)'
+                    }}
+                  >
+                    {/* Image inside right bracket - result/website */}
+                    <div 
+                      className="absolute inset-0 opacity-30 bg-center bg-cover mix-blend-overlay"
+                      style={{
+                        backgroundImage: 'url(https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070&auto=format&fit=crop)'
+                      }}
+                    ></div>
+                  </div>
                 </div>
               </div>
             </div>
