@@ -1,183 +1,163 @@
-import { Smartphone, Monitor, Database, Settings, BarChart3 } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Monitor, Settings, BarChart2, Smartphone, Database } from "lucide-react";
+import laptopImage from "../assets/laptop_display.png";
+import hexBackgroundLight from "../assets/hex_background_light.jpg";
 
-export default function AnalysisSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
+// Feature items with their icons and descriptions
+const analysisFeatures = [
+  {
+    id: 1,
+    icon: <Monitor className="h-6 w-6" />,
+    title: "User Experience (UX) Optimization",
+    position: "top-left"
+  },
+  {
+    id: 2,
+    icon: <Settings className="h-6 w-6" />,
+    title: "Ongoing Maintenance and Support",
+    position: "top-right"
+  },
+  {
+    id: 3,
+    icon: <Smartphone className="h-6 w-6" />,
+    title: "Mobile App Development",
+    position: "bottom-left"
+  },
+  {
+    id: 4,
+    icon: <BarChart2 className="h-6 w-6" />,
+    title: "Search Engine Optimization",
+    position: "middle-right"
+  },
+  {
+    id: 5,
+    icon: <Database className="h-6 w-6" />,
+    title: "Scalable Backend Solutions",
+    position: "bottom-right"
+  }
+];
+
+// Feature box component for each analysis item
+function FeatureBox({ 
+  icon, 
+  title, 
+  position
+}: { 
+  icon: React.ReactNode, 
+  title: string, 
+  position: string 
+}) {
+  // Position classes based on where the box should appear
+  const positionClasses = {
+    'top-left': 'left-0 top-0 lg:top-16',
+    'top-right': 'right-0 top-0 lg:top-16',
+    'middle-right': 'right-0 top-1/2 -translate-y-1/2',
+    'bottom-left': 'left-0 bottom-0 lg:bottom-16',
+    'bottom-right': 'right-0 bottom-0 lg:bottom-16'
+  };
   
-  // Function to draw lines connecting boxes to the center black square
-  useEffect(() => {
-    const updateLines = () => {
-      if (!containerRef.current || !svgRef.current) return;
-      
-      // Get center black square position
-      const blackSquare = document.getElementById('blackSquare');
-      if (!blackSquare) return;
-      
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const blackSquareRect = blackSquare.getBoundingClientRect();
-      
-      // Calculate center points relative to the container
-      const centerX = blackSquareRect.left + blackSquareRect.width / 2 - containerRect.left;
-      const centerY = blackSquareRect.top + blackSquareRect.height / 2 - containerRect.top;
-      
-      // Clear existing lines
-      if (svgRef.current) {
-        while (svgRef.current.firstChild) {
-          svgRef.current.removeChild(svgRef.current.firstChild);
-        }
-      } else {
-        return;
-      }
-      
-      if (!svgRef.current) return;
-      
-      // Create marker definition for dot at the end of lines
-      const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-      const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
-      marker.setAttribute("id", "dot");
-      marker.setAttribute("viewBox", "0 0 10 10");
-      marker.setAttribute("refX", "5");
-      marker.setAttribute("refY", "5");
-      marker.setAttribute("markerWidth", "5");
-      marker.setAttribute("markerHeight", "5");
-      
-      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      circle.setAttribute("cx", "5");
-      circle.setAttribute("cy", "5");
-      circle.setAttribute("r", "2.5");
-      circle.setAttribute("fill", "white");
-      circle.setAttribute("fill-opacity", "0.5");
-      
-      marker.appendChild(circle);
-      defs.appendChild(marker);
-      svgRef.current.appendChild(defs);
-      
-      // Connect each box to the center
-      ['box1', 'box2', 'box3', 'box4', 'box5'].forEach(boxId => {
-        const box = document.getElementById(boxId);
-        if (!box) return;
-        
-        const boxRect = box.getBoundingClientRect();
-        
-        // Calculate connection points relative to the container
-        const boxCenterX = boxRect.left + boxRect.width / 2 - containerRect.left;
-        const boxCenterY = boxRect.top + boxRect.height / 2 - containerRect.top;
-        
-        // Create the line
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", boxCenterX.toString());
-        line.setAttribute("y1", boxCenterY.toString());
-        line.setAttribute("x2", centerX.toString());
-        line.setAttribute("y2", centerY.toString());
-        line.setAttribute("stroke", "white");
-        line.setAttribute("stroke-opacity", "0.3");
-        line.setAttribute("stroke-width", "1.5");
-        line.setAttribute("stroke-dasharray", "5,5");
-        line.setAttribute("marker-end", "url(#dot)");
-        
-        if (svgRef.current) {
-          svgRef.current.appendChild(line);
-        }
-      });
-    };
-    
-    // Update on mount and resize
-    updateLines();
-    window.addEventListener('resize', updateLines);
-    
-    // Small delay to ensure DOM is fully rendered
-    const timeout = setTimeout(updateLines, 500);
-    
-    return () => {
-      window.removeEventListener('resize', updateLines);
-      clearTimeout(timeout);
-    };
-  }, []);
+  const getPositionClass = () => {
+    return positionClasses[position as keyof typeof positionClasses] || '';
+  };
   
   return (
-    <section className="py-20 bg-primary relative overflow-hidden">
-      {/* Plain background - no arrows as requested */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">We analyze your needs</h2>
-          <p className="text-white text-opacity-90 max-w-2xl mx-auto">
-            In-depth Assessments to Craft Customized Digital Solutions for Your Business.
-          </p>
-        </div>
-        
-        <div ref={containerRef} className="relative min-h-[480px]">
-          {/* Black square in the center */}
-          <div 
-            id="blackSquare"
-            className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-black rounded-md z-10"
-          ></div>
-          
-          {/* Feature boxes positioned around the black square */}
-          <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px] z-20">
-            <FeatureBox 
-              icon={<Monitor className="h-5 w-5 text-primary" />}
-              title="User Experience (UX) Optimization"
-              description="Optimization"
-            />
-          </div>
-          
-          <div id="box2" className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px] z-20">
-            <FeatureBox 
-              icon={<Settings className="h-5 w-5 text-primary" />}
-              title="Ongoing Maintenance and Support"
-              description="Support"
-            />
-          </div>
-          
-          <div id="box3" className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px] z-20">
-            <FeatureBox 
-              icon={<Smartphone className="h-5 w-5 text-primary" />}
-              title="Mobile App Development"
-              description=""
-            />
-          </div>
-          
-          <div id="box4" className="absolute top-[180px] right-0 md:right-[30px] lg:right-[120px] w-[220px] z-20">
-            <FeatureBox 
-              icon={<BarChart3 className="h-5 w-5 text-primary" />}
-              title="Search Engine Optimization"
-              description=""
-            />
-          </div>
-          
-          <div id="box5" className="absolute bottom-0 right-[30%] w-[220px] z-20">
-            <FeatureBox 
-              icon={<Database className="h-5 w-5 text-primary" />}
-              title="Scalable Backend Solutions"
-              description=""
-            />
-          </div>
-          
-          {/* Dynamic SVG overlay for dashed lines */}
-          <svg 
-            ref={svgRef} 
-            className="absolute inset-0 w-full h-full pointer-events-none z-0"
-            xmlns="http://www.w3.org/2000/svg"
-          ></svg>
-        </div>
+    <div 
+      className={`absolute ${getPositionClass()} flex items-center max-w-[280px] bg-white/90 backdrop-blur-sm border border-dashed border-primary/50 rounded-lg p-3 shadow-sm`}
+    >
+      <div className="bg-primary/10 rounded-full p-2.5 mr-3 text-primary">
+        {icon}
       </div>
-    </section>
+      <div className="text-sm text-gray-700 font-medium">
+        {title}
+      </div>
+      {/* Connector line to laptop (could be added with pseudo-elements in CSS) */}
+    </div>
   );
 }
 
-function FeatureBox({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
+export default function AnalysisSection() {
+  const { t } = useTranslation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  
   return (
-    <div className="bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20 border-dashed rounded-md p-3 text-white">
-      <div className="flex items-center mb-1">
-        <div className="bg-white rounded-sm p-1 mr-2 flex-shrink-0">
-          {icon}
-        </div>
-        <div className="text-sm font-semibold">{title}</div>
+    <section className="py-16 sm:py-20 relative overflow-hidden">
+      {/* Split background - Hex pattern left, White right */}
+      <div className="absolute inset-0 w-full h-full flex">
+        {/* Left side - hex pattern background */}
+        <div 
+          className="w-1/2 bg-cover bg-center bg-no-repeat" 
+          style={{ backgroundImage: `url(${hexBackgroundLight})` }}
+        ></div>
+        
+        {/* Right side - white background */}
+        <div className="w-1/2 bg-white"></div>
       </div>
-      {description && (
-        <div className="text-xs text-white text-opacity-80 ml-7">{description}</div>
-      )}
-    </div>
+      
+      {/* Orange arrow shapes in background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div 
+          className="absolute left-1/4 top-0 w-[800px] h-[800px] bg-primary/10"
+          style={{
+            clipPath: 'polygon(0 50%, 100% 0, 100% 100%)',
+            transform: 'translateX(-40%) rotate(45deg)'
+          }}
+        ></div>
+        
+        <div 
+          className="absolute right-1/4 top-0 w-[800px] h-[800px] bg-primary/10"
+          style={{
+            clipPath: 'polygon(0 0, 100% 50%, 0 100%)',
+            transform: 'translateX(40%) rotate(45deg)'
+          }}
+        ></div>
+      </div>
+      
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            We analyze your needs
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            In-depth Assessments to Craft Customized Digital Solutions for
+            Your Business.
+          </p>
+        </div>
+        
+        <div ref={ref} className="relative mt-12 max-w-4xl mx-auto min-h-[500px]">
+          {/* Laptop in the center */}
+          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md z-10">
+            <motion.img 
+              src={laptopImage} 
+              alt="Laptop displaying website" 
+              className="w-full h-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            />
+          </div>
+          
+          {/* Feature boxes positioned around the laptop */}
+          <div className="absolute inset-0">
+            {analysisFeatures.map((feature, index) => (
+              <motion.div
+                key={feature.id}
+                initial={{ opacity: 0, x: feature.position.includes('left') ? -20 : 20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: feature.position.includes('left') ? -20 : 20 }}
+                transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
+              >
+                <FeatureBox
+                  icon={feature.icon}
+                  title={feature.title}
+                  position={feature.position}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
