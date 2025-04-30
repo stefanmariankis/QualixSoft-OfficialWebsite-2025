@@ -9,7 +9,7 @@ export default function Hero() {
   const { t } = useTranslation();
   
   return (
-    <section className="pt-20 pb-16 md:pt-24 md:pb-28 relative overflow-hidden min-h-[90vh] md:min-h-[100vh] flex items-center">
+    <section className="pt-16 pb-10 md:pt-24 md:pb-28 relative overflow-hidden min-h-[80vh] md:min-h-[100vh] flex items-center">
       {/* Background with hexagons */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0" 
@@ -18,7 +18,7 @@ export default function Hero() {
       
       {/* Content Container */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-6 items-center">
+        <div className="flex flex-col lg:flex-row gap-4 md:gap-6 items-center">
           {/* Left side - Content (mobile: full width, desktop: 45%) */}
           <div className="animate-fadeIn w-full lg:w-[40%]">
             {/* Mobile-optimized title and subtitle */}
@@ -57,7 +57,7 @@ export default function Hero() {
             <div className="flex">
               <a 
                 href="#" 
-                className="bg-[#222222] hover:bg-black text-white text-center w-full md:w-auto px-6 py-3 rounded-md font-medium transition-all duration-300 hover:scale-105"
+                className="bg-primary hover:bg-primary/90 text-white text-center w-full md:w-auto px-6 py-3 rounded-md font-medium transition-all duration-300 hover:scale-105 hover:shadow-md"
               >
                 Get a free proposal
               </a>
@@ -69,18 +69,18 @@ export default function Hero() {
                 {[1, 2, 3, 4, 5].map((_, index) => (
                   <div 
                     key={index} 
-                    className="w-6 h-6 md:w-8 md:h-8 rounded-full border border-white overflow-hidden"
+                    className="w-5 h-5 md:w-8 md:h-8 rounded-full border border-white overflow-hidden"
                   >
-                    <div className="bg-gray-400 w-full h-full flex items-center justify-center text-xs text-white">
+                    <div className="bg-gray-400 w-full h-full flex items-center justify-center text-[10px] md:text-xs text-white">
                       <span>U</span>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="ml-3 flex items-center text-gray-600 text-xs md:text-sm">
+              <div className="ml-2 md:ml-3 flex items-center text-gray-600 text-[10px] md:text-sm">
                 <span>Over 30 clients satisfied</span>
                 <div>
-                  <CheckCircle className="h-4 w-4 ml-1 text-gray-600" />
+                  <CheckCircle className="h-3 w-3 md:h-4 md:w-4 ml-1 text-gray-600" />
                 </div>
               </div>
             </div>
