@@ -1,10 +1,22 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import leftArrowImg from "../assets/hero_section_left_arrow.png";
+import aboutHeroDesktopBg from "../assets/about_hero_desktop_bg.png";
+import aboutHeroMobileBg from "../assets/about_hero_mobile_bg.png";
+import { useIsMobile } from "../hooks/use-mobile";
 
 export default function AboutHero() {
+  const isMobile = useIsMobile();
+  const backgroundImage = isMobile ? aboutHeroMobileBg : aboutHeroDesktopBg;
+  
   return (
     <section className="bg-primary pt-32 pb-8 md:pt-36 md:pb-12 relative overflow-hidden">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 w-full h-full z-0 bg-center bg-cover" 
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
+      
       {/* Left Arrow (Original) - positioned to the left of text */}
       <div className="absolute left-[25%] md:left-[30%] top-1/2 transform -translate-y-1/2 opacity-40 hidden md:block z-0">
         <img src={leftArrowImg} alt="Left arrow" className="w-56 h-auto" />
