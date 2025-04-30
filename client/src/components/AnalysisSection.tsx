@@ -1,6 +1,7 @@
 import { Smartphone, Monitor, Database, Settings, BarChart3, BarChart2 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import laptopImage from "../assets/laptop_display.png";
+import needsBackground from "../assets/needs_background.png";
 import { useTranslation } from "react-i18next";
 
 export default function AnalysisSection() {
@@ -100,7 +101,11 @@ export default function AnalysisSection() {
   
   return (
     <section className="py-20 bg-primary relative overflow-hidden">
-      {/* Plain background - no arrows as requested */}
+      {/* Background with the provided image */}
+      <div className="absolute inset-0 w-full h-full bg-center bg-cover bg-no-repeat z-0"
+           style={{ backgroundImage: `url(${needsBackground})` }}>
+      </div>
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">We analyze your needs</h2>
