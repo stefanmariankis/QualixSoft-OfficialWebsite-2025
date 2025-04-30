@@ -59,52 +59,30 @@ const projects = [
   }
 ];
 
-type ProjectCardProps = {
-  project: typeof projects[0];
-  position: 'left' | 'right';
-  animationState: 'enter' | 'exit' | 'static';
-};
-
-// Separated component for project card to improve animation control
-function ProjectCard({ project, position, animationState }: ProjectCardProps) {
-  const getAnimationClass = () => {
-    if (animationState === 'static') return '';
-    
-    if (position === 'left') {
-      return animationState === 'exit' ? 'animate-fadeOutLeft' : '';
-    } else { // position === 'right'
-      if (animationState === 'exit') {
-        return 'animate-slideLeftToCenter';
-      } else { // animationState === 'enter'
-        return 'animate-fadeInRight';
-      }
-    }
-  };
-  
+// Project card component 
+function ProjectCard({ project }: { project: typeof projects[0] }) {
   return (
-    <div className={`h-full w-full ${getAnimationClass()}`}>
-      <div className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group h-full">
-        <div className="relative h-full">
-          <div className="w-full h-64 overflow-hidden">
-            <img 
-              src={project.image} 
-              alt={project.title} 
-              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-            />
-          </div>
-          
-          <div className="p-4 bg-white">
-            <div className="flex justify-between items-center">
-              <div>
-                <p className="font-semibold text-foreground">{project.title}</p>
-                <p className="text-sm text-foreground/70">{project.category}</p>
-              </div>
-              <div 
-                className="bg-primary p-1.5 rounded-md cursor-pointer transition-all duration-300
-                hover:scale-110 hover:shadow-md active:scale-95"
-              >
-                <ArrowRight className="h-4 w-4 text-white" />
-              </div>
+    <div className="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group h-full">
+      <div className="relative h-full">
+        <div className="w-full h-64 overflow-hidden">
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
+          />
+        </div>
+        
+        <div className="p-4 bg-white">
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="font-semibold text-foreground">{project.title}</p>
+              <p className="text-sm text-foreground/70">{project.category}</p>
+            </div>
+            <div 
+              className="bg-primary p-1.5 rounded-md cursor-pointer transition-all duration-300
+              hover:scale-110 hover:shadow-md active:scale-95"
+            >
+              <ArrowRight className="h-4 w-4 text-white" />
             </div>
           </div>
         </div>
@@ -117,75 +95,47 @@ export default function ProjectsCarousel() {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
   
-  // Animation and state management
+  // State for current slide index and animation
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [animating, setAnimating] = useState(false);
-  const [animationPhase, setAnimationPhase] = useState<'idle' | 'exit' | 'change' | 'enter'>('idle');
+  const [fadeOut, setFadeOut] = useState(false);
   
-  // Index tracking
-  const [leftProjectIndex, setLeftProjectIndex] = useState(0);
-  const [rightProjectIndex, setRightProjectIndex] = useState(1);
-  
-  // Carousel container ref for potential direct DOM manipulation
-  const carouselRef = useRef<HTMLDivElement>(null);
-  
-  // Function to advance to next slide with animation sequence
+  // Function to move to the next slide with fade transition
   const nextSlide = () => {
-    if (animating) return;
+    // Start fade out
+    setFadeOut(true);
     
-    setAnimating(true);
-    
-    // Phase 1: Exit animations
-    setAnimationPhase('exit');
-    
-    // Phase 2: Change data
+    // After fade out completes, change slide and fade in
     setTimeout(() => {
-      setAnimationPhase('change');
-      // Calculate new indices
-      setLeftProjectIndex((prevIndex) => (prevIndex + 1) % projects.length);
-      setRightProjectIndex((prevIndex) => (prevIndex + 1) % projects.length);
-      
-      // Phase 3: Enter animations
-      setTimeout(() => {
-        setAnimationPhase('enter');
-        
-        // Phase 4: Reset to idle
-        setTimeout(() => {
-          setAnimationPhase('idle');
-          setAnimating(false);
-        }, 600);
-      }, 50);
-    }, 600);
+      setCurrentIndex((prev) => (prev + 1) % projects.length);
+      setFadeOut(false);
+    }, 500);
   };
   
-  // Handle auto-rotation
+  // Auto-rotate slides when not paused
   useEffect(() => {
-    if (isPaused || animating) return;
+    if (isPaused) return;
     
     const timer = setTimeout(() => {
       nextSlide();
     }, 5000);
     
     return () => clearTimeout(timer);
-  }, [leftProjectIndex, isPaused, animating]);
+  }, [currentIndex, isPaused]);
   
-  // Get current projects based on indices and device
-  const leftProject = projects[leftProjectIndex % projects.length];
-  const rightProject = projects[rightProjectIndex % projects.length];
-  
-  // Handle manual navigation
-  const goToSlide = (index: number) => {
-    if (animating) return;
-    
-    setIsPaused(true);
-    setLeftProjectIndex(index);
-    setRightProjectIndex((index + 1) % projects.length);
-    
-    // Resume auto-rotation after a delay
-    setTimeout(() => {
-      setIsPaused(false);
-    }, 1000);
+  // Get visible projects based on current index and screen size
+  const getVisibleProjects = () => {
+    if (isMobile) {
+      return [projects[currentIndex % projects.length]];
+    } else {
+      return [
+        projects[currentIndex % projects.length],
+        projects[(currentIndex + 1) % projects.length]
+      ];
+    }
   };
+  
+  const visibleProjects = getVisibleProjects();
   
   return (
     <section className="py-16 relative overflow-hidden bg-light-orange-gradient">
@@ -201,40 +151,20 @@ export default function ProjectsCarousel() {
         </div>
         
         <div 
-          className="relative min-h-[400px] mb-12" 
+          className="relative min-h-[400px] mb-12"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           <div className="flex justify-center overflow-hidden">
-            <div 
-              ref={carouselRef}
-              className="flex w-full max-w-5xl justify-between relative pb-8 gap-8"
-            >
-              {/* Left project slot */}
-              <div className={`${isMobile ? 'w-full' : 'w-[45%]'}`}>
-                <ProjectCard 
-                  project={leftProject}
-                  position="left"
-                  animationState={
-                    animationPhase === 'exit' ? 'exit' : 
-                    animationPhase === 'enter' ? 'enter' : 'static'
-                  }
-                />
-              </div>
-              
-              {/* Right project slot - only show on non-mobile */}
-              {!isMobile && (
-                <div className="w-[45%]">
-                  <ProjectCard 
-                    project={rightProject}
-                    position="right"
-                    animationState={
-                      animationPhase === 'exit' ? 'exit' : 
-                      animationPhase === 'enter' ? 'enter' : 'static'
-                    }
-                  />
+            <div className={`flex w-full max-w-5xl justify-between relative pb-8 gap-8 transition-opacity duration-500 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
+              {visibleProjects.map((project, index) => (
+                <div
+                  key={`${currentIndex}-${index}`}
+                  className={`${isMobile ? 'w-full' : 'w-[45%]'}`}
+                >
+                  <ProjectCard project={project} />
                 </div>
-              )}
+              ))}
             </div>
           </div>
         </div>
@@ -244,9 +174,15 @@ export default function ProjectsCarousel() {
           {projects.slice(0, Math.ceil(projects.length / (isMobile ? 1 : 2))).map((_, index) => (
             <button
               key={index}
-              onClick={() => goToSlide(index * (isMobile ? 1 : 2))}
+              onClick={() => {
+                setFadeOut(true);
+                setTimeout(() => {
+                  setCurrentIndex(index * (isMobile ? 1 : 2));
+                  setFadeOut(false);
+                }, 500);
+              }}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                Math.floor(leftProjectIndex / (isMobile ? 1 : 2)) === index ? 'w-6 bg-primary' : 'bg-primary/30'
+                Math.floor(currentIndex / (isMobile ? 1 : 2)) === index ? 'w-6 bg-primary' : 'bg-primary/30'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             ></button>
