@@ -16,31 +16,28 @@ const features = [
   {
     id: 1,
     icon: tailoredSolutionsIcon,
-    title: "Tailored Solutions",
-    description: "We customize strategies to meet your unique business goals."
+    key: "solutions"
   },
   {
     id: 2,
     icon: expertTeamIcon,
-    title: "Expert Team",
-    description: "Our experienced professionals deliver top-tier digital services."
+    key: "expertise"
   },
   {
     id: 3,
     icon: fullServiceSupportIcon,
-    title: "Full-Service Support",
-    description: "We offer continuous support from development to optimization."
+    key: "support"
   },
   {
     id: 4,
     icon: provenResultsIcon,
-    title: "Proven Results",
-    description: "Our data-driven approach ensures measurable success and growth."
+    key: "results"
   }
 ];
 
 // Feature Card Component
 const FeatureCard = ({ feature, isMobile }: { feature: typeof features[0], isMobile: boolean }) => {
+  const { t } = useTranslation();
   // Desktop version (centered)
   if (!isMobile) {
     return (
