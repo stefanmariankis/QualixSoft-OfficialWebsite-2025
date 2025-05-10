@@ -39,13 +39,19 @@ export default function TestimonialsCarousel() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  // Set auto-play to true by default
+  const [autoPlay, setAutoPlay] = useState(true);
   const [isChanging, setIsChanging] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Handle automatic slider
   const startAutoSlide = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
     intervalRef.current = setInterval(() => {
-      if (!isPaused) {
+      if (autoPlay && !isPaused) {
         changeSlide();
       }
     }, 5000);
@@ -70,7 +76,12 @@ export default function TestimonialsCarousel() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPaused, testimonials.length]);
+  }, [isPaused, autoPlay, testimonials.length]);
+  
+  // Start auto-play as soon as component mounts
+  useEffect(() => {
+    setAutoPlay(true);
+  }, []);
 
   const handleMouseEnter = () => {
     setIsPaused(true);
@@ -167,11 +178,18 @@ export default function TestimonialsCarousel() {
             <button
               key={index}
               onClick={() => {
+                // Temporarily pause auto-rotation
                 setIsPaused(true);
+                // Change to the selected slide
+                setIsChanging(true);
                 setTimeout(() => {
                   setCurrentIndex(index);
-                  setIsPaused(false);
-                }, 500);
+                  setIsChanging(false);
+                  // Resume auto-rotation after a short delay
+                  setTimeout(() => {
+                    setIsPaused(false);
+                  }, 1000);
+                }, 300);
               }}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 currentIndex === index ? 'w-6 bg-primary' : 'bg-primary/30'
