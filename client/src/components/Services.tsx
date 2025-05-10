@@ -13,10 +13,10 @@ import optimizationConversion from "../assets/optimization_conversion.png";
 export default function Services() {
   const { t } = useTranslation();
   
-  // Our Services items
+  // Our Services items with their corresponding translation keys
   const ourServices = [
     {
-      key: "web_mobile",
+      key: "web_dev",
       image: webMobileDev
     },
     {
@@ -32,7 +32,7 @@ export default function Services() {
       image: seo
     },
     {
-      key: "digital_marketing",
+      key: "marketing",
       image: digitalMarketing
     },
     {
@@ -128,7 +128,7 @@ export default function Services() {
               <div className="w-full flex items-center justify-start mb-4">
                 <img 
                   src={service.image} 
-                  alt={t(`services.items.${service.key}.title`)}
+                  alt={t(`services.${service.key}.title`)}
                   className="h-[100px] w-[120px] object-contain object-left"
                 />
               </div>
@@ -142,11 +142,11 @@ export default function Services() {
               
               {/* Service title and description */}
               <p className="text-lg font-medium text-gray-700 mb-2">
-                {t(`services.items.${service.key}.title`)}
+                {t(`services.${service.key}.title`)}
               </p>
               
               <p className="text-gray-600 text-sm">
-                {t(`services.items.${service.key}.description`)}
+                {t(`services.${service.key}.description`)}
               </p>
             </motion.div>
           ))}
