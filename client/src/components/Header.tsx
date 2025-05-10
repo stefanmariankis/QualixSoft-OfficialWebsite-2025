@@ -80,7 +80,7 @@ export default function Header() {
             {/* Dropdown Menu */}
             <div className="relative group">
               <button className="nav-link flex items-center">
-                More
+                {t('nav.more')}
                 <ChevronDown className="h-4 w-4 ml-1" />
               </button>
               <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
@@ -94,13 +94,13 @@ export default function Header() {
                   to="/blog"
                   className={`block px-4 py-2 text-sm hover:bg-primary/5 hover:text-primary w-full text-left transition-colors ${isActive('/blog') ? 'text-primary' : 'text-foreground'}`}
                 >
-                  Blog
+                  {t('nav.blog')}
                 </LocalizedLink>
                 <LocalizedLink
                   to="/careers"
                   className={`block px-4 py-2 text-sm hover:bg-primary/5 hover:text-primary w-full text-left transition-colors ${isActive('/careers') ? 'text-primary' : 'text-foreground'}`}
                 >
-                  Careers
+                  {t('nav.careers')}
                 </LocalizedLink>
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function Header() {
               className="block w-full text-left py-2 text-foreground hover:text-primary flex items-center bg-transparent border-0 cursor-pointer transition-colors"
               onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
             >
-              More
+              {t('nav.more')}
               <ChevronDown className={`h-4 w-4 ml-1 inline transition-transform ${mobileMoreOpen ? 'rotate-180' : ''}`} />
             </button>
             {mobileMoreOpen && (
@@ -176,13 +176,13 @@ export default function Header() {
                   to="/blog"
                   className={`block w-full text-left py-2 hover:text-primary transition-colors ${isActive('/blog') ? 'text-primary font-medium' : 'text-foreground'}`}
                 >
-                  Blog
+                  {t('nav.blog')}
                 </LocalizedLink>
                 <LocalizedLink
                   to="/careers"
                   className={`block w-full text-left py-2 hover:text-primary transition-colors ${isActive('/careers') ? 'text-primary font-medium' : 'text-foreground'}`}
                 >
-                  Careers
+                  {t('nav.careers')}
                 </LocalizedLink>
               </div>
             )}

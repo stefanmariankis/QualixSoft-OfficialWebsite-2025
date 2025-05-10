@@ -24,10 +24,10 @@ export default function Hero() {
             {/* Mobile-optimized title and subtitle */}
             <div className="block md:hidden mb-6">
               <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15]">
-                Building Your
+                {t('home.hero.title').split(' ').slice(0, 2).join(' ')}
               </h1>
               <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15]">
-                Digital Future
+                {t('home.hero.title').split(' ').slice(2).join(' ')}
               </h1>
             </div>
             
@@ -45,7 +45,7 @@ export default function Hero() {
             <p className="text-sm md:text-lg text-gray-500 font-normal md:font-bold mb-6 md:mb-8 max-w-md">
               {/* Customized text for mobile screen */}
               <span className="block md:hidden">
-                Tailored Web Development, E-commerce, and SEO Services to Boost Your Online Presence
+                {t('home.hero.description')}
               </span>
               
               {/* Original description for desktop */}
