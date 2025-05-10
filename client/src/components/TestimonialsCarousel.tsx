@@ -12,27 +12,25 @@ interface Testimonial {
 }
 
 export default function TestimonialsCarousel() {
-  const { t, i18n } = useTranslation();
-  
-  // Create testimonials with i18n support
+  const { t } = useTranslation();
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      text: t('home.testimonials.client1_text'),
-      name: t('home.testimonials.client1_name'),
-      company: t('home.testimonials.client1_company'),
+      text: "QualixSoft a reușit să îmi transforme ideea de afacere într-o platformă digitală impresionantă. Echipa lor este extrem de profesionistă și atentă la detalii. Rezultatul a depășit toate așteptările mele.",
+      name: "Andreea Pavel",
+      company: "Econotrade.ro",
       rating: 5
     },
     {
       id: 2,
-      text: t('home.testimonials.client2_text'),
-      name: t('home.testimonials.client2_name'),
-      company: t('home.testimonials.client2_company'),
+      text: "Am lucrat cu QualixSoft pentru dezvoltarea site-ului nostru de e-commerce și suntem extrem de mulțumiți. Produsul final este intuitiv, rapid și ne-a ajutat să creștem vânzările online cu peste 30%.",
+      name: "Mihai Popescu",
+      company: "PulseWelding.ro",
       rating: 5
     },
     {
       id: 3,
-      text: t('home.testimonials.client3_text'),
+      text: "Recomand cu căldură serviciile QualixSoft. Profesionalismul și dedicarea cu care abordează fiecare proiect sunt remarcabile. Comunicarea a fost excelentă pe tot parcursul colaborării.",
       name: "Elena Radu",
       company: "ClimaticGPS.ro",
       rating: 5
@@ -41,19 +39,13 @@ export default function TestimonialsCarousel() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  // Set auto-play to true by default
-  const [autoPlay, setAutoPlay] = useState(true);
   const [isChanging, setIsChanging] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Handle automatic slider
   const startAutoSlide = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    
     intervalRef.current = setInterval(() => {
-      if (autoPlay && !isPaused) {
+      if (!isPaused) {
         changeSlide();
       }
     }, 5000);
@@ -78,12 +70,7 @@ export default function TestimonialsCarousel() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPaused, autoPlay, testimonials.length]);
-  
-  // Start auto-play as soon as component mounts
-  useEffect(() => {
-    setAutoPlay(true);
-  }, []);
+  }, [isPaused, testimonials.length]);
 
   const handleMouseEnter = () => {
     setIsPaused(true);
@@ -109,10 +96,10 @@ export default function TestimonialsCarousel() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h3 className="text-primary uppercase font-semibold mb-3 tracking-wider text-sm">
-            {t('home.testimonials.title')}
+            TESTIMONIALE
           </h3>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            {t('home.testimonials.subtitle')}
+            Peste 50 de clienți vorbesc despre noi
           </h2>
         </div>
 
@@ -180,18 +167,11 @@ export default function TestimonialsCarousel() {
             <button
               key={index}
               onClick={() => {
-                // Temporarily pause auto-rotation
                 setIsPaused(true);
-                // Change to the selected slide
-                setIsChanging(true);
                 setTimeout(() => {
                   setCurrentIndex(index);
-                  setIsChanging(false);
-                  // Resume auto-rotation after a short delay
-                  setTimeout(() => {
-                    setIsPaused(false);
-                  }, 1000);
-                }, 300);
+                  setIsPaused(false);
+                }, 500);
               }}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 currentIndex === index ? 'w-6 bg-primary' : 'bg-primary/30'

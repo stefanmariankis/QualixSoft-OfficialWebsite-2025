@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Github, Code2, ChevronLeft, ChevronRight } from "lucide-react";
 import { SiWordpress, SiShopify, SiHeroku, SiBootstrap, SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiMongodb, SiDocker } from "react-icons/si";
-import { useTranslation } from "react-i18next";
 
 // Tech stack data
 const techItems = [
@@ -69,7 +68,6 @@ const techItems = [
 ];
 
 export default function TechSlider() {
-  const { t } = useTranslation();
   const [isPaused, setIsPaused] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
@@ -148,19 +146,21 @@ export default function TechSlider() {
   };
   
   return (
+<<<<<<< HEAD
+    <section className="py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section title */}
+        <div className="text-center mb-10">
+          <p className="text-lg font-medium text-primary">Some tools that fit your needs</p>
+=======
     <section className="py-14 md:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section title */}
         <div className="text-center mb-12">
-          <h3 className="text-primary uppercase font-semibold mb-2 tracking-wider text-sm">
-            {t('home.tech.title')}
-          </h3>
-          <h2 className="text-3xl font-bold text-gray-800 mb-3">
-            {t('home.tech.subtitle')}
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            {t('home.tech.description')}
-          </p>
+          <h3 className="text-primary uppercase font-semibold mb-2 tracking-wider text-sm">TEHNOLOGII</h3>
+          <h2 className="text-3xl font-bold text-gray-800 mb-3">Some tools that fit your needs</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">Folosim cele mai moderne tehnologii pentru a dezvolta aplicații web performante și scalabile</p>
+>>>>>>> b570588e90662595c0d0f9144705403c75aa0915
         </div>
         
         {/* Tech carousel */}

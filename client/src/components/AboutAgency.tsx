@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import aboutAgencyImg from '../assets/about_agency_img.png';
-import { useTranslation } from 'react-i18next';
 
 export default function AboutAgency() {
-  const { t } = useTranslation();
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,24 +16,24 @@ export default function AboutAgency() {
               viewport={{ once: true }}
             >
               <h3 className="text-primary uppercase font-semibold mb-4 tracking-wider text-sm">
-                {t('about.agency.title')}
+                DESPRE AGENȚIE
               </h3>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-6">
-                {t('about.agency.subtitle')}
+                Ne asigurăm că ideea și creația ta sunt livrate corespunzător
               </h2>
 
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start">
                   <Check className="text-primary mt-1 mr-2 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">{t('about.services_slider.consulting')}</span>
+                  <span className="text-gray-700">Consultanță de specialitate</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="text-primary mt-1 mr-2 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">{t('home.why_work.tailored_solutions')}</span>
+                  <span className="text-gray-700">Soluții personalizate</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="text-primary mt-1 mr-2 flex-shrink-0" size={20} />
-                  <span className="text-gray-700">{t('home.why_work.full_service')}</span>
+                  <span className="text-gray-700">Suport continuu</span>
                 </li>
               </ul>
 
@@ -44,7 +42,7 @@ export default function AboutAgency() {
                 whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)" }}
                 whileTap={{ scale: 0.95 }}
               >
-                {t('home.cta.button')}
+                Solicită o ofertă gratuită
               </motion.button>
             </motion.div>
           </div>
@@ -79,24 +77,25 @@ export default function AboutAgency() {
             >
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-1">
-                  {t('about.agency.vision_title')}
+                  Avem 5+ ani de experiență
                 </h2>
                 <h3 className="text-xl text-gray-700 mb-4">
-                  {t('about.agency.mission_title')}
+                  în servicii IT
                 </h3>
                 <p className="text-gray-600">
-                  {t('about.agency.description')}
+                  Ne-am specializat în dezvoltarea de soluții digitale personalizate care aduc valoare afacerii tale. 
+                  Cu o abordare orientată spre rezultate, transformăm ideile tale în realitate digitală.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-1">
                   <h3 className="text-3xl md:text-4xl font-bold text-gray-700">+500.000</h3>
-                  <p className="text-gray-600 text-sm">{t('about.services_slider.ecommerce')}</p>
+                  <p className="text-gray-600 text-sm">Comenzi pe site-uri web</p>
                 </div>
                 <div className="space-y-1">
                   <h3 className="text-3xl md:text-4xl font-bold text-gray-700">+30</h3>
-                  <p className="text-gray-600 text-sm">{t('about.services_slider.web_mobile')}</p>
+                  <p className="text-gray-600 text-sm">Soluții e-commerce</p>
                 </div>
               </div>
             </motion.div>
