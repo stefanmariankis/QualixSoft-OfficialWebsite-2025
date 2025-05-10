@@ -1,5 +1,4 @@
 import { CheckCircle } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import hexBackground from "../assets/hex_background.jpg";
 import openTagImg from "../assets/open_tag.png";
 import closeTagImg from "../assets/close_tag.png";
@@ -7,8 +6,6 @@ import slashImg from "../assets/slash.png";
 import { satisfied_clients } from "@/lib/constants";
 
 export default function Hero() {
-  const { t } = useTranslation();
-  
   return (
     <section className="pt-16 pb-10 md:pt-24 md:pb-28 relative overflow-hidden min-h-[80vh] md:min-h-[100vh] flex items-center">
       <div 
@@ -21,29 +18,29 @@ export default function Hero() {
           <div className="animate-fadeIn w-full lg:w-[45%]">
             <div className="block md:hidden mb-6">
               <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15]">
-                {t('home.hero.title')}
+                Soluții digitale personalizate
               </h1>
               <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15]">
-                {t('home.hero.subtitle')}
+                pentru afacerea ta
               </h1>
             </div>
             
             <div className="hidden md:block">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
-                {t('home.hero.title')}
+                Soluții digitale personalizate
               </h1>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
-                {t('home.hero.subtitle')}
+                pentru afacerea ta
               </h1>
             </div>
             
             <p className="text-sm md:text-lg text-gray-500 font-normal md:font-bold mb-6 md:mb-8 max-w-md">
               <span className="block md:hidden">
-                {t('home.hero.description')}
+                Transformăm ideile tale în experiențe digitale de impact care aduc rezultate reale pentru business-ul tău.
               </span>
               
               <span className="hidden md:block">
-                {t('home.hero.description')}
+                Transformăm ideile tale în experiențe digitale de impact care aduc rezultate reale pentru business-ul tău.
               </span>
             </p>
             
@@ -52,7 +49,7 @@ export default function Hero() {
                 href="#" 
                 className="bg-primary hover:bg-primary/90 text-white text-center w-full md:w-auto px-6 py-3 rounded-md font-medium transition-all duration-300 hover:scale-105 hover:shadow-md"
               >
-                {t('home.hero.cta')}
+                Discută cu noi
               </a>
             </div>
             
@@ -73,7 +70,7 @@ export default function Hero() {
                 ))}
               </div>
               <div className="ml-2 md:ml-3 flex items-center text-gray-600 text-[10px] md:text-sm">
-                <span>{t('home.hero.satisfied_clients')}</span>
+                <span>Peste 100 de clienți mulțumiți</span>
                 <div>
                   <CheckCircle className="h-3 w-3 md:h-4 md:w-4 ml-1 text-gray-600" />
                 </div>

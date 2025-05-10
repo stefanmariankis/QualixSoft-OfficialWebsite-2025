@@ -9,88 +9,89 @@ import expertTeamIcon from "../assets/icon_expert_team.png";
 import fullServiceSupportIcon from "../assets/icon_full_service_support.png";
 import provenResultsIcon from "../assets/icon_proven_results.png";
 
-import readyForNewBusiness from "../assets/home_ready_new_business_image.png"
-// Create feature cards data
-const features = [
-  {
-    id: 1,
-    icon: tailoredSolutionsIcon,
-    title: "Tailored Solutions",
-    description: "We customize strategies to meet your unique business goals."
-  },
-  {
-    id: 2,
-    icon: expertTeamIcon,
-    title: "Expert Team",
-    description: "Our experienced professionals deliver top-tier digital services."
-  },
-  {
-    id: 3,
-    icon: fullServiceSupportIcon,
-    title: "Full-Service Support",
-    description: "We offer continuous support from development to optimization."
-  },
-  {
-    id: 4,
-    icon: provenResultsIcon,
-    title: "Proven Results",
-    description: "Our data-driven approach ensures measurable success and growth."
-  }
-];
-
-// Feature Card Component
-const FeatureCard = ({ feature, isMobile }: { feature: typeof features[0], isMobile: boolean }) => {
-  // Desktop version (centered)
-  if (!isMobile) {
-    return (
-      <div className="flex flex-col items-center text-center animate-fadeIn hover:backdrop-blur-sm rounded-lg p-6 hover:shadow-sm hover:bg-white/90 hover:shadow-md transition-shadow" style={{ animationDelay: `${feature.id * 0.1}s` }}>
-        <div className="mb-4">
-          <img
-            src={feature.icon}
-            alt={feature.title}
-            className="w-16 h-auto"
-          />
-        </div>
-        <h3 className="text-primary font-semibold text-lg mb-2">
-          {feature.title}
-        </h3>
-        <p className="text-gray-600 max-w-[250px]">
-          {feature.description}
-        </p>
-      </div>
-    );
-  }
-  
-  // Mobile version (horizontal layout)
-  return (
-    <div className="flex items-start animate-fadeIn mb-8" style={{ animationDelay: `${feature.id * 0.1}s` }}>
-      {/* Left: Hexagon Icon */}
-      <div className="flex-shrink-0 mr-4">
-        <div className="w-14 h-14 flex-shrink-0">
-          <img
-            src={feature.icon}
-            alt={feature.title}
-            className="w-full h-auto"
-          />
-        </div>
-      </div>
-      
-      {/* Right: Content */}
-      <div className="flex-1">
-        <h3 className="text-primary font-semibold text-lg mb-2">
-          {feature.title}
-        </h3>
-        <p className="text-gray-600 text-sm">
-          {feature.description}
-        </p>
-      </div>
-    </div>
-  );
-};
+import readyForNewBusiness from "../assets/home_ready_new_business_image.png";
 
 export default function WhyWorkAndEnvision() {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+  
+  // Create feature cards data from i18n translations
+  const features = [
+    {
+      id: 1,
+      icon: tailoredSolutionsIcon,
+      title: t('home.why_work.tailored_solutions'),
+      description: t('home.why_work.tailored_solutions_desc')
+    },
+    {
+      id: 2,
+      icon: expertTeamIcon,
+      title: t('home.why_work.expert_team'),
+      description: t('home.why_work.expert_team_desc')
+    },
+    {
+      id: 3,
+      icon: fullServiceSupportIcon,
+      title: t('home.why_work.full_service'),
+      description: t('home.why_work.full_service_desc')
+    },
+    {
+      id: 4,
+      icon: provenResultsIcon,
+      title: t('home.why_work.proven_results'),
+      description: t('home.why_work.proven_results_desc')
+    }
+  ];
+
+  // Feature Card Component
+  const FeatureCard = ({ feature, isMobile }: { feature: typeof features[0], isMobile: boolean }) => {
+    // Desktop version (centered)
+    if (!isMobile) {
+      return (
+        <div className="flex flex-col items-center text-center animate-fadeIn hover:backdrop-blur-sm rounded-lg p-6 hover:shadow-sm hover:bg-white/90 hover:shadow-md transition-shadow" style={{ animationDelay: `${feature.id * 0.1}s` }}>
+          <div className="mb-4">
+            <img
+              src={feature.icon}
+              alt={feature.title}
+              className="w-16 h-auto"
+            />
+          </div>
+          <h3 className="text-primary font-semibold text-lg mb-2">
+            {feature.title}
+          </h3>
+          <p className="text-gray-600 max-w-[250px]">
+            {feature.description}
+          </p>
+        </div>
+      );
+    }
+    
+    // Mobile version (horizontal layout)
+    return (
+      <div className="flex items-start animate-fadeIn mb-8" style={{ animationDelay: `${feature.id * 0.1}s` }}>
+        {/* Left: Hexagon Icon */}
+        <div className="flex-shrink-0 mr-4">
+          <div className="w-14 h-14 flex-shrink-0">
+            <img
+              src={feature.icon}
+              alt={feature.title}
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
+        
+        {/* Right: Content */}
+        <div className="flex-1">
+          <h3 className="text-primary font-semibold text-lg mb-2">
+            {feature.title}
+          </h3>
+          <p className="text-gray-600 text-sm">
+            {feature.description}
+          </p>
+        </div>
+      </div>
+    );
+  };
   
   return (
     <section className="py-16 sm:py-24 relative overflow-hidden">
@@ -109,10 +110,10 @@ export default function WhyWorkAndEnvision() {
           {/* Title and description */}
           <div className={`${isMobile ? 'text-left' : 'text-center'} mb-8 md:mb-12 animate-fadeIn`}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-4">
-              Why Work With Us
+              {t('home.why_work.title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We're all about bringing your goals to the forefront and making them happen. With us, you're picking a partner that's committed to your success.
+              {t('home.why_work.subtitle')}
             </p>
           </div>
           
@@ -140,7 +141,7 @@ export default function WhyWorkAndEnvision() {
             <div className="relative flex flex-col sm:flex-row gap-4">
               <img 
                 src={readyForNewBusiness}
-                alt="Team collaboration" 
+                alt={t('home.envision.title')} 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -155,24 +156,19 @@ export default function WhyWorkAndEnvision() {
                 className="max-w-lg"
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                  We are ready for a new <br/>business idea!
+                  {t('home.envision.title')}
                 </h2>
                 
-                <p className="text-gray-700 mb-2 font-medium">
-                  Got a <span className="font-bold">fresh business idea</span>? We're all ears and <span className="text-primary font-semibold">ready to roll!</span>
-                </p>
-                
-                <p className="text-gray-600 mb-6">
-                  Our team loves a good brainstorm and we're here to help make your idea shine. 
-                  We're not just about talk; we get things done. From the first sketch to the final product, 
-                  we've got the tools, the know how, and the drive to bring your vision to life.
-                </p>
+                <div 
+                  className="text-gray-700 mb-6" 
+                  dangerouslySetInnerHTML={{ __html: t('home.envision.description') }}
+                />
                 
                 <a 
                   href="#" 
                   className="inline-block bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-md shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
                 >
-                  Get a free proposal
+                  {t('home.hero.cta')}
                 </a>
               </motion.div>
             </div>
@@ -188,18 +184,19 @@ export default function WhyWorkAndEnvision() {
               className="text-left"
             >
               <h2 className="text-3xl font-bold text-gray-700 mb-3 leading-tight">
-                We are ready for a new business idea!
+                {t('home.envision.title')}
               </h2>
               
-              <p className="text-gray-600 mb-4 text-sm">
-                Got a <span className="font-bold">fresh business idea</span>? We're all ears and <span className="text-primary font-semibold">ready to roll!</span> Our team loves a good brainstorm and we're here to help make your idea shine. We're not just about talk; we get things done. From the first sketch to the final product, we've got the tools, the know how, and the drive to bring your vision to life.
-              </p>
+              <div 
+                className="text-gray-600 mb-4 text-sm"
+                dangerouslySetInnerHTML={{ __html: t('home.envision.description') }}
+              />
               
               <a 
                 href="#" 
-                className="block w-full bg-[#222222] text-white font-medium py-3 px-4 my-5 rounded-md text-center"
+                className="block w-full bg-primary text-white font-medium py-3 px-4 my-5 rounded-md text-center"
               >
-                Get a free proposal
+                {t('home.hero.cta')}
               </a>
               
               {/* Mobile image grid layout */}
@@ -207,7 +204,7 @@ export default function WhyWorkAndEnvision() {
                 <div className="h-32 overflow-hidden rounded-md">
                   <img 
                     src={readyForNewBusiness}
-                    alt="Person working on design" 
+                    alt={t('home.envision.title')} 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -216,7 +213,7 @@ export default function WhyWorkAndEnvision() {
                 <div className="h-32 overflow-hidden rounded-md">
                   <img 
                     src={readyForNewBusiness}
-                    alt="Team collaborating" 
+                    alt={t('home.envision.title')} 
                     className="w-full h-full object-cover"
                   />
                 </div>

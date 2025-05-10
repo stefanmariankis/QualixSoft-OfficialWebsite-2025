@@ -29,7 +29,7 @@ export default function AboutHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Cine suntem noi
+            Despre noi
           </motion.h1>
           
           <motion.p 
@@ -38,8 +38,7 @@ export default function AboutHero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.7 }}
           >
-            Ne concentrăm pe aducerea obiectivelor tale în prim plan și pe realizarea lor.
-            Cu noi, alegi un partener dedicat succesului tău.
+            Transformăm afaceri prin soluții digitale inovatoare
           </motion.p>
           
           <motion.div
@@ -49,11 +48,11 @@ export default function AboutHero() {
             transition={{ delay: 0.7, duration: 0.5 }}
           >
             <Link href="/about" className="text-white hover:text-white/80 transition-colors">
-              Despre Noi
+              Despre noi
             </Link>
             <span className="text-white/70 pointer-events-none">›</span>
             <span className="text-white/90 pointer-events-none">
-              Despre QualixSoft
+              Agenția noastră
             </span>
           </motion.div>
         </motion.div>

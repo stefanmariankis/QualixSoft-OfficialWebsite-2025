@@ -12,25 +12,27 @@ interface Testimonial {
 }
 
 export default function TestimonialsCarousel() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  
+  // Create testimonials with i18n support
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      text: "QualixSoft a reușit să îmi transforme ideea de afacere într-o platformă digitală impresionantă. Echipa lor este extrem de profesionistă și atentă la detalii. Rezultatul a depășit toate așteptările mele.",
-      name: "Andreea Pavel",
-      company: "Econotrade.ro",
+      text: t('home.testimonials.client1_text'),
+      name: t('home.testimonials.client1_name'),
+      company: t('home.testimonials.client1_company'),
       rating: 5
     },
     {
       id: 2,
-      text: "Am lucrat cu QualixSoft pentru dezvoltarea site-ului nostru de e-commerce și suntem extrem de mulțumiți. Produsul final este intuitiv, rapid și ne-a ajutat să creștem vânzările online cu peste 30%.",
-      name: "Mihai Popescu",
-      company: "PulseWelding.ro",
+      text: t('home.testimonials.client2_text'),
+      name: t('home.testimonials.client2_name'),
+      company: t('home.testimonials.client2_company'),
       rating: 5
     },
     {
       id: 3,
-      text: "Recomand cu căldură serviciile QualixSoft. Profesionalismul și dedicarea cu care abordează fiecare proiect sunt remarcabile. Comunicarea a fost excelentă pe tot parcursul colaborării.",
+      text: t('home.testimonials.client3_text'),
       name: "Elena Radu",
       company: "ClimaticGPS.ro",
       rating: 5
@@ -107,10 +109,10 @@ export default function TestimonialsCarousel() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h3 className="text-primary uppercase font-semibold mb-3 tracking-wider text-sm">
-            TESTIMONIALE
+            {t('home.testimonials.title')}
           </h3>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Peste 50 de clienți vorbesc despre noi
+            {t('home.testimonials.subtitle')}
           </h2>
         </div>
 

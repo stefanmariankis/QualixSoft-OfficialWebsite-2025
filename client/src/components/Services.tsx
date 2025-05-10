@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 // Import service images
 import webMobileDev from "../assets/web_mobile_dev.png";
@@ -9,41 +10,52 @@ import seo from "../assets/seo.png";
 import digitalMarketing from "../assets/digital_marketing.png";
 import optimizationConversion from "../assets/optimization_conversion.png";
 
-// Our Services items
-const ourServices = [
-  {
-    title: "Web & Mobile developement",
-    description: "Creative designs that captivate and convert your audience.",
-    image: webMobileDev
-  },
-  {
-    title: "Consulting and strategy",
-    description: "Creative designs that captivate and convert your audience.",
-    image: consultingStrategy
-  },
-  {
-    title: "Website Design",
-    description: "Creative designs that captivate and convert your audience.",
-    image: websiteDesign
-  },
-  {
-    title: "Search Engine Optimization",
-    description: "Creative designs that captivate and convert your audience.",
-    image: seo
-  },
-  {
-    title: "Digital Marketing",
-    description: "Creative designs that captivate and convert your audience.",
-    image: digitalMarketing
-  },
-  {
-    title: "Optimization and Conversion",
-    description: "Creative designs that captivate and convert your audience.",
-    image: optimizationConversion
-  }
-];
+// Our Services items with translations filled dynamically in the component
 
 export default function Services() {
+  const { t } = useTranslation();
+  
+  // Define service type
+  interface Service {
+    title: string;
+    description: string;
+    image: string;
+  }
+  
+  // Create services array using translations
+  const ourServices: Service[] = [
+    {
+      title: t('home.services.web_mobile'),
+      description: "Creative designs that captivate and convert your audience.",
+      image: webMobileDev
+    },
+    {
+      title: t('home.services.consulting'),
+      description: "Creative designs that captivate and convert your audience.",
+      image: consultingStrategy
+    },
+    {
+      title: t('home.services.design'),
+      description: "Creative designs that captivate and convert your audience.",
+      image: websiteDesign
+    },
+    {
+      title: t('home.services.seo'),
+      description: "Creative designs that captivate and convert your audience.",
+      image: seo
+    },
+    {
+      title: t('home.services.marketing'),
+      description: "Creative designs that captivate and convert your audience.",
+      image: digitalMarketing
+    },
+    {
+      title: "Optimization and Conversion",
+      description: "Creative designs that captivate and convert your audience.",
+      image: optimizationConversion
+    }
+  ];
+  
   // Animation variants for staggered animations
   const container = {
     hidden: { opacity: 0 },
@@ -85,7 +97,7 @@ export default function Services() {
           <h4 
             className="text-sm uppercase font-semibold tracking-wider text-primary mb-2"
           >
-            OUR SERVICES
+            {t('home.services.title')}
           </h4>
           <motion.h2 
             className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
@@ -94,7 +106,7 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
           >
-            We'll solve your problems
+            {t('home.services.subtitle')}
           </motion.h2>
           <motion.p 
             className="text-gray-600 max-w-3xl mx-auto"
@@ -103,8 +115,7 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            Our services are designed to propel your business forward. From the ground up, we offer 
-            comprehensive solutions that cover all your digital needs.
+            {t('home.services.description') || "Our services are designed to propel your business forward. From the ground up, we offer comprehensive solutions that cover all your digital needs."}
           </motion.p>
         </motion.div>
         
@@ -115,7 +126,7 @@ export default function Services() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          {ourServices.map((service, index) => (
+          {ourServices.map((service: Service, index: number) => (
             <motion.div 
               key={index} 
               className="bg-[#faf7f2] rounded-xl overflow-hidden relative p-6 border border-[#eee9e1] cursor-pointer"

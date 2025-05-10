@@ -113,9 +113,11 @@ export default function AnalysisSection() {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className={`${isMobile ? 'text-center' : 'text-center'} mb-8`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">We analyze your needs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+            {t('home.analyze.title')}
+          </h2>
           <p className="text-white text-opacity-80 max-w-2xl mx-auto text-sm md:text-base">
-            In-depth Assessments to Craft Customized Digital Solutions for Your Business.
+            {t('home.analyze.subtitle')}
           </p>
         </div>
         
@@ -128,35 +130,35 @@ export default function AnalysisSection() {
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <Smartphone className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">Mobile App Development?</span>
+                <span className="text-white text-base font-medium">{t('home.analyze.mobile_app')}</span>
               </div>
               
               <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <Monitor className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">User Experience (UX) Optimization?</span>
+                <span className="text-white text-base font-medium">{t('home.analyze.ux')}</span>
               </div>
               
               <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <Settings className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">Ongoing Maintenance and Support?</span>
+                <span className="text-white text-base font-medium">{t('home.analyze.maintenance')}</span>
               </div>
               
               <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <Database className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">Scalable Backend Solutions?</span>
+                <span className="text-white text-base font-medium">{t('home.analyze.backend')}</span>
               </div>
               
               <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <BarChart3 className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">Search Engine Optimization?</span>
+                <span className="text-white text-base font-medium">{t('home.analyze.seo')}</span>
               </div>
             </div>
             
@@ -188,7 +190,7 @@ export default function AnalysisSection() {
             <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px] z-20">
               <FeatureBox 
                 icon={<Monitor className="h-5 w-5 text-primary" />}
-                title="User Experience (UX) Optimization"
+                title={t('home.analyze.ux').replace('?', '')}
                 description="Optimization"
               />
             </div>
@@ -196,7 +198,7 @@ export default function AnalysisSection() {
             <div id="box2" className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px] z-20">
               <FeatureBox 
                 icon={<Settings className="h-5 w-5 text-primary" />}
-                title="Ongoing Maintenance and Support"
+                title={t('home.analyze.maintenance').replace('?', '')}
                 description="Support"
               />
             </div>
@@ -204,7 +206,7 @@ export default function AnalysisSection() {
             <div id="box3" className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px] z-20">
               <FeatureBox 
                 icon={<Smartphone className="h-5 w-5 text-primary" />}
-                title="Mobile App Development"
+                title={t('home.analyze.mobile_app').replace('?', '')}
                 description=""
               />
             </div>
@@ -212,7 +214,7 @@ export default function AnalysisSection() {
             <div id="box4" className="absolute top-[180px] right-0 md:right-[30px] lg:right-[120px] w-[220px] z-20">
               <FeatureBox 
                 icon={<BarChart3 className="h-5 w-5 text-primary" />}
-                title="Search Engine Optimization"
+                title={t('home.analyze.seo').replace('?', '')}
                 description=""
               />
             </div>
@@ -220,7 +222,7 @@ export default function AnalysisSection() {
             <div id="box5" className="absolute bottom-0 right-[30%] w-[220px] z-20">
               <FeatureBox 
                 icon={<Database className="h-5 w-5 text-primary" />}
-                title="Scalable Backend Solutions"
+                title={t('home.analyze.backend').replace('?', '')}
                 description=""
               />
             </div>

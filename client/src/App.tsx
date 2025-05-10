@@ -9,7 +9,8 @@ import ServicesPage from "@/pages/ServicesPage";
 import SolutionsPage from "@/pages/SolutionsPage";
 import PortfolioPage from "@/pages/PortfolioPage";
 import ProjectDetailPage from "@/pages/ProjectDetailPage";
-import { LocalizationProvider } from "./hooks/useLocalization";
+// Comentăm LocalizationProvider temporar pentru debugging
+// import { LocalizationProvider } from "./hooks/useLocalization";
 
 function Router() {
   return (
@@ -50,10 +51,9 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LocalizationProvider>
-        <Router />
-        <Toaster />
-      </LocalizationProvider>
+      {/* Am eliminat temporar LocalizationProvider pentru debugging */}
+      <Router />
+      <Toaster />
     </QueryClientProvider>
   );
 }
