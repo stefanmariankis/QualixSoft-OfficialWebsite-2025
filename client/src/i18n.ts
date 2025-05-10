@@ -1,36 +1,45 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import languages from '../../public/locales/translation.json'
+import { defaultTranslations } from './translations';
 
+// Inițializarea resurselor din fișierul de traduceri
 const resources = {
   ro: {
-    translation: languages.languages.ro
+    translation: defaultTranslations.languages.ro
   },
   en: {
-    translation: languages.languages.en
+    translation: defaultTranslations.languages.en
   }
 };
 
 i18n
+  // Detector de limbă pentru a determina automat limba
   .use(LanguageDetector)
+  // Integrarea cu React
   .use(initReactI18next)
+  // Inițializarea i18next
   .init({
+    // Resursele de traducere
     resources,
-    fallbackLng: 'ro',
-    debug: process.env.NODE_ENV === 'development',
     
-    interpolation: {
-      escapeValue: false, // not needed for React as it escapes by default
-    },
-    
-    // Language detection options
+    // Detectarea limbii
     detection: {
       order: ['path', 'localStorage', 'navigator'],
       lookupFromPathIndex: 0,
       caches: ['localStorage'],
     },
+    
+    // Limba implicită
+    fallbackLng: 'ro',
+    
+    // Dezactivăm debug în producție
+    debug: process.env.NODE_ENV === 'development',
+    
+    // Funcții pentru interpolări
+    interpolation: {
+      escapeValue: false, // React face escape automat
+    },
   });
 
-export { languages };
 export default i18n;

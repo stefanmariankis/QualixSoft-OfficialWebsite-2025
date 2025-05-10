@@ -1,0 +1,74 @@
+{
+    "languages": {
+        "ro": {
+            "nav": {
+                "home": "Acasă",
+                "about": "Despre noi",
+                "services": "Servicii",
+                "portfolio": "Portofoliu",
+                "solutions": "Soluții",
+                "contact": "Contact"
+            },
+            "home": {
+                "hero": {
+                    "title": "Soluții digitale inovatoare pentru afacerea ta",
+                    "subtitle": "Transformă ideile tale în realitate digitală",
+                    "description": "Tailored Web Development, E-commerce, and SEO Services to Boost Your Online Presence",
+                    "cta": "Cere o ofertă"
+                },
+                "services": {
+                    "title": "Serviciile noastre",
+                    "subtitle": "Oferim o gamă completă de servicii digitale",
+                    "web_mobile": "Web & Mobile",
+                    "consulting": "Consultanță IT",
+                    "ecommerce": "E-Commerce",
+                    "design": "Design UX/UI",
+                    "view_all": "Vezi toate serviciile"
+                }
+            },
+            "routes": {
+                "home": "",
+                "about": "despre-noi",
+                "services": "servicii",
+                "portfolio": "portofoliu",
+                "solutions": "solutii",
+                "contact": "contact"
+            }
+        },
+        "en": {
+            "nav": {
+                "home": "Home",
+                "about": "About Us",
+                "services": "Services",
+                "portfolio": "Portfolio",
+                "solutions": "Solutions",
+                "contact": "Contact"
+            },
+            "home": {
+                "hero": {
+                    "title": "Building Your",
+                    "subtitle": "Digital Future",
+                    "description": "Tailored Web Development, E-commerce, and SEO Services to Boost Your Online Presence",
+                    "cta": "Request a quote"
+                },
+                "services": {
+                    "title": "Our Services",
+                    "subtitle": "We offer a complete range of digital services",
+                    "web_mobile": "Web & Mobile",
+                    "consulting": "IT Consulting",
+                    "ecommerce": "E-Commerce",
+                    "design": "UX/UI Design",
+                    "view_all": "View all services"
+                }
+            },
+            "routes": {
+                "home": "",
+                "about": "about-us",
+                "services": "services",
+                "portfolio": "portfolio",
+                "solutions": "solutions",
+                "contact": "contact"
+            }
+        }
+    }
+}
