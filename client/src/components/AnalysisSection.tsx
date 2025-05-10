@@ -113,9 +113,9 @@ export default function AnalysisSection() {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className={`${isMobile ? 'text-center' : 'text-center'} mb-8`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">We analyze your needs</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">{t('analysis.title')}</h2>
           <p className="text-white text-opacity-80 max-w-2xl mx-auto text-sm md:text-base">
-            In-depth Assessments to Craft Customized Digital Solutions for Your Business.
+            {t('analysis.subtitle')}
           </p>
         </div>
         

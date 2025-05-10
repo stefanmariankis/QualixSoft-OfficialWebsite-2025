@@ -184,18 +184,18 @@ export default function WhyWorkAndEnvision() {
               className="text-left"
             >
               <h2 className="text-3xl font-bold text-gray-700 mb-3 leading-tight">
-                We are ready for a new business idea!
+                {t('cta.title')}
               </h2>
               
               <p className="text-gray-600 mb-4 text-sm">
-                Got a <span className="font-bold">fresh business idea</span>? We're all ears and <span className="text-primary font-semibold">ready to roll!</span> Our team loves a good brainstorm and we're here to help make your idea shine. We're not just about talk; we get things done. From the first sketch to the final product, we've got the tools, the know how, and the drive to bring your vision to life.
+                {t('cta.description')}
               </p>
               
               <a 
                 href="#" 
                 className="block w-full bg-[#222222] text-white font-medium py-3 px-4 my-5 rounded-md text-center"
               >
-                Get a free proposal
+                {t('cta.button')}
               </a>
               
               {/* Mobile image grid layout */}
@@ -203,7 +203,7 @@ export default function WhyWorkAndEnvision() {
                 <div className="h-32 overflow-hidden rounded-md">
                   <img 
                     src={readyForNewBusiness}
-                    alt="Person working on design" 
+                    alt={t('cta.image_alt_1')} 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -212,7 +212,7 @@ export default function WhyWorkAndEnvision() {
                 <div className="h-32 overflow-hidden rounded-md">
                   <img 
                     src={readyForNewBusiness}
-                    alt="Team collaborating" 
+                    alt={t('cta.image_alt_2')} 
                     className="w-full h-full object-cover"
                   />
                 </div>
