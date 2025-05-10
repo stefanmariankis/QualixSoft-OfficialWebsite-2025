@@ -11,10 +11,14 @@
             },
             "home": {
                 "hero": {
-                    "title": "Soluții digitale inovatoare pentru afacerea ta",
-                    "subtitle": "Transformă ideile tale în realitate digitală",
-                    "description": "Tailored Web Development, E-commerce, and SEO Services to Boost Your Online Presence",
-                    "cta": "Cere o ofertă"
+                    "title": "Construim Viitorul",
+                    "subtitle": "Afacerii Tale",
+                    "description": "Creăm experiențe digitale care rezonează cu audiența afacerii tale și generează rezultate măsurabile.",
+                    "cta": "Cere o ofertă gratuită",
+                    "satisfied_clients": "Peste 30 de clienți satisfăcuți"
+                },
+                "partners": {
+                    "title": "+30 parteneri au avut încredere în serviciile noastre"
                 },
                 "services": {
                     "title": "Serviciile noastre",
@@ -48,8 +52,12 @@
                 "hero": {
                     "title": "Building Your",
                     "subtitle": "Digital Future",
-                    "description": "Tailored Web Development, E-commerce, and SEO Services to Boost Your Online Presence",
-                    "cta": "Request a quote"
+                    "description": "We craft digital experiences that resonate with your audience and drive measurable results.",
+                    "cta": "Get a free proposal",
+                    "satisfied_clients": "Over 30 clients satisfied"
+                },
+                "partners": {
+                    "title": "30+ partners have put their trust in us"
                 },
                 "services": {
                     "title": "Our Services",

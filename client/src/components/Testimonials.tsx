@@ -108,11 +108,7 @@ export default function Testimonials() {
         </div>
         
         {/* Avatar navigation */}
-<<<<<<< HEAD
-        <div className="flex justify-center items-center space-x-6 mb-8">
-=======
         <div className="flex justify-center items-center space-x-4 md:space-x-6 mb-8">
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
           <button 
             onClick={handlePrev} 
             className="flex items-center justify-center w-8 h-8 rounded-md border border-white text-white hover:bg-white/20"
@@ -121,11 +117,7 @@ export default function Testimonials() {
             <ArrowLeft className="w-4 h-4" />
           </button>
           
-<<<<<<< HEAD
-          <div className="flex space-x-4">
-=======
           <div className="flex flex-wrap justify-center space-x-2 sm:space-x-3 md:space-x-4">
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
             {testimonials.map((testimonial, index) => (
               <button 
                 key={testimonial.id}
@@ -147,54 +139,32 @@ export default function Testimonials() {
         </div>
         
         {/* Testimonial card - matching the Figma design */}
-<<<<<<< HEAD
-        <div className="max-w-3xl mx-auto">
-=======
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
           <motion.div 
             key={activeIndex}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-<<<<<<< HEAD
-            className="bg-white rounded-2xl p-8 shadow-lg"
-          >
-            <div className="flex mb-6">
-              <div className="mr-5">
-=======
             className="bg-white rounded-2xl p-6 sm:p-7 md:p-8 shadow-lg"
           >
             <div className="flex flex-col sm:flex-row mb-6">
               <div className="mr-0 sm:mr-5 mb-4 sm:mb-0 flex justify-center sm:justify-start">
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
                 <div className="w-10 h-10 rounded-full flex items-center justify-center border border-primary">
                   <Quote className="h-5 w-5 text-primary" />
                 </div>
               </div>
               <div>
-<<<<<<< HEAD
-                <h3 className="text-lg font-bold text-gray-800 mb-3">
-                  {testimonials[activeIndex].title}
-                </h3>
-                <p className="text-gray-600">
-=======
                 <h3 className="text-lg font-bold text-gray-800 mb-3 text-center sm:text-left">
                   {testimonials[activeIndex].title}
                 </h3>
                 <p className="text-gray-600 text-sm md:text-base">
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
                   {testimonials[activeIndex].content}
                 </p>
               </div>
             </div>
             <div className="mt-4 pt-3 border-t border-gray-100">
-<<<<<<< HEAD
-              <p className="text-sm font-medium text-gray-700">
-=======
               <p className="text-sm font-medium text-gray-700 text-center sm:text-left">
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
                 - {testimonials[activeIndex].author}, {testimonials[activeIndex].company}
               </p>
             </div>
