@@ -82,7 +82,7 @@ export default function Services() {
           <h4 
             className="text-sm uppercase font-semibold tracking-wider text-primary mb-2"
           >
-            {t('services.heading')}
+            {t('services.title')}
           </h4>
           <motion.h2 
             className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
@@ -91,7 +91,7 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
           >
-            {t('services.title')}
+            {t('services.subtitle')}
           </motion.h2>
           <motion.p 
             className="text-gray-600 max-w-3xl mx-auto"
