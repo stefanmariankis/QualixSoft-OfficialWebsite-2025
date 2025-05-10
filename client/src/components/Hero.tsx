@@ -59,7 +59,7 @@ export default function Hero() {
                 href="#" 
                 className="bg-primary hover:bg-primary/90 text-white text-center w-full md:w-auto px-6 py-3 rounded-md font-medium transition-all duration-300 hover:scale-105 hover:shadow-md"
               >
-                Get a free proposal
+                {t('hero.cta')}
               </a>
             </div>
             
@@ -78,7 +78,7 @@ export default function Hero() {
                 ))}
               </div>
               <div className="ml-2 md:ml-3 flex items-center text-gray-600 text-[10px] md:text-sm">
-                <span>Over 30 clients satisfied</span>
+                <span>{t('hero.satisfied_clients')}</span>
                 <div>
                   <CheckCircle className="h-3 w-3 md:h-4 md:w-4 ml-1 text-gray-600" />
                 </div>

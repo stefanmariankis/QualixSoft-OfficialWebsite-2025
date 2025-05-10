@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 // Import service images
 import webMobileDev from "../assets/web_mobile_dev.png";
@@ -9,41 +10,37 @@ import seo from "../assets/seo.png";
 import digitalMarketing from "../assets/digital_marketing.png";
 import optimizationConversion from "../assets/optimization_conversion.png";
 
-// Our Services items
-const ourServices = [
-  {
-    title: "Web & Mobile developement",
-    description: "Creative designs that captivate and convert your audience.",
-    image: webMobileDev
-  },
-  {
-    title: "Consulting and strategy",
-    description: "Creative designs that captivate and convert your audience.",
-    image: consultingStrategy
-  },
-  {
-    title: "Website Design",
-    description: "Creative designs that captivate and convert your audience.",
-    image: websiteDesign
-  },
-  {
-    title: "Search Engine Optimization",
-    description: "Creative designs that captivate and convert your audience.",
-    image: seo
-  },
-  {
-    title: "Digital Marketing",
-    description: "Creative designs that captivate and convert your audience.",
-    image: digitalMarketing
-  },
-  {
-    title: "Optimization and Conversion",
-    description: "Creative designs that captivate and convert your audience.",
-    image: optimizationConversion
-  }
-];
-
 export default function Services() {
+  const { t } = useTranslation();
+  
+  // Our Services items
+  const ourServices = [
+    {
+      key: "web_mobile",
+      image: webMobileDev
+    },
+    {
+      key: "consulting",
+      image: consultingStrategy
+    },
+    {
+      key: "design",
+      image: websiteDesign
+    },
+    {
+      key: "seo",
+      image: seo
+    },
+    {
+      key: "digital_marketing",
+      image: digitalMarketing
+    },
+    {
+      key: "optimization",
+      image: optimizationConversion
+    }
+  ];
+  
   // Animation variants for staggered animations
   const container = {
     hidden: { opacity: 0 },
@@ -85,7 +82,7 @@ export default function Services() {
           <h4 
             className="text-sm uppercase font-semibold tracking-wider text-primary mb-2"
           >
-            OUR SERVICES
+            {t('services.heading')}
           </h4>
           <motion.h2 
             className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
@@ -94,7 +91,7 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
           >
-            We'll solve your problems
+            {t('services.title')}
           </motion.h2>
           <motion.p 
             className="text-gray-600 max-w-3xl mx-auto"
@@ -103,8 +100,7 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
-            Our services are designed to propel your business forward. From the ground up, we offer 
-            comprehensive solutions that cover all your digital needs.
+            {t('services.description')}
           </motion.p>
         </motion.div>
         
@@ -132,7 +128,7 @@ export default function Services() {
               <div className="w-full flex items-center justify-start mb-4">
                 <img 
                   src={service.image} 
-                  alt={service.title}
+                  alt={t(`services.items.${service.key}.title`)}
                   className="h-[100px] w-[120px] object-contain object-left"
                 />
               </div>
@@ -146,11 +142,11 @@ export default function Services() {
               
               {/* Service title and description */}
               <p className="text-lg font-medium text-gray-700 mb-2">
-                {service.title}
+                {t(`services.items.${service.key}.title`)}
               </p>
               
               <p className="text-gray-600 text-sm">
-                {service.description}
+                {t(`services.items.${service.key}.description`)}
               </p>
             </motion.div>
           ))}
