@@ -45,15 +45,15 @@ const FeatureCard = ({ feature, isMobile }: { feature: typeof features[0], isMob
         <div className="mb-4">
           <img
             src={feature.icon}
-            alt={feature.title}
+            alt={t(`why_us.${feature.key}.title`)}
             className="w-16 h-auto"
           />
         </div>
         <h3 className="text-primary font-semibold text-lg mb-2">
-          {feature.title}
+          {t(`why_us.${feature.key}.title`)}
         </h3>
         <p className="text-gray-600 max-w-[250px]">
-          {feature.description}
+          {t(`why_us.${feature.key}.description`)}
         </p>
       </div>
     );
@@ -67,7 +67,7 @@ const FeatureCard = ({ feature, isMobile }: { feature: typeof features[0], isMob
         <div className="w-14 h-14 flex-shrink-0">
           <img
             src={feature.icon}
-            alt={feature.title}
+            alt={t(`why_us.${feature.key}.title`)}
             className="w-full h-auto"
           />
         </div>
@@ -76,10 +76,10 @@ const FeatureCard = ({ feature, isMobile }: { feature: typeof features[0], isMob
       {/* Right: Content */}
       <div className="flex-1">
         <h3 className="text-primary font-semibold text-lg mb-2">
-          {feature.title}
+          {t(`why_us.${feature.key}.title`)}
         </h3>
         <p className="text-gray-600 text-sm">
-          {feature.description}
+          {t(`why_us.${feature.key}.description`)}
         </p>
       </div>
     </div>
@@ -107,10 +107,10 @@ export default function WhyWorkAndEnvision() {
           {/* Title and description */}
           <div className={`${isMobile ? 'text-left' : 'text-center'} mb-8 md:mb-12 animate-fadeIn`}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-4">
-              Why Work With Us
+              {t('why_us.title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We're all about bringing your goals to the forefront and making them happen. With us, you're picking a partner that's committed to your success.
+              {t('why_us.subtitle')}
             </p>
           </div>
           
@@ -153,24 +153,22 @@ export default function WhyWorkAndEnvision() {
                 className="max-w-lg"
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                  We are ready for a new <br/>business idea!
+                  {t('cta.title')}
                 </h2>
                 
                 <p className="text-gray-700 mb-2 font-medium">
-                  Got a <span className="font-bold">fresh business idea</span>? We're all ears and <span className="text-primary font-semibold">ready to roll!</span>
+                  {t('cta.subtitle')}
                 </p>
                 
                 <p className="text-gray-600 mb-6">
-                  Our team loves a good brainstorm and we're here to help make your idea shine. 
-                  We're not just about talk; we get things done. From the first sketch to the final product, 
-                  we've got the tools, the know how, and the drive to bring your vision to life.
+                  {t('cta.description')}
                 </p>
                 
                 <a 
                   href="#" 
                   className="inline-block bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-md shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
                 >
-                  Get a free proposal
+                  {t('cta.button')}
                 </a>
               </motion.div>
             </div>
