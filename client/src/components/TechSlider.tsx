@@ -146,13 +146,6 @@ export default function TechSlider() {
   };
   
   return (
-<<<<<<< HEAD
-    <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section title */}
-        <div className="text-center mb-10">
-          <p className="text-lg font-medium text-primary">Some tools that fit your needs</p>
-=======
     <section className="py-14 md:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section title */}
@@ -160,7 +153,6 @@ export default function TechSlider() {
           <h3 className="text-primary uppercase font-semibold mb-2 tracking-wider text-sm">TEHNOLOGII</h3>
           <h2 className="text-3xl font-bold text-gray-800 mb-3">Some tools that fit your needs</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">Folosim cele mai moderne tehnologii pentru a dezvolta aplicații web performante și scalabile</p>
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
         </div>
         
         {/* Tech carousel */}

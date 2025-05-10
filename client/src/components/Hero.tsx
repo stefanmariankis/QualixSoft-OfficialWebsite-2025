@@ -9,11 +9,7 @@ export default function Hero() {
   const { t } = useTranslation();
   
   return (
-<<<<<<< HEAD
-    <section className="pt-24 pb-20 md:pb-28 relative overflow-hidden min-h-[100vh] flex items-center">
-=======
     <section className="pt-16 pb-10 md:pt-24 md:pb-28 relative overflow-hidden min-h-[80vh] md:min-h-[100vh] flex items-center">
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
       {/* Background with hexagons */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0" 
@@ -22,20 +18,6 @@ export default function Hero() {
       
       {/* Content Container */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<<<<<<< HEAD
-        <div className="flex flex-col lg:flex-row gap-6 items-center">
-          {/* Left side - Content (45%) */}
-          <div className="animate-fadeIn w-full lg:w-[40%]">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
-              {t('home.hero.title')}
-            </h1>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
-              {t('home.hero.subtitle')}
-            </h1>
-            
-            <p className="text-lg text-gray-600 font-bold mb-8 max-w-lg">
-              {t('home.hero.description')}
-=======
         <div className="flex flex-col lg:flex-row gap-4 md:gap-6 items-center">
           {/* Left side - Content (mobile: full width, desktop: 45%) */}
           <div className="animate-fadeIn w-full lg:w-[40%]">
@@ -70,17 +52,12 @@ export default function Hero() {
               <span className="hidden md:block">
                 {t('home.hero.description')}
               </span>
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
             </p>
             
             <div className="flex">
               <a 
                 href="#" 
-<<<<<<< HEAD
-                className="bg-gray-900 hover:bg-black text-white px-6 py-3 rounded-md font-semibold transition-all duration-300 hover:scale-105"
-=======
                 className="bg-primary hover:bg-primary/90 text-white text-center w-full md:w-auto px-6 py-3 rounded-md font-medium transition-all duration-300 hover:scale-105 hover:shadow-md"
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
               >
                 Get a free proposal
               </a>
@@ -109,13 +86,8 @@ export default function Hero() {
             </div>
           </div>
           
-<<<<<<< HEAD
-          {/* Right side - Chevron/Brackets Design (55%) */}
-          <div className="animate-fadeIn w-full lg:w-[60%]" style={{ animationDelay: '0.2s' }}>
-=======
           {/* Right side - Chevron/Brackets Design (55%) - Hidden on mobile */}
           <div className="animate-fadeIn w-full lg:w-[60%] hidden md:block" style={{ animationDelay: '0.2s' }}>
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
             {/* Container for holding all three elements horizontally */}
             <div className="relative flex justify-center items-center h-[250px] md:h-[400px]">
               {/* All three elements in a row */}
@@ -127,27 +99,6 @@ export default function Hero() {
                     alt="Open tag" 
                     className="w-full h-auto object-contain"
                   />
-<<<<<<< HEAD
-                </div>
-                
-                {/* Slash in the middle */}
-                <div className="w-full z-10 transition-transform duration-300 hover:scale-110">
-                  <img 
-                    src={slashImg} 
-                    alt="Code slash" 
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-                
-                {/* Close tag (right bracket) */}
-                <div className="w-full transition-transform duration-300 hover:translate-x-2">
-                  <img 
-                    src={closeTagImg} 
-                    alt="Close tag" 
-                    className="w-full h-auto object-contain"
-                  />
-=======
->>>>>>> b570588e90662595c0d0f9144705403c75aa0915
                 </div>
                 
                 {/* Slash in the middle */}
