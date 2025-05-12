@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useIsMobile } from "../hooks/use-mobile";
 import hexBackgroundLight from "../assets/hex_background_light.jpg";
+import useTranslate from "../hooks/useTranslate";
 
 // Import custom icons
 import tailoredSolutionsIcon from "../assets/icon_tailored_solutions.png";
@@ -87,7 +87,7 @@ const FeatureCard = ({ feature, isMobile }: { feature: typeof features[0], isMob
 };
 
 export default function WhyWorkAndEnvision() {
-  const { t } = useTranslation();
+  const { t } = useTranslate();
   const isMobile = useIsMobile();
   
   return (

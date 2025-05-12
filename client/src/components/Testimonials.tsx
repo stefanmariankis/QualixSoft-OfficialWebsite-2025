@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import testimonialsBg from "../assets/testimonials_background.png";
+import useTranslate from "../hooks/useTranslate";
 
 // Testimonial data
 const testimonials = [
@@ -70,6 +71,7 @@ const Avatar = ({ isActive, avatar }: { isActive: boolean, avatar?: string }) =>
 );
 
 export default function Testimonials() {
+  const { t } = useTranslate();
   const [activeIndex, setActiveIndex] = useState(0);
   
   const handlePrev = () => {
@@ -103,8 +105,8 @@ export default function Testimonials() {
       {/* Content container */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-10">
-          <p className="uppercase text-sm font-medium text-white mb-2">OUR TESTIMONIALS</p>
-          <h2 className="text-3xl font-bold text-white">What our clients are saying</h2>
+          <p className="uppercase text-sm font-medium text-white mb-2">{t('testimonials.title')}</p>
+          <h2 className="text-3xl font-bold text-white font-play">{t('testimonials.subtitle')}</h2>
         </div>
         
         {/* Avatar navigation */}
