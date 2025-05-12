@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Github, Code2, ChevronLeft, ChevronRight } from "lucide-react";
 import { SiWordpress, SiShopify, SiHeroku, SiBootstrap, SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiMongodb, SiDocker } from "react-icons/si";
 
@@ -107,29 +107,23 @@ export default function TechSlider() {
     }, 3000);
   };
   
-  // Slide change function with animation - sliding one column at a time
+  // Slide change function with smooth direction-based animation
   const changeSlide = (direction: 'next' | 'prev') => {
-    setIsChanging(true);
-    setTimeout(() => {
-      if (direction === 'next') {
-        // Move forward by just one column
-        setCurrentPage((prevPage) => {
-          const nextPage = prevPage + 1;
-          // If we reach the end of the items, loop back to the start
-          return nextPage >= totalPages ? 0 : nextPage;
-        });
-      } else {
-        // Move backward by just one column
-        setCurrentPage((prevPage) => {
-          const prevPageCalculated = prevPage - 1;
-          // If we reach the start, loop to the end
-          return prevPageCalculated < 0 ? totalPages - 1 : prevPageCalculated;
-        });
-      }
-      setTimeout(() => {
-        setIsChanging(false);
-      }, 300);
-    }, 300);
+    if (direction === 'next') {
+      // Move forward by just one column
+      setCurrentPage((prevPage) => {
+        const nextPage = prevPage + 1;
+        // If we reach the end of the items, loop back to the start
+        return nextPage >= totalPages ? 0 : nextPage;
+      });
+    } else {
+      // Move backward by just one column
+      setCurrentPage((prevPage) => {
+        const prevPageCalculated = prevPage - 1;
+        // If we reach the start, loop to the end
+        return prevPageCalculated < 0 ? totalPages - 1 : prevPageCalculated;
+      });
+    }
   };
   
   useEffect(() => {
@@ -200,24 +194,31 @@ export default function TechSlider() {
             <ChevronRight className="w-6 h-6" />
           </button>
           
-          {/* Carousel container with more spacing */}
+          {/* Carousel container with more spacing and smooth slide animation */}
           <div className="overflow-hidden px-6 py-6">
-            <div 
-              className={`grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-6 lg:gap-10 transition-all duration-500 ${isChanging ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'}`}
-            >
-              {getCurrentItems().map((item) => (
-                <div key={item.id} className="flex flex-col items-center">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    className="mb-4 h-20 flex items-center justify-center"
-                  >
-                    {item.icon}
-                  </motion.div>
-                  <span className="text-gray-700 font-medium text-center">{item.name}</span>
-                </div>
-              ))}
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentPage} // Key changes force re-render for clean animation
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -100, opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-6 lg:gap-10"
+              >
+                {getCurrentItems().map((item) => (
+                  <div key={item.id} className="flex flex-col items-center">
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      className="mb-4 h-20 flex items-center justify-center"
+                    >
+                      {item.icon}
+                    </motion.div>
+                    <span className="text-gray-700 font-medium text-center">{item.name}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
           
           {/* Carousel indicators - more subtle and modern */}
