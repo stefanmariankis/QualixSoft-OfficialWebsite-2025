@@ -188,24 +188,24 @@ export default function AnalysisSection() {
             <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px] z-20">
               <FeatureBox 
                 icon={<Monitor className="h-5 w-5 text-primary" />}
-                title={t('analysis.ux.title')}
-                description={t('analysis.ux.description')}
+                title={t('needs_analysis.ux.title')}
+                description={t('needs_analysis.ux.description')}
               />
             </div>
             
             <div id="box2" className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px] z-20">
               <FeatureBox 
                 icon={<Settings className="h-5 w-5 text-primary" />}
-                title={t('analysis.support.title')}
-                description={t('analysis.support.description')}
+                title={t('needs_analysis.support.title')}
+                description={t('needs_analysis.support.description')}
               />
             </div>
             
             <div id="box3" className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px] z-20">
               <FeatureBox 
                 icon={<Smartphone className="h-5 w-5 text-primary" />}
-                title={t('analysis.mobile.title')}
-                description={t('analysis.mobile.description')}
+                title={t('needs_analysis.mobile.title')}
+                description={t('needs_analysis.mobile.description')}
               />
             </div>
             

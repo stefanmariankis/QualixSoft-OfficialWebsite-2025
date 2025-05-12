@@ -336,7 +336,7 @@ export const defaultTranslations: LanguageData = {
         "analytics": "Data Analytics",
         "security": "Cyber Security"
       },
-      "analysis": {
+      "needs_analysis": {
         "title": "We Analyze Your Needs",
         "subtitle": "Understanding your business needs is the first step to success",
         "ux": {
