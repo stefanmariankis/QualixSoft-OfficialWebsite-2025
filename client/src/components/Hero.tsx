@@ -23,17 +23,14 @@ export default function Hero() {
           <div className="animate-fadeIn w-full lg:w-[40%]">
             {/* Mobile-optimized title and subtitle */}
             <div className="block md:hidden mb-6">
-              <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15]">
-                {t('hero.title').split(' ').slice(0, 2).join(' ')}
-              </h1>
-              <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15]">
-                {t('hero.title').split(' ').slice(2).join(' ')}
+              <h1 className="text-[2.5rem] font-bold text-gray-600 leading-[1.15] font-play">
+                {t('hero.title')}
               </h1>
             </div>
             
             {/* Desktop headings */}
             <div className="hidden md:block">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6 font-play">
                 {t('hero.title')}
               </h1>
             </div>

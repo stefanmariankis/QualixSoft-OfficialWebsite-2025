@@ -85,7 +85,7 @@ export default function Services() {
             {t('services.title')}
           </h4>
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
+            className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-play"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

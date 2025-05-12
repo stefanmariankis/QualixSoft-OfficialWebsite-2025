@@ -239,7 +239,7 @@ export default function ProjectsCarousel() {
             className="inline-flex items-center font-bold text-foreground group transition-all duration-300 
             hover:text-primary hover:scale-105 active:scale-95"
           >
-            {t('All projects')}
+            {t('portfolio.all_projects')}
             <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
               <ArrowRight className="h-4 w-4" />
             </span>
