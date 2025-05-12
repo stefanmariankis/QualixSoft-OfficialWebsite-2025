@@ -37,7 +37,7 @@ const features = [
 
 // Feature Card Component
 const FeatureCard = ({ feature, isMobile }: { feature: typeof features[0], isMobile: boolean }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslate();
   // Desktop version (centered)
   if (!isMobile) {
     return (
@@ -106,7 +106,7 @@ export default function WhyWorkAndEnvision() {
         <div className="mb-16 md:mb-20">
           {/* Title and description */}
           <div className={`${isMobile ? 'text-left' : 'text-center'} mb-8 md:mb-12 animate-fadeIn`}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-4 font-play">
               {t('why_us.title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
