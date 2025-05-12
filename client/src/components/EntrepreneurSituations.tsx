@@ -156,7 +156,7 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
   };
 
   return (
-    <section className="py-6 pb-20 bg-white">
+    <section className="pt-0 pb-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {filteredSituations.length === 0 ? (
@@ -166,56 +166,57 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
             </div>
           ) : (
             <div className="space-y-12">
-              {visibleSituations.map((situation) => (
+              {visibleSituations.map((situation, index) => (
                 <div 
                   key={situation.id} 
-                  className="bg-[#FFF9F6] rounded-lg overflow-hidden border border-orange-100 hover:shadow-md transition-shadow"
+                  className="bg-[#FFF9F6] rounded-lg overflow-hidden hover:shadow-md transition-shadow"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-0">
-                    {/* Situation title */}
-                    <div className="md:col-span-4 p-5 border-b border-orange-100">
-                      <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
-                        {situation.title}
-                      </h3>
-                    </div>
+                  <div className="p-5">
+                    <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
+                      {situation.title}
+                    </h3>
                     
-                    {/* Problem section */}
-                    <div className="p-6 md:border-r border-orange-100 flex flex-col">
-                      <div className="flex items-center gap-2 text-gray-600 mb-4">
-                        <div className="bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center">
-                          <span className="text-sm">P</span>
-                        </div>
-                        <span className="font-medium">Problem</span>
+                    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                      {/* Illustration - changes side based on index */}
+                      <div className={`flex justify-center items-start ${index % 2 === 0 ? 'md:order-first' : 'md:order-last'}`}>
+                        {situation.image ? (
+                          <img 
+                            src={situation.image} 
+                            alt={situation.title} 
+                            className="w-40 h-40 object-contain"
+                          />
+                        ) : (
+                          getIllustration(situation.id, situation.icon)
+                        )}
                       </div>
-                      <p className="text-gray-700 text-sm md:text-base leading-relaxed">
-                        {situation.problem}
-                      </p>
-                    </div>
-                    
-                    {/* Solution section */}
-                    <div className="md:col-span-2 p-6 md:border-r border-orange-100">
-                      <div className="flex items-center gap-2 text-orange-600 mb-4">
-                        <div className="bg-orange-100 rounded-full w-6 h-6 flex items-center justify-center">
-                          <span className="text-sm">S</span>
+                      
+                      <div className="flex flex-col space-y-6">
+                        {/* Problem section */}
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-2 text-gray-600 mb-3">
+                            <div className="bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center">
+                              <span className="text-sm">P</span>
+                            </div>
+                            <span className="font-medium">Problem</span>
+                          </div>
+                          <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                            {situation.problem}
+                          </p>
                         </div>
-                        <span className="font-medium">Solution</span>
+                        
+                        {/* Solution section */}
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-2 text-orange-600 mb-3">
+                            <div className="bg-orange-100 rounded-full w-6 h-6 flex items-center justify-center">
+                              <span className="text-sm">S</span>
+                            </div>
+                            <span className="font-medium">Solution</span>
+                          </div>
+                          <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                            {situation.solution}
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-gray-700 text-sm md:text-base leading-relaxed">
-                        {situation.solution}
-                      </p>
-                    </div>
-                    
-                    {/* Illustration */}
-                    <div className="p-6 flex items-center justify-center">
-                      {situation.image ? (
-                        <img 
-                          src={situation.image} 
-                          alt={situation.title} 
-                          className="w-32 h-32 object-contain"
-                        />
-                      ) : (
-                        getIllustration(situation.id, situation.icon)
-                      )}
                     </div>
                   </div>
                 </div>
