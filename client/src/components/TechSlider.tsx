@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Github, Code2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, Code2 } from "lucide-react";
 import { SiWordpress, SiShopify, SiHeroku, SiBootstrap, SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiMongodb, SiDocker } from "react-icons/si";
 
 // Tech stack data
@@ -144,14 +143,8 @@ export default function TechSlider() {
     setIsPaused(false);
   };
   
-  // Get current items to display - show one column at a time but keep multiple items in a row
-  const getCurrentItems = () => {
-    const startIndex = currentPage;
-    // Create a rotated array of items by shifting the items based on the current page
-    const rotatedItems = [...techItems.slice(startIndex), ...techItems.slice(0, startIndex)];
-    // Return the first N items from the rotated array
-    return rotatedItems.slice(0, itemsPerPage);
-  };
+  // We don't need to get current items now as we display all items with CSS transform
+  // This function is no longer used
   
   return (
     <section className="py-16 md:py-24 bg-white">
@@ -171,31 +164,31 @@ export default function TechSlider() {
         >
           {/* Removed navigation buttons as requested to match Partners section */}
           
-          {/* Carousel container with more spacing and smooth slide animation */}
+          {/* Carousel container - simple left sliding animation similar to Partners section */}
           <div className="overflow-hidden px-6 py-6">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentPage} // Key changes force re-render for clean animation
-                initial={{ x: 100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -100, opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-6 lg:gap-10"
-              >
-                {getCurrentItems().map((item) => (
-                  <div key={item.id} className="flex flex-col items-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      className="mb-4 h-20 flex items-center justify-center"
-                    >
-                      {item.icon}
-                    </motion.div>
-                    <span className="text-gray-700 font-medium text-center">{item.name}</span>
+            <div 
+              className="flex gap-8 md:gap-12 lg:gap-16 items-center transition-transform duration-500 ease-in-out"
+              style={{ 
+                transform: `translateX(-${currentPage * 100}px)`,
+                display: 'flex',
+                flexWrap: 'nowrap'
+              }}
+            >
+              {techItems.map((item) => (
+                <div 
+                  key={item.id} 
+                  className="flex-shrink-0 flex flex-col items-center justify-center"
+                  style={{ width: '120px' }}
+                >
+                  <div
+                    className="mb-4 h-20 flex items-center justify-center hover:scale-110 transition-transform duration-300"
+                  >
+                    {item.icon}
                   </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                  <span className="text-gray-700 font-medium text-center">{item.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
           
           {/* Removed carousel indicators as requested to match Partners section */}
