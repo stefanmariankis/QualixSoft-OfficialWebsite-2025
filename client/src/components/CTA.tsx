@@ -26,17 +26,17 @@ export default function CTA() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.5 }}
             >
-              CONTACT US
+              {t('cta.button')}
             </motion.h4>
             
             <motion.h2 
-              className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
+              className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-play"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              We are ready for a new <br/>business idea!
+              {t('cta.title')}
             </motion.h2>
             
             <motion.p 
@@ -46,15 +46,13 @@ export default function CTA() {
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Got a fresh business idea? We're all ears and <span className="text-primary font-semibold">ready to roll!</span>
+              {t('cta.subtitle')}
             </motion.p>
             
             <p 
               className="text-gray-600 mb-6"
             >
-              Our team loves a good brainstorm and we're here to help make your idea shine. 
-              We're not just about talk; we get things done. From the first sketch to the final product, 
-              we've got the tools, the know how, and the drive to bring your vision to life.
+              {t('cta.description')}
             </p>
             
             <div className="flex">
@@ -62,7 +60,7 @@ export default function CTA() {
                 href="#" 
                 className="inline-flex bg-primary hover:bg-primary/90 text-white font-medium px-6 py-3 rounded-md shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 whitespace-nowrap"
               >
-                Get your Free Proposal
+                {t('cta.button')}
               </a>
             </div>
           </div>
@@ -73,7 +71,7 @@ export default function CTA() {
           >
             <img
               src={CTAImage}
-              alt="Team collaboration" 
+              alt={t('cta.image_alt_1')} 
               className="w-full h-auto object-cover"
             />
           </div>
