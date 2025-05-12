@@ -1,38 +1,67 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Link } from "wouter";
+import { useIsMobile } from "../hooks/use-mobile";
+import aboutHeroDesktopBg from "../assets/about_hero_desktop_bg.png";
+import aboutHeroMobileBg from "../assets/about_hero_mobile_bg.png";
 
 export default function ServicesHero() {
+  const isMobile = useIsMobile();
+  const backgroundImage = isMobile ? aboutHeroMobileBg : aboutHeroDesktopBg;
+  
   return (
-    <section className="relative bg-primary overflow-hidden">
-      {/* Decorative arrows */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 opacity-20">
-        <ArrowLeft size={200} color="white" />
-      </div>
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-20">
-        <ArrowRight size={200} color="white" />
-      </div>
+    <section className="bg-primary pt-32 pb-8 md:pt-36 md:pb-12 relative overflow-hidden">
+      {/* Background image - identical to About page */}
+      <div 
+        className="absolute inset-0 w-full h-full z-0 bg-center bg-cover bg-no-repeat" 
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
       
-      <div className="container mx-auto px-4 pt-28 pb-20 relative z-10">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            How we can help you
-          </h1>
-          <p className="text-lg mb-8 opacity-90">
-            Lorem ipsum dolor sit amet consectetur. Proin ut ultricies eget eget diam. Sed pellentesque vel elementum augue lacus diam feugiat libero dolor. Velit gravidas.
-          </p>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <motion.h1 
+            className="text-4xl md:text-5xl font-bold text-white mb-6"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            Serviciile noastre
+          </motion.h1>
           
-          <div className="flex items-center justify-center text-sm">
-            <a href="/" className="text-white/80 hover:text-white transition">Homepage</a>
-            <span className="mx-2">›</span>
-            <span className="text-white">Services</span>
-          </div>
-        </div>
+          <motion.p 
+            className="text-white text-lg mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+          >
+            Oferim servicii profesionale, personalizate pentru a vă ajuta să vă
+            atingeți obiectivele de afaceri și să vă dezvoltați prezența online.
+          </motion.p>
+          
+          <motion.div
+            className="flex items-center justify-center text-sm space-x-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            <Link href="/" className="text-white hover:text-white/80 transition-colors">
+              Acasă
+            </Link>
+            <span className="text-white/70 pointer-events-none">›</span>
+            <span className="text-white/90 pointer-events-none">
+              Servicii
+            </span>
+          </motion.div>
+        </motion.div>
       </div>
       
-      {/* Bottom wave separator */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <svg className="relative block w-full h-12" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-white"></path>
-        </svg>
+      {/* Straight line separator at bottom */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+        <div className="bg-white h-6 w-full"></div>
       </div>
     </section>
   );
