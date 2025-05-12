@@ -142,21 +142,21 @@ export default function AnalysisSection() {
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <Settings className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">Ongoing Maintenance and Support?</span>
+                <span className="text-white text-base font-medium">{t('analysis.support.title')}</span>
               </div>
               
               <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <Database className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">Scalable Backend Solutions?</span>
+                <span className="text-white text-base font-medium">{t('analysis.backend.title')}</span>
               </div>
               
               <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <BarChart3 className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">Search Engine Optimization?</span>
+                <span className="text-white text-base font-medium">{t('analysis.seo.title')}</span>
               </div>
             </div>
             

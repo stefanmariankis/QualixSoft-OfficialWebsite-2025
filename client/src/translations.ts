@@ -336,6 +336,30 @@ export const defaultTranslations: LanguageData = {
         "analytics": "Data Analytics",
         "security": "Cyber Security"
       },
+      "analysis": {
+        "title": "We Analyze Your Needs",
+        "subtitle": "Understanding your business needs is the first step to success",
+        "ux": {
+          "title": "User Experience (UX) Optimization",
+          "description": "Optimization"
+        },
+        "support": {
+          "title": "Ongoing Maintenance and Support",
+          "description": "Support"
+        },
+        "mobile": {
+          "title": "Mobile App Development",
+          "description": "Apps"
+        },
+        "seo": {
+          "title": "Search Engine Optimization",
+          "description": "SEO"
+        },
+        "backend": {
+          "title": "Scalable Backend Solutions",
+          "description": "Backend"
+        }
+      },
       "cta": {
         "title": "Ready for Your Next Project",
         "subtitle": "Let's transform your ideas into successful digital solutions",
