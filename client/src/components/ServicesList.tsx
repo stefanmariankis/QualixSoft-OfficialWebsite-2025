@@ -1,5 +1,7 @@
 import webMobileDevelopmentImg from '@assets/web_mobile_development_services_page.png';
 import consultingStrategyImg from '@assets/consulting_strategy_services_page.png';
+import designImg from '@assets/web_mobile_development_services_page.png';
+import seoImg from '@assets/consulting_strategy_services_page.png';
 
 // Service types
 type ServiceType = {
@@ -14,24 +16,51 @@ export default function ServicesList() {
   const services: ServiceType[] = [
     {
       id: 1,
-      title: "Web & Mobile development",
+      title: "Web & Mobile developement",
       image: webMobileDevelopmentImg,
-      description: "Being present online is no longer an option. Whether you need a presentation site or an online shop, we develop platforms customized to the needs of your business, based on a modern design that delights customers and help them have real-time access to information about your products and services. The costs of realization and maintenance are low, being an accessible way of promotion, but with a strong and effective impact.",
+      description: "Being present online is no longer an option. Whether you want a presentation site or an online shop, we develop platforms customized to the needs of your business, based on a market analysis. Be closer to your customers and help them have real-time access to information about your products and services. The costs of realization and maintenance are low, being an accessible way of promotion, but with a strong and effective impact.",
       features: [
-        "Web Development",
-        "Mobile Development",
-        "E-commerce Development"
+        "Web development",
+        "Mobile development",
+        "E-commerce development"
       ]
     },
     {
       id: 2,
       title: "Consulting and strategy",
       image: consultingStrategyImg,
-      description: "Being present online is no longer an option. Whether you need a presentation site or an online shop, we develop platforms customized to the needs of your business, based on a modern design that delights customers and help them have real-time access to information about your products and services. The costs of realization and maintenance are low, being an accessible way of promotion, but with a strong and effective impact.",
+      description: "Being present online is no longer an option. Whether you want a presentation site or an online shop, we develop platforms customized to the needs of your business, based on a market analysis. Be closer to your customers and help them have real-time access to information about your products and services. The costs of realization and maintenance are low, being an accessible way of promotion, but with a strong and effective impact.",
       features: [
-        "Price Consultation",
-        "SEO Optimization",
-        "E-commerce Improvement Consultation"
+        "Free Consultation",
+        "SEO Consultation",
+        "E-commerce Improvements Consultation"
+      ]
+    },
+    {
+      id: 3,
+      title: "Design",
+      image: designImg,
+      description: "Being present online is no longer an option. Whether you want a presentation site or an online shop, we develop platforms customized to the needs of your business, based on a market analysis. Be closer to your customers and help them have real-time access to information about your products and services. The costs of realization and maintenance are low, being an accessible way of promotion, but with a strong and effective impact.",
+      features: [
+        "UI/UX",
+        "Web Design",
+        "Graphic Design",
+        "Promotional Design Materials"
+      ]
+    },
+    {
+      id: 4,
+      title: "Search Engine Optimization",
+      image: seoImg,
+      description: "Being present online is no longer an option. Whether you want a presentation site or an online shop, we develop platforms customized to the needs of your business, based on a market analysis. Be closer to your customers and help them have real-time access to information about your products and services. The costs of realization and maintenance are low, being an accessible way of promotion, but with a strong and effective impact.",
+      features: [
+        "SEO on-page",
+        "SEO tehnic",
+        "SEO off-page",
+        "SEO local",
+        "Link building",
+        "E-commerce SEO",
+        "Blogging & articole SEO"
       ]
     }
   ];
@@ -39,15 +68,15 @@ export default function ServicesList() {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {services.map((service) => (
             <div 
               key={service.id} 
-              className="mb-14 p-8 relative last:mb-0 rounded-lg transition-all duration-300 hover:border hover:border-gray-200 hover:shadow-sm"
+              className="mb-16 relative last:mb-0 border-b pb-14 last:border-b-0 hover:bg-gray-50 transition-all duration-300 group"
             >
               {/* Arrow in top right corner */}
-              <div className="absolute top-4 right-4">
-                <div className="w-8 h-8 bg-black rounded-sm flex items-center justify-center">
+              <div className="absolute top-0 right-0">
+                <div className="w-8 h-8 bg-black flex items-center justify-center">
                   <svg 
                     width="16" 
                     height="16" 
@@ -65,9 +94,9 @@ export default function ServicesList() {
                 </div>
               </div>
             
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-                {/* Image column - 4 cols on desktop */}
-                <div className="md:col-span-4 flex items-center justify-center">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 p-4">
+                {/* Image column - 3 cols on desktop */}
+                <div className="md:col-span-3 flex items-start justify-center">
                   <div className="relative w-full max-w-[250px]">
                     <img 
                       src={service.image} 
@@ -77,19 +106,19 @@ export default function ServicesList() {
                   </div>
                 </div>
                 
-                {/* Content column - 8 cols on desktop */}
-                <div className="md:col-span-8">
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">{service.title}</h3>
+                {/* Content column - 9 cols on desktop */}
+                <div className="md:col-span-9">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-5 group-hover:text-primary transition-colors">{service.title}</h3>
                   
-                  <div className="mb-4 flex flex-wrap gap-2">
+                  <div className="mb-5 flex flex-wrap gap-2">
                     {service.features.map((feature, index) => (
-                      <span key={index} className="inline-flex items-center px-3 py-1 text-xs font-medium bg-gray-100 text-gray-600 rounded">
-                        {feature}
+                      <span key={index} className="inline-flex items-center px-3 py-1 text-sm font-medium bg-gray-100 text-gray-600 rounded group-hover:bg-gray-200 transition-colors">
+                        <span className="mr-1.5">★</span>{feature}
                       </span>
                     ))}
                   </div>
                   
-                  <p className="text-gray-600">{service.description}</p>
+                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
                 </div>
               </div>
             </div>
