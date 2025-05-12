@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import testimonialsBg from "../assets/testimonials_background.png";
@@ -73,14 +73,32 @@ const Avatar = ({ isActive, avatar }: { isActive: boolean, avatar?: string }) =>
 export default function Testimonials() {
   const { t } = useTranslate();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+  
+  // Auto-play functionality with 5 second intervals
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+    
+    if (autoPlay) {
+      intervalId = setInterval(() => {
+        setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+      }, 5000);
+    }
+    
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [autoPlay, testimonials.length]);
   
   const handlePrev = () => {
+    setAutoPlay(false); // Stop auto-play when manually navigating
     setActiveIndex((prevIndex) => 
       prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
   };
   
   const handleNext = () => {
+    setAutoPlay(false); // Stop auto-play when manually navigating
     setActiveIndex((prevIndex) => 
       (prevIndex + 1) % testimonials.length
     );
