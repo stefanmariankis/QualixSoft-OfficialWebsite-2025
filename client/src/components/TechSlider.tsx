@@ -169,30 +169,7 @@ export default function TechSlider() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {/* Carousel navigation buttons */}
-          <button 
-            onClick={() => {
-              setIsPaused(true);
-              changeSlide('prev');
-              setTimeout(() => setIsPaused(false), 500);
-            }}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-md p-3 text-primary hover:text-primary-dark hover:scale-110 transition-transform"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          
-          <button 
-            onClick={() => {
-              setIsPaused(true);
-              changeSlide('next');
-              setTimeout(() => setIsPaused(false), 500);
-            }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-md p-3 text-primary hover:text-primary-dark hover:scale-110 transition-transform"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+          {/* Removed navigation buttons as requested to match Partners section */}
           
           {/* Carousel container with more spacing and smooth slide animation */}
           <div className="overflow-hidden px-6 py-6">
@@ -221,23 +198,7 @@ export default function TechSlider() {
             </AnimatePresence>
           </div>
           
-          {/* Carousel indicators - more subtle and modern */}
-          <div className="flex justify-center mt-10 space-x-2">
-            {Array.from({ length: Math.min(7, totalPages) }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setIsPaused(true);
-                  setCurrentPage(index);
-                  setTimeout(() => setIsPaused(false), 500);
-                }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  Math.floor(currentPage / columns) === Math.floor(index / columns) ? 'w-6 bg-primary' : 'bg-primary/30'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              ></button>
-            ))}
-          </div>
+          {/* Removed carousel indicators as requested to match Partners section */}
         </div>
       </div>
     </section>
