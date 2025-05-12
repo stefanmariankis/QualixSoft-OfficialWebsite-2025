@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Megaphone, Monitor, BarChart, ShoppingBag } from 'lucide-react';
+import { Megaphone, Monitor, BarChart, ShoppingBag, Users, PieChart, Smartphone, GraduationCap, ChevronUp, ChevronDown } from 'lucide-react';
 
 // Define the structure for an entrepreneurial situation
 type SituationType = {
@@ -19,6 +19,9 @@ interface EntrepreneurSituationsProps {
 
 export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSituationsProps) {
   const [filteredSituations, setFilteredSituations] = useState<SituationType[]>([]);
+  const [visibleSituations, setVisibleSituations] = useState<SituationType[]>([]);
+  const [showAll, setShowAll] = useState(false);
+  const [searchActive, setSearchActive] = useState(false);
   const { t } = useTranslation();
   
   // Predefined list of entrepreneurial situations
@@ -54,6 +57,38 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
       solution: "We do a detailed analysis of your website to identify weak points in the user experience. Then, we optimize your online store, improve your conversion rate and help you attract quality traffic through Google Ads, Facebook Ads and Email Marketing campaigns. In addition, we provide you with constant support so that your store sells more, not just exists.",
       keywords: ["e-commerce", "sales", "conversion", "optimization", "traffic"],
       icon: <ShoppingBag className="w-8 h-8" />
+    },
+    {
+      id: 5,
+      title: "Difficulty finding and retaining customers",
+      problem: "Finding new customers is one of the biggest challenges for businesses. Many entrepreneurs struggle to identify their target audience and create marketing campaigns that convert. Even after acquiring customers, retaining them can be equally challenging.",
+      solution: "We develop comprehensive customer acquisition and retention strategies tailored to your business. Our approach includes market research to identify your ideal customers, creating targeted marketing campaigns, implementing loyalty programs, and establishing communication channels for feedback. The goal is to build lasting relationships that result in repeat business and referrals.",
+      keywords: ["customer acquisition", "customer retention", "loyalty", "target audience", "marketing"],
+      icon: <Users className="w-8 h-8" />
+    },
+    {
+      id: 6,
+      title: "Lack of data-driven business decisions",
+      problem: "Many businesses operate on gut feeling rather than concrete data. Without proper analytics, it's difficult to understand what's working, what isn't, and where to allocate resources for maximum impact.",
+      solution: "We implement comprehensive analytics solutions that provide clear insights into your business performance. From website analytics to customer behavior tracking, sales metrics, and marketing campaign performance—we give you the tools to make informed decisions. Our regular reports highlight key areas for improvement and help you track progress over time.",
+      keywords: ["analytics", "data", "business intelligence", "metrics", "performance"],
+      icon: <PieChart className="w-8 h-8" />
+    },
+    {
+      id: 7,
+      title: "Poor mobile experience hurting business growth",
+      problem: "With more than half of web traffic coming from mobile devices, having a poor mobile experience can significantly harm your business. Many entrepreneurs don't realize that their websites or applications are not optimized for mobile users, leading to frustration and lost sales.",
+      solution: "We design mobile-first experiences that ensure your customers have a seamless interaction with your brand across all devices. Our approach includes responsive web design, mobile app development when necessary, and optimization for mobile search. We also conduct usability testing specifically for mobile interfaces to identify and eliminate pain points.",
+      keywords: ["mobile", "responsive", "usability", "app development", "optimization"],
+      icon: <Smartphone className="w-8 h-8" />
+    },
+    {
+      id: 8,
+      title: "Struggling to keep up with digital marketing trends",
+      problem: "Digital marketing evolves rapidly, making it challenging for busy entrepreneurs to stay updated with the latest trends, platforms, and best practices. This knowledge gap often results in ineffective marketing efforts and wasted resources.",
+      solution: "Our team constantly monitors industry trends and platform changes to keep your marketing strategy current and effective. We provide regular training sessions for your team, implement new marketing techniques as they emerge, and adjust strategies based on platform algorithm changes. This proactive approach ensures you're always leveraging the most effective marketing methods.",
+      keywords: ["digital marketing", "trends", "social media", "algorithms", "strategy"],
+      icon: <GraduationCap className="w-8 h-8" />
     }
   ];
 
@@ -61,9 +96,11 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
   useEffect(() => {
     if (!searchTerm || searchTerm.trim() === '') {
       setFilteredSituations(situations);
+      setSearchActive(false);
       return;
     }
 
+    setSearchActive(true);
     const lowercasedSearch = searchTerm.toLowerCase();
     const filtered = situations.filter(situation => {
       return (
@@ -75,19 +112,36 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
     });
     
     setFilteredSituations(filtered);
+    setShowAll(true); // Show all matching results when searching
   }, [searchTerm]);
+
+  // Update visible situations based on showAll state
+  useEffect(() => {
+    if (showAll || searchActive) {
+      setVisibleSituations(filteredSituations);
+    } else {
+      // Show only the first 4 situations when not showing all
+      setVisibleSituations(filteredSituations.slice(0, 4));
+    }
+  }, [filteredSituations, showAll, searchActive]);
 
   // Initial load of all situations
   useEffect(() => {
     setFilteredSituations(situations);
+    setVisibleSituations(situations.slice(0, 4)); // Initially show only 4 situations
   }, []);
+
+  // Toggle between showing all situations or just the first 4
+  const toggleShowAll = () => {
+    setShowAll(!showAll);
+  };
 
   // Get an illustration for the situation if no image is provided
   const getIllustration = (id: number, icon?: React.ReactNode) => {
     // If there's an icon, use it
     if (icon) {
       return (
-        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
+        <div className="w-20 h-20 md:w-32 md:h-32 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
           {icon}
         </div>
       );
@@ -95,7 +149,7 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
     
     // Otherwise generate a default illustration based on ID
     return (
-      <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 font-bold text-2xl">
+      <div className="w-20 h-20 md:w-32 md:h-32 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 font-bold text-2xl">
         {id}
       </div>
     );
@@ -111,8 +165,8 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
               <p className="mt-2 text-gray-500">Try using different keywords or browse all situations below.</p>
             </div>
           ) : (
-            <div className="space-y-16">
-              {filteredSituations.map((situation) => (
+            <div className="space-y-12">
+              {visibleSituations.map((situation) => (
                 <div 
                   key={situation.id} 
                   className="bg-[#FFF9F6] rounded-lg overflow-hidden border border-orange-100 hover:shadow-md transition-shadow"
@@ -126,7 +180,7 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
                     </div>
                     
                     {/* Problem section */}
-                    <div className="p-6 md:border-r border-orange-100 flex flex-col md:items-center">
+                    <div className="p-6 md:border-r border-orange-100 flex flex-col">
                       <div className="flex items-center gap-2 text-gray-600 mb-4">
                         <div className="bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center">
                           <span className="text-sm">P</span>
@@ -169,15 +223,22 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
             </div>
           )}
           
-          {/* Load more button */}
-          <div className="flex justify-center mt-12">
-            <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-md font-medium hover:bg-gray-50 transition-colors flex items-center gap-1">
-              More
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 10L4 6H12L8 10Z" fill="currentColor"/>
-              </svg>
-            </button>
-          </div>
+          {/* Load more/less button */}
+          {filteredSituations.length > 4 && (
+            <div className="flex justify-center mt-12">
+              <button 
+                onClick={toggleShowAll}
+                className="border border-gray-300 text-gray-700 px-6 py-3 rounded-md font-medium hover:bg-gray-50 transition-colors flex items-center gap-2"
+              >
+                {showAll ? 'Show Less' : 'Show More'}
+                {showAll ? (
+                  <ChevronUp className="w-4 h-4" />
+                ) : (
+                  <ChevronDown className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+          )}
           
           {/* CTA section at the bottom */}
           <div className="mt-20 pt-16 border-t">
@@ -185,15 +246,15 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
               <div className="grid grid-cols-2 gap-4">
                 <div className="aspect-square rounded-lg overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                    alt="Team working together" 
+                    src="https://placehold.co/400x400/FFF9F6/EB7127?text=Business+Strategy" 
+                    alt="Business Team Working" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="aspect-square rounded-lg overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                    alt="Team working together" 
+                    src="https://placehold.co/400x400/FFF9F6/EB7127?text=Growth+Planning" 
+                    alt="Business Growth Planning" 
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -205,15 +266,15 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
                 </h2>
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-2">
-                    <span className="text-primary">★</span>
+                    <span className="text-[#EB7127]">★</span>
                     <p>If you find yourself in one of the situations we've mentioned</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-primary">★</span>
+                    <span className="text-[#EB7127]">★</span>
                     <p>If you know your business deserves more</p>
                   </div>
                 </div>
-                <button className="bg-black text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors w-fit">
+                <button className="bg-[#282828] text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors w-fit">
                   Get your Free Proposal
                 </button>
               </div>

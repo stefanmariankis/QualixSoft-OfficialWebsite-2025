@@ -21,6 +21,11 @@ export default function SolutionsSearch({ onSearch }: SolutionsSearchProps) {
     };
   }, [searchTerm, onSearch]);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSearch(searchTerm);
+  };
+
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,12 +34,12 @@ export default function SolutionsSearch({ onSearch }: SolutionsSearchProps) {
             Situations you might be in
           </h2>
           
-          <div className="flex flex-col sm:flex-row gap-3">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-grow">
               <input
                 type="text"
-                placeholder="Insert key words"
-                className="w-full border border-gray-300 rounded-md py-3 px-4 pl-10 text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Insert key words..."
+                className="w-full border border-gray-300 rounded-md py-3 px-4 pl-10 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#EB7127] focus:border-[#EB7127]"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -43,12 +48,12 @@ export default function SolutionsSearch({ onSearch }: SolutionsSearchProps) {
               </div>
             </div>
             <button 
+              type="submit"
               className="bg-[#282828] text-white py-3 px-6 rounded-md font-medium hover:bg-gray-800 transition-colors"
-              onClick={() => onSearch(searchTerm)}
             >
               Search
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>
