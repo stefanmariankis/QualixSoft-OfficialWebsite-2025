@@ -73,21 +73,21 @@ export default function TechSlider() {
   const [isChanging, setIsChanging] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Calculate the number of columns to display based on screen size
-  const [columns, setColumns] = useState(6);
+  // Fixed at 7 columns like the PARTNERS section, with responsive adjustment for smaller screens
+  const [columns, setColumns] = useState(7);
   // Show multiple items per row, but slide one column at a time
   const itemsPerPage = columns;
-  const totalPages = Math.ceil(techItems.length / columns);
+  const totalPages = techItems.length;
   
   // Update columns based on screen size
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setColumns(2);
+        setColumns(3);
       } else if (window.innerWidth < 1024) {
-        setColumns(4);
+        setColumns(5);
       } else {
-        setColumns(6);
+        setColumns(7); // Desktop shows 7 columns as requested
       }
     };
     
@@ -160,18 +160,18 @@ export default function TechSlider() {
   };
   
   return (
-    <section className="py-14 md:py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section title */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h3 className="text-primary uppercase font-semibold mb-2 tracking-wider text-sm">TEHNOLOGII</h3>
-          <h2 className="text-3xl font-bold text-gray-800 mb-3">Some tools that fit your needs</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">Folosim cele mai moderne tehnologii pentru a dezvolta aplicații web performante și scalabile</p>
+          <h2 className="text-3xl md:text-4xl font-play font-bold text-gray-800 mb-4">Some tools that fit your needs</h2>
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg">Folosim cele mai moderne tehnologii pentru a dezvolta aplicații web performante și scalabile</p>
         </div>
         
-        {/* Tech carousel */}
+        {/* Tech carousel - with more spacing like PARTNERS section */}
         <div 
-          className="relative"
+          className="relative px-6 md:px-10"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
@@ -182,7 +182,7 @@ export default function TechSlider() {
               changeSlide('prev');
               setTimeout(() => setIsPaused(false), 500);
             }}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-5 z-10 bg-white rounded-full shadow-md p-2 text-primary hover:text-primary-dark hover:scale-110 transition-transform"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-md p-3 text-primary hover:text-primary-dark hover:scale-110 transition-transform"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -194,35 +194,35 @@ export default function TechSlider() {
               changeSlide('next');
               setTimeout(() => setIsPaused(false), 500);
             }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-5 z-10 bg-white rounded-full shadow-md p-2 text-primary hover:text-primary-dark hover:scale-110 transition-transform"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-md p-3 text-primary hover:text-primary-dark hover:scale-110 transition-transform"
             aria-label="Next slide"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
           
-          {/* Carousel container */}
-          <div className="overflow-hidden px-4">
+          {/* Carousel container with more spacing */}
+          <div className="overflow-hidden px-6 py-6">
             <div 
-              className={`flex justify-center items-center transition-all duration-500 ${isChanging ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'}`}
+              className={`grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-6 lg:gap-10 transition-all duration-500 ${isChanging ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'}`}
             >
               {getCurrentItems().map((item) => (
-                <div key={item.id} className="flex flex-col items-center px-2 sm:px-4">
+                <div key={item.id} className="flex flex-col items-center">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    className="mb-3"
+                    className="mb-4 h-20 flex items-center justify-center"
                   >
                     {item.icon}
                   </motion.div>
-                  <span className="text-gray-700 font-medium text-center text-lg md:text-xl">{item.name}</span>
+                  <span className="text-gray-700 font-medium text-center">{item.name}</span>
                 </div>
               ))}
             </div>
           </div>
           
-          {/* Carousel indicators */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {Array.from({ length: totalPages }).map((_, index) => (
+          {/* Carousel indicators - more subtle and modern */}
+          <div className="flex justify-center mt-10 space-x-2">
+            {Array.from({ length: Math.min(7, totalPages) }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => {
@@ -231,7 +231,7 @@ export default function TechSlider() {
                   setTimeout(() => setIsPaused(false), 500);
                 }}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentPage === index ? 'w-6 bg-primary' : 'bg-primary/30'
+                  Math.floor(currentPage / columns) === Math.floor(index / columns) ? 'w-6 bg-primary' : 'bg-primary/30'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               ></button>
