@@ -26,7 +26,7 @@ export const defaultTranslations: LanguageData = {
         "more": "Mai mult"
       },
       "hero": {
-        "title": "Soluții digitale personalizate pentru afacerea ta",
+        "title": "SOLUȚII DIGITALE PERSONALIZATE",
         "subtitle": "Transformăm ideile tale în experiențe digitale de impact",
         "description": "Echipa noastră de experți oferă servicii complete de dezvoltare web și mobile, având în vedere obiectivele tale de business.",
         "cta": "Discută cu noi",
@@ -210,7 +210,7 @@ export const defaultTranslations: LanguageData = {
         "more": "More"
       },
       "hero": {
-        "title": "Custom Digital Solutions for Your Business",
+        "title": "BUILDING YOUR DIGITAL FUTURE",
         "subtitle": "We transform your ideas into impactful digital experiences",
         "description": "Our team of experts provides comprehensive web and mobile development services, keeping your business objectives in mind.",
         "cta": "Talk to us",
