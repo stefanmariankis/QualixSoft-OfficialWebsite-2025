@@ -72,11 +72,11 @@ export default function ServicesList() {
           {services.map((service) => (
             <div 
               key={service.id} 
-              className="mb-16 relative last:mb-0 border-b pb-14 last:border-b-0 hover:bg-gray-50 transition-all duration-300 group"
+              className="mb-16 relative last:mb-0 border-b pb-14 last:border-b-0 hover:bg-gray-50 transition-all duration-300 group px-6 pt-6"
             >
               {/* Arrow in top right corner */}
-              <div className="absolute top-0 right-0">
-                <div className="w-8 h-8 bg-black flex items-center justify-center">
+              <div className="absolute top-6 right-6">
+                <div className="w-8 h-8 bg-black flex items-center justify-center shadow-sm">
                   <svg 
                     width="16" 
                     height="16" 
@@ -94,7 +94,7 @@ export default function ServicesList() {
                 </div>
               </div>
             
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 p-4">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Image column - 3 cols on desktop */}
                 <div className="md:col-span-3 flex items-start justify-center">
                   <div className="relative w-full max-w-[250px]">
