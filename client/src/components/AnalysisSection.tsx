@@ -128,14 +128,14 @@ export default function AnalysisSection() {
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <Smartphone className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">Mobile App Development?</span>
+                <span className="text-white text-base font-medium">{t('analysis.mobile.title')}</span>
               </div>
               
               <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
                 <div className="bg-white rounded-sm p-2 mr-3 flex-shrink-0">
                   <Monitor className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white text-base font-medium">User Experience (UX) Optimization?</span>
+                <span className="text-white text-base font-medium">{t('analysis.ux.title')}</span>
               </div>
               
               <div className="border border-white border-dashed rounded-lg p-3 flex items-center">
@@ -196,32 +196,32 @@ export default function AnalysisSection() {
             <div id="box2" className="absolute top-0 right-5 md:right-10 lg:right-32 w-[220px] z-20">
               <FeatureBox 
                 icon={<Settings className="h-5 w-5 text-primary" />}
-                title="Ongoing Maintenance and Support"
-                description="Support"
+                title={t('analysis.support.title')}
+                description={t('analysis.support.description')}
               />
             </div>
             
             <div id="box3" className="absolute top-[180px] left-0 md:left-[30px] lg:left-[150px] w-[220px] z-20">
               <FeatureBox 
                 icon={<Smartphone className="h-5 w-5 text-primary" />}
-                title="Mobile App Development"
-                description=""
+                title={t('analysis.mobile.title')}
+                description={t('analysis.mobile.description')}
               />
             </div>
             
             <div id="box4" className="absolute top-[180px] right-0 md:right-[30px] lg:right-[120px] w-[220px] z-20">
               <FeatureBox 
                 icon={<BarChart3 className="h-5 w-5 text-primary" />}
-                title="Search Engine Optimization"
-                description=""
+                title={t('analysis.seo.title')}
+                description={t('analysis.seo.description')}
               />
             </div>
             
             <div id="box5" className="absolute bottom-0 right-[30%] w-[220px] z-20">
               <FeatureBox 
                 icon={<Database className="h-5 w-5 text-primary" />}
-                title="Scalable Backend Solutions"
-                description=""
+                title={t('analysis.backend.title')}
+                description={t('analysis.backend.description')}
               />
             </div>
             
