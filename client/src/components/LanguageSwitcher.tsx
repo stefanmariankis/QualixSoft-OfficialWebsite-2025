@@ -6,6 +6,9 @@ type LanguageSwitcherProps = {
   className?: string;
 };
 
+// Define language type
+type Language = 'ro' | 'en';
+
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) => {
   const { getCurrentLanguage, changeLanguage } = useTranslate();
   const currentLang = getCurrentLanguage();
@@ -29,19 +32,22 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) =
     setIsOpen(!isOpen);
   };
 
-  const selectLanguage = (lang: string) => {
+  const selectLanguage = (lang: Language) => {
     changeLanguage(lang);
     setIsOpen(false);
   };
 
   // Map language codes to their full names
-  const languageNames: Record<string, string> = {
+  const languageNames: Record<Language, string> = {
     'ro': 'Română',
     'en': 'English'
   };
+  
+  // Available languages
+  const availableLanguages: Language[] = ['ro', 'en'];
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
         className={`flex items-center text-sm font-medium px-3 py-2 rounded border border-gray-200 
@@ -50,14 +56,14 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) =
         aria-expanded={isOpen}
       >
         <span className="mr-2">{languageNames[currentLang]}</span>
-        <ChevronDown className="w-4 h-4 text-gray-500" />
+        <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
         <div 
           className="absolute right-0 mt-1 w-40 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-100"
         >
-          {Object.entries(languageNames).map(([code, name]) => (
+          {availableLanguages.map((code) => (
             <button
               key={code}
               onClick={() => selectLanguage(code)}
@@ -65,7 +71,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) =
                         hover:bg-primary/5 hover:text-primary transition-colors
                         ${currentLang === code ? 'font-medium text-primary' : 'text-gray-700'}`}
             >
-              {name}
+              {languageNames[code]}
               {currentLang === code && (
                 <span className="ml-auto">
                   <svg className="w-4 h-4 text-primary" viewBox="0 0 20 20" fill="currentColor">
