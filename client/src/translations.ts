@@ -35,6 +35,7 @@ export const defaultTranslations: LanguageData = {
       "services": {
         "title": "Serviciile noastre",
         "subtitle": "Soluții complete pentru prezența ta digitală",
+        "description": "Oferim o gamă completă de servicii digitale pentru a ajuta afacerea ta să prospere online. De la dezvoltare web la marketing digital, acoperim toate nevoile tale digitale.",
         "web_dev": {
           "title": "Dezvoltare web și mobilă",
           "description": "Creăm site-uri și aplicații personalizate care se adaptează perfect nevoilor afacerii tale."
@@ -219,6 +220,7 @@ export const defaultTranslations: LanguageData = {
       "services": {
         "title": "Our Services",
         "subtitle": "Complete solutions for your digital presence",
+        "description": "We offer a comprehensive range of digital services to help your business thrive online. From web development to digital marketing, we cover all your digital needs.",
         "web_dev": {
           "title": "Web & Mobile Development",
           "description": "We create custom websites and applications that perfectly adapt to your business needs."
@@ -234,6 +236,14 @@ export const defaultTranslations: LanguageData = {
         "seo": {
           "title": "SEO Optimization",
           "description": "We improve your position in search engines to attract more organic traffic and potential customers."
+        },
+        "consulting": {
+          "title": "Business Consulting",
+          "description": "Strategic guidance to help your business grow and adapt in an ever-changing digital landscape."
+        },
+        "optimization": {
+          "title": "Conversion Optimization",
+          "description": "We fine-tune your digital assets to maximize conversions and improve your ROI."
         },
         "cta": "See all services"
       },
@@ -328,6 +338,9 @@ export const defaultTranslations: LanguageData = {
       "cta": {
         "title": "Ready for Your Next Project",
         "subtitle": "Let's transform your ideas into successful digital solutions",
+        "description": "Got a fresh business idea? We're all ears and ready to roll! Our team loves a good brainstorm and we're here to help make your idea shine.",
+        "image_alt_1": "Team collaboration",
+        "image_alt_2": "Business idea brainstorming",
         "button": "Contact us now"
       },
       "about": {
