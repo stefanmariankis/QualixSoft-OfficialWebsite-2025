@@ -2,11 +2,11 @@ import { Smartphone, Monitor, Database, Settings, BarChart3, BarChart2 } from "l
 import { useEffect, useRef } from "react";
 import laptopImage from "../assets/laptop_display.png";
 import needsBackground from "../assets/needs_background.png";
-import { useTranslation } from "react-i18next";
+import useTranslate from "../hooks/useTranslate";
 import { useIsMobile } from "../hooks/use-mobile";
 
 export default function AnalysisSection() {
-  const { t } = useTranslation();
+  const { t } = useTranslate();
   const isMobile = useIsMobile();
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -188,8 +188,8 @@ export default function AnalysisSection() {
             <div id="box1" className="absolute top-0 left-5 md:left-10 lg:left-32 w-[220px] z-20">
               <FeatureBox 
                 icon={<Monitor className="h-5 w-5 text-primary" />}
-                title="User Experience (UX) Optimization"
-                description="Optimization"
+                title={t('analysis.ux.title')}
+                description={t('analysis.ux.description')}
               />
             </div>
             

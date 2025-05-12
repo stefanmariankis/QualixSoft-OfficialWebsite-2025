@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
+import useTranslate from "../hooks/useTranslate";
 
 // Import service images
 import webMobileDev from "../assets/web_mobile_dev.png";
@@ -11,7 +11,7 @@ import digitalMarketing from "../assets/digital_marketing.png";
 import optimizationConversion from "../assets/optimization_conversion.png";
 
 export default function Services() {
-  const { t } = useTranslation();
+  const { t } = useTranslate();
   
   // Our Services items with their corresponding translation keys
   const ourServices = [
