@@ -36,9 +36,6 @@ export default function Hero() {
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
                 {t('hero.title')}
               </h1>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-titles leading-tight mb-6">
-                {t('hero.subtitle')}
-              </h1>
             </div>
             
             {/* Mobile-optimized description */}
