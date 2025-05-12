@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import * as React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import testimonialsBg from "../assets/testimonials_background.png";
@@ -75,21 +76,6 @@ export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   
-  // Auto-play functionality with 5 second intervals
-  useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-    
-    if (autoPlay) {
-      intervalId = setInterval(() => {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-      }, 5000);
-    }
-    
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [autoPlay, testimonials.length]);
-  
   const handlePrev = () => {
     setAutoPlay(false); // Stop auto-play when manually navigating
     setActiveIndex((prevIndex) => 
@@ -98,13 +84,26 @@ export default function Testimonials() {
   };
   
   const handleNext = () => {
-    setAutoPlay(false); // Stop auto-play when manually navigating
     setActiveIndex((prevIndex) => 
       (prevIndex + 1) % testimonials.length
     );
   };
   
+  // Simple auto-advance functionality
+  React.useEffect(() => {
+    // Auto-play every 5 seconds
+    const interval = setInterval(() => {
+      if (autoPlay) {
+        handleNext();
+      }
+    }, 5000);
+    
+    // Cleanup on unmount
+    return () => clearInterval(interval);
+  }, [autoPlay, testimonials.length]);
+  
   const handleAvatarClick = (index: number) => {
+    setAutoPlay(false); // Stop auto-play when manually selecting
     setActiveIndex(index);
   };
 

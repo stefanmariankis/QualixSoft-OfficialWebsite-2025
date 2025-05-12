@@ -73,20 +73,14 @@ export default function TechSlider() {
   const [isChanging, setIsChanging] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Calculate items per page based on screen size
-  const [itemsPerPage, setItemsPerPage] = useState(6);
-  const totalPages = Math.ceil(techItems.length / itemsPerPage);
+  // Show one item per slide as requested
+  const itemsPerPage = 1;
+  const totalPages = techItems.length;
   
-  // Update items per page based on window size
+  // No need to update items per page based on window size anymore
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setItemsPerPage(2);
-      } else if (window.innerWidth < 1024) {
-        setItemsPerPage(4);
-      } else {
-        setItemsPerPage(6);
-      }
+      // Keep it at 1 item per page regardless of screen size
     };
     
     // Initial calculation
@@ -189,10 +183,10 @@ export default function TechSlider() {
           {/* Carousel container */}
           <div className="overflow-hidden px-4">
             <div 
-              className={`flex justify-evenly items-center transition-all duration-500 ${isChanging ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'}`}
+              className={`flex justify-center items-center transition-all duration-500 ${isChanging ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'}`}
             >
               {getCurrentItems().map((item) => (
-                <div key={item.id} className="flex flex-col items-center px-2 sm:px-4 flex-1">
+                <div key={item.id} className="flex flex-col items-center px-2 sm:px-4">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -200,7 +194,7 @@ export default function TechSlider() {
                   >
                     {item.icon}
                   </motion.div>
-                  <span className="text-gray-700 font-medium text-center text-sm sm:text-base">{item.name}</span>
+                  <span className="text-gray-700 font-medium text-center text-lg md:text-xl">{item.name}</span>
                 </div>
               ))}
             </div>
