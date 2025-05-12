@@ -73,23 +73,30 @@ export default function TechSlider() {
   const [isChanging, setIsChanging] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Show one item per slide as requested
-  const itemsPerPage = 1;
-  const totalPages = techItems.length;
+  // Calculate the number of columns to display based on screen size
+  const [columns, setColumns] = useState(6);
+  // Show multiple items per row, but slide one column at a time
+  const itemsPerPage = columns;
+  const totalPages = Math.ceil(techItems.length / columns);
   
-  // No need to update items per page based on window size anymore
+  // Update columns based on screen size
   useEffect(() => {
     const handleResize = () => {
-      // Keep it at 1 item per page regardless of screen size
+      if (window.innerWidth < 640) {
+        setColumns(2);
+      } else if (window.innerWidth < 1024) {
+        setColumns(4);
+      } else {
+        setColumns(6);
+      }
     };
     
-    // Initial calculation
     handleResize();
-    
-    // Listen for window resize
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  
+  // Removed duplicate resize effect
   
   // Handle automatic slider
   const startAutoSlide = () => {
@@ -100,14 +107,24 @@ export default function TechSlider() {
     }, 3000);
   };
   
-  // Slide change function with animation
+  // Slide change function with animation - sliding one column at a time
   const changeSlide = (direction: 'next' | 'prev') => {
     setIsChanging(true);
     setTimeout(() => {
       if (direction === 'next') {
-        setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
+        // Move forward by just one column
+        setCurrentPage((prevPage) => {
+          const nextPage = prevPage + 1;
+          // If we reach the end of the items, loop back to the start
+          return nextPage >= totalPages ? 0 : nextPage;
+        });
       } else {
-        setCurrentPage((prevPage) => (prevPage - 1 + totalPages) % totalPages);
+        // Move backward by just one column
+        setCurrentPage((prevPage) => {
+          const prevPageCalculated = prevPage - 1;
+          // If we reach the start, loop to the end
+          return prevPageCalculated < 0 ? totalPages - 1 : prevPageCalculated;
+        });
       }
       setTimeout(() => {
         setIsChanging(false);
@@ -133,10 +150,13 @@ export default function TechSlider() {
     setIsPaused(false);
   };
   
-  // Get current items to display
+  // Get current items to display - show one column at a time but keep multiple items in a row
   const getCurrentItems = () => {
-    const startIndex = currentPage * itemsPerPage;
-    return techItems.slice(startIndex, startIndex + itemsPerPage);
+    const startIndex = currentPage;
+    // Create a rotated array of items by shifting the items based on the current page
+    const rotatedItems = [...techItems.slice(startIndex), ...techItems.slice(0, startIndex)];
+    // Return the first N items from the rotated array
+    return rotatedItems.slice(0, itemsPerPage);
   };
   
   return (
