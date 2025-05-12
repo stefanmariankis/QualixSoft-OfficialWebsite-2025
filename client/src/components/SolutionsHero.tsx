@@ -1,26 +1,56 @@
-import React from 'react';
+import { Link } from 'wouter';
+import { useTranslation } from 'react-i18next';
 
 export default function SolutionsHero() {
+  const { t, i18n } = useTranslation();
+  
+  // Get correct routes based on language
+  const homeRoute = i18n.language === 'ro' ? '/' : '/';
+  const solutionsRoute = i18n.language === 'ro' ? '/solutii' : '/solutions';
+  
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+    <section className="bg-[#EB7127] py-16 relative overflow-hidden">
+      {/* Angular elements for decoration (like in the image) */}
+      <div className="absolute left-0 top-1/4 opacity-20">
+        <svg width="250" height="300" viewBox="0 0 250 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 150L250 0V300L0 150Z" fill="white"/>
+        </svg>
+      </div>
+      <div className="absolute right-0 top-1/4 opacity-20">
+        <svg width="250" height="300" viewBox="0 0 250 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M250 150L0 0V300L250 150Z" fill="white"/>
+        </svg>
+      </div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-3xl mx-auto text-center text-white py-12">
+          <h1 className="text-5xl md:text-6xl font-bold mb-8">
             Solutions
           </h1>
-          <p className="text-xl text-gray-600 leading-relaxed mb-10">
-            We provide tailored solutions for businesses at every stage. From startups to established enterprises, 
-            our strategies help you overcome common obstacles and achieve sustainable growth.
+          <p className="text-lg md:text-xl leading-relaxed mb-10 opacity-90">
+            Because we understand the challenges entrepreneurs face, we've created a list
+            of the most common situations and how we can help you overcome each stage
+            of your business.
           </p>
-          <div className="flex justify-center gap-4">
-            <button className="bg-primary text-white px-6 py-3 rounded-md font-medium hover:bg-opacity-90 transition-colors">
-              Book a Consultation
-            </button>
-            <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors">
-              Learn More
-            </button>
+          
+          {/* Breadcrumb navigation */}
+          <div className="flex justify-center items-center gap-2 text-white/80">
+            <Link href={homeRoute} className="hover:text-white transition-colors">
+              Homepage
+            </Link>
+            <span>›</span>
+            <Link href={solutionsRoute} className="font-medium">
+              Solutions
+            </Link>
           </div>
         </div>
+      </div>
+      
+      {/* White cutout at bottom */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0 40H1440V0L0 40Z" fill="white"/>
+        </svg>
       </div>
     </section>
   );

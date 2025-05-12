@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Megaphone, Monitor, BarChart, ShoppingBag } from 'lucide-react';
 
-// Situation item type definition
-interface SituationType {
+// Define the structure for an entrepreneurial situation
+type SituationType = {
   id: number;
   title: string;
   problem: string;
   solution: string;
   keywords: string[];
-  image?: string;
-}
+  image?: string; // Optional image path
+  icon?: React.ReactNode; // Optional icon component
+};
 
 interface EntrepreneurSituationsProps {
   searchTerm: string;
@@ -16,6 +19,7 @@ interface EntrepreneurSituationsProps {
 
 export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSituationsProps) {
   const [filteredSituations, setFilteredSituations] = useState<SituationType[]>([]);
+  const { t } = useTranslation();
   
   // Predefined list of entrepreneurial situations
   const situations: SituationType[] = [
@@ -25,85 +29,31 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
       problem: "I've met so many entrepreneurs who have a great product or service, but they just can't be found online. Either they have a website that doesn't represent them, or they are completely non-existent in the digital environment. These days, if you're not online, you're missing out on a lot of your potential customers.",
       solution: "Our first priority is to build you a solid online presence. We handle everything from a modern, fast and SEO-optimized website to Google Ads and Facebook Ads campaigns that attract the right traffic. That means not only will you be visible, but you'll be visible to the people who matter – the ones who are interested in what you have to offer. I get rid of this worry completely!",
       keywords: ["online presence", "website", "SEO", "digital marketing", "visibility"],
-      image: "/entrepreneur1.png"
+      icon: <Monitor className="w-8 h-8" />
     },
     {
       id: 2,
       title: "Difficulties in creating a recognizable and attractive brand",
-      problem: "Many times, entrepreneurs come to us with a great product, but when it comes to brand image, things are a bit fuzzy. People don't recognize the brand, they don't identify with it, and that can be a serious problem in business growth.",
-      solution: "Branding is the lifeblood of your business, and we're here to help you create a brand that resonates with your customers. We take care of everything graphic design means - logo, colors, visual style - and build you an identity that tells the story of your business in an authentic and memorable way. You will stand out in a crowded market.",
-      keywords: ["branding", "identity", "logo", "design", "visual", "recognition"],
-      image: "/entrepreneur2.png"
+      problem: "Many times, entrepreneurs come to us with a great product, but when it comes to brand image, things are a bit fuzzy. There's no clear direction, no consistent visual identity, and that can be a serious problem in business growth.",
+      solution: "Branding is the lifeblood of your business, and we're here to help you create a brand that resonates with your customers. We start by understanding your values, vision, and target market—those key elements that define your unique brand voice, visual style—and build you an identity that tells the story of your business in an authentic and memorable way. You will stand out in a crowded market.",
+      keywords: ["branding", "identity", "design", "visual", "recognition"],
+      icon: <BarChart className="w-8 h-8" />
     },
     {
       id: 3,
-      title: "Low conversion rate on existing website",
-      problem: "You have a website with decent traffic, but visitors aren't converting into leads or customers. The bounce rate is high, and users seem to leave without taking action.",
-      solution: "We'll analyze your user journey and optimize your website for conversions. This involves improving your call-to-action buttons, streamlining the checkout process, enhancing page load speed, and implementing A/B testing to find what resonates with your audience. We'll transform your website from a digital brochure into a sales-generating machine.",
-      keywords: ["conversion rate", "website optimization", "user experience", "CRO", "A/B testing"],
+      title: "The need to automate marketing processes for better efficiency",
+      problem: "In the beginning, all entrepreneurs are involved in all aspects of the business, including marketing. But at some point, you don't have time to deal with all the details and you risk losing sight of potential customers.",
+      solution: "Marketing automation is essential to save time and stay relevant. Implement email marketing and remarketing solutions for your work on autopilot, so that you always stay in front of your customers. This saves you time and opportunities and you will be able to focus your efforts on business development.",
+      keywords: ["automation", "marketing", "efficiency", "email", "productivity"],
+      icon: <Megaphone className="w-8 h-8" />
     },
     {
       id: 4,
-      title: "Struggling to stand out from competitors",
-      problem: "Your market is saturated with similar offerings, making it difficult for your business to differentiate itself. Potential customers don't understand what makes you special.",
-      solution: "We'll conduct a thorough competitive analysis and help you identify your unique value proposition. Then, we'll develop a comprehensive strategy that highlights your strengths, communicates your unique benefits, and positions you in a way that makes competition irrelevant. Your marketing will focus on what makes you different, not just better.",
-      keywords: ["competitive advantage", "differentiation", "unique selling proposition", "positioning", "market analysis"],
-    },
-    {
-      id: 5,
-      title: "Inconsistent marketing messages across channels",
-      problem: "Your brand voice, visual identity, and key messages vary across different marketing channels, creating confusion for your audience and diluting your brand impact.",
-      solution: "We'll create a unified marketing strategy with consistent brand messaging across all channels. This includes developing brand guidelines, templates, and a content calendar to ensure cohesiveness. Your audience will receive the same strong impression of your brand whether they find you on social media, your website, or through advertising.",
-      keywords: ["brand consistency", "integrated marketing", "omnichannel", "brand voice", "messaging"],
-    },
-    {
-      id: 6,
-      title: "Wasting marketing budget with no clear ROI",
-      problem: "You're investing in marketing activities but aren't sure which ones are actually generating returns. Your marketing spending feels like throwing money into a black hole.",
-      solution: "We'll implement proper tracking and analytics to measure the effectiveness of each marketing channel. By setting up conversion tracking, attribution modeling, and regular reporting, we'll help you understand exactly where your marketing budget is generating returns. This data-driven approach will allow us to optimize your spending for maximum ROI.",
-      keywords: ["marketing ROI", "analytics", "budget optimization", "performance tracking", "data-driven marketing"],
-    },
-    {
-      id: 7,
-      title: "Not knowing how to leverage social media effectively",
-      problem: "You know your business should be on social media, but your posts get little engagement, and you're unsure which platforms are worth your time and effort.",
-      solution: "We'll develop a strategic social media plan tailored to your business goals and target audience. This includes identifying the right platforms, creating engaging content, building a content calendar, and implementing community management practices. Your social media will transform from a time-sink to a valuable marketing asset.",
-      keywords: ["social media", "engagement", "content strategy", "community management", "social platforms"],
-    },
-    {
-      id: 8,
-      title: "Website not optimized for mobile users",
-      problem: "Your website looks great on desktop but offers a poor experience on smartphones and tablets, leading to lost mobile visitors and potentially hurting your search rankings.",
-      solution: "We'll redesign your website with a mobile-first approach, ensuring it provides an excellent user experience across all devices. This responsive design will not only improve user satisfaction but also boost your search engine rankings, as Google prioritizes mobile-friendly websites.",
-      keywords: ["mobile optimization", "responsive design", "mobile-first", "user experience", "mobile traffic"],
-    },
-    {
-      id: 9,
-      title: "Difficulty generating quality leads",
-      problem: "Your marketing efforts are bringing in leads, but they're low quality and rarely convert to customers. You waste time on prospects who aren't a good fit for your business.",
-      solution: "We'll refine your lead generation strategy to focus on quality over quantity. This includes creating targeted content that addresses your ideal customer's pain points, implementing lead scoring, optimizing your lead magnets, and developing nurturing sequences that qualify prospects before they reach your sales team.",
-      keywords: ["lead generation", "lead qualification", "lead nurturing", "conversion", "sales pipeline"],
-    },
-    {
-      id: 10,
-      title: "Struggling to create engaging content consistently",
-      problem: "You understand the importance of content marketing but struggle to produce quality content regularly. Your blog is neglected, and your audience has no reason to keep coming back.",
-      solution: "We'll develop a sustainable content strategy that aligns with your resources and goals. This includes creating a content calendar, identifying high-value topics, repurposing existing content across formats, and potentially connecting you with content creators who understand your industry. Your content will become a valuable asset that builds authority and attracts customers.",
-      keywords: ["content marketing", "blogging", "content strategy", "content creation", "editorial calendar"],
-    },
-    {
-      id: 11,
-      title: "Unable to track marketing performance effectively",
-      problem: "You have multiple marketing initiatives but no systematic way to track their performance, making it impossible to know what's working and what isn't.",
-      solution: "We'll set up a comprehensive marketing dashboard that tracks key performance indicators across all your marketing channels. This will give you real-time visibility into your marketing performance, allowing for quick adjustments and data-driven decisions. No more guesswork – you'll know exactly what's delivering results.",
-      keywords: ["marketing analytics", "KPIs", "performance tracking", "marketing dashboard", "metrics"],
-    },
-    {
-      id: 12,
-      title: "Outdated website that doesn't reflect your brand quality",
-      problem: "Your website looks outdated compared to competitors, creating a disconnect between the quality of your products/services and how your brand is perceived online.",
-      solution: "We'll redesign your website with a modern, professional aesthetic that properly reflects your brand quality. The new site will not only look impressive but also be structured to guide visitors toward conversion actions. Your online presence will finally match the excellence of your offerings.",
-      keywords: ["website redesign", "brand perception", "web design", "user experience", "modern website"],
+      title: "Increase in online store sales",
+      problem: "I often hear: 'I have an online store, but I don't see how it should be.' It is a very common problem. Many entrepreneurs think that once they have a store, sales will come naturally. I wish!",
+      solution: "We do a detailed analysis of your website to identify weak points in the user experience. Then, we optimize your online store, improve your conversion rate and help you attract quality traffic through Google Ads, Facebook Ads and Email Marketing campaigns. In addition, we provide you with constant support so that your store sells more, not just exists.",
+      keywords: ["e-commerce", "sales", "conversion", "optimization", "traffic"],
+      icon: <ShoppingBag className="w-8 h-8" />
     }
   ];
 
@@ -132,15 +82,21 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
     setFilteredSituations(situations);
   }, []);
 
-  // Generate default icon if no image is provided
-  const getDefaultIcon = (id: number) => {
-    const colors = ['bg-orange-400', 'bg-blue-400', 'bg-purple-400', 'bg-green-400', 'bg-red-400', 'bg-yellow-400'];
-    const colorIndex = (id - 1) % colors.length;
-    const selectedColor = colors[colorIndex];
+  // Get an illustration for the situation if no image is provided
+  const getIllustration = (id: number, icon?: React.ReactNode) => {
+    // If there's an icon, use it
+    if (icon) {
+      return (
+        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
+          {icon}
+        </div>
+      );
+    }
     
+    // Otherwise generate a default illustration based on ID
     return (
-      <div className={`${selectedColor} w-28 h-28 rounded-lg flex items-center justify-center text-white text-3xl font-bold`}>
-        {id < 10 ? `0${id}` : id}
+      <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 font-bold text-2xl">
+        {id}
       </div>
     );
   };
@@ -148,70 +104,121 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
   return (
     <section className="py-6 pb-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {filteredSituations.length === 0 ? (
             <div className="text-center py-12">
               <h3 className="text-xl font-medium text-gray-700">No results found for "{searchTerm}"</h3>
               <p className="mt-2 text-gray-500">Try using different keywords or browse all situations below.</p>
             </div>
           ) : (
-            <div className="space-y-10">
+            <div className="space-y-16">
               {filteredSituations.map((situation) => (
                 <div 
                   key={situation.id} 
-                  className="bg-orange-50 rounded-lg p-6 border border-orange-100 hover:shadow-md transition-shadow"
+                  className="bg-[#FFF9F6] rounded-lg overflow-hidden border border-orange-100 hover:shadow-md transition-shadow"
                 >
-                  <div className="flex flex-col md:flex-row gap-6">
-                    {/* Left column with image/icon */}
-                    <div className="md:w-1/6 flex-shrink-0 flex justify-center md:justify-start">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-0">
+                    {/* Situation title */}
+                    <div className="md:col-span-4 p-5 border-b border-orange-100">
+                      <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
+                        {situation.title}
+                      </h3>
+                    </div>
+                    
+                    {/* Problem section */}
+                    <div className="p-6 md:border-r border-orange-100 flex flex-col md:items-center">
+                      <div className="flex items-center gap-2 text-gray-600 mb-4">
+                        <div className="bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center">
+                          <span className="text-sm">P</span>
+                        </div>
+                        <span className="font-medium">Problem</span>
+                      </div>
+                      <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                        {situation.problem}
+                      </p>
+                    </div>
+                    
+                    {/* Solution section */}
+                    <div className="md:col-span-2 p-6 md:border-r border-orange-100">
+                      <div className="flex items-center gap-2 text-orange-600 mb-4">
+                        <div className="bg-orange-100 rounded-full w-6 h-6 flex items-center justify-center">
+                          <span className="text-sm">S</span>
+                        </div>
+                        <span className="font-medium">Solution</span>
+                      </div>
+                      <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+                        {situation.solution}
+                      </p>
+                    </div>
+                    
+                    {/* Illustration */}
+                    <div className="p-6 flex items-center justify-center">
                       {situation.image ? (
                         <img 
                           src={situation.image} 
                           alt={situation.title} 
-                          className="w-28 h-28 object-contain"
+                          className="w-32 h-32 object-contain"
                         />
                       ) : (
-                        getDefaultIcon(situation.id)
+                        getIllustration(situation.id, situation.icon)
                       )}
-                    </div>
-                    
-                    {/* Right column with content */}
-                    <div className="md:w-5/6">
-                      <h3 className="text-xl font-bold text-gray-800 mb-4">
-                        {situation.title}
-                      </h3>
-                      
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div>
-                          <div className="flex items-center gap-2 text-gray-600 mb-2">
-                            <span className="bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center">
-                              <span className="text-sm">P</span>
-                            </span>
-                            <span className="font-medium">Problem</span>
-                          </div>
-                          <p className="text-gray-700">
-                            {situation.problem}
-                          </p>
-                        </div>
-                        
-                        <div>
-                          <div className="flex items-center gap-2 text-orange-600 mb-2">
-                            <span className="bg-orange-100 rounded-full w-6 h-6 flex items-center justify-center">
-                              <span className="text-sm">S</span>
-                            </span>
-                            <span className="font-medium">Solution</span>
-                          </div>
-                          <p className="text-gray-700">
-                            {situation.solution}
-                          </p>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           )}
+          
+          {/* Load more button */}
+          <div className="flex justify-center mt-12">
+            <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-md font-medium hover:bg-gray-50 transition-colors flex items-center gap-1">
+              More
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 10L4 6H12L8 10Z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+          
+          {/* CTA section at the bottom */}
+          <div className="mt-20 pt-16 border-t">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="aspect-square rounded-lg overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                    alt="Team working together" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="aspect-square rounded-lg overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                    alt="Team working together" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex flex-col justify-center">
+                <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                  Let's take your business to the next level!
+                </h2>
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-2">
+                    <span className="text-primary">★</span>
+                    <p>If you find yourself in one of the situations we've mentioned</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-primary">★</span>
+                    <p>If you know your business deserves more</p>
+                  </div>
+                </div>
+                <button className="bg-black text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors w-fit">
+                  Get your Free Proposal
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
