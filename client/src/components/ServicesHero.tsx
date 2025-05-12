@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { useIsMobile } from "../hooks/use-mobile";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import aboutHeroDesktopBg from "../assets/about_hero_desktop_bg.png";
 import aboutHeroMobileBg from "../assets/about_hero_mobile_bg.png";
 
@@ -10,24 +9,16 @@ export default function ServicesHero() {
   const backgroundImage = isMobile ? aboutHeroMobileBg : aboutHeroDesktopBg;
   
   return (
-    <section className="bg-primary pt-32 md:pt-36 pb-16 md:pb-24 relative overflow-hidden">
-      {/* Background image - identical to About page */}
+    <section className="bg-primary pt-32 pb-8 md:pt-36 md:pb-12 relative overflow-hidden">
+      {/* Background image */}
       <div 
         className="absolute inset-0 w-full h-full z-0 bg-center bg-cover bg-no-repeat" 
         style={{ backgroundImage: `url(${backgroundImage})` }}
       ></div>
       
-      {/* Decorative arrows */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 opacity-20 z-10">
-        <ArrowLeft size={240} color="white" />
-      </div>
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-20 z-10">
-        <ArrowRight size={240} color="white" />
-      </div>
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
-          className="text-center max-w-3xl mx-auto py-8"
+          className="text-center max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
