@@ -18,7 +18,13 @@ export default function PageHero({ title, description, breadcrumbs }: PageHeroPr
   const backgroundImage = isMobile ? aboutHeroMobileBg : aboutHeroDesktopBg;
   
   return (
-    <section className="bg-primary relative overflow-hidden h-[40vh] min-h-[300px] flex items-center">
+    <section 
+      className="bg-primary relative overflow-hidden flex items-center pt-32 md:pt-0"
+      style={{ 
+        height: '40vh', 
+        minHeight: '300px'
+      }}
+    >
       {/* Background image */}
       <div 
         className="absolute inset-0 w-full h-full z-0 bg-center bg-cover bg-no-repeat" 
