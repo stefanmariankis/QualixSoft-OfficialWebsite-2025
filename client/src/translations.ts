@@ -299,6 +299,7 @@ export const defaultTranslations: LanguageData = {
         "title": "Our Portfolio",
         "subtitle": "Successful projects that have generated results",
         "view_all": "View all projects",
+        "all_projects": "All projects",
         "categories": {
           "web": "Web",
           "mobile": "Mobile",

@@ -207,7 +207,7 @@ export default function ProjectsCarousel() {
       <div className="relative z-10 max-w-6xl mx-auto rounded-[40px] px-4 py-16 overflow-hidden">
         <div className="text-center mb-12">
           <p className="text-sm uppercase font-semibold tracking-wider text-primary mb-2">PORTFOLIO</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">We'll create your idea</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-play">We'll create your idea</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             A Collection of Our Finest Work and Successful Client Projects
           </p>
