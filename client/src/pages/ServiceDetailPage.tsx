@@ -199,30 +199,38 @@ export default function ServiceDetailPage() {
   const [progressHeight, setProgressHeight] = useState(10);
   const timelineRef = useRef<HTMLDivElement>(null);
   
-  // Handle scroll effect for timeline progress bar that stays visible in the viewport
+  // Handle scroll effect for timeline progress bar
   useEffect(() => {
     const handleScroll = () => {
       if (timelineRef.current) {
         const timelineRect = timelineRef.current.getBoundingClientRect();
-        const timelineTop = timelineRect.top;
-        const timelineBottom = timelineRect.bottom;
-        const viewportHeight = window.innerHeight;
+        const windowHeight = window.innerHeight;
         
-        // Calculate visible progress based on how far user has scrolled through the timeline
-        if (timelineBottom < 0) {
-          // Timeline has been scrolled past completely
-          setProgressHeight(100);
-        } else if (timelineTop > viewportHeight) {
-          // Timeline hasn't been reached yet
-          setProgressHeight(0);
+        // Get the starting position (top of timeline)
+        const startPosition = timelineRect.top;
+        
+        // Get the height of the entire timeline
+        const timelineHeight = timelineRef.current.offsetHeight;
+        
+        // Calculate total scroll distance needed (from first seeing the timeline to scrolling past it)
+        const totalScrollDistance = timelineHeight + windowHeight;
+        
+        // How much we've already scrolled through the timeline
+        let scrollProgress = 0;
+        
+        if (startPosition <= windowHeight && startPosition + timelineHeight >= 0) {
+          // Timeline is at least partially visible in viewport
+          scrollProgress = ((windowHeight - startPosition) / totalScrollDistance) * 100;
+          scrollProgress = Math.max(0, Math.min(100, scrollProgress));
+        } else if (startPosition > windowHeight) {
+          // Timeline is below viewport
+          scrollProgress = 0;
         } else {
-          // Timeline is partially visible - calculate percentage scrolled through
-          const totalTimelineHeight = timelineRef.current.offsetHeight;
-          const scrolledDistance = Math.abs(Math.min(0, timelineTop));
-          const scrollPercentage = Math.min(100, Math.max(0, (scrolledDistance / totalTimelineHeight) * 100));
-          
-          setProgressHeight(scrollPercentage);
+          // Timeline is above viewport (fully scrolled)
+          scrollProgress = 100;
         }
+        
+        setProgressHeight(scrollProgress);
       }
     };
     
