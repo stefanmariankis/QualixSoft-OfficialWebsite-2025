@@ -5,6 +5,13 @@ import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
 import { motion } from 'framer-motion';
 
+// Import iconițe hexagonale
+import OnlinePresenceIcon from '../assets/importance/24-7-online-presence.png';
+import CredibilityIcon from '../assets/importance/credibility-and-professionalism.png';
+import MarketingIcon from '../assets/importance/cost-effective-marketing.png';
+import ConvenienceIcon from '../assets/importance/customer-convenience.png';
+import AudienceReachIcon from '../assets/importance/wider-audience-reach.png';
+
 // Mock data for the service page
 const serviceData = {
   web_mobile_development: {
@@ -23,31 +30,31 @@ const serviceData = {
       benefits: [
         {
           id: 1,
-          icon: <img src="/assets/24-7-online-presence.png" alt="24/7 Online Presence" className="h-10 w-10" />,
+          icon: <img src={OnlinePresenceIcon} alt="24/7 Online Presence" className="h-16 w-16" />,
           title: "24/7 Online Presence",
           description: "A website allows your business to be accessible to customers anytime, achieving visibility and potential sales."
         },
         {
           id: 2,
-          icon: <img src="/assets/credibility-and-professionalism.png" alt="Credibility and Professionalism" className="h-10 w-10" />,
+          icon: <img src={CredibilityIcon} alt="Credibility and Professionalism" className="h-16 w-16" />,
           title: "Credibility and Professionalism",
           description: "A well-designed website establishes trust and showcases your professionalism."
         },
         {
           id: 3,
-          icon: <img src="/assets/cost-effective-marketing.png" alt="Cost-Effective Marketing" className="h-10 w-10" />,
+          icon: <img src={MarketingIcon} alt="Cost-Effective Marketing" className="h-16 w-16" />,
           title: "Cost-Effective Marketing",
           description: "Websites are a cost-effective marketing tool, providing your services/products without expensive advertising."
         },
         {
           id: 4,
-          icon: <img src="/assets/customer-convenience.png" alt="Customer Convenience" className="h-10 w-10" />,
+          icon: <img src={ConvenienceIcon} alt="Customer Convenience" className="h-16 w-16" />,
           title: "Customer Convenience",
           description: "Provides easy access to information, services, and support, enhancing the user experience."
         },
         {
           id: 5,
-          icon: <img src="/assets/wider-audience-reach.png" alt="Wider Audience Reach" className="h-10 w-10" />,
+          icon: <img src={AudienceReachIcon} alt="Wider Audience Reach" className="h-16 w-16" />,
           title: "Wider Audience Reach",
           description: "A website helps you reach a global audience, expanding your customer base beyond local limits."
         }
