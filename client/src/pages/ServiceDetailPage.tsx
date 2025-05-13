@@ -7,6 +7,7 @@ import PageHero from '../components/PageHero';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
+import ProjectsCarousel from '../components/ProjectsCarousel';
 
 // Import iconițe hexagonale
 import OnlinePresenceIcon from '../assets/importance/24-7-online-presence.png';
@@ -444,106 +445,8 @@ export default function ServiceDetailPage() {
         </div>
       </section>
       
-      {/* Portfolio section - Identical to ProjectsCarousel from home page */}
-      <section className="py-20 relative overflow-hidden bg-white" style={{ 
-        backgroundImage: `url(/assets/portfolio_background.png)`, 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}>
-        {/* Rounded light gray container - matching the design */}
-        <div className="relative z-10 max-w-6xl mx-auto rounded-[40px] px-4 py-16 overflow-hidden">
-          <div className="text-center mb-12">
-            <p className="text-sm uppercase font-semibold tracking-wider text-primary mb-2">PORTFOLIO</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 font-play">{service.portfolioSection.title}</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              {service.portfolioSection.subtitle}
-            </p>
-          </div>
-          
-          <div className="relative min-h-[400px] mb-12">
-            <div className="flex justify-center overflow-hidden">
-              <div className="flex w-full max-w-5xl justify-between relative pb-8 gap-6">
-                {service.portfolioSection.projects.map((project) => (
-                  <div
-                    key={project.id}
-                    className="flex-1"
-                  >
-                    <div className="bg-white rounded-xl overflow-hidden shadow-md group h-full relative transition-all duration-300">
-                      {/* Full card overlay that appears on hover */}
-                      <div 
-                        className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-all duration-300 z-10"
-                        style={{ backgroundColor: "#2B5F93" }}
-                      ></div>
-                      
-                      <div className="h-full flex flex-col relative z-20">
-                        {/* Project Image Container */}
-                        <div className="w-full h-52 overflow-hidden relative bg-white">
-                          {/* Image container with screen/monitor style */}
-                          <div className="w-full h-full flex items-center justify-center py-2">
-                            {/* Logo centered in the image area */}
-                            <img 
-                              src={project.logo} 
-                              alt={project.name} 
-                              className="h-3/5 object-contain z-10 max-w-[70%] transition-all duration-300 group-hover:brightness-1"
-                            />
-                            
-                            {/* Background image that shows the screenshot/monitor */}
-                            <img 
-                              src={project.image} 
-                              alt={project.name} 
-                              className="absolute inset-0 w-full h-full object-cover opacity-50"
-                            />
-                          </div>
-                
-                          {/* Blue overlay that appears on hover */}
-                          <div 
-                            className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-all duration-300"
-                            style={{ backgroundColor: "#2B5F93" }}
-                          ></div>
-                        </div>
-                        
-                        {/* Information below image - always visible */}
-                        <div className="p-4 bg-transparent flex-grow relative shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] rounded-tl-xl rounded-tr-xl">
-                          <div className="flex justify-between items-center">
-                            <div className="flex-1">
-                              <p className="text-base font-medium text-[#2B5F93] mb-1 group-hover:text-white transition-colors duration-300">{project.domain}</p>
-                              <div className="inline-block rounded-full py-1 px-3 text-xs font-medium transition-colors duration-300" 
-                                style={{ backgroundColor: "#EB7127", color: 'white' }}>
-                                {project.type}
-                              </div>
-                            </div>
-                            <div 
-                              className="bg-black group-hover:bg-white p-1.5 rounded-md cursor-pointer transition-all duration-300
-                              group-hover:scale-110 group-hover:shadow-md active:scale-95"
-                            >
-                              <ArrowRight className="h-4 w-4 text-white group-hover:text-[#2B5F93]" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* View all projects link */}
-          <div className="text-center pb-10">
-            <Link 
-              to="/portfolio" 
-              className="inline-flex items-center font-bold text-foreground group transition-all duration-300 
-              hover:text-primary hover:scale-105 active:scale-95"
-            >
-              {t('portfolio.all_projects')}
-              <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
-                <ArrowRight className="h-4 w-4" />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Portfolio section - Using the exact same component as homepage */}
+      <ProjectsCarousel />
       
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-white">
