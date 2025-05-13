@@ -347,23 +347,31 @@ export default function ServiceDetailPage() {
             <h2 className="text-3xl md:text-[42px] font-bold text-[#454545] mb-20 font-play">{service.processSection.title}</h2>
             
             <div className="relative" ref={timelineRef}>
-              {/* Vertical Timeline Line - Background is gray, colored part is orange */}
-              <div className="sticky top-1/2 h-[50vh] flex flex-col items-center justify-center z-10 pointer-events-none">
-                <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1.5 bg-gray-200"></div>
-                <div 
-                  className="absolute left-1/2 transform -translate-x-1/2 w-1.5 bg-[#EB7127]"
-                  style={{ height: `${progressHeight}%`, transition: 'height 0.3s ease-out' }}
-                ></div>
-                {/* Circle at the end of the progress bar */}
-                <div 
-                  className="absolute w-4 h-4 rounded-full bg-[#EB7127] left-1/2 transform -translate-x-1/2"
-                  style={{ 
-                    top: `${progressHeight}%`, 
-                    transition: 'top 0.3s ease-out',
-                    display: progressHeight > 0 ? 'block' : 'none'
-                  }}
-                ></div>
-              </div>
+              {/* Vertical Timeline Line */}
+              {/* Fixed gray line for the whole timeline */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1.5 bg-gray-200 z-10"></div>
+              
+              {/* Orange progress overlay - grows as user scrolls */}
+              <div 
+                className="absolute left-1/2 transform -translate-x-1/2 w-1.5 bg-[#EB7127] z-20"
+                style={{ 
+                  height: `${progressHeight}%`, 
+                  maxHeight: '100%',
+                  transition: 'height 0.3s ease-out'
+                }}
+              ></div>
+              
+              {/* Circle at the bottom of timeline - starts gray, becomes orange at 100% */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-6 h-6 rounded-full border-2 border-gray-200 bg-white z-30"></div>
+              
+              {/* Orange circle overlay - only visible when progress is at 100% */}
+              <div 
+                className="absolute left-1/2 transform -translate-x-1/2 bottom-0 w-6 h-6 rounded-full bg-[#EB7127] z-40"
+                style={{ 
+                  opacity: progressHeight >= 100 ? 1 : 0,
+                  transition: 'opacity 0.3s ease-out'
+                }}
+              ></div>
               
               <div className="space-y-32">
                 {service.processSection.steps.map((step, index) => (
