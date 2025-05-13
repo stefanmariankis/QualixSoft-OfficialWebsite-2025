@@ -1,0 +1,608 @@
+/* Frame 506 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 580px;
+height: 171px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 314 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+width: 177px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* fi_8750790 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Icon */
+
+position: absolute;
+left: 5.21%;
+right: 5.21%;
+top: 5.21%;
+bottom: 5.21%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 5.21%;
+right: 5.21%;
+top: 5.21%;
+bottom: 5.21%;
+
+/* Titles */
+background: #454545;
+
+
+/* Technologie Used */
+
+width: 145px;
+height: 25px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* Titles */
+color: #454545;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 505 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 20px;
+
+width: 580px;
+height: 130px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Component 50 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 24px;
+gap: 4px;
+
+width: 130px;
+height: 130px;
+
+background: rgba(255, 138, 0, 0.04);
+backdrop-filter: blur(25.65px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 24px 24px 0px 24px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* fi_18032127 */
+
+width: 65px;
+height: 66px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Group */
+
+position: absolute;
+left: 21.88%;
+right: 21.88%;
+top: 10.32%;
+bottom: 10.02%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 21.88%;
+right: 46.88%;
+top: 10.32%;
+bottom: 59.04%;
+
+background: linear-gradient(125.16deg, #F9D43D 0%, #FBCC5D 0.03%, #FF7813 236.5%);
+
+
+/* Vector */
+
+position: absolute;
+left: 46.88%;
+right: 21.88%;
+top: 10.32%;
+bottom: 59.04%;
+
+background: linear-gradient(125.16deg, #F9D43D -46.94%, #FBCC5D -46.91%, #FF7813 189.56%);
+
+
+/* Vector */
+
+position: absolute;
+left: 46.88%;
+right: 21.88%;
+top: 34.83%;
+bottom: 34.53%;
+
+background: linear-gradient(125.16deg, #F9D43D -80%, #FBCC5D -79.98%, #FF7813 156.5%);
+
+
+/* Vector */
+
+position: absolute;
+left: 21.88%;
+right: 46.88%;
+top: 59.34%;
+bottom: 10.02%;
+
+background: linear-gradient(125.16deg, #F9D43D -66.12%, #FBCC5D -66.1%, #FF7813 170.37%);
+
+
+/* Vector */
+
+position: absolute;
+left: 21.88%;
+right: 46.88%;
+top: 34.83%;
+bottom: 34.53%;
+
+background: linear-gradient(125.16deg, #F9D43D -33.06%, #FBCC5D -33.04%, #FF7813 203.43%);
+
+
+/* Figma */
+
+width: 45px;
+height: 22px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+/* illustation */
+background: linear-gradient(180deg, #EB7127 0%, #D3804E 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Paragraph */
+
+display: none;
+width: 1280px;
+height: 50px;
+
+/* Body/L */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* CoolGray/90 */
+color: #21272A;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Component 51 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 24px;
+gap: 4px;
+
+width: 130px;
+height: 130px;
+
+background: rgba(255, 138, 0, 0.04);
+backdrop-filter: blur(25.65px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 24px 24px 0px 24px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* fi_152848 */
+
+width: 66px;
+height: 66px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* XMLID_21_ */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* XMLID_4_ */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: linear-gradient(309.74deg, #FE942C 8%, #FCC254 96.93%);
+
+
+/* Wordpress */
+
+width: 78px;
+height: 22px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+/* illustation */
+background: linear-gradient(180deg, #EB7127 0%, #D3804E 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Paragraph */
+
+display: none;
+width: 1280px;
+height: 50px;
+
+/* Body/L */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* CoolGray/90 */
+color: #21272A;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Component 52 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 24px;
+gap: 4px;
+
+width: 130px;
+height: 130px;
+
+background: rgba(255, 138, 0, 0.04);
+backdrop-filter: blur(25.65px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 24px 24px 0px 24px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* fi_152848 */
+
+width: 66px;
+height: 66px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* fi_3393920 */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 4.73%;
+right: 4.73%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 4.73%;
+right: 4.73%;
+top: 0%;
+bottom: 0%;
+
+background: linear-gradient(321.11deg, #FE9C33 15.33%, #FBC557 81.47%);
+
+
+/* Vector */
+
+position: absolute;
+left: 40.95%;
+right: 40.95%;
+top: 40.95%;
+bottom: 40.95%;
+
+background: #FE9A31;
+
+
+/* React */
+
+width: 42px;
+height: 22px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+/* illustation */
+background: linear-gradient(180deg, #EB7127 0%, #D3804E 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Paragraph */
+
+display: none;
+width: 1280px;
+height: 50px;
+
+/* Body/L */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* CoolGray/90 */
+color: #21272A;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Component 53 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 24px;
+gap: 4px;
+
+width: 130px;
+height: 130px;
+
+background: rgba(255, 138, 0, 0.04);
+backdrop-filter: blur(25.65px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 24px 24px 0px 24px;
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* fi_11865326 */
+
+width: 66px;
+height: 66px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0.66%;
+right: 0.66%;
+top: 0%;
+bottom: 0%;
+
+background: linear-gradient(308.79deg, #FD9B32 16.11%, #FBC456 86.14%);
+
+
+/* Chat GPT */
+
+width: 69px;
+height: 22px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+/* illustation */
+background: linear-gradient(180deg, #EB7127 0%, #D3804E 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Paragraph */
+
+display: none;
+width: 1280px;
+height: 50px;
+
+/* Body/L */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* CoolGray/90 */
+color: #21272A;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;

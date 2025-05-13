@@ -183,119 +183,276 @@ export default function ProjectDetailPage() {
           </div>
         </section>
         
-        {/* Problem & Solution Section */}
+        {/* Project Content based on active tab */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Problem Section */}
-              <div>
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+            {activeTab === 'overview' && (
+              <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Left column with Problem/Solution & Technologies */}
+                  <div className="space-y-8">
+                    {/* Problem/Solution section */}
+                    <div className="bg-[rgba(255,138,0,0.04)] rounded-[24px_24px_0px_24px] p-6">
+                      <div className="space-y-8">
+                        {/* Problem section */}
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 flex items-center justify-center">
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 5.27V19.73H16.2V5.27H0ZM14.4 18H1.8V7H14.4V18Z" fill="#8F8F8F"/>
+                                <path d="M10 12.81H24V7.27H10V12.81ZM11.8 9H22.2V11.08H11.8V9Z" fill="#8F8F8F"/>
+                              </svg>
+                            </div>
+                            <h3 className="text-lg font-semibold text-[#8F8F8F]">Problem</h3>
+                          </div>
+                          <p className="text-gray-700 text-base">
+                            {project.problem}
+                          </p>
+                        </div>
+                        
+                        {/* Solution section */}
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 flex items-center justify-center">
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                  <path d="M2.9 14.17L1.76 24L12.76 14.17H2.9Z" fill="#EB7127"/>
+                                  <path d="M19.73 14.3L4.3 14.3L4.31 0L19.73 14.3Z" fill="#EB7127"/>
+                                  <path d="M19.73 4.68L21.76 5.98L19.73 0.94V4.68Z" fill="#EB7127"/>
+                                  <path d="M19.27 0.94L19.27 7.74L19.27 1.55L19.27 0.94Z" fill="#EB7127"/>
+                                  <path d="M3.33 4.68L1.3 5.98L3.33 0.94V4.68Z" fill="#EB7127"/>
+                                  <path d="M3.99 0.94V7.74V1.55V0.94Z" fill="#EB7127"/>
+                                  <path d="M10.18 12.42L5.67 8.27H15.22L10.18 12.42Z" fill="#EB7127"/>
+                                </g>
+                              </svg>
+                            </div>
+                            <h3 className="text-lg font-semibold text-[#EB7127]">Solution</h3>
+                          </div>
+                          <p className="text-gray-700 text-base">
+                            {project.solution}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Technologies Used section */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 flex items-center justify-center">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.25 1.25V22.75H22.75V1.25H1.25ZM21.25 21.25H2.75V2.75H21.25V21.25Z" fill="#454545"/>
+                          </svg>
+                        </div>
+                        <h3 className="text-lg font-semibold text-[#454545]">Technologie Used</h3>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-5">
+                        {/* Technology cards */}
+                        {project.technologies.map((tech, index) => (
+                          <div 
+                            key={index} 
+                            className="w-[130px] h-[130px] flex flex-col items-center justify-center gap-1 bg-[rgba(255,138,0,0.04)] rounded-[24px_24px_0px_24px] p-6"
+                          >
+                            <div className="w-16 h-16 flex items-center justify-center">
+                              {/* Using orange gradient SVG icons with Figma, WordPress, React and ChatGPT styling */}
+                              <svg width="65" height="66" viewBox="0 0 65 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                {tech.name === 'Figma' && (
+                                  <>
+                                    <path d="M14.2 6.81L30.47 6.81L30.47 39L14.2 39L14.2 6.81Z" fill="url(#figma_grad1)"/>
+                                    <path d="M30.47 6.81L46.73 6.81V39H30.47V6.81Z" fill="url(#figma_grad2)"/>
+                                    <path d="M30.47 23L46.73 23V46H30.47V23Z" fill="url(#figma_grad3)"/>
+                                    <path d="M14.2 39.2L30.47 39.2L30.47 66H14.2L14.2 39.2Z" fill="url(#figma_grad4)"/>
+                                    <path d="M14.2 23L30.47 23L30.47 46H14.2L14.2 23Z" fill="url(#figma_grad5)"/>
+                                  </>
+                                )}
+                                {tech.name === 'Wordpress' && (
+                                  <path d="M33 0C14.77 0 0 14.77 0 33C0 51.23 14.77 66 33 66C51.23 66 66 51.23 66 33C66 14.77 51.23 0 33 0Z" fill="url(#wp_grad)"/>
+                                )}
+                                {tech.name === 'React' && (
+                                  <>
+                                    <path d="M33 40.95C37.3 40.95 40.95 37.3 40.95 33C40.95 28.7 37.3 25.05 33 25.05C28.7 25.05 25.05 28.7 25.05 33C25.05 37.3 28.7 40.95 33 40.95Z" fill="url(#react_grad)"/>
+                                    <path d="M33 49.23C51.15 49.23 66 42.03 66 33C66 23.97 51.15 16.77 33 16.77C14.85 16.77 0 23.97 0 33C0 42.03 14.85 49.23 33 49.23Z" fill="url(#react_grad)"/>
+                                    <path d="M23.43 41.12C32.45 57.07 44.88 66 51.15 62.37C57.42 58.74 56.43 43.45 47.52 27.39C38.61 11.33 26.07 2.51 19.8 6.14C13.53 9.77 14.41 25.17 23.43 41.12Z" fill="url(#react_grad)"/>
+                                    <path d="M23.43 24.88C14.41 40.83 13.53 56.23 19.8 59.86C26.07 63.49 38.61 54.67 47.52 38.61C56.43 22.55 57.42 7.26 51.15 3.63C44.88 0 32.56 8.93 23.43 24.88Z" fill="url(#react_grad)"/>
+                                  </>
+                                )}
+                                {tech.name === 'Chat GPT' && (
+                                  <>
+                                    <path d="M30 0L5.36 14.14V42.43L12.85 46.93V18.64L30 9.28L47.15 18.64V46.93L54.64 42.43V14.14L30 0Z" fill="url(#chatgpt_grad)"/>
+                                    <path d="M47.14 51.43L30 60.79L12.86 51.43V32.71L5.36 28.21V56.29L30 75L54.64 56.29V28.21L47.14 32.71V51.43Z" fill="url(#chatgpt_grad)"/>
+                                    <path d="M12.86 23.14L30 32.5L47.14 23.14L30 13.79L12.86 23.14Z" fill="url(#chatgpt_grad)"/>
+                                  </>
+                                )}
+                              </svg>
+                            </div>
+                            <span 
+                              className="text-base font-semibold" 
+                              style={{
+                                background: 'linear-gradient(180deg, #EB7127 0%, #D3804E 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text'
+                              }}
+                            >
+                              {tech.name}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <h2 className="text-xl font-bold text-gray-800">Problem</h2>
-                </div>
-                <p className="text-gray-600 leading-relaxed">{project.problem}</p>
-              </div>
-              
-              {/* Solution Section */}
-              <div>
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#FFF0E8] rounded-lg flex items-center justify-center mr-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2 12H4.5M4.5 12C5.88071 12 7 13.1193 7 14.5V15C7 16.1046 7.89543 17 9 17H15C16.1046 17 17 16.1046 17 15V14.5C17 13.1193 18.1193 12 19.5 12M19.5 12H22M19.5 12V10M4.5 12V10M9 7H15M12 7V3" stroke="#EB7127" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                  
+                  {/* Right column with Services Provided, Client Testimonial & Interested in similar */}
+                  <div className="space-y-8">
+                    {/* Services Provided */}
+                    <div className="bg-[#EB7127] rounded-[24px_24px_0px_24px] p-6">
+                      <div className="space-y-8">
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.5 1.5H9V9H1.5V1.5Z" stroke="white" strokeWidth="1.5"/>
+                              <path d="M14.25 1.5H21.75V9H14.25V1.5Z" stroke="white" strokeWidth="1.5"/>
+                            </svg>
+                          </div>
+                          <h3 className="text-lg font-semibold text-white">Services provided</h3>
+                        </div>
+                        
+                        <div className="space-y-4">
+                          {project.services.map((service, index) => (
+                            <div key={index} className="flex items-start gap-1">
+                              <span className="text-[#F2F3F2] text-lg">*</span>
+                              <span className="text-white">{service}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Client testimonial */}
+                    <div className="bg-[rgba(255,138,0,0.01)] rounded-[24px_24px_0px_24px] p-6">
+                      <div className="space-y-6">
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1.36 2.99V18.01H5.68V8.07L17.68 18.01V2.99H13.36V12.93L1.36 2.99Z" fill="url(#testimonial_grad)"/>
+                              <defs>
+                                <linearGradient id="testimonial_grad" x1="1.36" y1="2.99" x2="17.68" y2="18.01" gradientUnits="userSpaceOnUse">
+                                  <stop stopColor="#EB7127"/>
+                                  <stop offset="1" stopColor="#D3804E"/>
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                          </div>
+                          <h3 
+                            className="text-lg font-semibold"
+                            style={{
+                              background: 'linear-gradient(180deg, #EB7127 0%, #D3804E 100%)',
+                              WebkitBackgroundClip: 'text',
+                              WebkitTextFillColor: 'transparent',
+                              backgroundClip: 'text'
+                            }}
+                          >
+                            Client testimonial
+                          </h3>
+                        </div>
+                        
+                        <p className="text-gray-700">
+                          "{project.testimonial.quote}"
+                        </p>
+                        
+                        <div className="flex items-center gap-3">
+                          <div className="w-[42px] h-[42px] rounded-full bg-[#39688E] relative">
+                            {/* Client avatar would go here */}
+                          </div>
+                          <span className="text-gray-700">{project.testimonial.author} | {project.testimonial.position}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Interested in similar project */}
+                    <div className="bg-[#F2F3F2] rounded-[24px_24px_0px_24px] p-6">
+                      <div className="space-y-6">
+                        <h3 className="text-lg font-semibold text-[#454545]">Interested in a similar project?</h3>
+                        
+                        <p className="text-[#737373] text-sm">
+                          Share the vision for your brand, and we'll create an awesome digital marketing strategy that not only fits your budget, but also amplifies your message. We're eager to connect and bring your ideas to life.
+                        </p>
+                        
+                        <button className="w-full bg-[#282828] text-white font-semibold py-3 rounded-[8px_8px_0px_8px] hover:opacity-90 transition-opacity">
+                          Get your Free Proposal
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <h2 className="text-xl font-bold text-gray-800">Solution</h2>
                 </div>
-                <p className="text-gray-600 leading-relaxed">{project.solution}</p>
               </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* Technologies Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-bold text-gray-800 mb-10 flex items-center">
-              <div className="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center mr-4">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 5H11M3 12H16M3 19H21" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              Technologies Used
-            </h2>
+            )}
             
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-              {project.technologies.map(tech => (
-                <div key={tech.id} className="flex flex-col items-center">
-                  <div className="w-16 h-16 mb-4">
-                    <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain" />
-                  </div>
-                  <span className="text-gray-700 font-medium">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        {/* Services Provided Section */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#FEF7F2] rounded-lg p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#EB7127] opacity-5 rounded-full -mr-20 -mt-20"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#EB7127] opacity-5 rounded-full -ml-16 -mb-16"></div>
-              
-              <h2 className="text-2xl font-bold text-gray-800 mb-8 flex items-center">
-                <div className="w-10 h-10 bg-[#EB7127] rounded-lg flex items-center justify-center mr-4">
-                  <BadgeCheck className="text-white" />
-                </div>
-                Services provided
-              </h2>
-              
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {project.services.map((service, index) => (
-                  <li key={index} className="flex items-start">
-                    <svg className="w-5 h-5 text-[#EB7127] mt-0.5 mr-3" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span className="text-gray-700">{service}</span>
+            {activeTab === 'process' && (
+              <div className="max-w-4xl mx-auto">
+                <h3 className="text-2xl font-bold mb-6">Development Process</h3>
+                <p className="text-gray-700 mb-6">
+                  Our development process for this project followed a well-established methodology designed to ensure quality results.
+                </p>
+                <ol className="list-decimal pl-6 space-y-6 text-gray-700">
+                  <li className="pl-2">
+                    <strong className="text-gray-800">Discovery & Planning</strong>
+                    <p className="mt-2">We began with a thorough discovery phase, understanding the client's business goals, target audience, and unique value proposition.</p>
                   </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-        
-        {/* Client Testimonial Section */}
-        <section className="py-16 bg-white border-t border-gray-100">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-8 flex items-center">
-              <div className="w-10 h-10 bg-[#FFF0E8] rounded-lg flex items-center justify-center mr-4">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7.5 7H2V18H7.5M7.5 7V18M7.5 7H10.5M16.5 7H22V18H16.5M16.5 7V18M16.5 7H13.5M10.5 7H13.5V18H10.5V7ZM10.5 7C10.5 4.5 9.5 3 7.5 3M13.5 7C13.5 4.5 14.5 3 16.5 3" stroke="#EB7127" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                  <li className="pl-2">
+                    <strong className="text-gray-800">Design Phase</strong>
+                    <p className="mt-2">Our design team created wireframes, mockups, and prototypes to visualize the user interface and experience.</p>
+                  </li>
+                  <li className="pl-2">
+                    <strong className="text-gray-800">Development Stage</strong>
+                    <p className="mt-2">Using the latest technologies, our development team brought the designs to life with clean, maintainable code.</p>
+                  </li>
+                  <li className="pl-2">
+                    <strong className="text-gray-800">Testing & Quality Assurance</strong>
+                    <p className="mt-2">Rigorous testing was performed to ensure compatibility across devices and browsers, as well as performance optimization.</p>
+                  </li>
+                  <li className="pl-2">
+                    <strong className="text-gray-800">Deployment & Training</strong>
+                    <p className="mt-2">We carefully deployed the solution and provided training to ensure the client could manage their new digital platform effectively.</p>
+                  </li>
+                </ol>
               </div>
-              Client testimonial
-            </h2>
+            )}
             
-            <div className="bg-white border border-gray-200 shadow-sm rounded-lg p-8">
-              <blockquote className="text-gray-700 text-lg italic mb-6">
-                "{project.testimonial.quote}"
-              </blockquote>
-              
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-[#EB7127] rounded-full flex items-center justify-center text-white font-bold mr-4">
-                  {project.testimonial.author.charAt(0)}
+            {activeTab === 'results' && (
+              <div className="max-w-4xl mx-auto">
+                <h3 className="text-2xl font-bold mb-6">Results & Impact</h3>
+                <p className="text-gray-700 mb-6">
+                  Our work with {project.title.split(' ').pop()} delivered significant results across key performance indicators.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                  <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-[#EB7127]">
+                    <div className="text-3xl font-bold text-[#EB7127] mb-2">+87%</div>
+                    <div className="text-gray-700">Increase in website traffic</div>
+                  </div>
+                  <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-[#EB7127]">
+                    <div className="text-3xl font-bold text-[#EB7127] mb-2">+45%</div>
+                    <div className="text-gray-700">Improvement in conversion rate</div>
+                  </div>
+                  <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-[#EB7127]">
+                    <div className="text-3xl font-bold text-[#EB7127] mb-2">-35%</div>
+                    <div className="text-gray-700">Decrease in bounce rate</div>
+                  </div>
+                  <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-[#EB7127]">
+                    <div className="text-3xl font-bold text-[#EB7127] mb-2">+92%</div>
+                    <div className="text-gray-700">Increase in mobile engagement</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-bold text-gray-800">{project.testimonial.author}</div>
-                  <div className="text-gray-500 text-sm">{project.testimonial.position}</div>
-                </div>
+                
+                <h4 className="text-xl font-semibold mb-4">Long-term Impact</h4>
+                <p className="text-gray-700 mb-6">
+                  Beyond the immediate metrics, our work has enabled {project.title.split(' ').pop()} to establish a stronger market presence, 
+                  improve customer experience, and build a foundation for future digital growth. The modern, responsive design and 
+                  intuitive user interface have significantly improved brand perception and customer satisfaction.
+                </p>
               </div>
-            </div>
+            )}
           </div>
         </section>
         

@@ -1,0 +1,409 @@
+/* Component 24 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 24px;
+gap: 32px;
+
+width: 847px;
+height: 367.56px;
+
+background: rgba(255, 138, 0, 0.04);
+backdrop-filter: blur(25.65px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 24px 24px 0px 24px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Paragraph */
+
+display: none;
+width: 1280px;
+height: 50px;
+
+/* Body/L */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* CoolGray/90 */
+color: #21272A;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Frame 312 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 32px;
+
+width: 799px;
+height: 319.56px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 1;
+
+
+/* Frame 310 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 799px;
+height: 143.78px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 314 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+width: 799px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* fi_1743994 */
+
+width: 24px;
+height: 24px;
+
+border-radius: 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 32.39%;
+top: 5.27%;
+bottom: 4.88%;
+
+background: #8F8F8F;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.66%;
+right: 0%;
+top: 11.73%;
+bottom: 29.86%;
+
+background: #8F8F8F;
+
+
+/* Problem */
+
+width: 69px;
+height: 25px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+color: #8F8F8F;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Lorem ipsum dolor sit amet consectetur. Quam sed aliquet sit vitae lacus. Leo aliquet sit pretium neque arcu vitae. Diam maecenas in auctor varius est aliquet. Duis dictum lorem est ut sed amet. Potenti nec iaculis diam vel egestas. Vel proin egestas vel malesuada morbi. Diam nibh condimentum nunc ipsum euismod praesent gravida. Tortor massa fringilla vestibulum eget bibendum. Sollicitudin tristique nisl pellentesque commodo. */
+
+width: 799px;
+height: 102.78px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 311 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 799px;
+height: 143.78px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 314 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+width: 799px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* fi_4578634 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 87.89%;
+top: 58.98%;
+bottom: 0%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 17.97%;
+right: 0%;
+top: 59.56%;
+bottom: 0%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 82.23%;
+right: 6.05%;
+top: 19.53%;
+bottom: 74.61%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 80.27%;
+right: 8.79%;
+top: 3.91%;
+bottom: 87.3%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 80.27%;
+right: 8.79%;
+top: 32.23%;
+bottom: 58.98%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 13.87%;
+right: 74.41%;
+top: 19.53%;
+bottom: 74.61%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.61%;
+right: 72.46%;
+top: 3.91%;
+bottom: 87.3%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.61%;
+right: 72.46%;
+top: 32.23%;
+bottom: 58.98%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.43%;
+right: 34.62%;
+top: 51.76%;
+bottom: 39.45%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 31.45%;
+right: 23.63%;
+top: 0%;
+bottom: 54.1%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Solution */
+
+width: 67px;
+height: 25px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* Elements */
+color: #EB7127;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Lorem ipsum dolor sit amet consectetur. Quam sed aliquet sit vitae lacus. Leo aliquet sit pretium neque arcu vitae. Diam maecenas in auctor varius est aliquet. Duis dictum lorem est ut sed amet. Potenti nec iaculis diam vel egestas. Vel proin egestas vel malesuada morbi. Diam nibh condimentum nunc ipsum euismod praesent gravida. Tortor massa fringilla vestibulum eget bibendum. Sollicitudin tristique nisl pellentesque commodo. */
+
+width: 799px;
+height: 102.78px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
