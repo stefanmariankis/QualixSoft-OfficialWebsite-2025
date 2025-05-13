@@ -55,7 +55,8 @@ export default function ServicesList() {
         "Web Design",
         "Graphic Design",
         "Promotional Design Materials"
-      ]
+      ],
+      slug: "design"
     },
     {
       id: 4,
@@ -70,7 +71,8 @@ export default function ServicesList() {
         "Link building",
         "E-commerce SEO",
         "Blogging & articole SEO"
-      ]
+      ],
+      slug: "seo"
     }
   ];
 
@@ -79,13 +81,14 @@ export default function ServicesList() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {services.map((service) => (
-            <div 
+            <Link 
+              href={`${servicePath}/${service.slug}`} 
               key={service.id} 
-              className="mb-16 relative last:mb-0 border-b pb-14 last:border-b-0 hover:bg-gray-50 transition-all duration-300 group px-6 pt-6"
+              className="block mb-16 relative last:mb-0 border-b pb-14 last:border-b-0 hover:bg-gray-50 transition-all duration-300 group px-6 pt-6"
             >
               {/* Arrow in top right corner */}
               <div className="absolute top-6 right-6">
-                <div className="w-8 h-8 bg-black flex items-center justify-center shadow-sm">
+                <div className="w-8 h-8 bg-black flex items-center justify-center shadow-sm group-hover:bg-[#EB7127] transition-colors">
                   <svg 
                     width="16" 
                     height="16" 
@@ -130,7 +133,7 @@ export default function ServicesList() {
                   <p className="text-gray-600 leading-relaxed">{service.description}</p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
