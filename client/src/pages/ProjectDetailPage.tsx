@@ -72,8 +72,10 @@ export default function ProjectDetailPage() {
       <main className="flex-grow">
         {/* Hero section with orange background - two columns */}
         <section className="relative pt-20 pb-32 bg-[#EB7127] overflow-hidden">
+          {/* Secondary orange tone slice */}
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-[#EC884C] transform skew-y-3 origin-bottom-left"></div>
           {/* White slanted bottom edge */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-white transform -skew-y-3 origin-bottom-right"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-white transform skew-y-3 origin-bottom-left"></div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
