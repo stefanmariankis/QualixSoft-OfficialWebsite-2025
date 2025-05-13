@@ -199,21 +199,29 @@ export default function ServiceDetailPage() {
   const [progressHeight, setProgressHeight] = useState(10);
   const timelineRef = useRef<HTMLDivElement>(null);
   
-  // Handle scroll effect for timeline progress bar
+  // Handle scroll effect for timeline progress bar that stays visible in the viewport
   useEffect(() => {
     const handleScroll = () => {
       if (timelineRef.current) {
-        const timelineTop = timelineRef.current.getBoundingClientRect().top;
-        const timelineBottom = timelineRef.current.getBoundingClientRect().bottom;
-        const timelineHeight = timelineRef.current.offsetHeight;
+        const timelineRect = timelineRef.current.getBoundingClientRect();
+        const timelineTop = timelineRect.top;
+        const timelineBottom = timelineRect.bottom;
+        const viewportHeight = window.innerHeight;
         
-        // If timeline is in viewport
-        if (timelineTop < window.innerHeight && timelineBottom > 0) {
-          // Calculate how much of the timeline is visible
-          const visiblePart = Math.min(window.innerHeight - timelineTop, timelineHeight);
-          const visiblePercentage = Math.min(100, Math.max(10, (visiblePart / timelineHeight) * 150));
+        // Calculate visible progress based on how far user has scrolled through the timeline
+        if (timelineBottom < 0) {
+          // Timeline has been scrolled past completely
+          setProgressHeight(100);
+        } else if (timelineTop > viewportHeight) {
+          // Timeline hasn't been reached yet
+          setProgressHeight(0);
+        } else {
+          // Timeline is partially visible - calculate percentage scrolled through
+          const totalTimelineHeight = timelineRef.current.offsetHeight;
+          const scrolledDistance = Math.abs(Math.min(0, timelineTop));
+          const scrollPercentage = Math.min(100, Math.max(0, (scrolledDistance / totalTimelineHeight) * 100));
           
-          setProgressHeight(visiblePercentage);
+          setProgressHeight(scrollPercentage);
         }
       }
     };
@@ -340,11 +348,22 @@ export default function ServiceDetailPage() {
             
             <div className="relative" ref={timelineRef}>
               {/* Vertical Timeline Line - Background is gray, colored part is orange */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1.5 bg-gray-200"></div>
-              <div 
-                className="absolute left-1/2 transform -translate-x-1/2 w-1.5 bg-[#EB7127]"
-                style={{ height: `${progressHeight}%`, transition: 'height 0.3s ease-out' }}
-              ></div>
+              <div className="sticky top-1/2 h-[50vh] flex flex-col items-center justify-center z-10 pointer-events-none">
+                <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1.5 bg-gray-200"></div>
+                <div 
+                  className="absolute left-1/2 transform -translate-x-1/2 w-1.5 bg-[#EB7127]"
+                  style={{ height: `${progressHeight}%`, transition: 'height 0.3s ease-out' }}
+                ></div>
+                {/* Circle at the end of the progress bar */}
+                <div 
+                  className="absolute w-4 h-4 rounded-full bg-[#EB7127] left-1/2 transform -translate-x-1/2"
+                  style={{ 
+                    top: `${progressHeight}%`, 
+                    transition: 'top 0.3s ease-out',
+                    display: progressHeight > 0 ? 'block' : 'none'
+                  }}
+                ></div>
+              </div>
               
               <div className="space-y-32">
                 {service.processSection.steps.map((step, index) => (
