@@ -17,6 +17,15 @@ import WebDevImg from '../assets/options/web-development.png';
 import EcommerceDevImg from '../assets/options/e-commerce-development.png';
 import MobileDevImg from '../assets/options/mobile-development.png';
 
+// Timeline images
+import AnalysisIcon from '../assets/timeline/analiza-si-planificare.png';
+import StructureIcon from '../assets/timeline/structura-si-arhitectura.png';
+import WireframeIcon from '../assets/timeline/realizare-wireframe.png';
+import WebdesignIcon from '../assets/timeline/webdesign.png';
+import ContentIcon from '../assets/timeline/content-copywriting.png';
+import ImplementationIcon from '../assets/timeline/implementare-site.png';
+import DeploymentIcon from '../assets/timeline/website-deployment.png';
+
 // Mock data for the service page
 const serviceData = {
   web_mobile_development: {
@@ -113,43 +122,43 @@ const serviceData = {
           id: 1,
           title: "Analiză și planificare",
           description: "Analizăm nevoile afacerii dumneavoastră și planificăm arhitectura și funcționalitățile site-ului.",
-          icon: "/assets/analyze_icon.svg"
+          icon: AnalysisIcon
         },
         {
           id: 2,
           title: "Structură și arhitectură",
           description: "Definim structura site-ului, navigarea și organizarea conținutului pentru o experiență optimă a utilizatorului.",
-          icon: "/assets/structure_icon.svg"
+          icon: StructureIcon
         },
         {
           id: 3,
-          title: "Database Structure",
-          description: "Proiectăm structura bazei de date pentru a asigura performanța și scalabilitatea site-ului.",
-          icon: "/assets/database_icon.svg"
+          title: "Realizare Wireframe",
+          description: "Creăm schițe detaliate ale paginilor care vor servi ca bază pentru designul final al site-ului.",
+          icon: WireframeIcon
         },
         {
           id: 4,
-          title: "Content & copywriting",
-          description: "Creăm conținut de calitate care comunică eficient mesajul brandului dumneavoastră.",
-          icon: "/assets/content_icon.svg"
+          title: "Webdesign",
+          description: "Realizăm un design modern și atrăgător care reflectă identitatea brandului dumneavoastră.",
+          icon: WebdesignIcon
         },
         {
           id: 5,
-          title: "Webdesign",
-          description: "Realizăm un design modern și atrăgător care reflectă identitatea brandului dumneavoastră.",
-          icon: "/assets/webdesign_icon.svg"
+          title: "Content & copywriting",
+          description: "Creăm conținut de calitate care comunică eficient mesajul brandului dumneavoastră.",
+          icon: ContentIcon
         },
         {
           id: 6,
           title: "Implementare site",
           description: "Transformăm designul în cod funcțional, asigurând compatibilitatea cu toate dispozitivele și browserele.",
-          icon: "/assets/implementation_icon.svg"
+          icon: ImplementationIcon
         },
         {
           id: 7,
           title: "Website deployment",
           description: "Lansăm site-ul în mediul de producție și efectuăm teste finale pentru a asigura funcționalitatea corectă.",
-          icon: "/assets/deployment_icon.svg"
+          icon: DeploymentIcon
         }
       ]
     },
@@ -294,7 +303,7 @@ export default function ServiceDetailPage() {
         </div>
       </section>
       
-      {/* Process timeline section */}
+      {/* Process timeline section - new vertical timeline design */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
@@ -304,53 +313,32 @@ export default function ServiceDetailPage() {
               {/* Vertical Line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-[#EB7127] opacity-20"></div>
               
-              <div className="space-y-20">
+              <div className="space-y-24">
                 {service.processSection.steps.map((step, index) => (
                   <div key={step.id} className="relative">
-                    <div className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                      {/* Left Side (even index) */}
-                      <div className={`w-1/2 ${index % 2 === 0 ? 'pr-14 text-right' : 'pl-14'}`}>
-                        {index % 2 === 0 ? (
-                          <>
-                            <div>
-                              <p className="text-[#454545] text-base">{step.description}</p>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="flex justify-center">
-                            <div className="bg-[#EB7127] rounded-full p-4 w-20 h-20 flex items-center justify-center text-white">
-                              <img src={step.icon} alt={step.title} className="w-10 h-10" />
-                            </div>
-                          </div>
-                        )}
+                    {/* Content structure based on mockup */}
+                    <div className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                      {/* Left/Right Content Area */}
+                      <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-16' : 'text-left pl-16'}`}>
+                        <h3 className="text-lg font-semibold text-[#EB7127] mb-3">{step.title}</h3>
+                        <p className="text-[#454545] text-base">{step.description}</p>
                       </div>
                       
-                      {/* Center Circle with Number */}
-                      <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-[#EB7127] text-white flex items-center justify-center font-bold">
-                        {step.id}
+                      {/* Center Area with Icon and Number */}
+                      <div className="w-2/12 relative flex justify-center">
+                        {/* Icon Circle */}
+                        <div className="bg-[#EB7127] rounded-full w-16 h-16 flex items-center justify-center z-10">
+                          <img src={step.icon} alt={step.title} className="w-9 h-9" />
+                        </div>
+                        
+                        {/* Number Box */}
+                        <div className={`absolute ${index % 2 === 0 ? '-right-4' : '-left-4'} top-0 w-8 h-8 bg-[#EB7127] text-white flex items-center justify-center font-bold rounded`}>
+                          {step.id}
+                        </div>
                       </div>
                       
-                      {/* Right Side (odd index) */}
-                      <div className={`w-1/2 ${index % 2 === 0 ? 'pl-14' : 'pr-14 text-right'}`}>
-                        {index % 2 === 0 ? (
-                          <div className="flex justify-center">
-                            <div className="bg-[#EB7127] rounded-full p-4 w-20 h-20 flex items-center justify-center text-white">
-                              <img src={step.icon} alt={step.title} className="w-10 h-10" />
-                            </div>
-                          </div>
-                        ) : (
-                          <>
-                            <div>
-                              <p className="text-[#454545] text-base">{step.description}</p>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    
-                    {/* Title in the middle */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-6 text-center w-full">
-                      <h3 className="text-lg font-semibold text-[#454545]">{step.title}</h3>
+                      {/* Empty area for the opposite side */}
+                      <div className="w-5/12"></div>
                     </div>
                   </div>
                 ))}
