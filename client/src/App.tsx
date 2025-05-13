@@ -9,6 +9,7 @@ import ServicesPage from "@/pages/ServicesPage";
 import SolutionsPage from "@/pages/SolutionsPage";
 import PortfolioPage from "@/pages/PortfolioPage";
 import ProjectDetailPage from "@/pages/ProjectDetailPage";
+import ServiceDetailPage from "@/pages/ServiceDetailPage";
 import { LocalizationProvider } from "./hooks/useLocalization";
 
 function Router() {
@@ -37,6 +38,10 @@ function Router() {
       {/* Project detail routes - English and Romanian */}
       <Route path="/portfolio/:id" component={ProjectDetailPage} />
       <Route path="/portofoliu/:id" component={ProjectDetailPage} />
+      
+      {/* Service detail routes - English and Romanian */}
+      <Route path="/services/:serviceId" component={ServiceDetailPage} />
+      <Route path="/servicii/:serviceId" component={ServiceDetailPage} />
       
       {/* Contact route */}
       <Route path="/contact" component={HomePage} />

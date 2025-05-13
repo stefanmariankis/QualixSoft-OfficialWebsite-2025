@@ -1,3 +1,5 @@
+import { Link } from 'wouter';
+import { useTranslation } from 'react-i18next';
 import webMobileDevelopmentImg from '@assets/web_mobile_development_services_page.png';
 import consultingStrategyImg from '@assets/consulting_strategy_services_page.png';
 import designImg from '@assets/web_mobile_development_services_page.png';
@@ -10,9 +12,14 @@ type ServiceType = {
   image: string;
   description: string;
   features: string[];
+  slug: string;
 };
 
 export default function ServicesList() {
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language;
+  const servicePath = currentLang === 'ro' ? '/servicii' : '/services';
+
   const services: ServiceType[] = [
     {
       id: 1,
@@ -23,7 +30,8 @@ export default function ServicesList() {
         "Web development",
         "Mobile development",
         "E-commerce development"
-      ]
+      ],
+      slug: "web_mobile_development"
     },
     {
       id: 2,
@@ -34,7 +42,8 @@ export default function ServicesList() {
         "Free Consultation",
         "SEO Consultation",
         "E-commerce Improvements Consultation"
-      ]
+      ],
+      slug: "consulting_strategy"
     },
     {
       id: 3,
