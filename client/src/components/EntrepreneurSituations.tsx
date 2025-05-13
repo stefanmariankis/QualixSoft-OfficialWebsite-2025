@@ -172,8 +172,8 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
                   className="box-border flex flex-col md:flex-row items-start p-6 gap-8 md:gap-16 w-full bg-[rgba(255,138,0,0.04)] backdrop-blur-lg rounded-[24px_24px_0px_24px] mb-6 hover:shadow-md transition-shadow"
                   style={{ backdropFilter: "blur(25.65px)" }}
                 >
-                  {/* Illustration - Column 1 */}
-                  <div className="flex justify-center items-start w-full md:w-auto md:flex-shrink-0">
+                  {/* Illustration - alternating position based on index */}
+                  <div className={`flex justify-center items-start w-full md:w-auto md:flex-shrink-0 ${index % 2 === 1 ? 'md:order-last' : 'md:order-first'}`}>
                     {situation.image ? (
                       <img 
                         src={situation.image} 
@@ -185,8 +185,8 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
                     )}
                   </div>
 
-                  {/* Content - Column 2 */}
-                  <div className="flex flex-col w-full">
+                  {/* Content - alternating position based on index */}
+                  <div className={`flex flex-col w-full ${index % 2 === 1 ? 'md:order-first' : 'md:order-last'}`}>
                     {/* Row 1: Title */}
                     <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-5">
                       {situation.title}
