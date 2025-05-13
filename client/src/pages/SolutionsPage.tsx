@@ -59,7 +59,6 @@ export default function SolutionsPage() {
         </section>
         
         <EntrepreneurSituations searchTerm={searchTerm} />
-        <CTA />
       </main>
       <Footer />
     </div>

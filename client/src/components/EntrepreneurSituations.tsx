@@ -242,47 +242,6 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
               </button>
             </div>
           )}
-          
-          {/* CTA section at the bottom */}
-          <div className="mt-20 pt-16 border-t">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-square rounded-lg overflow-hidden">
-                  <img 
-                    src="https://placehold.co/400x400/FFF9F6/EB7127?text=Business+Strategy" 
-                    alt="Business Team Working" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="aspect-square rounded-lg overflow-hidden">
-                  <img 
-                    src="https://placehold.co/400x400/FFF9F6/EB7127?text=Growth+Planning" 
-                    alt="Business Growth Planning" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-              
-              <div className="flex flex-col justify-center">
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">
-                  Let's take your business to the next level!
-                </h2>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#EB7127]">★</span>
-                    <p>If you find yourself in one of the situations we've mentioned</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#EB7127]">★</span>
-                    <p>If you know your business deserves more</p>
-                  </div>
-                </div>
-                <button className="bg-[#282828] text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors w-fit">
-                  Get your Free Proposal
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
