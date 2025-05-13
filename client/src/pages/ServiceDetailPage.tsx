@@ -445,8 +445,116 @@ export default function ServiceDetailPage() {
         </div>
       </section>
       
-      {/* Portfolio section - Using the exact same component as homepage */}
-      <ProjectsCarousel />
+      {/* Portfolio section - Customized with orange background */}
+      <section className="py-20 relative overflow-hidden bg-[#EB7127]">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -right-40 -top-40 w-96 h-96 rounded-full border-4 border-white"></div>
+          <div className="absolute -left-40 -bottom-40 w-96 h-96 rounded-full border-4 border-white"></div>
+        </div>
+      
+        {/* Rounded light orange container */}
+        <div className="relative z-10 max-w-6xl mx-auto rounded-[40px] px-4 py-16 overflow-hidden bg-[#EB7127]/60 border border-white/20">
+          <div className="text-center mb-12">
+            <p className="text-sm uppercase font-semibold tracking-wider text-white mb-2">PORTFOLIO</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-play">Take a look at our projects</h2>
+            <p className="text-white max-w-2xl mx-auto">
+              A Collection of Our Finest Work and Successful Client Projects
+            </p>
+          </div>
+          
+          <div 
+            className="relative min-h-[400px] mb-12"
+            onMouseEnter={() => {}} 
+            onMouseLeave={() => {}}
+          >
+            <div className="flex justify-center overflow-hidden">
+              <div className="flex w-full max-w-5xl justify-between relative pb-8 gap-4 md:gap-8">
+                {/* Two projects shown side by side */}
+                <div className="w-full sm:w-[48%] md:w-[47%] lg:w-[45%]">
+                  <div className="bg-[#2B5F93] rounded-xl overflow-hidden shadow-md group h-full relative transition-all duration-300">
+                    <div className="h-full flex flex-col relative z-20">
+                      {/* Project Image Container */}
+                      <div className="w-full h-52 overflow-hidden relative bg-[#2B5F93]">
+                        <div className="w-full h-full flex items-center justify-center py-2">
+                          <img 
+                            src="/assets/client_pulse_welding_home_carousel.png" 
+                            alt="Pulse Welding" 
+                            className="h-3/5 object-contain z-10 max-w-[70%] brightness-100"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Information below image */}
+                      <div className="p-4 bg-transparent flex-grow relative">
+                        <div className="flex justify-between items-center">
+                          <div className="flex-1">
+                            <p className="text-base font-medium text-white mb-1">pulsewelding.com</p>
+                            <div className="inline-block rounded-full py-1 px-3 text-xs font-medium"
+                              style={{ backgroundColor: "#4CAF50", color: 'white' }}>
+                              Multilingual website
+                            </div>
+                          </div>
+                          <div className="bg-black p-1.5 rounded-md cursor-pointer">
+                            <ArrowRight className="h-4 w-4 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="w-full sm:w-[48%] md:w-[47%] lg:w-[45%]">
+                  <div className="bg-white rounded-xl overflow-hidden shadow-md group h-full relative transition-all duration-300">
+                    <div className="h-full flex flex-col relative z-20">
+                      {/* Project Image Container */}
+                      <div className="w-full h-52 overflow-hidden relative bg-white">
+                        <div className="w-full h-full flex items-center justify-center py-2">
+                          <img 
+                            src="/assets/client_climatic_gps_home_carousel.png" 
+                            alt="Climatic" 
+                            className="h-3/5 object-contain z-10 max-w-[70%]"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Information below image */}
+                      <div className="p-4 bg-transparent flex-grow relative shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+                        <div className="flex justify-between items-center">
+                          <div className="flex-1">
+                            <p className="text-base font-medium text-[#2B5F93] mb-1">climaticgps.com</p>
+                            <div className="inline-block rounded-full py-1 px-3 text-xs font-medium"
+                              style={{ backgroundColor: "#3F51B5", color: 'white' }}>
+                              Presentation Website
+                            </div>
+                          </div>
+                          <div className="bg-black p-1.5 rounded-md cursor-pointer">
+                            <ArrowRight className="h-4 w-4 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* View all projects link */}
+          <div className="text-center pb-10">
+            <Link 
+              to="/portfolio" 
+              className="inline-flex items-center font-bold text-white group transition-all duration-300 
+              hover:text-gray-100 hover:scale-105 active:scale-95"
+            >
+              All projects
+              <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
+                <ArrowRight className="h-4 w-4" />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
       
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-white">
