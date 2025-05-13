@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
-import { Globe, Check, Calendar, Users, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Mock data for the service page
@@ -24,31 +23,31 @@ const serviceData = {
       benefits: [
         {
           id: 1,
-          icon: <Globe className="h-8 w-8 text-white" />,
+          icon: <img src="/assets/24-7-online-presence.png" alt="24/7 Online Presence" className="h-10 w-10" />,
           title: "24/7 Online Presence",
           description: "A website allows your business to be accessible to customers anytime, achieving visibility and potential sales."
         },
         {
           id: 2,
-          icon: <Check className="h-8 w-8 text-white" />,
+          icon: <img src="/assets/credibility-and-professionalism.png" alt="Credibility and Professionalism" className="h-10 w-10" />,
           title: "Credibility and Professionalism",
           description: "A well-designed website establishes trust and showcases your professionalism."
         },
         {
           id: 3,
-          icon: <Calendar className="h-8 w-8 text-white" />,
+          icon: <img src="/assets/cost-effective-marketing.png" alt="Cost-Effective Marketing" className="h-10 w-10" />,
           title: "Cost-Effective Marketing",
           description: "Websites are a cost-effective marketing tool, providing your services/products without expensive advertising."
         },
         {
           id: 4,
-          icon: <Users className="h-8 w-8 text-white" />,
+          icon: <img src="/assets/customer-convenience.png" alt="Customer Convenience" className="h-10 w-10" />,
           title: "Customer Convenience",
           description: "Provides easy access to information, services, and support, enhancing the user experience."
         },
         {
           id: 5,
-          icon: <Target className="h-8 w-8 text-white" />,
+          icon: <img src="/assets/wider-audience-reach.png" alt="Wider Audience Reach" className="h-10 w-10" />,
           title: "Wider Audience Reach",
           description: "A website helps you reach a global audience, expanding your customer base beyond local limits."
         }
@@ -232,10 +231,8 @@ export default function ServiceDetailPage() {
               {service.importanceSection.benefits.map((benefit) => (
                 <div key={benefit.id} className="flex flex-col justify-center items-center">
                   <div className="mb-4">
-                    <div className="relative mx-auto bg-[#EB7127] p-4 rounded-full h-[100px] w-[100px] flex items-center justify-center">
-                      <div className="text-white">
-                        {benefit.icon}
-                      </div>
+                    <div className="relative mx-auto h-[100px] w-[100px] flex items-center justify-center">
+                      {benefit.icon}
                     </div>
                   </div>
                   <div className="flex flex-col items-center max-w-[190px]">
