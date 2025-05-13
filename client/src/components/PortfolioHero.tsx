@@ -1,54 +1,70 @@
 import { motion } from 'framer-motion';
-import { Code } from 'lucide-react';
+import LocalizedLink from './LocalizedLink';
+import { useTranslation } from 'react-i18next';
 
-// Simplified hero component without filters
 export default function PortfolioHero() {
+  const { t } = useTranslation();
+  
   return (
-    <section className="relative pt-28 pb-12 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-      {/* Background Elements - 2025 Style with Blur Effects */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-primary opacity-5 blur-3xl"></div>
-        <div className="absolute -left-20 top-40 w-80 h-80 rounded-full bg-blue-400 opacity-5 blur-3xl"></div>
-        <div className="absolute right-1/4 bottom-0 w-80 h-80 rounded-full bg-purple-400 opacity-5 blur-3xl"></div>
+    <section className="relative pt-16 pb-20 bg-[#EB7127] overflow-hidden">
+      {/* Large left arrow decoration */}
+      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 h-96 w-96 opacity-20">
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </div>
       
-      {/* Decorative grid pattern (2025 style) */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNNjAgMzBjMCAxNi41NjktMTMuNDMxIDMwLTMwIDMwQzEzLjQzMSA2MCAwIDQ2LjU2OSAwIDMwIDAgMTMuNDMxIDEzLjQzMSAwIDMwIDBjMTYuNTY5IDAgMzAgMTMuNDMxIDMwIDMweiIgc3Ryb2tlPSIjRUJFQkVCIiBzdHJva2Utd2lkdGg9Ii41Ii8+PC9nPjwvc3ZnPg==')] opacity-5 z-0"></div>
-
+      {/* Large right arrow decoration */}
+      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 h-96 w-96 opacity-20">
+        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+      
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute -right-40 -top-40 w-96 h-96 rounded-full border-4 border-white"></div>
+        <div className="absolute -left-40 -bottom-40 w-96 h-96 rounded-full border-4 border-white"></div>
+      </div>
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Badge Indicator - 2025 Style */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center bg-white/80 backdrop-blur-sm text-primary rounded-full px-4 py-1.5 mb-6 border border-primary/10 shadow-sm"
-          >
-            <Code className="h-4 w-4 mr-2" />
-            <span className="text-sm font-medium">Our Projects</span>
-          </motion.div>
-          
-          {/* Animated Title with Modern Typography */}
           <motion.h1 
-            className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700"
+            className="text-4xl md:text-5xl font-bold mb-6 text-white font-play"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Our Work Speaks <span className="text-primary">For Itself</span>
+            Portfolio
           </motion.h1>
           
           <motion.p 
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-lg text-white/90 max-w-3xl mx-auto mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Explore our diverse portfolio of digital solutions that have driven 
-            real business results across various industries.
+            Descoperă proiectele noastre care au generat rezultate remarcabile pentru afacerile clienților noștri.
           </motion.p>
+          
+          {/* Breadcrumb navigation */}
+          <motion.div
+            className="text-white text-center mt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            <LocalizedLink to="/" className="hover:underline">
+              Homepage
+            </LocalizedLink>
+            <span className="mx-2">›</span>
+            <span className="font-medium">Portfolio</span>
+          </motion.div>
         </div>
       </div>
+      
+      {/* Slanted bottom edge */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-white transform -skew-y-1.5 origin-right"></div>
     </section>
   );
 }
