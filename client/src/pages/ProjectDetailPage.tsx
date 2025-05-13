@@ -73,7 +73,7 @@ export default function ProjectDetailPage() {
         {/* Hero section with orange background - two columns */}
         <section className="relative pt-20 pb-32 bg-[#EB7127] overflow-hidden">
           {/* White slanted bottom edge */}
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-white transform -skew-y-1.5 origin-right"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-white transform -skew-y-3 origin-bottom-right"></div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
@@ -132,10 +132,7 @@ export default function ProjectDetailPage() {
           </div>
         </section>
         
-        {/* Diagonal white slice for visual separation - appears above the tab buttons */}
-        <div className="relative h-16 bg-white">
-          <div className="absolute -top-16 left-0 right-0 h-16 bg-white transform -skew-y-1.5 origin-right"></div>
-        </div>
+        {/* Removing the duplicate diagonal separator as we've improved the one in the hero section */}
         
         {/* Project Tabs - white background buttons, orange for active */}
         <section className="py-10 bg-white">
