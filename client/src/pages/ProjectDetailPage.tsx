@@ -198,10 +198,11 @@ export default function ProjectDetailPage() {
                         <div className="space-y-4">
                           <div className="flex items-center gap-2">
                             <div className="w-6 h-6 flex items-center justify-center">
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 5.27V19.73H16.2V5.27H0ZM14.4 18H1.8V7H14.4V18Z" fill="#8F8F8F"/>
-                                <path d="M10 12.81H24V7.27H10V12.81ZM11.8 9H22.2V11.08H11.8V9Z" fill="#8F8F8F"/>
-                              </svg>
+                              <img 
+                                src="/img/fi_1743994.png"
+                                alt="Problem icon"
+                                className="w-6 h-6"
+                              />
                             </div>
                             <h3 className="text-lg font-semibold text-[#8F8F8F]">Problem</h3>
                           </div>
