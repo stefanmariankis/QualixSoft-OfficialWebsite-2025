@@ -213,19 +213,18 @@ export default function ServiceDetailPage() {
         const timelineHeight = timelineRef.current.offsetHeight;
         
         // Calculate total scroll distance needed (from first seeing the timeline to scrolling past it)
-        // Using 80% of original distance to make sure we reach 100% before passing the section
-        const totalScrollDistance = timelineHeight * 0.8;
+        const totalScrollDistance = timelineHeight + windowHeight * 0.5;
         
         // How much we've already scrolled through the timeline
         let scrollProgress = 0;
         
         if (startPosition <= windowHeight && startPosition + timelineHeight >= 0) {
           // Timeline is at least partially visible in viewport
-          // Accelerate the progress by multiplying by 1.5
-          scrollProgress = ((windowHeight - startPosition) / totalScrollDistance) * 100 * 1.2;
+          // Calculate progress based on how far we've scrolled through the section
+          scrollProgress = ((windowHeight - startPosition) / totalScrollDistance) * 100;
           
-          // Make sure bottom 20% of timeline triggers 100% fill
-          if (timelineRect.bottom < windowHeight * 0.8) {
+          // Ensure we reach 100% only when nearly at the end of the timeline
+          if (timelineRect.bottom < windowHeight * 0.2) {
             scrollProgress = 100;
           }
           
