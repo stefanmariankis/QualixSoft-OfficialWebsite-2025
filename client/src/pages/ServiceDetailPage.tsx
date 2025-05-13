@@ -12,6 +12,11 @@ import MarketingIcon from '../assets/importance/cost-effective-marketing.png';
 import ConvenienceIcon from '../assets/importance/customer-convenience.png';
 import AudienceReachIcon from '../assets/importance/wider-audience-reach.png';
 
+// Options images
+import WebDevImg from '../assets/options/web-development.png';
+import EcommerceDevImg from '../assets/options/e-commerce-development.png';
+import MobileDevImg from '../assets/options/mobile-development.png';
+
 // Mock data for the service page
 const serviceData = {
   web_mobile_development: {
@@ -67,6 +72,7 @@ const serviceData = {
           id: 1,
           title: "Web development",
           icon: "/assets/web_development_icon.svg",
+          image: WebDevImg,
           features: [
             "Implementing modern visual solutions for experiences that convert visitors into customers",
             "Integrating accessibility principles for all users",
@@ -78,6 +84,7 @@ const serviceData = {
           id: 2,
           title: "Mobile development",
           icon: "/assets/mobile_development_icon.svg",
+          image: MobileDevImg,
           features: [
             "Crearea de aplicații native pentru iOS și Android",
             "Dezvoltarea de aplicații cross-platform pentru a reduce costurile",
@@ -89,6 +96,7 @@ const serviceData = {
           id: 3,
           title: "E-commerce development",
           icon: "/assets/ecommerce_development_icon.svg",
+          image: EcommerceDevImg,
           features: [
             "Crearea de magazine online personalizate și scalabile",
             "Integrarea cu sisteme de plată și gestiune a stocurilor",
@@ -261,11 +269,11 @@ export default function ServiceDetailPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {service.optionsSection.services.map((item) => (
-                <div key={item.id} className="bg-[#FFF9F6] p-6 rounded-lg border border-[rgba(235,113,39,0.1)] hover:shadow-lg transition-shadow">
-                  <div className="mb-6">
-                    <img src={item.icon} alt={item.title} className="w-32 h-auto" />
+                <div key={item.id} className="bg-[#FFF9F6] p-6 rounded-lg border border-[rgba(235,113,39,0.2)] hover:shadow-lg transition-shadow">
+                  <div className="mb-6 flex justify-center">
+                    <img src={item.image} alt={item.title} className="w-40 h-32 object-contain" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">{item.title}</h3>
+                  <h3 className="text-lg font-semibold text-[#EB7127] mb-4">{item.title}</h3>
                   <ul className="space-y-3 mb-6">
                     {item.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
