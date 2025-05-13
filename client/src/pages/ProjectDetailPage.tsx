@@ -70,97 +70,117 @@ export default function ProjectDetailPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
-        {/* Hero section with orange background */}
-        <section className="relative pt-32 pb-24 bg-[#EB7127] overflow-hidden">
+        {/* Hero section with orange background - two columns */}
+        <section className="relative pt-20 pb-32 bg-[#EB7127] overflow-hidden">
           {/* White slanted bottom edge */}
           <div className="absolute bottom-0 left-0 right-0 h-16 bg-white transform -skew-y-1.5 origin-right"></div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Breadcrumbs */}
-            <div className="flex items-center text-white/80 text-sm mb-6">
-              <Link href="/" className="hover:text-white transition-colors">
-                Home
-              </Link>
-              <span className="mx-2">/</span>
-              <Link href="/portfolio" className="hover:text-white transition-colors">
-                Portfolio
-              </Link>
-              <span className="mx-2">/</span>
-              <span className="text-white font-medium">
-                {project.title}
-              </span>
-            </div>
-            
-            {/* Category Tags */}
-            <div className="flex flex-wrap gap-2 mb-5">
-              {project.categories.map((category, index) => (
-                <span
-                  key={index}
-                  className="bg-white/10 backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full"
-                >
-                  {category.replace('-', ' ')}
-                </span>
-              ))}
-            </div>
-            
-            {/* Project Title */}
-            <h1 className="text-4xl md:text-5xl font-play font-bold text-white mb-8">
-              {project.title}
-            </h1>
-            
-            {/* Project Info */}
-            <div className="flex flex-wrap items-center gap-6 mb-12 text-white">
-              <div className="flex items-center">
-                <Globe className="h-5 w-5 mr-2" />
-                <span>{project.domain}</span>
+            {/* Header with menu */}
+            <div className="flex items-center justify-between mb-12">
+              <div className="text-white flex items-center">
+                <Link href="/" className="text-white font-bold text-xl flex items-center space-x-1">
+                  <span className="bg-white text-[#EB7127] p-1 rounded-sm mr-1">Q</span>
+                  <span>QualixSoft</span>
+                </Link>
               </div>
-              <div className="flex items-center">
-                <Calendar className="h-5 w-5 mr-2" />
-                <span>{project.date}</span>
+              
+              <div className="hidden md:flex items-center space-x-8 text-white">
+                <Link href="/" className="hover:text-white/80">Home</Link>
+                <Link href="/services" className="hover:text-white/80">Services</Link>
+                <Link href="/portfolio" className="hover:text-white/80">Portfolio</Link>
+                <Link href="/more" className="hover:text-white/80 flex items-center">
+                  More <span className="ml-1">▼</span>
+                </Link>
+                <Link href="/contact" className="bg-gray-900 text-white px-4 py-2 rounded">Contact Us</Link>
               </div>
             </div>
             
-            {/* MacBook Mockup */}
-            <div className="max-w-4xl mx-auto relative">
-              <img 
-                src={project.screenshot} 
-                alt={project.title} 
-                className="w-full h-auto relative z-10"
-              />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+              {/* Left column - text content */}
+              <div className="pt-6">
+                {/* Category Tags */}
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {project.categories.map((category, index) => (
+                    <span
+                      key={index}
+                      className="bg-white text-gray-800 text-xs font-medium px-3 py-1 rounded-full"
+                    >
+                      {category.replace('-', ' ')}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* Project Title */}
+                <h1 className="text-4xl md:text-5xl font-play font-bold text-white mb-8">
+                  {project.title}
+                </h1>
+                
+                {/* Project Info */}
+                <div className="flex flex-wrap items-center gap-6 mb-6 text-white">
+                  <div className="flex items-center">
+                    <Globe className="h-5 w-5 mr-2" />
+                    <span>{project.domain}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Calendar className="h-5 w-5 mr-2" />
+                    <span>{project.date}</span>
+                  </div>
+                </div>
+                
+                {/* Project Description */}
+                <p className="text-white/90 mb-8 text-lg leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur. Donec velit non ipsum vulputate 
+                  incidunt. Facilisis lectus donec ornare rhoncus vitae. Arcu at in donec at 
+                  et orci sed aliquot turpis. Facilisi non pharetra tellus ut quam amet tellus 
+                  id lobortis. Nascetur amet non suspendisse mi faucibus tempor. 
+                  Curabitur dignissim fames aliquam elementum adipiscing ac. Etiam dolor 
+                  massa mauris habitant sit arcu. Gravida aliquot ut diam facilisis sed.
+                </p>
+              </div>
+              
+              {/* Right column - macbook mockup */}
+              <div className="relative">
+                <img 
+                  src={project.screenshot} 
+                  alt={project.title} 
+                  className="w-full h-auto relative z-10"
+                />
+              </div>
             </div>
           </div>
         </section>
         
-        {/* Project Tabs */}
-        <section className="py-8 border-b border-gray-200">
+        {/* Project Tabs - white background buttons, orange for active */}
+        <section className="py-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap gap-3 justify-center">
               <button
                 onClick={() => setActiveTab('overview')}
-                className={`px-6 py-3 font-medium rounded-md transition-all
+                className={`px-8 py-2.5 font-medium transition-all border
                   ${activeTab === 'overview' 
-                    ? 'bg-[#EB7127] text-white' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-[#EB7127] text-white border-[#EB7127]' 
+                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'
                   }`}
               >
                 Project overview
               </button>
               <button
                 onClick={() => setActiveTab('process')}
-                className={`px-6 py-3 font-medium rounded-md transition-all
+                className={`px-8 py-2.5 font-medium transition-all border
                   ${activeTab === 'process' 
-                    ? 'bg-[#EB7127] text-white' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-[#EB7127] text-white border-[#EB7127]' 
+                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'
                   }`}
               >
                 Development Process
               </button>
               <button
                 onClick={() => setActiveTab('results')}
-                className={`px-6 py-3 font-medium rounded-md transition-all
+                className={`px-8 py-2.5 font-medium transition-all border
                   ${activeTab === 'results' 
-                    ? 'bg-[#EB7127] text-white' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-[#EB7127] text-white border-[#EB7127]' 
+                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'
                   }`}
               >
                 Results & Impact
