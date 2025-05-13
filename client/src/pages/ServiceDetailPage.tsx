@@ -223,19 +223,25 @@ export default function ServiceDetailPage() {
       </section>
       
       {/* The importance of a website section with icons */}
-      <section className="py-16 md:py-24 bg-gray-100">
+      <section className="py-20 md:py-24 bg-[#F2F3F2]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">{service.importanceSection.title}</h2>
+            <h2 className="text-3xl md:text-[42px] font-bold text-[#454545] mb-12 text-center font-play">{service.importanceSection.title}</h2>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-8 justify-between">
               {service.importanceSection.benefits.map((benefit) => (
-                <div key={benefit.id} className="text-center">
-                  <div className="mx-auto bg-[#EB7127] p-4 rounded-lg h-20 w-20 flex items-center justify-center mb-4">
-                    {benefit.icon}
+                <div key={benefit.id} className="flex flex-col justify-center items-center">
+                  <div className="mb-4">
+                    <div className="relative mx-auto bg-[#EB7127] p-4 rounded-full h-[100px] w-[100px] flex items-center justify-center">
+                      <div className="text-white">
+                        {benefit.icon}
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600 text-sm">{benefit.description}</p>
+                  <div className="flex flex-col items-center max-w-[190px]">
+                    <h3 className="text-base font-semibold text-[#EB7127] mb-2.5 text-center">{benefit.title}</h3>
+                    <p className="text-[#454545] text-base text-center leading-[110%]">{benefit.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -247,25 +253,25 @@ export default function ServiceDetailPage() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-800 mb-12">{service.optionsSection.title}</h2>
+            <h2 className="text-3xl md:text-[42px] font-bold text-[#454545] mb-12 font-play">{service.optionsSection.title}</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {service.optionsSection.services.map((item) => (
-                <div key={item.id} className="bg-[#FFF9F6] p-6 rounded-lg">
-                  <div className="mb-4">
+                <div key={item.id} className="bg-[#FFF9F6] p-6 rounded-lg border border-[rgba(235,113,39,0.1)] hover:shadow-lg transition-shadow">
+                  <div className="mb-6">
                     <img src={item.icon} alt={item.title} className="w-32 h-auto" />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">{item.title}</h3>
-                  <ul className="space-y-2">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">{item.title}</h3>
+                  <ul className="space-y-3 mb-6">
                     {item.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
-                        <span className="text-[#EB7127] mr-2">★</span>
-                        <span className="text-gray-600 text-sm">{feature}</span>
+                        <span className="text-[#EB7127] mr-2 flex-shrink-0">★</span>
+                        <span className="text-[#454545] text-base leading-tight">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6">
-                    <button className="bg-black text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors w-full text-center">
+                  <div className="mt-auto">
+                    <button className="bg-black text-white px-6 py-3 rounded-md font-medium hover:bg-[#333] hover:scale-[1.02] transition-all w-full text-center">
                       Get your Free Proposal
                     </button>
                   </div>
@@ -280,22 +286,22 @@ export default function ServiceDetailPage() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-800 mb-12">{service.processSection.title}</h2>
+            <h2 className="text-3xl md:text-[42px] font-bold text-[#454545] mb-12 font-play">{service.processSection.title}</h2>
             
             <div className="relative">
               {/* Vertical Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200"></div>
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-[#EB7127] opacity-20"></div>
               
-              <div className="space-y-16">
+              <div className="space-y-20">
                 {service.processSection.steps.map((step, index) => (
                   <div key={step.id} className="relative">
                     <div className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
                       {/* Left Side (even index) */}
-                      <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12'}`}>
+                      <div className={`w-1/2 ${index % 2 === 0 ? 'pr-14 text-right' : 'pl-14'}`}>
                         {index % 2 === 0 ? (
                           <>
                             <div>
-                              <p className="text-gray-600">{step.description}</p>
+                              <p className="text-[#454545] text-base">{step.description}</p>
                             </div>
                           </>
                         ) : (
@@ -308,12 +314,12 @@ export default function ServiceDetailPage() {
                       </div>
                       
                       {/* Center Circle with Number */}
-                      <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-[#EB7127] text-white flex items-center justify-center">
+                      <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-[#EB7127] text-white flex items-center justify-center font-bold">
                         {step.id}
                       </div>
                       
                       {/* Right Side (odd index) */}
-                      <div className={`w-1/2 ${index % 2 === 0 ? 'pl-12' : 'pr-12 text-right'}`}>
+                      <div className={`w-1/2 ${index % 2 === 0 ? 'pl-14' : 'pr-14 text-right'}`}>
                         {index % 2 === 0 ? (
                           <div className="flex justify-center">
                             <div className="bg-[#EB7127] rounded-full p-4 w-20 h-20 flex items-center justify-center text-white">
@@ -323,7 +329,7 @@ export default function ServiceDetailPage() {
                         ) : (
                           <>
                             <div>
-                              <p className="text-gray-600">{step.description}</p>
+                              <p className="text-[#454545] text-base">{step.description}</p>
                             </div>
                           </>
                         )}
@@ -331,8 +337,8 @@ export default function ServiceDetailPage() {
                     </div>
                     
                     {/* Title in the middle */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-4 text-center w-full">
-                      <h3 className="text-lg font-semibold text-gray-800">{step.title}</h3>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 mt-6 text-center w-full">
+                      <h3 className="text-lg font-semibold text-[#454545]">{step.title}</h3>
                     </div>
                   </div>
                 ))}
@@ -343,25 +349,31 @@ export default function ServiceDetailPage() {
       </section>
       
       {/* Portfolio section with orange background */}
-      <section className="py-16 md:py-24 bg-[#EB7127]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 bg-[#EB7127] relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -right-40 -top-40 w-96 h-96 rounded-full border-4 border-white"></div>
+          <div className="absolute -left-40 -bottom-40 w-96 h-96 rounded-full border-4 border-white"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-white mb-2">{service.portfolioSection.title}</h2>
-            <p className="text-white opacity-80 mb-12">{service.portfolioSection.subtitle}</p>
+            <h2 className="text-3xl md:text-[42px] font-bold text-white mb-2 font-play">{service.portfolioSection.title}</h2>
+            <p className="text-white opacity-80 mb-12 max-w-xl mx-auto">{service.portfolioSection.subtitle}</p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               {service.portfolioSection.projects.map((project) => (
-                <div key={project.id} className="bg-white rounded-lg p-6 flex flex-col items-center">
-                  <img src={project.logo} alt={project.name} className="h-12 mb-4" />
-                  <p className="text-gray-600 mb-2">{project.domain}</p>
-                  <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
+                <div key={project.id} className="bg-white rounded-lg p-8 flex flex-col items-center hover:shadow-lg transition-shadow">
+                  <img src={project.logo} alt={project.name} className="h-16 mb-6" />
+                  <p className="text-[#454545] mb-3 font-medium">{project.domain}</p>
+                  <div className="bg-[rgba(235,113,39,0.1)] text-[#EB7127] px-4 py-1.5 rounded-full text-sm font-medium">
                     {project.type}
                   </div>
                 </div>
               ))}
             </div>
             
-            <a href="/portfolio" className="text-white hover:underline inline-flex items-center">
+            <a href="/portfolio" className="text-white hover:underline inline-flex items-center text-lg mt-6 font-medium">
               All projects <span className="ml-2">→</span>
             </a>
           </div>
@@ -372,22 +384,22 @@ export default function ServiceDetailPage() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="md:w-2/3">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">{service.ctaSection.title}</h2>
-                <p className="text-gray-600 mb-6">{service.ctaSection.description}</p>
-                <button className="bg-black text-white px-6 py-3 rounded-md font-medium hover:bg-gray-800 transition-colors">
+                <h2 className="text-3xl md:text-[32px] font-bold text-[#454545] mb-6 font-play leading-tight">{service.ctaSection.title}</h2>
+                <p className="text-[#454545] mb-8 text-base leading-relaxed">{service.ctaSection.description}</p>
+                <button className="bg-black text-white px-8 py-4 rounded-md font-medium hover:bg-[#333] hover:scale-[1.02] transition-all">
                   {service.ctaSection.buttonText}
                 </button>
               </div>
               <div className="md:w-1/3 grid grid-cols-2 gap-4">
-                <div className="rounded-lg overflow-hidden">
+                <div className="rounded-2xl overflow-hidden shadow-md h-48">
                   <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
                        alt="Team collaboration" 
                        className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="rounded-lg overflow-hidden">
+                <div className="rounded-2xl overflow-hidden shadow-md h-48 mt-6">
                   <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
                        alt="Digital marketing" 
                        className="w-full h-full object-cover"
