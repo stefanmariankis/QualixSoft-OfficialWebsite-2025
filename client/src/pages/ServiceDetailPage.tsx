@@ -1,5 +1,6 @@
 import { useParams, Link } from 'wouter';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useRef, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PageHero from '../components/PageHero';
@@ -195,6 +196,34 @@ const serviceData = {
 export default function ServiceDetailPage() {
   const { serviceId } = useParams();
   const { t, i18n } = useTranslation();
+  const [progressHeight, setProgressHeight] = useState(10);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  
+  // Handle scroll effect for timeline progress bar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (timelineRef.current) {
+        const timelineTop = timelineRef.current.getBoundingClientRect().top;
+        const timelineBottom = timelineRef.current.getBoundingClientRect().bottom;
+        const timelineHeight = timelineRef.current.offsetHeight;
+        
+        // If timeline is in viewport
+        if (timelineTop < window.innerHeight && timelineBottom > 0) {
+          // Calculate how much of the timeline is visible
+          const visiblePart = Math.min(window.innerHeight - timelineTop, timelineHeight);
+          const visiblePercentage = Math.min(100, Math.max(10, (visiblePart / timelineHeight) * 150));
+          
+          setProgressHeight(visiblePercentage);
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    // Initial calculation
+    setTimeout(handleScroll, 500);
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   // Default to web_mobile_development if no serviceId is provided or if it doesn't exist
   const currentServiceId = serviceId || 'web_mobile_development';
@@ -303,42 +332,65 @@ export default function ServiceDetailPage() {
         </div>
       </section>
       
-      {/* Process timeline section - new vertical timeline design */}
+      {/* Process timeline section - exactly as in mockup */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-[42px] font-bold text-[#454545] mb-12 font-play">{service.processSection.title}</h2>
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-[42px] font-bold text-[#454545] mb-20 font-play">{service.processSection.title}</h2>
             
-            <div className="relative">
-              {/* Vertical Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-[#EB7127] opacity-20"></div>
+            <div className="relative" ref={timelineRef}>
+              {/* Vertical Timeline Line - Background is gray, colored part is orange */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1.5 bg-gray-200"></div>
+              <div 
+                className="absolute left-1/2 transform -translate-x-1/2 w-1.5 bg-[#EB7127]"
+                style={{ height: `${progressHeight}%`, transition: 'height 0.3s ease-out' }}
+              ></div>
               
-              <div className="space-y-24">
+              <div className="space-y-32">
                 {service.processSection.steps.map((step, index) => (
                   <div key={step.id} className="relative">
-                    {/* Content structure based on mockup */}
-                    <div className={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                      {/* Left/Right Content Area */}
-                      <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-16' : 'text-left pl-16'}`}>
-                        <h3 className="text-lg font-semibold text-[#EB7127] mb-3">{step.title}</h3>
-                        <p className="text-[#454545] text-base">{step.description}</p>
+                    {/* Icon and content positioning based on even/odd */}
+                    <div className="flex items-center">
+                      {/* Left side - always icon for odd, text for even */}
+                      <div className="w-5/12 flex justify-end pr-8">
+                        {index % 2 === 0 ? (
+                          <div className="bg-[#EB7127] rounded-full p-4 w-24 h-24 flex items-center justify-center">
+                            <img src={step.icon} alt={step.title} className="w-12 h-12" />
+                          </div>
+                        ) : (
+                          <div className="text-right">
+                            <h3 className="text-lg font-semibold text-[#454545] mb-3 flex justify-end items-center">
+                              {step.title}
+                              <span className="bg-[#EB7127] text-white w-8 h-8 flex items-center justify-center ml-3 rounded-sm">
+                                {step.id}
+                              </span>
+                            </h3>
+                            <p className="text-[#454545] text-base max-w-md">{step.description}</p>
+                          </div>
+                        )}
                       </div>
                       
-                      {/* Center Area with Icon and Number */}
-                      <div className="w-2/12 relative flex justify-center">
-                        {/* Icon Circle */}
-                        <div className="bg-[#EB7127] rounded-full w-16 h-16 flex items-center justify-center z-10">
-                          <img src={step.icon} alt={step.title} className="w-9 h-9" />
-                        </div>
-                        
-                        {/* Number Box */}
-                        <div className={`absolute ${index % 2 === 0 ? '-right-4' : '-left-4'} top-0 w-8 h-8 bg-[#EB7127] text-white flex items-center justify-center font-bold rounded`}>
-                          {step.id}
-                        </div>
-                      </div>
+                      {/* Center spacing for timeline */}
+                      <div className="w-2/12"></div>
                       
-                      {/* Empty area for the opposite side */}
-                      <div className="w-5/12"></div>
+                      {/* Right side - always text for odd, icon for even */}
+                      <div className="w-5/12 flex justify-start pl-8">
+                        {index % 2 === 0 ? (
+                          <div className="text-left">
+                            <h3 className="text-lg font-semibold text-[#454545] mb-3 flex items-center">
+                              <span className="bg-[#EB7127] text-white w-8 h-8 flex items-center justify-center mr-3 rounded-sm">
+                                {step.id}
+                              </span>
+                              {step.title}
+                            </h3>
+                            <p className="text-[#454545] text-base max-w-md">{step.description}</p>
+                          </div>
+                        ) : (
+                          <div className="bg-[#EB7127] rounded-full p-4 w-24 h-24 flex items-center justify-center">
+                            <img src={step.icon} alt={step.title} className="w-12 h-12" />
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
