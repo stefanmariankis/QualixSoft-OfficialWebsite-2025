@@ -1,0 +1,1048 @@
+/* Component 23 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 24px;
+gap: 64px;
+
+width: 1278px;
+height: 322px;
+
+background: rgba(255, 138, 0, 0.04);
+backdrop-filter: blur(25.65px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 24px 24px 0px 24px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Paragraph */
+
+display: none;
+width: 1280px;
+height: 50px;
+
+/* Body/L */
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* CoolGray/90 */
+color: #21272A;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Layer_1 */
+
+width: 194.48px;
+height: 260px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Character */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 22.01%;
+top: 36%;
+bottom: 0.19%;
+
+/* illustation */
+background: linear-gradient(180deg, #EB7127 0%, #D3804E 100%);
+
+
+/* Vector */
+
+position: absolute;
+left: 45.37%;
+right: 54.12%;
+top: 79.05%;
+bottom: 0%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.04%;
+right: 46.57%;
+top: 32.59%;
+bottom: 61.9%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.77%;
+right: 46.27%;
+top: 32.4%;
+bottom: 61.71%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 28.71%;
+right: 39.29%;
+top: 0.22%;
+bottom: 78.78%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 28.49%;
+right: 38.99%;
+top: 0%;
+bottom: 78.59%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 27.58%;
+right: 64.35%;
+top: 16.08%;
+bottom: 76.13%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 27.33%;
+right: 64.09%;
+top: 15.89%;
+bottom: 75.94%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 52.33%;
+right: 39.61%;
+top: 16.08%;
+bottom: 76.13%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 52.02%;
+right: 39.39%;
+top: 15.84%;
+bottom: 75.94%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 35.06%;
+right: 48.23%;
+top: 23.26%;
+bottom: 61.94%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 34.8%;
+right: 47.97%;
+top: 23.06%;
+bottom: 61.74%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 36.2%;
+right: 48.41%;
+top: 27.55%;
+bottom: 65.41%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 35.94%;
+right: 48.12%;
+top: 27.37%;
+bottom: 65.23%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.99%;
+right: 43.88%;
+top: 9.21%;
+bottom: 69.94%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.74%;
+right: 43.66%;
+top: 8.99%;
+bottom: 69.78%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.04%;
+right: 44.22%;
+top: 19.26%;
+bottom: 69.94%;
+
+background: #D1D3D4;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.77%;
+right: 44.08%;
+top: 19.04%;
+bottom: 69.78%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.61%;
+right: 53.24%;
+top: 16.81%;
+bottom: 77.32%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.36%;
+right: 53.06%;
+top: 16.63%;
+bottom: 77.07%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 40.72%;
+right: 50.51%;
+top: 24.87%;
+bottom: 73.77%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 39.15%;
+right: 59.38%;
+top: 14.72%;
+bottom: 82.8%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 48.9%;
+right: 49.62%;
+top: 14.72%;
+bottom: 82.8%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.37%;
+right: 44.8%;
+top: 35.43%;
+bottom: 22.08%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.1%;
+right: 44.49%;
+top: 35.22%;
+bottom: 21.89%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 39.92%;
+right: 49.88%;
+top: 38.04%;
+bottom: 23.65%;
+
+background: #D1D3D4;
+
+
+/* Vector */
+
+position: absolute;
+left: 39.7%;
+right: 49.66%;
+top: 37.89%;
+bottom: 23.46%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 44.56%;
+right: 44.84%;
+top: 32.65%;
+bottom: 57.33%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 44.31%;
+right: 44.55%;
+top: 32.45%;
+bottom: 57.11%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.37%;
+right: 55.33%;
+top: 32.59%;
+bottom: 57.33%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 32.13%;
+right: 55.11%;
+top: 32.43%;
+bottom: 57.11%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 21.92%;
+right: 54.37%;
+top: 35.43%;
+bottom: 23.19%;
+
+/* illustation */
+background: linear-gradient(180deg, #EB7127 0%, #D3804E 100%);
+
+
+/* Vector */
+
+position: absolute;
+left: 21.66%;
+right: 54.16%;
+top: 35.21%;
+bottom: 22.99%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 45.63%;
+right: 34.34%;
+top: 35.43%;
+bottom: 23.19%;
+
+/* illustation */
+background: linear-gradient(180deg, #EB7127 0%, #D3804E 100%);
+
+
+/* Vector */
+
+position: absolute;
+left: 45.36%;
+right: 34.12%;
+top: 35.24%;
+bottom: 22.99%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 57.85%;
+right: 0%;
+top: 43.21%;
+bottom: 8.51%;
+
+/* illustation */
+background: linear-gradient(180deg, #EB7127 0%, #D3804E 100%);
+
+
+/* Vector */
+
+position: absolute;
+left: 34.7%;
+right: 41.53%;
+top: 71.37%;
+bottom: 11.73%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 34.46%;
+right: 41.23%;
+top: 71.2%;
+bottom: 11.54%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 54.31%;
+right: 40.72%;
+top: 78.27%;
+bottom: 9.55%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 54.06%;
+right: 40.49%;
+top: 78.08%;
+bottom: 9.36%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 57.59%;
+right: 4.53%;
+top: 78.1%;
+bottom: 8.29%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 59.03%;
+right: 23.13%;
+top: 71.16%;
+bottom: 21.53%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 68.59%;
+right: 23.86%;
+top: 51.65%;
+bottom: 21.89%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.62%;
+right: 79.35%;
+top: 48.5%;
+bottom: 3.58%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.61%;
+right: 82.62%;
+top: 77.77%;
+bottom: 16.36%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 76.33%;
+right: 12.26%;
+top: 77.39%;
+bottom: 21.92%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 25.7%;
+right: 60.77%;
+top: 94.21%;
+bottom: 3.03%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 56.99%;
+right: 29.48%;
+top: 93.99%;
+bottom: 3.25%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.46%;
+right: 56.21%;
+top: 87.14%;
+bottom: 11.87%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.2%;
+right: 55.96%;
+top: 86.95%;
+bottom: 11.68%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.46%;
+right: 56.21%;
+top: 94.36%;
+bottom: 4.65%;
+
+background: #454545;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.2%;
+right: 55.96%;
+top: 94.19%;
+bottom: 4.43%;
+
+background: #454545;
+
+
+/* Frame 158 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 48px;
+
+width: 971.52px;
+height: 274px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 1;
+
+
+/* Secondary Headline */
+
+width: 776px;
+height: 31px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 110%;
+/* identical to box height, or 31px */
+
+/* Titles */
+color: #454545;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 312 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 64px;
+
+width: 971.52px;
+height: 195px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 310 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 453.76px;
+height: 195px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 1;
+
+
+/* Frame 314 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+width: 453.76px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* fi_1743994 */
+
+width: 24px;
+height: 24px;
+
+border-radius: 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 32.39%;
+top: 5.27%;
+bottom: 4.88%;
+
+background: #8F8F8F;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.66%;
+right: 0%;
+top: 11.73%;
+bottom: 29.86%;
+
+background: #8F8F8F;
+
+
+/* Problem */
+
+width: 69px;
+height: 25px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+color: #8F8F8F;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* I've met so many entrepreneurs who have a great product or service, but they just can't be found online. Either they have a website that doesn't represent them, or they are completely non-existent in the digital environment. These days, if you're not online, you're missing out on a lot of your potential customers. */
+
+width: 453.76px;
+height: 110px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 311 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 453.76px;
+height: 195px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 1;
+
+
+/* Frame 314 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 8px;
+
+width: 453.76px;
+height: 25px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* fi_4578634 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Group */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 87.89%;
+top: 58.98%;
+bottom: 0%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 17.97%;
+right: 0%;
+top: 59.56%;
+bottom: 0%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 82.23%;
+right: 6.05%;
+top: 19.53%;
+bottom: 74.61%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 80.27%;
+right: 8.79%;
+top: 3.91%;
+bottom: 87.3%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 80.27%;
+right: 8.79%;
+top: 32.23%;
+bottom: 58.98%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 13.87%;
+right: 74.41%;
+top: 19.53%;
+bottom: 74.61%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.61%;
+right: 72.46%;
+top: 3.91%;
+bottom: 87.3%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.61%;
+right: 72.46%;
+top: 32.23%;
+bottom: 58.98%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.43%;
+right: 34.62%;
+top: 51.76%;
+bottom: 39.45%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Vector */
+
+position: absolute;
+left: 31.45%;
+right: 23.63%;
+top: 0%;
+bottom: 54.1%;
+
+/* Elements */
+background: #EB7127;
+
+
+/* Solution */
+
+width: 67px;
+height: 25px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 140%;
+/* or 25px */
+
+/* Elements */
+color: #EB7127;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Our first priority is to build you a solid online presence. We handle everything from a modern, fast and SEO-optimized website to Google Ads and Facebook Ads campaigns that attract the right traffic. That means not only will you be visible, but you'll be visible to the people who matter – the ones who are interested in what you have to offer. I get rid of this worry completely! */
+
+width: 453.76px;
+height: 154px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
