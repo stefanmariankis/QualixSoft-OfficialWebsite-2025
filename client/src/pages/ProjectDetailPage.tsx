@@ -76,25 +76,6 @@ export default function ProjectDetailPage() {
           <div className="absolute bottom-0 left-0 right-0 h-16 bg-white transform -skew-y-1.5 origin-right"></div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Header with menu */}
-            <div className="flex items-center justify-between mb-12">
-              <div className="text-white flex items-center">
-                <Link href="/" className="text-white font-bold text-xl flex items-center space-x-1">
-                  <span className="bg-white text-[#EB7127] p-1 rounded-sm mr-1">Q</span>
-                  <span>QualixSoft</span>
-                </Link>
-              </div>
-              
-              <div className="hidden md:flex items-center space-x-8 text-white">
-                <Link href="/" className="hover:text-white/80">Home</Link>
-                <Link href="/services" className="hover:text-white/80">Services</Link>
-                <Link href="/portfolio" className="hover:text-white/80">Portfolio</Link>
-                <Link href="/more" className="hover:text-white/80 flex items-center">
-                  More <span className="ml-1">▼</span>
-                </Link>
-                <Link href="/contact" className="bg-gray-900 text-white px-4 py-2 rounded">Contact Us</Link>
-              </div>
-            </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               {/* Left column - text content */}
@@ -151,37 +132,39 @@ export default function ProjectDetailPage() {
           </div>
         </section>
         
+        {/* Diagonal white slice for visual separation - appears above the tab buttons */}
+        <div className="relative h-16 bg-white">
+          <div className="absolute -top-16 left-0 right-0 h-16 bg-white transform -skew-y-1.5 origin-right"></div>
+        </div>
+        
         {/* Project Tabs - white background buttons, orange for active */}
-        <section className="py-10">
+        <section className="py-10 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-wrap gap-3 justify-center">
               <button
                 onClick={() => setActiveTab('overview')}
-                className={`px-8 py-2.5 font-medium transition-all border
-                  ${activeTab === 'overview' 
-                    ? 'bg-[#EB7127] text-white border-[#EB7127]' 
-                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'
-                  }`}
+                className={activeTab === 'overview' 
+                  ? 'px-8 py-2.5 font-medium bg-[#EB7127] text-white border border-[#EB7127]' 
+                  : 'px-8 py-2.5 font-medium bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                }
               >
                 Project overview
               </button>
               <button
                 onClick={() => setActiveTab('process')}
-                className={`px-8 py-2.5 font-medium transition-all border
-                  ${activeTab === 'process' 
-                    ? 'bg-[#EB7127] text-white border-[#EB7127]' 
-                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'
-                  }`}
+                className={activeTab === 'process' 
+                  ? 'px-8 py-2.5 font-medium bg-[#EB7127] text-white border border-[#EB7127]' 
+                  : 'px-8 py-2.5 font-medium bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                }
               >
                 Development Process
               </button>
               <button
                 onClick={() => setActiveTab('results')}
-                className={`px-8 py-2.5 font-medium transition-all border
-                  ${activeTab === 'results' 
-                    ? 'bg-[#EB7127] text-white border-[#EB7127]' 
-                    : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300'
-                  }`}
+                className={activeTab === 'results' 
+                  ? 'px-8 py-2.5 font-medium bg-[#EB7127] text-white border border-[#EB7127]' 
+                  : 'px-8 py-2.5 font-medium bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                }
               >
                 Results & Impact
               </button>
