@@ -22,8 +22,8 @@ export default function PortfolioPage() {
       title: "Redesign website Pulse Welding",
       domain: "pulsewelding.com",
       categories: ['web-development', 'multilingual'],
-      logo: "/assets/client_pulse_welding_home_carousel.png",
-      image: "/assets/client_pulse_welding_home_carousel.png",
+      logo: "/img/client_pulse_welding_home_carousel.png",
+      image: "/img/client_pulse_welding_home_carousel.png",
       bgColor: "#2B5F93",
       performance: "+ 100% new customers",
       date: "may 2024"
@@ -33,8 +33,8 @@ export default function PortfolioPage() {
       title: "E-commerce Climatic",
       domain: "climatic.ro",
       categories: ['ecommerce', 'web-design'],
-      logo: "/assets/client_climatic_gps_home_carousel.png",
-      image: "/assets/client_climatic_gps_home_carousel.png",
+      logo: "/img/client_climatic_gps_home_carousel.png",
+      image: "/img/client_climatic_gps_home_carousel.png",
       bgColor: "#2B5F93",
       performance: "+ 20% sells",
       date: "jan 2024"
@@ -44,8 +44,8 @@ export default function PortfolioPage() {
       title: "Redesign website Zaharia's Honey",
       domain: "zaharias-honey.com",
       categories: ['website-presentation', 'web-design'],
-      logo: "/assets/client_zaharias_home_carousel.png",
-      image: "/assets/client_zaharias_home_carousel.png",
+      logo: "/img/client_zaharias_home_carousel.png",
+      image: "/img/client_zaharias_home_carousel.png",
       bgColor: "#F5D38E",
       performance: "+ 45% website visits",
       date: "jan 2024"
@@ -55,8 +55,8 @@ export default function PortfolioPage() {
       title: "THD Plast E-commerce Platform",
       domain: "thdplast.ro",
       categories: ['ecommerce', 'web-design'],
-      logo: "/assets/client_thd_plast_home_carousel.png",
-      image: "/assets/client_thd_plast_home_carousel.png",
+      logo: "/img/client_thd_plast_home_carousel.png",
+      image: "/img/client_thd_plast_home_carousel.png",
       bgColor: "#2B5F93",
       performance: "+ 35% conversion rate",
       date: "feb 2024"
@@ -66,8 +66,8 @@ export default function PortfolioPage() {
       title: "Universul Copiilor",
       domain: "universulcopiilor.ro",
       categories: ['web-development', 'custom-platform'],
-      logo: "/assets/client_gradinita_home_carousel.png",
-      image: "/assets/client_gradinita_home_carousel.png",
+      logo: "/img/client_gradinita_home_carousel.png",
+      image: "/img/client_gradinita_home_carousel.png",
       bgColor: "#E91E63",
       performance: "+ 200% parent engagement",
       date: "mar 2024"
@@ -77,8 +77,8 @@ export default function PortfolioPage() {
       title: "Optimar Corporate Website",
       domain: "optimar.ro",
       categories: ['web-development', 'branding'],
-      logo: "/assets/client_optimar_home_carousel.png",
-      image: "/assets/client_optimar_home_carousel.png",
+      logo: "/img/client_optimar_home_carousel.png",
+      image: "/img/client_optimar_home_carousel.png",
       bgColor: "#2196F3",
       performance: "+ 80% appointment bookings",
       date: "dec 2023"
@@ -116,7 +116,7 @@ export default function PortfolioPage() {
     }, 300);
   };
 
-  // Initialize projects on first render
+//Initialize projects when component mounts
   useEffect(() => {
     setFilteredProjects(projects);
   }, []);
@@ -226,7 +226,7 @@ export default function PortfolioPage() {
                           {/* Category tags */}
                           <div className="p-6">
                             <div className="flex flex-wrap gap-2 mb-3">
-                              {project.categories.slice(0, 2).map((category, index) => (
+                              {project.categories.slice(0, 2).map((category: string, index: number) => (
                                 <span 
                                   key={index}
                                   className="bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full"
