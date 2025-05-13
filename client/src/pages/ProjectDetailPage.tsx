@@ -5,12 +5,14 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useParams, Link } from 'wouter';
 import { useTranslation } from 'react-i18next';
+import problemIconImage from '../assets/fi_1743994.png';
 
 // We'll use paths to images instead of imports
 const figmaIcon = "/img/figma.svg";
 const wordpressIcon = "/img/wordpress.svg";
 const reactIcon = "/img/react.svg";
 const chatGPTIcon = "/img/chatgpt.svg";
+const problemIcon = "/img/fi_1743994.png";
 
 type ProjectTab = 'overview' | 'process' | 'results';
 
@@ -199,7 +201,7 @@ export default function ProjectDetailPage() {
                           <div className="flex items-center gap-2">
                             <div className="w-6 h-6 flex items-center justify-center">
                               <img 
-                                src="/img/fi_1743994.png"
+                                src={problemIconImage}
                                 alt="Problem icon"
                                 className="w-6 h-6"
                               />
