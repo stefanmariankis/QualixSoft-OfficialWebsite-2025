@@ -82,15 +82,27 @@ export default function ProjectDetailPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
               {/* Left column - text content */}
               <div className="pt-6">
-                {/* Category Tags */}
+                {/* Category Tags with special styling */}
                 <div className="flex flex-wrap gap-2 mb-5">
                   {project.categories.map((category, index) => (
-                    <span
+                    <div
                       key={index}
-                      className="bg-white text-gray-800 text-xs font-medium px-3 py-1 rounded-full"
+                      className="relative"
                     >
-                      {category.replace('-', ' ')}
-                    </span>
+                      <div className="bg-[#FFEFD7] px-2 py-1 rounded-[8px_8px_0px_8px]">
+                        <span
+                          className="text-xs font-semibold px-2 py-1"
+                          style={{
+                            background: 'linear-gradient(180deg, #EB7127 0%, #D3804E 100%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text'
+                          }}
+                        >
+                          {category.replace('-', ' ')}
+                        </span>
+                      </div>
+                    </div>
                   ))}
                 </div>
                 
