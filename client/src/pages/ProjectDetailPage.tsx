@@ -72,10 +72,10 @@ export default function ProjectDetailPage() {
       <main className="flex-grow">
         {/* Hero section with orange background - two columns */}
         <section className="relative pt-20 pb-32 bg-[#EB7127] overflow-hidden">
-          {/* Secondary orange tone slice */}
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-[#EC884C] transform skew-y-3 origin-bottom-left"></div>
+          {/* Secondary orange tone slice - increased height and z-index for visibility */}
+          <div className="absolute bottom-0 left-0 right-0 h-28 bg-[#EC884C] transform skew-y-3 origin-bottom-left z-[1]"></div>
           {/* White slanted bottom edge */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-white transform skew-y-3 origin-bottom-left"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-white transform skew-y-3 origin-bottom-left z-[2]"></div>
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
@@ -143,8 +143,8 @@ export default function ProjectDetailPage() {
               <button
                 onClick={() => setActiveTab('overview')}
                 className={activeTab === 'overview' 
-                  ? 'px-8 py-2.5 font-medium bg-[#EB7127] text-white border border-[#EB7127]' 
-                  : 'px-8 py-2.5 font-medium bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                  ? 'px-4 py-2 font-semibold text-lg text-white rounded-lg bg-gradient-to-b from-[#EB7127] to-[#D3804E]' 
+                  : 'px-4 py-2 font-semibold text-lg text-[#6E6E6E] rounded-lg bg-[#F1F1F1] hover:bg-gradient-to-b hover:from-[#EB7127] hover:to-[#D3804E] hover:text-white transition-colors'
                 }
               >
                 Project overview
@@ -152,8 +152,8 @@ export default function ProjectDetailPage() {
               <button
                 onClick={() => setActiveTab('process')}
                 className={activeTab === 'process' 
-                  ? 'px-8 py-2.5 font-medium bg-[#EB7127] text-white border border-[#EB7127]' 
-                  : 'px-8 py-2.5 font-medium bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                  ? 'px-4 py-2 font-semibold text-lg text-white rounded-lg bg-gradient-to-b from-[#EB7127] to-[#D3804E]' 
+                  : 'px-4 py-2 font-semibold text-lg text-[#6E6E6E] rounded-lg bg-[#F1F1F1] hover:bg-gradient-to-b hover:from-[#EB7127] hover:to-[#D3804E] hover:text-white transition-colors'
                 }
               >
                 Development Process
@@ -161,8 +161,8 @@ export default function ProjectDetailPage() {
               <button
                 onClick={() => setActiveTab('results')}
                 className={activeTab === 'results' 
-                  ? 'px-8 py-2.5 font-medium bg-[#EB7127] text-white border border-[#EB7127]' 
-                  : 'px-8 py-2.5 font-medium bg-white text-gray-700 border border-gray-200 hover:border-gray-300'
+                  ? 'px-4 py-2 font-semibold text-lg text-white rounded-lg bg-gradient-to-b from-[#EB7127] to-[#D3804E]' 
+                  : 'px-4 py-2 font-semibold text-lg text-[#6E6E6E] rounded-lg bg-[#F1F1F1] hover:bg-gradient-to-b hover:from-[#EB7127] hover:to-[#D3804E] hover:text-white transition-colors'
                 }
               >
                 Results & Impact
