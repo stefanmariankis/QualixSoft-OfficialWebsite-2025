@@ -169,7 +169,7 @@ export default function EntrepreneurSituations({ searchTerm }: EntrepreneurSitua
               {visibleSituations.map((situation, index) => (
                 <div 
                   key={situation.id} 
-                  className="box-border flex flex-col md:flex-row items-start p-6 gap-8 md:gap-16 w-full bg-[rgba(255,138,0,0.04)] backdrop-blur-lg rounded-[24px_24px_0px_24px] mb-6 hover:shadow-md transition-shadow"
+                  className="box-border flex flex-col md:flex-row items-start p-6 gap-8 md:gap-16 w-full bg-[rgba(255,138,0,0.04)] backdrop-blur-lg rounded-[24px_24px_0px_24px] mb-6 hover:shadow-md transition-shadow border border-[#EB7127]"
                   style={{ backdropFilter: "blur(25.65px)" }}
                 >
                   {/* Illustration - alternating position based on index */}
